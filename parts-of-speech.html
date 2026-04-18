@@ -167,6 +167,7 @@
   .pos-btn[data-pos="conjunction"].active { background: var(--rose); border-color: var(--rose); }
   .pos-btn[data-pos="interjection"].active { background: var(--brown); border-color: var(--brown); }
   .pos-btn[data-pos="article"].active { background: var(--muted); border-color: var(--muted); }
+  .pos-btn[data-pos="all"].active { background: var(--ink); border-color: var(--ink); }
   .pos-btn.active .dot { background: #fff; }
 
   .filter-hint {
@@ -425,6 +426,7 @@
   .concept-card[data-concept="preposition"]::before { background: var(--purple); }
   .concept-card[data-concept="conjunction"]::before { background: var(--rose); }
   .concept-card[data-concept="interjection"]::before { background: var(--brown); }
+  .concept-card[data-concept="article"]::before { background: var(--muted); }
 
   .concept-card:hover {
     transform: translateY(-3px);
@@ -492,6 +494,7 @@
   .concept-card[data-concept="preposition"] .tip-label { color: var(--purple); }
   .concept-card[data-concept="conjunction"] .tip-label { color: var(--rose); }
   .concept-card[data-concept="interjection"] .tip-label { color: var(--brown); }
+  .concept-card[data-concept="article"] .tip-label { color: var(--muted); }
 
   /* ---- NEXT CTA ---- */
   .next-cta {
@@ -547,7 +550,7 @@
 
 <div class="header">
   <h1>Parts of Speech</h1>
-  <p>Eight word-categories do all the work in English. Pick one from the filter to see every instance light up in a passage — then click a single word to hear why the author might have chosen it.</p>
+  <p>Nine word-categories do all the work in English. Pick one from the filter to see every instance light up in a passage — then click a single word to hear why the author might have chosen it.</p>
 </div>
 
 <div class="container">
@@ -565,6 +568,7 @@
       <button class="pos-btn" data-pos="preposition" onclick="setFilter('preposition')"><div class="dot"></div>Prepositions</button>
       <button class="pos-btn" data-pos="conjunction" onclick="setFilter('conjunction')"><div class="dot"></div>Conjunctions</button>
       <button class="pos-btn" data-pos="interjection" onclick="setFilter('interjection')"><div class="dot"></div>Interjections</button>
+      <button class="pos-btn" data-pos="article" onclick="setFilter('article')"><div class="dot"></div>Articles</button>
     </div>
     <div class="filter-hint" id="filterHint">Pick a category to highlight its words. Click any highlighted word to see how it's working in the sentence.</div>
   </div>
@@ -584,7 +588,7 @@
   </div>
 
   <!-- CONCEPTS -->
-  <div class="section-title">The Eight Parts of Speech</div>
+  <div class="section-title">The Nine Parts of Speech</div>
   <div class="section-sub">Tap any card for a full explanation, tests, and examples.</div>
   <div class="concepts-grid" id="conceptsGrid"></div>
 
@@ -888,6 +892,13 @@ const CONCEPTS = [
     <strong>Subordinating</strong>: <em>because, when, although, if, since, while, until, after, before, though</em>… Introduce dependent clauses.<br>
     <strong>Correlative</strong> (pairs): <em>either/or, neither/nor, both/and, not only/but also</em>.<br><br>
     <div class="tip"><div class="tip-label">Craft Note</div>The conjunction you pick carries meaning. <em>And</em> simply adds. <em>But</em> signals contrast. <em>So</em> implies cause. <em>Although</em> promises complication. Swap one and you change the tone — compare \"<em>She studied hard, and she passed</em>\" with \"<em>She studied hard, but she passed</em>.\"</div>` },
+
+  { id: "article", title: "Articles", short: "Signal whether a noun is specific or general — the most frequent words in English.",
+    detail: `Articles are tiny words that do precise work: they tell your reader whether you mean <em>a particular</em> thing or <em>any</em> thing of its type.<br><br>
+    <strong>Definite</strong>: <em>the</em> — refers to a specific, already-known noun: <em>the man, the trail, the soul</em>. Use <em>the</em> when both speaker and listener know which one.<br>
+    <strong>Indefinite</strong>: <em>a, an</em> — refers to any one member of a class: <em>a truth, an idea, a wife</em>. Use <em>a/an</em> for first mentions or non-specific nouns.<br><br>
+    Use <em>a</em> before consonant sounds; <em>an</em> before vowel sounds: <em>a cat</em>, <em>an hour</em> (the <em>h</em> is silent).<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Articles do quiet but powerful work. Austen writes \"<em>a</em> truth\" — not \"<em>the</em> truth\" — and that single letter carries her irony: it's merely one truth among many, not the grand universal it pretends to be. London writes \"<em>the</em> man\" (not \"<em>a</em> man\") to suggest this particular, doomed individual. Swap article and meaning shifts.</div>` },
 
   { id: "interjection", title: "Interjections", short: "Express sudden emotion. Grammatically separate.",
     detail: `Interjections are outbursts — they carry emotion but don't connect to the grammar of the sentence around them.<br><br>
