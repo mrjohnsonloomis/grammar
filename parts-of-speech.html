@@ -231,15 +231,14 @@
   /* ---- PASSAGE TEXT ---- */
   .passage-text {
     font-family: 'Crimson Pro', serif;
-    font-size: 1.32rem;
-    line-height: 2;
+    font-size: 1.22rem;
+    line-height: 2.1;
     color: var(--ink);
     padding: 8px 4px 4px;
     transition: color 0.3s;
   }
   .passage-text.filtered { color: #C9C3BA; }
   .passage-text.poetry { white-space: pre-line; }
-  .passage-text.poetry .token.break { display: block; height: 0.2em; }
 
   .token {
     position: relative;
@@ -251,7 +250,6 @@
   .token.word.clickable:hover { background: rgba(196, 75, 43, 0.08); }
   .token.punct { color: inherit; }
 
-  /* When a filter is active, matching words light up */
   .token.highlight {
     color: #fff !important;
     padding: 2px 6px;
@@ -269,7 +267,6 @@
   .token.highlight[data-pos="interjection"] { background: var(--brown); }
   .token.highlight[data-pos="article"] { background: var(--muted); }
 
-  /* Clicked word stays emphasized */
   .token.selected {
     outline: 2.5px solid var(--ink);
     outline-offset: 2px;
@@ -363,16 +360,12 @@
     padding: 10px 14px;
     margin: 0 0 10px 0;
   }
-  .callout-section.craft .callout-section-label {
-    color: var(--accent);
-  }
+  .callout-section.craft .callout-section-label { color: var(--accent); }
   .callout-section.role {
     color: var(--bodytext);
     padding: 2px 2px;
   }
-  .callout-section.role .callout-section-label {
-    color: var(--ink);
-  }
+  .callout-section.role .callout-section-label { color: var(--ink); }
   .callout-prompt {
     font-style: italic;
     color: var(--muted);
@@ -380,20 +373,6 @@
   }
   .callout em { color: var(--ink); font-style: italic; }
   .callout strong { color: var(--ink); }
-
-  /* ---- COUNT BADGE ---- */
-  .match-count {
-    display: inline-block;
-    margin-left: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--dimtext);
-    padding: 2px 8px;
-    background: var(--bg);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
 
   /* ---- CONCEPT CARDS ---- */
   .concepts-grid {
@@ -528,7 +507,7 @@
     .container { padding: 20px 16px 60px; }
     .concepts-grid { grid-template-columns: 1fr; }
     .passage-card { padding: 20px 18px 24px; }
-    .passage-text { font-size: 1.12rem; line-height: 1.9; }
+    .passage-text { font-size: 1.06rem; line-height: 1.95; }
     .pos-btn { font-size: 0.74rem; padding: 6px 10px; }
     .topnav { padding: 12px 16px; font-size: 0.78rem; }
     .topnav .nav-links { gap: 12px; }
@@ -581,7 +560,6 @@
       <div class="passage-meta" id="passageMeta"></div>
     </div>
     <div class="passage-text" id="passageText"></div>
-
     <div class="callout" id="callout">
       <div class="callout-prompt">← Pick a part of speech above, then click any highlighted word to see what it's doing.</div>
     </div>
@@ -592,7 +570,6 @@
   <div class="section-sub">Tap any card for a full explanation, tests, and examples.</div>
   <div class="concepts-grid" id="conceptsGrid"></div>
 
-  <!-- NEXT CTA -->
   <a class="next-cta" href="sentence-parts.html">
     <div class="next-cta-text">
       <h4>Up Next: Parts of a Sentence</h4>
@@ -605,308 +582,413 @@
 <script>
 // ==========================================================================
 // TOKEN FORMAT
-// Each token is either punctuation/whitespace or a clickable word.
 // { t: text, p: part-of-speech, c: craft-note, r: role-in-sentence }
 // p values: noun, pronoun, verb, adjective, adverb, preposition,
-//           conjunction, interjection, article, (or null for punct)
-// "punct" or "break" types aren't highlighted/clickable.
+//           conjunction, interjection, article
+// punct:true or break:true — not highlighted, not clickable
 // ==========================================================================
 
 const PASSAGES = [
+
   // ========================================================================
-  // 1. PRIDE AND PREJUDICE — opening line
+  // 1. JANE AUSTEN — Pride and Prejudice, Chapter 1 (extended)
   // ========================================================================
   {
     title: "Pride and Prejudice",
-    meta: "Jane Austen, 1813 — opening line",
+    meta: "Jane Austen, 1813 — opening of Chapter I",
     type: "narrative",
     tokens: [
-      { t: "It", p: "pronoun", c: "A \"dummy\" or placeholder pronoun — it doesn't refer to any real thing, just fills the subject slot so Austen can delay the real idea (<em>a single man… must be in want of a wife</em>) until the end for comic effect.", r: "Subject of <em>is</em>." },
-      { t: " " },
-      { t: "is", p: "verb", c: "A linking verb — small, quiet, but essential. Austen uses it to make a grand-sounding <em>declaration</em>, mimicking the style of philosophical truths.", r: "Main verb; links <em>It</em> to its predicate nominative <em>a truth</em>." },
-      { t: " " },
-      { t: "a", p: "article", c: "Indefinite article — signals \"any,\" which amplifies the satirical universalism: this isn't a truth, it's <em>a</em> truth, one of many.", r: "Modifies <em>truth</em>." },
-      { t: " " },
-      { t: "truth", p: "noun", c: "Abstract noun elevating the whole sentence to mock-philosophical register. Austen is using the gravity of \"truth\" against the triviality of the claim.", r: "Predicate nominative — renames <em>It</em>." },
-      { t: " " },
-      { t: "universally", p: "adverb", c: "Modifier that doubles down on the satire — as though this petty social observation holds everywhere in the world. Placement between <em>truth</em> and <em>acknowledged</em> makes it pompous.", r: "Modifies the participle <em>acknowledged</em>." },
-      { t: " " },
-      { t: "acknowledged", p: "adjective", c: "Past participle used as an adjective describing <em>truth</em>. Gives the sentence its stately, formal ring.", r: "Adjective modifying <em>truth</em> (participial adjective)." },
-      { t: ",", punct: true },
-      { t: " " },
-      { t: "that", p: "conjunction", c: "A subordinating conjunction introducing a noun clause — the real content of the sentence, held in suspense until now.", r: "Introduces the noun clause that renames <em>truth</em>." },
-      { t: " " },
-      { t: "a", p: "article" },
-      { t: " " },
-      { t: "single", p: "adjective", c: "Precise descriptor — not <em>young</em>, not <em>handsome</em>, but <em>single</em>. This is the only quality that matters in the novel's marriage market.", r: "Modifies <em>man</em>." },
-      { t: " " },
-      { t: "man", p: "noun", c: "A general, stock noun — Austen deliberately avoids a specific character. The statement is pretending to be universal.", r: "Subject of <em>must be</em> inside the noun clause." },
-      { t: " " },
-      { t: "in", p: "preposition", c: "Begins a prepositional phrase modifying <em>man</em>, specifying the one quality that \"matters\": wealth.", r: "Head of prep phrase <em>in possession of a good fortune</em>." },
-      { t: " " },
-      { t: "possession", p: "noun", c: "Formal, legalistic word — as if a wife could also be \"possessed.\" Austen is already planting her critique.", r: "Object of the preposition <em>in</em>." },
-      { t: " " },
-      { t: "of", p: "preposition" },
-      { t: " " },
-      { t: "a", p: "article" },
-      { t: " " },
-      { t: "good", p: "adjective", c: "Deceptively plain. In context, <em>good</em> means \"large\" — another coded Regency word for money.", r: "Modifies <em>fortune</em>." },
-      { t: " " },
-      { t: "fortune", p: "noun", c: "Concrete noun standing in for the abstract idea of wealth. Specific enough to feel real, general enough to be universal.", r: "Object of the preposition <em>of</em>." },
-      { t: ",", punct: true },
-      { t: " " },
-      { t: "must", p: "verb", c: "A modal verb expressing <em>necessity</em> — the comedy hinges on this. He doesn't <em>probably</em> want a wife; he <em>must</em>.", r: "Helping verb combining with <em>be</em>." },
-      { t: " " },
-      { t: "be", p: "verb", c: "The main verb inside the noun clause, linking <em>man</em> to its state.", r: "Main verb of the noun clause." },
-      { t: " " },
-      { t: "in", p: "preposition" },
-      { t: " " },
-      { t: "want", p: "noun", c: "Old-fashioned usage — \"want\" here means <em>need</em> or <em>lack</em>, not <em>desire</em>. The irony: the man doesn't feel he wants a wife; society assumes he must.", r: "Object of the preposition <em>in</em>." },
-      { t: " " },
-      { t: "of", p: "preposition" },
-      { t: " " },
-      { t: "a", p: "article" },
-      { t: " " },
-      { t: "wife", p: "noun", c: "The punchline — held until the final word. Every marker of universal, philosophical truth (<em>truth, universally, acknowledged, must</em>) collapses onto this one ordinary noun.", r: "Object of the preposition <em>of</em>." },
-      { t: ".", punct: true },
+      // Sentence 1
+      {t:"It",p:"pronoun",c:"A dummy pronoun — it refers to nothing concrete, just holds the subject slot so Austen can delay her real claim until the end of the sentence. This is called an expletive construction, and it gives her total control over where the reader's attention lands.",r:"Subject of the linking verb <em>is</em>."},
+      {t:" "},{t:"is",p:"verb",c:"A linking verb so small it almost disappears — yet it carries the whole satirical weight of the sentence. Austen mimics the style of philosophical proclamations ('It is a truth…') to deliver a petty social observation.",r:"Main verb; links <em>It</em> to its predicate nominative."},
+      {t:" "},{t:"a",p:"article",c:"Indefinite article — and a quietly devastating choice. She doesn't say <em>the</em> truth (which would be absolute); she says <em>a</em> truth, one among many, already undercutting the sentence's grand posture.",r:"Modifies <em>truth</em>."},
+      {t:" "},{t:"truth",p:"noun",c:"Abstract noun giving the sentence its mock-philosophical register. Austen is borrowing the vocabulary of Enlightenment reasoning to talk about husband-hunting.",r:"Predicate nominative — renames the subject <em>It</em>."},
+      {t:" "},{t:"universally",p:"adverb",c:"An intensifier pushed to comic excess — as if this petty social observation held true in every society on earth. Its placement between <em>truth</em> and <em>acknowledged</em> makes it feel pompous, which is the point.",r:"Modifies the participial adjective <em>acknowledged</em>."},
+      {t:" "},{t:"acknowledged",p:"adjective",c:"Past participle used as an adjective. It gives the sentence a stiff, formal quality — as though someone had already voted on this and declared it law. Austen is parodying exactly that kind of social decree.",r:"Adjective modifying <em>truth</em> (participial adjective)."},
+      {t:",",punct:true},{t:" "},
+      {t:"that",p:"conjunction",c:"Subordinating conjunction opening the noun clause that contains the actual content of the sentence. Everything before this word is prologue — the real claim begins here.",r:"Introduces the noun clause renaming <em>truth</em>."},
+      {t:" "},{t:"a",p:"article",c:"Indefinite article again — <em>a</em> single man, not <em>the</em> single man. The observation applies to any and all such men, universally. (Note the irony: the article signals universality while also signaling ordinary typicality.)",r:"Modifies <em>man</em>."},
+      {t:" "},{t:"single",p:"adjective",c:"The only quality that matters in this novel's marriage market. Not handsome, not young, not kind — just <em>single</em>. Austen reduces the entire man to his marital status.",r:"Modifies <em>man</em>."},
+      {t:" "},{t:"man",p:"noun",c:"A deliberately generic noun. Austen is not describing anyone specific — she is describing the category, the institution, the social fact.",r:"Subject of <em>must be</em> inside the noun clause."},
+      {t:" "},{t:"in",p:"preposition",c:"Begins a prepositional phrase that defines the man's one relevant quality before we reach the punch line: he must have money.",r:"Head of the prep phrase <em>in possession of a good fortune</em>."},
+      {t:" "},{t:"possession",p:"noun",c:"A formal, almost legalistic word. To be 'in possession of' something sounds like an estate document. Austen quietly suggests that women, too, might be possessions in this world.",r:"Object of the preposition <em>in</em>."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"a",p:"article"},{t:" "},
+      {t:"good",p:"adjective",c:"Regency code for 'large.' A 'good fortune' doesn't mean a morally admirable one; it means a financially substantial one. Austen's adjectives often mean the opposite of what they seem to.",r:"Modifies <em>fortune</em>."},
+      {t:" "},{t:"fortune",p:"noun",c:"The real subject of the whole novel: money. Every comedy of manners that follows is built on this noun.",r:"Object of the preposition <em>of</em>."},
+      {t:",",punct:true},{t:" "},
+      {t:"must",p:"verb",c:"A modal verb expressing necessity — not probability, not likelihood, but <em>must</em>. The comedy turns on this word. He doesn't merely tend to want a wife; society has determined that he must.",r:"Helping/modal verb combining with <em>be</em>."},
+      {t:" "},{t:"be",p:"verb",c:"Linking verb. Together with <em>must</em>, it states the condition as an axiom of nature.",r:"Main verb of the noun clause."},
+      {t:" "},{t:"in",p:"preposition"},{t:" "},
+      {t:"want",p:"noun",c:"Old-fashioned usage: 'want' here means <em>lack</em> or <em>need</em>, not desire. The irony is rich — the man himself may feel no such need, but society has assigned it to him anyway.",r:"Object of the preposition <em>in</em>."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"a",p:"article"},{t:" "},
+      {t:"wife",p:"noun",c:"The punchline. Held for the very last word. Every piece of philosophical scaffolding — <em>truth, universally, acknowledged, must</em> — has been built to deposit us at this one ordinary noun. The bathos is the joke.",r:"Object of the preposition <em>of</em>."},
+      {t:".",punct:true},{t:" "},
+
+      // Sentence 2
+      {t:"However",p:"adverb",c:"A transitional adverb that pivots immediately — Austen has just made a grand universal claim, and now she complicates it. The pivot is so fast it becomes its own joke.",r:"Sentence modifier; signals contrast with what came before."},
+      {t:" "},{t:"little",p:"adjective",c:"Ironic understatement. The feelings of the man in question are exactly what the surrounding community refuses to care about — and Austen names that indifference with this mild, polite word.",r:"Modifies <em>feelings</em>."},
+      {t:" "},{t:"known",p:"verb",c:"Past participle in a passive construction — <em>may be known</em>. The feelings are grammatically acted upon; they don't get to act themselves. This mirrors how the man is being handled socially.",r:"Main verb of the passive <em>may be known</em>."},
+      {t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"feelings",p:"noun",c:"Abstract noun — but notice it's the feelings of the man, not the women. Austen is already overturning the assumption that women are the emotional, irrational party in this arrangement.",r:"Subject of <em>may be known</em> (passive)."},
+      {t:" "},{t:"or",p:"conjunction",c:"Disjunctive conjunction joining <em>feelings</em> and <em>views</em> — Austen offers both internal states and external plans, suggesting the man is a full person even if nobody around him treats him as one.",r:"Joins <em>feelings</em> and <em>views</em>."},
+      {t:" "},{t:"views",p:"noun",c:"A more intellectual word than <em>feelings</em> — his reasoned opinions, his perspective. The sentence insists the man has an inner life, even as the neighborhood ignores it.",r:"Joined with <em>feelings</em> as second subject of <em>may be known</em>."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"such",p:"adjective",c:"A pointing adjective — referring forward to the man described in sentence one. It ties the sentences together while keeping a satirical distance (<em>such</em> a man, as if he were a specimen).",r:"Modifies <em>man</em>."},
+      {t:" "},{t:"a",p:"article"},{t:" "},
+      {t:"man",p:"noun",c:"The same generic noun from sentence one — the structure is circular, looping back to reinforce that the community's obsession has nothing to do with who the man actually is.",r:"Object of the preposition <em>of</em>."},
+      {t:" "},{t:"may",p:"verb",c:"Modal verb softer than <em>must</em> — possibility, not necessity. The man's own feelings get <em>may</em>; society's claim about him gets <em>must</em>. That gap between the two modals contains the whole satirical argument.",r:"Helping/modal verb combining with <em>be known</em>."},
+      {t:" "},{t:"be",p:"verb"},{t:" "},{t:"known",p:"verb"},
+      {t:",",punct:true},{t:" "},{t:"this",p:"pronoun",c:"Demonstrative pronoun pointing at the whole situation — the arrival of a rich single man, the community's reaction, everything just described. It serves as a compressed reference, letting Austen move quickly.",r:"Subject of <em>is</em> in the following clause."},
+      {t:" "},{t:"much",p:"adjective",c:"Intensifier functioning as an adjective — modifying <em>truth</em>. The repetition of <em>truth</em> from the opening sentence closes a circle: the satire began with one universally acknowledged truth and ends with another, more local one.",r:"Modifies <em>truth</em>."},
+      {t:" "},{t:"is",p:"verb"},{t:" "},
+      {t:"well",p:"adverb",c:"Common adverb here functioning as an intensifier alongside <em>much</em>. But note: Austen uses <em>well known</em> to mean thoroughly established — the neighborhood <em>knows</em> its own desires perfectly well.",r:"Modifies <em>known</em>."},
+      {t:" "},{t:"known",p:"verb",c:"Echoes <em>known</em> from earlier in the same sentence. The man's inner feelings 'may be known'; the neighborhood's desires are 'well known.' The contrast in certainty is the satirical point.",r:"Past participle (passive) — main verb of this clause."},
+      {t:",",punct:true},{t:" "},{t:"that",p:"conjunction"},{t:" "},{t:"a",p:"article"},{t:" "},
+      {t:"single",p:"adjective",c:"Repeated from the first sentence. Now it's the neighborhood's turn to describe him. The word hasn't changed, but the perspective has shifted entirely — this is no longer philosophical observation but social appetite.",r:"Modifies <em>man</em>."},
+      {t:" "},{t:"man",p:"noun"},{t:" "},{t:"in",p:"preposition"},{t:" "},
+      {t:"possession",p:"noun",c:"Exact phrase repeated from the first sentence — Austen is nearly quoting herself. The repetition signals that what she claimed was 'universal truth' is actually what the local neighborhood wants to believe.",r:"Object of the preposition <em>in</em>."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"a",p:"article"},{t:" "},{t:"good",p:"adjective"},{t:" "},{t:"fortune",p:"noun"},
+      {t:",",punct:true},{t:" "},{t:"must",p:"verb",c:"The modal <em>must</em> again — but now it belongs explicitly to the neighborhood's logic, not some universal truth. By repeating the exact structure, Austen shows us that the 'universal' opening sentence was always the neighborhood's opinion dressed up as philosophy.",r:"Modal verb; now attributed explicitly to the neighborhood's view."},
+      {t:" "},{t:"be",p:"verb"},{t:" "},{t:"in",p:"preposition"},{t:" "},{t:"want",p:"noun"},{t:" "},{t:"of",p:"preposition"},{t:" "},{t:"a",p:"article"},{t:" "},{t:"wife",p:"noun",c:"The second arrival at this word. The first time it was the punchline of a supposed universal truth; this time it's the conclusion of the neighborhood's narrow worldview. Same word, exposed.",r:"Object of the preposition <em>of</em>."},
+      {t:".",punct:true},
     ],
   },
 
   // ========================================================================
-  // 2. TO BUILD A FIRE — Jack London (descriptive)
+  // 2. ERNEST HEMINGWAY — A Farewell to Arms, Chapter 1
+  // ========================================================================
+  {
+    title: "A Farewell to Arms",
+    meta: "Ernest Hemingway, 1929 — opening of Chapter I",
+    type: "descriptive",
+    tokens: [
+      // S1
+      {t:"In",p:"preposition",c:"Hemingway opens with a preposition, not a subject — we land in the middle of a place before we meet any person. It's a cinematic technique: establish setting first.",r:"Head of the prep phrase <em>In the late summer of that year</em>."},
+      {t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"late",p:"adjective",c:"<em>Late</em> summer, not <em>deep</em> summer or <em>golden</em> summer. Hemingway's adjectives are plain and precise — they tell you exactly what you need and nothing more.",r:"Modifies <em>summer</em>."},
+      {t:" "},{t:"summer",p:"noun",c:"A concrete, specific season — but note he doesn't name the year. <em>That year</em> is deliberately vague, creating a feeling of memory rather than reportage.",r:"Object of the preposition <em>In</em>."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"that",p:"adjective",c:"Demonstrative adjective pointing backward to a shared memory — as if reader and narrator already know which year. It creates false intimacy, the illusion of prior knowledge.",r:"Modifies <em>year</em>."},{t:" "},{t:"year",p:"noun",r:"Object of the preposition <em>of</em>."},
+      {t:" "},{t:"we",p:"pronoun",c:"Hemingway's first-person plural — not <em>I</em>, but <em>we</em>. The narrator is immediately part of a collective, a unit, an army. This positioning quietly signals that the individual is subsumed by the group.",r:"Subject of <em>lived</em>."},
+      {t:" "},{t:"lived",p:"verb",c:"Simple past tense. Hemingway almost never uses the past perfect or present perfect — no <em>had lived</em>, no <em>have lived</em>. Just the clean, finished simplicity of <em>lived</em>. The past is over; here it is.",r:"Main verb of the sentence."},
+      {t:" "},{t:"in",p:"preposition"},{t:" "},{t:"a",p:"article"},{t:" "},
+      {t:"house",p:"noun",c:"Not a villa, not a billet, not a lodge — just <em>a house</em>. Hemingway strips away the glamour of war and the romance of Italy by using the most ordinary noun available.",r:"Object of the preposition <em>in</em>."},
+      {t:" "},{t:"in",p:"preposition"},{t:" "},{t:"a",p:"article"},{t:" "},
+      {t:"village",p:"noun",c:"Again: not a town, not a city, not a hamlet. <em>Village</em> — small, modest, human-scaled. The scale keeps shrinking: country → village → house.",r:"Object of the second <em>in</em>."},
+      {t:" "},{t:"that",p:"pronoun",c:"Relative pronoun introducing a descriptive clause — the village looked across a river and a plain. The landscape is opened out with this simple pronoun.",r:"Subject of the relative clause <em>that looked across…</em>."},
+      {t:" "},{t:"looked",p:"verb",c:"Personification verb — the village <em>looks</em>, like a person. Hemingway animates the landscape just enough to give it a perspective, then drops the technique.",r:"Verb of the relative clause."},
+      {t:" "},{t:"across",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"river",p:"noun",c:"A landmark of Hemingway's landscape — rivers recur throughout his work as symbols of movement, time, and boundary. Here it's simply geographic, but it will gather meaning.",r:"Object of <em>across</em>."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"plain",p:"noun",c:"The plain will dominate the visual world of this novel — open, exposed, offering no shelter. Its introduction here is matter-of-fact, but it quietly establishes the vulnerability of the landscape.",r:"Joined with <em>river</em> as second object of <em>across</em>."},
+      {t:" "},{t:"to",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"mountains",p:"noun",c:"The third noun in the landscape series: river, plain, mountains. The vista is wide — and distant. The mountains will represent safety and escape throughout the novel; their appearance here sets that up before the reader knows to notice.",r:"Object of <em>to</em>."},
+      {t:".",punct:true},{t:" "},
+
+      // S2
+      {t:"In",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"bed",p:"noun",c:"The only interior detail in an otherwise outdoor paragraph. <em>Bed</em> suggests both rest and cultivation — but Hemingway immediately qualifies it with the river's dryness, undercutting any pastoral comfort.",r:"Object of <em>In</em>."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"river",p:"noun",c:"The river returns — but now it's described from the inside, its stony bed. The narrator is moving closer, zooming in.",r:"Object of <em>of</em>."},
+      {t:" "},{t:"there",p:"adverb",c:"Existential <em>there</em> — not a true adverb of location, but a structural word that allows Hemingway to delay the subject (<em>pebbles and boulders</em>) until after the verb. A subtle but effective reversal of normal word order.",r:"Expletive — delays the true subject."},
+      {t:" "},{t:"were",p:"verb",c:"Simple past of <em>be</em>. Another stripped-down verb — no action, just existence. Things <em>were</em>. Hemingway trusts existence to be interesting enough.",r:"Main verb (existential construction)."},
+      {t:" "},{t:"pebbles",p:"noun",c:"Concrete, specific, physical. Hemingway is famous for making his readers <em>see</em> — not by describing impressions but by naming things exactly.",r:"True subject of <em>were</em>."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},
+      {t:"boulders",p:"noun",c:"Escalation: pebbles, then boulders. The scale of the river bottom is enormous — this is not a gentle stream.",r:"Joined with <em>pebbles</em> as second subject of <em>were</em>."},
+      {t:",",punct:true},{t:" "},{t:"dry",p:"adjective",c:"One word that changes everything. Dry pebbles and boulders — the river is low or spent. The dryness signals the end of something, a season gone. In a war novel, this carries ominous weight.",r:"Adjective modifying <em>pebbles and boulders</em>."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},
+      {t:"white",p:"adjective",c:"Color adjective — the only color in the paragraph, and it's the absence of color. White stone, bleached by sun and water, empty of life. Hemingway's palette is already doing thematic work.",r:"Adjective modifying <em>pebbles and boulders</em>."},
+      {t:" "},{t:"in",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"sun",p:"noun",c:"The sun appears for the first time — and it bleaches, it dries, it creates emptiness. Not warmth or joy. The natural world in this novel does not comfort.",r:"Object of <em>in</em>."},
+      {t:",",punct:true},{t:" "},{t:"and",p:"conjunction"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"water",p:"noun",c:"The river returns as water — but the sentence now moves it <em>clear</em> and <em>swiftly moving</em>. The water is the only thing with energy in this static, bleached landscape.",r:"Subject of <em>was</em>."},
+      {t:" "},{t:"was",p:"verb"},{t:" "},
+      {t:"clear",p:"adjective",c:"The water is transparent, readable, honest — qualities the war is not. The landscape's clarity sets up the fog of everything that follows.",r:"Adjective modifying <em>water</em>."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},
+      {t:"swiftly",p:"adverb",c:"One of the few adverbs in the passage — Hemingway restricts them severely. When one appears, it carries weight. <em>Swiftly</em> is the only thing moving with urgency in this otherwise still world.",r:"Modifies <em>moving</em>."},
+      {t:" "},{t:"moving",p:"verb",c:"Present participle — the only ongoing, continuous action in the passage. Everything else is static past tense; only the water keeps moving.",r:"Participial verb modifying <em>water</em>."},
+      {t:" "},{t:"in",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"channels",p:"noun",c:"A precise geological term — the grooves carved by flowing water. Hemingway doesn't say 'streams' or 'currents'; he picks the exact technical word.",r:"Object of <em>in</em>."},
+      {t:".",punct:true},{t:" "},
+
+      // S3
+      {t:"Troops",p:"noun",c:"The first word that locates us in the war — and Hemingway gives it no introduction, no article (<em>the</em> troops or <em>some</em> troops), just the bare plural noun. <em>Troops</em> appears like a fact of nature, as inevitable as the river and the plain.",r:"Subject of <em>went</em>."},
+      {t:" "},{t:"went",p:"verb",c:"The simplest possible verb of motion. Not <em>marched</em>, not <em>advanced</em>, not <em>tramped</em> — just <em>went</em>. Hemingway drains the heroism from military movement with a single plain verb.",r:"Main verb."},
+      {t:" "},{t:"by",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"house",p:"noun",c:"The house from the first sentence — now the troops pass it. The domestic space and the military space share the same geography, creating the novel's central tension.",r:"Object of <em>by</em>."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},
+      {t:"down",p:"preposition",c:"Directional preposition giving the movement a vector — downward, toward the front, toward the war.",r:"Head of the prep phrase <em>down the road</em>."},
+      {t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"road",p:"noun",c:"One of Hemingway's most loaded nouns. Roads in his fiction mean movement, fate, the direction history is forcing you. This road leads to the war.",r:"Object of <em>down</em>."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"dust",p:"noun",c:"The dust of the troops' passage — the first sensory detail of the war's physical presence. It rises, it coats, it obscures. Dust will return as a motif throughout the novel.",r:"Subject of <em>raised</em>."},
+      {t:" "},{t:"they",p:"pronoun",c:"The troops become <em>they</em> — a collective pronoun. They are not individuals; they are a mass.",r:"Subject of the following clause."},
+      {t:" "},{t:"raised",p:"verb",c:"Past tense, active — the troops are agents, causing something to happen. But what they cause is merely dust, not victory or heroism.",r:"Main verb of the following clause."},
+      {t:" "},{t:"powdered",p:"verb",c:"Past participle used as an adjective. The dust doesn't just settle — it <em>powders</em> the leaves. A precisely observed physical detail that makes the landscape feel real and tactile.",r:"Participial adjective modifying <em>leaves</em>."},
+      {t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"leaves",p:"noun",c:"The leaves of the trees lining the road — suddenly we are aware the landscape is alive, has vegetation, has living things that can be coated and choked. The war is doing this to the world.",r:"Object of <em>powdered</em>."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"trees",p:"noun",c:"Another simple, plain noun. The trees stand quietly while the troops and their dust pass — passive witnesses, like the narrator.",r:"Object of <em>of</em>."},
+      {t:".",punct:true},
+    ],
+  },
+
+  // ========================================================================
+  // 3. TONI MORRISON — Beloved, Chapter 1
+  // ========================================================================
+  {
+    title: "Beloved",
+    meta: "Toni Morrison, 1987 — opening of Chapter 1",
+    type: "narrative",
+    tokens: [
+      // S1
+      {t:"124",p:"noun",c:"The novel opens with a number, not a name or a description. <em>124</em> is the address of the house — and Morrison treats it as a proper noun, a character in itself. Numbers are cold, official, impersonal; using one to open a novel about a haunted house is an act of radical defamiliarization.",r:"Subject of <em>was</em>."},
+      {t:" "},{t:"was",p:"verb",c:"Simple past, linking verb. 'Was' — not 'is.' The haunting is established, ongoing, but the sentence reaches for it in the past tense, as if telling a story about something already completed and not yet resolved.",r:"Linking verb."},
+      {t:" "},
+      {t:"spiteful",p:"adjective",c:"Morrison's opening adjective is shocking. Houses don't feel spite — people do. By giving 124 a human emotion, Morrison immediately personifies it, establishing the haunting as something with intention and malice, not just atmosphere.",r:"Predicate adjective — describes <em>124</em>."},
+      {t:".",punct:true},{t:" "},
+
+      // S2
+      {t:"Full",p:"adjective",c:"Short, punchy adjective launching a fragment — grammatically aggressive. Morrison will use fragments throughout this opening, mimicking the fractured quality of traumatic memory.",r:"Predicate adjective in a sentence fragment."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"a",p:"article"},{t:" "},
+      {t:"baby",p:"noun",c:"The ghost is a baby. This is the third word of the paragraph and it already names the novel's central tragedy: an infant death. Morrison doesn't build to this revelation — she opens with it.",r:"Adjective-modifying noun (in compound <em>baby's venom</em>)."},
+      {t:"'s",punct:true},{t:" "},
+      {t:"venom",p:"noun",c:"Strikingly violent noun for an infant. <em>Venom</em> is what snakes produce, what poison carries. The baby's spirit doesn't merely haunt — it is toxic, purposeful, lethal. Morrison refuses to sentimentalize the ghost.",r:"Object of the preposition <em>of</em>."},
+      {t:".",punct:true},{t:" "},
+
+      // S3
+      {t:"The",p:"article"},{t:" "},
+      {t:"women",p:"noun",c:"Not <em>a woman</em> — <em>the women</em>. Community is already implied: these women are known to each other, part of a world. The definite article signals that we are entering a social world, not a private one.",r:"Subject of <em>would not be</em>."},
+      {t:" "},{t:"in",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"neighborhood",p:"noun",c:"The house is not isolated — it is surrounded. The neighborhood watches, knows, judges. The community's awareness of the haunting is as important as the haunting itself.",r:"Object of <em>in</em>."},
+      {t:" "},{t:"would",p:"verb",c:"Modal verb indicating habit or repeated past action — 'would' here means 'used to.' This is Morrison telling us about a long-standing pattern, not a single event.",r:"Helping/modal verb."},
+      {t:" "},{t:"not",p:"adverb",c:"The negation sits between <em>would</em> and <em>be</em> — a soft, grammatical refusal. The women <em>would not</em>. They chose, habitually, not to enter.",r:"Negation adverb."},
+      {t:" "},{t:"be",p:"verb"},{t:" "},
+      {t:"caught",p:"verb",c:"Passive construction — to be <em>caught</em> somewhere implies they are avoiding it, that being found there would be an embarrassment or a danger. They don't merely stay away; they refuse to be caught going near.",r:"Past participle (passive with <em>would not be</em>)."},
+      {t:" "},{t:"dead",p:"adjective",c:"Colloquial intensifier — 'would not be caught dead' is an idiom meaning 'would never under any circumstances.' But in a novel about death and haunting, the phrase is not merely idiomatic. The word <em>dead</em> carries literal resonance here.",r:"Adjective intensifier in the idiom <em>caught dead</em>."},
+      {t:" "},{t:"in",p:"preposition"},{t:" "},{t:"its",p:"pronoun",c:"Possessive pronoun referring to 124. The house has an <em>its</em> — the grammar reinforces its personhood. This is not a building; it is an entity that can possess things.",r:"Possessive pronoun modifying <em>yard</em>."},
+      {t:" "},{t:"yard",p:"noun",c:"The boundary of the haunting. The women won't enter even the yard — the ghost's reach extends beyond the walls of the house itself.",r:"Object of <em>in</em>."},
+      {t:".",punct:true},{t:" "},
+
+      // S4
+      {t:"So",p:"conjunction",c:"A casual, spoken-register conjunction opening a sentence. Morrison shifts into conversational prose — the voice of the community, the neighborhood gossip, the oral tradition. <em>So</em> carries the weight of 'therefore' but sounds like someone at a kitchen table.",r:"Coordinating conjunction; signals consequence."},
+      {t:" "},{t:"Sethe",p:"noun",c:"The protagonist's name arrives without announcement or introduction — as if we already know her. Morrison trusts the reader to catch up. The name itself is unusual, African in origin, suggesting a world the narrative will excavate.",r:"Subject of <em>and her daughter</em> and the main clause."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},{t:"her",p:"pronoun",c:"Possessive pronoun — <em>her</em> daughter. No daughter's name yet; she is defined entirely by her relationship to Sethe.",r:"Possessive pronoun modifying <em>daughter</em>."},
+      {t:" "},{t:"daughter",p:"noun"},{t:" "},{t:"Denver",p:"noun",c:"The daughter's name — and it's a place name, which is typical of Morrison's naming practices. Names in <em>Beloved</em> carry their own histories.",r:"Appositive renaming <em>daughter</em>."},
+      {t:" "},{t:"were",p:"verb",c:"Past tense of <em>be</em> — situates the two characters in the house as a fact, not a choice. They simply <em>were</em> there, as inevitably as the ghost.",r:"Linking verb."},
+      {t:" "},{t:"its",p:"pronoun"},{t:" "},
+      {t:"only",p:"adjective",c:"Isolating adjective — <em>only</em> inhabitants. The house holds a ghost and two people, and it has driven everyone else away. The word <em>only</em> announces their aloneness.",r:"Modifies <em>inhabitants</em>."},
+      {t:" "},{t:"inhabitants",p:"noun",c:"Not <em>residents</em> or <em>occupants</em> — <em>inhabitants</em>, the same word used for animals in a habitat or spirits in a place. The choice subtly blurs the boundary between the human and the haunted.",r:"Predicate nominative — renames Sethe and Denver."},
+      {t:".",punct:true},{t:" "},
+
+      // S5
+      {t:"Sethe",p:"noun",c:"Her name again — now with context. She was the mother of the ghost, which means she killed her child, which is what the whole novel circles around. Morrison repeats the name with the calm of someone who has lived with this knowledge for a long time.",r:"Subject of <em>didn't go</em>."},
+      {t:" "},{t:"didn't",p:"verb",c:"Contraction of <em>did not</em> — colloquial, immediate. Morrison shifts verb forms and registers fluidly throughout this opening, moving from formal (was spiteful) to conversational (didn't).",r:"Helping verb (negative past)."},
+      {t:" "},{t:"go",p:"verb",c:"The simplest verb of motion. Sethe doesn't <em>avoid</em> or <em>refuse</em> to go — she simply didn't <em>go</em>. The plainness of the verb makes her situation feel permanent, naturalized.",r:"Main verb."},
+      {t:" "},{t:"anywhere",p:"adverb",c:"Absolute adverb of place — not <em>many places</em> or <em>most places</em>, but <em>anywhere</em>. Her world has collapsed entirely inward.",r:"Modifies <em>go</em>."},
+      {t:".",punct:true},
+    ],
+  },
+
+  // ========================================================================
+  // 4. JACK LONDON — To Build a Fire (extended)
   // ========================================================================
   {
     title: "To Build a Fire",
     meta: "Jack London, 1908 — from the opening",
     type: "descriptive",
     tokens: [
-      { t: "Day", p: "noun", c: "A simple, elemental noun opening the story — London strips every opening sentence down to essentials. No articles, no adjectives. Just <em>day</em>.", r: "Subject of <em>had broken</em>." },
-      { t: " " },
-      { t: "had", p: "verb", c: "Auxiliary forming the past perfect <em>had broken</em> — an action completed before the story's present.", r: "Helping verb with <em>broken</em>." },
-      { t: " " },
-      { t: "broken", p: "verb", c: "Past participle of <em>break</em>. London reuses the word <em>break</em> twice in this sentence — a deliberate, hammering repetition. The day doesn't <em>arrive</em>; it <em>breaks</em>, suggesting violence and suddenness.", r: "Main verb (with <em>had</em>)." },
-      { t: " " },
-      { t: "cold", p: "adjective", c: "The single most important adjective in the whole story. London withholds everything else but temperature — <em>cold</em> will become the antagonist.", r: "Adjective modifying <em>day</em> (subject complement)." },
-      { t: " " },
-      { t: "and", p: "conjunction", c: "A plain connector, but here it joins three weather adjectives into a crescendo: <em>cold and gray, exceedingly cold and gray</em>.", r: "Joins the two <em>cold</em>/<em>gray</em> pairs." },
-      { t: " " },
-      { t: "gray", p: "adjective", c: "Paired with <em>cold</em> to establish a monochrome, lifeless world. No color means no warmth, no hope.", r: "Adjective modifying <em>day</em>." },
-      { t: ",", punct: true },
-      { t: " " },
-      { t: "exceedingly", p: "adverb", c: "An intensifier raised to a near-comic formality — as if the narrator can't help stressing just how grim this is. A rare moment of rhetorical excess.", r: "Modifies the adjective <em>cold</em>." },
-      { t: " " },
-      { t: "cold", p: "adjective", c: "Repeated for emphasis. London doesn't trust you to have felt it yet.", r: "Adjective modifying <em>day</em>." },
-      { t: " " },
-      { t: "and", p: "conjunction" },
-      { t: " " },
-      { t: "gray", p: "adjective", c: "Repetition again. Four adjectives, only two different words. The world is reduced.", r: "Adjective modifying <em>day</em>." },
-      { t: ",", punct: true },
-      { t: " " },
-      { t: "when", p: "conjunction", c: "Subordinating conjunction — begins a dependent clause that pins the scene to a specific moment of action.", r: "Introduces the adverb clause telling <em>when</em>." },
-      { t: " " },
-      { t: "the", p: "article" },
-      { t: " " },
-      { t: "man", p: "noun", c: "Not <em>Tom</em>, not <em>the prospector</em> — just <em>the man</em>. London refuses to name him, making him a stand-in for any overconfident human facing nature.", r: "Subject of <em>turned aside</em>." },
-      { t: " " },
-      { t: "turned", p: "verb", c: "A quiet, physical verb — no drama yet. The whole story will build on the fatal consequences of this small choice to turn aside.", r: "Main verb of the dependent clause." },
-      { t: " " },
-      { t: "aside", p: "adverb", c: "Directional adverb — he leaves the trail. One short word for the decision that kills him.", r: "Modifies <em>turned</em>." },
-      { t: " " },
-      { t: "from", p: "preposition", c: "Signals movement <em>away</em> — begins a phrase explaining what he abandoned.", r: "Head of prep phrase <em>from the main Yukon trail</em>." },
-      { t: " " },
-      { t: "the", p: "article" },
-      { t: " " },
-      { t: "main", p: "adjective", c: "<em>Main</em> — meaning the safe, traveled path. London uses the plainest possible word and lets context give it weight.", r: "Modifies <em>trail</em>." },
-      { t: " " },
-      { t: "Yukon", p: "noun", c: "Proper noun — places the scene geographically and culturally (gold-rush territory, the harshest inhabited North).", r: "Adjective-functioning proper noun modifying <em>trail</em>." },
-      { t: " " },
-      { t: "trail", p: "noun", c: "Concrete noun — a line of safety through a trackless land. The whole plot turns on his leaving it.", r: "Object of the preposition <em>from</em>." },
-      { t: ".", punct: true },
+      // S1
+      {t:"Day",p:"noun",c:"London opens with a bare, unmodified noun — no article, no adjective. Just <em>Day</em> in its elemental form, like a force of nature. The absence of <em>the</em> or <em>a</em> makes it feel mythic rather than specific.",r:"Subject of <em>had broken</em>."},
+      {t:" "},{t:"had",p:"verb",c:"Auxiliary forming the past perfect — an action completed before the story's present moment. The day has already broken; we are arriving after the beginning.",r:"Helping verb forming past perfect with <em>broken</em>."},
+      {t:" "},{t:"broken",p:"verb",c:"Past participle. London uses <em>break</em> instead of <em>dawn</em> or <em>come</em> or <em>arrive</em> — days don't gently arrive in this story, they <em>break</em>, suggesting violence, rupture, sudden exposure.",r:"Main verb of the past perfect."},
+      {t:" "},{t:"cold",p:"adjective",c:"The single most important adjective in the story. Temperature is the antagonist; everything follows from this word. London introduces it immediately, with no build-up.",r:"Predicate adjective describing the day."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},
+      {t:"gray",p:"adjective",c:"Paired with <em>cold</em>, establishing a monochrome, lifeless world. The palette has already been drained of color and warmth — we know this before we know anything else.",r:"Second predicate adjective, joined with <em>cold</em>."},
+      {t:",",punct:true},{t:" "},
+      {t:"exceedingly",p:"adverb",c:"An intensifier of near-comic formality — as if the narrator cannot help himself, cannot stop emphasizing just how cold it is. Among Hemingway's spare prose, this word would be cut; London keeps it because his narrator is not restrained.",r:"Intensifies the adjective <em>cold</em>."},
+      {t:" "},{t:"cold",p:"adjective",c:"Repeated. London says it twice in the same sentence. He doesn't trust a single mention to convey what he needs you to feel. The repetition hammers.",r:"Second instance — reinforces the already-stated quality."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},{t:"gray",p:"adjective",c:"Also repeated. Four adjectives, two words, total. The sentence's vocabulary has been reduced to match the world it describes.",r:"Second instance of <em>gray</em>."},
+      {t:",",punct:true},{t:" "},
+      {t:"when",p:"conjunction",c:"Subordinating conjunction marking the moment of the man's fatal decision. Everything in this sentence has been setting up for this <em>when</em>.",r:"Introduces the adverb clause telling <em>when</em> the day broke."},
+      {t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"man",p:"noun",c:"Not Tom, not Jack, not any name. Just <em>the man</em>. London refuses to individualize him — he is every overconfident human who has ever underestimated nature. The definite article <em>the</em> makes him archetypal.",r:"Subject of <em>turned aside</em>."},
+      {t:" "},{t:"turned",p:"verb",c:"A quiet, unheroic verb for a fatal decision. He doesn't <em>veered</em> or <em>plunged</em> or <em>deviated</em> — he simply <em>turned aside</em>. The ordinariness of the verb makes the tragedy more terrible.",r:"Main verb of the dependent clause."},
+      {t:" "},{t:"aside",p:"adverb",c:"One small directional word for the choice that kills him. He leaves the trail — this is all London needs to say. <em>Aside</em> is the entire plot in four letters.",r:"Modifies <em>turned</em>."},
+      {t:" "},{t:"from",p:"preposition"},{t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"main",p:"adjective",c:"<em>Main</em> — the safe, traveled, established route. London uses the plainest possible word and lets context give it enormous weight. The main trail is survival; leaving it is death.",r:"Modifies <em>trail</em>."},
+      {t:" "},{t:"Yukon",p:"noun",c:"Proper noun that places the scene geographically and culturally — the Klondike gold rush, the harshest inhabited territory in North America. Readers in 1908 knew exactly what the Yukon meant.",r:"Proper noun functioning as adjective, modifying <em>trail</em>."},
+      {t:" "},{t:"trail",p:"noun",c:"A line of safety through trackless wilderness. The whole plot turns on his leaving it — London establishes what it is before telling us he left it.",r:"Object of the preposition <em>from</em>."},
+      {t:".",punct:true},{t:" "},
+
+      // S2
+      {t:"It",p:"pronoun",c:"Dummy pronoun — delays the real subject. London uses the same expletive construction as Austen, but for different reasons: he wants to create suspense around what <em>it</em> refers to.",r:"Expletive subject; delays the real subject <em>to travel</em>."},
+      {t:" "},{t:"was",p:"verb"},{t:" "},{t:"nine",p:"adjective",c:"A precise number — not <em>nearly ten</em> or <em>past eight</em>. Nine o'clock in the morning. This specificity of time, combined with the vagueness of who the man is, creates an eerie documentary effect.",r:"Modifies <em>o'clock</em>."},
+      {t:" "},{t:"o'clock",p:"noun",c:"A time-of-day marker. Morning. The man has a full day ahead — and squanders all of it.",r:"Object of the expletive construction."},
+      {t:".",punct:true},{t:" "},
+
+      // S3
+      {t:"There",p:"adverb",c:"Existential <em>there</em> — an expletive adverb that delays the real subject. Compare Hemingway's use of the same construction: both writers use <em>there were</em> to establish landscapes.",r:"Existential expletive."},
+      {t:" "},{t:"was",p:"verb"},{t:" "},{t:"no",p:"adjective",c:"Absolute negative adjective — not <em>little</em> sun or <em>weak</em> sun but <em>no</em> sun. The sun has been eliminated from this world entirely.",r:"Negative adjective modifying <em>sun</em>."},
+      {t:" "},{t:"sun",p:"noun",c:"The absent sun. Without it, there is no warmth, no reference point, no orientation. The man is in a world that has removed its primary life-giving feature.",r:"True subject of the existential construction."},
+      {t:" "},{t:"nor",p:"conjunction",c:"Correlating negative conjunction — escalates the absence. Not just no sun, but also no hint of sun. The negation is total.",r:"Joins the two negative clauses."},
+      {t:" "},{t:"hint",p:"noun",c:"A word for the smallest possible suggestion. Even the smallest, most indirect signal of the sun is absent. London removes warmth categorically.",r:"Subject of the second negative clause."},
+      {t:" "},{t:"of",p:"preposition"},{t:" "},{t:"sun",p:"noun"},{t:".",punct:true},{t:" "},
+
+      // S4
+      {t:"The",p:"article"},{t:" "},
+      {t:"sky",p:"noun",c:"The sky is the last element of the natural world to be described, and it offers no comfort. London has moved systematically through day, landscape, man, time, and now atmosphere — each offering less warmth than the last.",r:"Subject of <em>overhung</em>."},
+      {t:" "},{t:"overhung",p:"verb",c:"A slightly archaic, heavy verb — the sky doesn't merely sit above, it <em>overhangs</em>, pressing down. The weight of the verb gives the sky a physical menace.",r:"Main verb."},
+      {t:" "},{t:"the",p:"article"},{t:" "},
+      {t:"earth",p:"noun",c:"Not <em>the land</em> or <em>the ground</em> or <em>the trail</em> — the <em>earth</em>. London scales up to the planetary: the sky oppresses not a place but the planet itself.",r:"Object of <em>overhung</em>."},
+      {t:" "},{t:"like",p:"preposition",c:"Beginning a simile — the sky is compared to something. This is rare in London's otherwise non-figurative prose; when he uses a simile, it's worth noting.",r:"Head of the simile phrase."},
+      {t:" "},{t:"a",p:"article"},{t:" "},
+      {t:"gray",p:"adjective",c:"The color <em>gray</em> again — the same adjective used twice in the first sentence. London's palette is not varied; it is insistent. Gray is the color of this world.",r:"Modifies <em>pall</em>."},
+      {t:" "},{t:"pall",p:"noun",c:"A <em>pall</em> is a cloth draped over a coffin. London's simile is not subtle: the sky is a funeral shroud. He reaches for this word deliberately — this sky presides over a death.",r:"Object of the preposition <em>like</em>."},
+      {t:".",punct:true},
     ],
   },
 
   // ========================================================================
-  // 3. EMILY DICKINSON — "Hope is the thing with feathers" (poetic)
+  // 5. EMILY DICKINSON — "Because I could not stop for Death"
   // ========================================================================
   {
-    title: '"Hope is the thing with feathers"',
-    meta: "Emily Dickinson, c. 1861 — stanza 1",
+    title: '"Because I could not stop for Death"',
+    meta: "Emily Dickinson, c. 1863 — stanzas 1 & 2",
     type: "poetic",
     tokens: [
-      { t: "\"Hope\"", p: "noun", c: "Abstract noun made strange by quotation marks — Dickinson is examining the <em>word</em> as well as the feeling. An abstraction treated as a specimen.", r: "Subject of <em>is</em>." },
-      { t: " " },
-      { t: "is", p: "verb", c: "Linking verb carrying the whole metaphor. <em>A is B</em> — hope is redefined as a bird. Simple verb, massive work.", r: "Main verb, links subject to complement." },
-      { t: " " },
-      { t: "the", p: "article" },
-      { t: " " },
-      { t: "thing", p: "noun", c: "Strikingly plain — Dickinson doesn't name the bird. \"Thing\" keeps the metaphor tentative, almost childlike, as if she's still searching for the right word.", r: "Predicate nominative — renames Hope." },
-      { t: " " },
-      { t: "with", p: "preposition", c: "Introduces the defining feature. <em>With feathers</em> turns the vague \"thing\" into a living, flying creature.", r: "Head of the prep phrase modifying <em>thing</em>." },
-      { t: " " },
-      { t: "feathers", p: "noun", c: "Concrete, sensory noun — the whole metaphor pivots on this one word. Feathers suggest lightness, flight, delicacy, warmth.", r: "Object of the preposition <em>with</em>." },
-      { t: " -", punct: true },
-      { t: "\n", break: true },
-      { t: "That", p: "pronoun", c: "Relative pronoun linking the second line back to <em>thing</em> — the bird is being given an action.", r: "Subject of the relative clause <em>That perches</em>…" },
-      { t: " " },
-      { t: "perches", p: "verb", c: "Vivid, specific verb — not <em>sits</em>, not <em>rests</em>. Birds <em>perch</em>. The action grounds the metaphor in reality.", r: "Verb of the relative clause." },
-      { t: " " },
-      { t: "in", p: "preposition", c: "Location preposition pinning the bird — hope isn't abstract; it lives somewhere specific.", r: "Head of prep phrase <em>in the soul</em>." },
-      { t: " " },
-      { t: "the", p: "article" },
-      { t: " " },
-      { t: "soul", p: "noun", c: "The place hope inhabits. Abstract noun, but treated as a physical space the bird can sit inside.", r: "Object of the preposition <em>in</em>." },
-      { t: " -", punct: true },
-      { t: "\n", break: true },
-      { t: "And", p: "conjunction", c: "Connector that keeps the sentence moving across line breaks — typical of Dickinson's breathless, unfinished feel.", r: "Joins the relative clauses." },
-      { t: " " },
-      { t: "sings", p: "verb", c: "Second vivid verb for the bird. Perching is stillness; singing is voice. Hope is both quiet and audible.", r: "Second verb of the relative clause (parallel with <em>perches</em>)." },
-      { t: " " },
-      { t: "the", p: "article" },
-      { t: " " },
-      { t: "tune", p: "noun", c: "Concrete noun making the song tangible. But the next line will tell us it has <em>no words</em> — this song can't be explained.", r: "Direct object of <em>sings</em>." },
-      { t: " " },
-      { t: "without", p: "preposition", c: "A negative preposition — it takes something <em>away</em>. The song has no lyrics.", r: "Head of prep phrase <em>without the words</em>." },
-      { t: " " },
-      { t: "the", p: "article" },
-      { t: " " },
-      { t: "words", p: "noun", c: "Paradox: a tune without <em>words</em>. Hope resists language — it sings, but it cannot be said.", r: "Object of the preposition <em>without</em>." },
-      { t: " -", punct: true },
-      { t: "\n", break: true },
-      { t: "And", p: "conjunction" },
-      { t: " " },
-      { t: "never", p: "adverb", c: "Absolute adverb — not <em>sometimes</em>, not <em>rarely</em>, but <em>never</em>. Hope is defined by what it refuses to do: stop.", r: "Modifies <em>stops</em>." },
-      { t: " " },
-      { t: "stops", p: "verb", c: "The negated verb sets up the poem's quiet claim: hope is persistent, endless. The whole rest of the poem will test this against storm and cold.", r: "Third parallel verb of the relative clause." },
-      { t: " -", punct: true },
-      { t: " " },
-      { t: "at", p: "preposition", c: "Begins a phrase that delivers the punchline of the stanza: hope sings everywhere, <em>at all</em>.", r: "Head of the prep phrase <em>at all</em>." },
-      { t: " " },
-      { t: "all", p: "pronoun", c: "Indefinite pronoun with universal reach — meaning \"to any degree,\" \"in any way.\" It seals the absoluteness of <em>never</em>.", r: "Object of the preposition <em>at</em>." },
-      { t: " -", punct: true },
+      // Stanza 1
+      {t:"Because",p:"conjunction",c:"Dickinson opens with a subordinating conjunction — which means the sentence starts with a dependent clause. She delays her main point (Death kindly stopped for me) until after she explains <em>why</em>. The effect is intimate, even apologetic: she couldn't stop; she was busy.",r:"Subordinating conjunction; opens the adverb clause."},
+      {t:" "},{t:"I",p:"pronoun",c:"First-person — the speaker is the whole poem's center. But this is a posthumous speaker, which Dickinson doesn't tell us yet. The <em>I</em> is ordinary, almost casual.",r:"Subject of <em>could not stop</em>."},
+      {t:" "},{t:"could",p:"verb",c:"Modal verb expressing ability — she <em>could not</em>, not <em>would not</em>. This is key: she didn't refuse Death, she simply didn't have time. The busyness of life is her only explanation.",r:"Modal helping verb."},
+      {t:" "},{t:"not",p:"adverb",c:"The negation — she was unable to stop. Life kept her moving. Dickinson's speaker is not afraid of Death; she simply hasn't had a moment.",r:"Negation."},
+      {t:" "},{t:"stop",p:"verb",c:"The simplest verb for ceasing motion. In context, stopping means dying — accepting death, turning toward it. She couldn't do it.",r:"Main verb of the dependent clause."},
+      {t:" "},{t:"for",p:"preposition",c:"Purposive preposition — stopping <em>for</em> someone means making time for them. Death, in this poem, is personified as a figure one makes appointments with.",r:"Head of prep phrase <em>for Death</em>."},
+      {t:" "},
+      {t:"Death",p:"noun",c:"The poem's central noun — capitalized, personified, present as a character. Dickinson treats Death not as an event but as a gentleman caller who comes to escort her.",r:"Object of <em>for</em>."},
+      {t:" -",punct:true},
+      {t:"\n",break:true},
+      {t:"He",p:"pronoun",c:"Death becomes <em>He</em> — a pronoun. The abstraction has been fully personified. He is a gentleman, a suitor, a driver. This pronoun makes Death intimate and oddly domestic.",r:"Subject of <em>kindly stopped</em>."},
+      {t:" "},{t:"kindly",p:"adverb",c:"The poem's most startling adverb. Death <em>kindly</em> stopped — not grimly, not terrifyingly, but with gentleness and consideration. Dickinson's Death is polite. The defamiliarization of this word is the poem's central trick.",r:"Modifies <em>stopped</em>."},
+      {t:" "},{t:"stopped",p:"verb",c:"Death did what the speaker could not: he stopped. He paused his eternal motion to collect her. The verb echoes <em>stop</em> from the first line — she couldn't; he did.",r:"Main verb of the main clause."},
+      {t:" "},{t:"for",p:"preposition"},{t:" "},
+      {t:"me",p:"pronoun",c:"Object pronoun — Death stopped <em>for me</em>, specifically, personally. The intimacy of being chosen is slightly alarming. Death selected this speaker above all others.",r:"Object of <em>for</em>."},
+      {t:" -",punct:true},
+      {t:"\n",break:true},
+      {t:"The",p:"article"},{t:" "},
+      {t:"Carriage",p:"noun",c:"Capitalized — elevated to a proper-noun status. The carriage is the vehicle of death, the conveyance. In Dickinson's era, carriage rides were social events, courtship rituals. She casts dying as an outing.",r:"Subject of <em>held</em>."},
+      {t:" "},{t:"held",p:"verb",c:"A verb of containment — the carriage <em>holds</em> its passengers. But it also echoes the grip of something inescapable: once you're in, it holds you.",r:"Main verb."},
+      {t:" "},{t:"but",p:"conjunction",c:"Limiting conjunction — <em>but just</em> introduces the exact passengers. Only these three: speaker, Death, Immortality. A precise count.",r:"Introduces the limiting phrase <em>but just Ourselves</em>."},
+      {t:" "},{t:"just",p:"adverb",c:"Limiting adverb — only, merely, no one else. The carriage is intimate, not crowded. Death has arranged a private conveyance.",r:"Modifies <em>Ourselves</em>."},
+      {t:" "},
+      {t:"Ourselves",p:"pronoun",c:"Reflexive pronoun — the speaker refers to herself and her companions (Death and Immortality) as a group. <em>Ourselves</em> makes them a unit, almost a family.",r:"Object of <em>held</em>."},
+      {t:" -",punct:true},
+      {t:"\n",break:true},
+      {t:"And",p:"conjunction",c:"A connector running across a stanza break — Dickinson's dashes and connectives make the poem feel breathless, run-on, like a spoken memory.",r:"Joins the two stanzas' action."},
+      {t:" "},{t:"Immortality",p:"noun",c:"The third passenger — capitalized, personified. Immortality is not an idea but a traveling companion. Its presence in the carriage is paradoxical: the vehicle of death also carries eternal life.",r:"Subject of the implied parallel construction."},
+      {t:".",punct:true},
+      {t:"\n",break:true},{t:"\n",break:true},
+
+      // Stanza 2
+      {t:"We",p:"pronoun",c:"The first-person plural — the speaker has joined Death and Immortality as a collective <em>we</em>. She is no longer separate from these figures; she is traveling with them.",r:"Subject of <em>slowly drove</em>."},
+      {t:" "},{t:"slowly",p:"adverb",c:"Death is not rushing. The carriage moves <em>slowly</em> — giving the speaker time to look out, to observe, to remember. This pacing is essential: the poem is an elegy for life, and it needs to be seen clearly before it ends.",r:"Modifies <em>drove</em>."},
+      {t:" "},{t:"drove",p:"verb",c:"Past tense — they drove. This is memory, a posthumous recollection of the journey toward death. <em>Drove</em> is plain and kinetic; the verb keeps the carriage moving through the poem.",r:"Main verb."},
+      {t:" -",punct:true},{t:" "},{t:"He",p:"pronoun"},{t:" "},
+      {t:"knew",p:"verb",c:"Death <em>knew</em> — he has knowledge the speaker lacks. He is in control of the pace and route, a driver with a destination in mind.",r:"Main verb of the clause."},
+      {t:" "},{t:"no",p:"adjective",c:"Negative adjective — absolute. Death doesn't <em>feel</em> haste; he doesn't have a concept of it. He is beyond urgency.",r:"Modifies <em>haste</em>."},
+      {t:" "},
+      {t:"haste",p:"noun",c:"Abstract noun — the condition of urgency, rush, hurry. Death has none of it. He is patient, untroubled, permanent. The noun gives the concept a physical weight.",r:"Object of <em>knew</em>."},
+      {t:"\n",break:true},
+      {t:"And",p:"conjunction"},{t:" "},{t:"I",p:"pronoun"},{t:" "},
+      {t:"had",p:"verb",c:"Another past auxiliary — the speaker had <em>put away</em>. The past perfect here suggests something she did at a specific moment: the moment she got into the carriage.",r:"Helping verb."},
+      {t:" "},{t:"put",p:"verb",c:"A plain, domestic verb — you <em>put away</em> tools at the end of a workday. She is putting away labor and leisure with the same mundane gesture you'd use to close a cabinet.",r:"Main verb of the past perfect."},
+      {t:" "},{t:"away",p:"adverb",c:"Directional adverb completing the phrasal verb <em>put away</em> — meaning to set aside, to surrender. She has surrendered labor and leisure voluntarily, or the act of death is being recast as a voluntary surrender.",r:"Part of the phrasal verb <em>put away</em>."},
+      {t:"\n",break:true},
+      {t:"My",p:"pronoun",c:"Possessive pronoun — the things she puts away belong to her. <em>My labor</em>, <em>my leisure</em>. They were hers; she yields them.",r:"Possessive modifying <em>labor</em>."},
+      {t:" "},{t:"labor",p:"noun",c:"Abstract noun — her work, her effort, her living activity. One of the two things she must put aside to ride with Death. Labor is life; she is giving it up.",r:"Object of <em>put away</em>."},
+      {t:" "},{t:"and",p:"conjunction"},{t:" "},{t:"my",p:"pronoun"},{t:" "},
+      {t:"leisure",p:"noun",c:"The companion to labor — not just work, but rest, pleasure, free time. Everything. She gives up not just the productive parts of life but also its enjoyments. The carriage takes everything.",r:"Joined with <em>labor</em> as second object of <em>put away</em>."},
+      {t:"\n",break:true},
+      {t:"For",p:"preposition",c:"Purposive preposition — she puts aside labor and leisure <em>for</em> something. The exchange is made explicit: her life for His civility.",r:"Head of prep phrase giving reason."},
+      {t:" "},{t:"His",p:"pronoun",c:"Possessive pronoun — Death's <em>His</em>. His Civility, capitalized, belongs to him as a personal quality. He is a gentleman; civility is his attribute.",r:"Possessive modifying <em>Civility</em>."},
+      {t:" "},
+      {t:"Civility",p:"noun",c:"Death's defining characteristic in this poem — not terror, not darkness, not finality, but <em>Civility</em>. Capitalized. A social virtue. Dickinson's Death is courteous above all else. This is the poem's central irony: death as good manners.",r:"Object of <em>For</em>."},
+      {t:" -",punct:true},
     ],
   },
 
-  // ========================================================================
-  // 4. FREDERICK DOUGLASS — Narrative of the Life (1845) — narrative/rhetoric
-  // ========================================================================
-  {
-    title: "Narrative of the Life of Frederick Douglass",
-    meta: "Frederick Douglass, 1845 — from Chapter I",
-    type: "narrative",
-    tokens: [
-      { t: "I", p: "pronoun", c: "The first word of the sentence — and of the whole memoir's project: to speak as <em>I</em>, a self, a witness. Rhetorically powerful in a context that denied his personhood.", r: "Subject of <em>was born</em>." },
-      { t: " " },
-      { t: "was", p: "verb", c: "Auxiliary forming the passive voice <em>was born</em>. Passive because the act of birth happens <em>to</em> a person, but for Douglass it also marks how little control he had from the start.", r: "Helping verb with <em>born</em>." },
-      { t: " " },
-      { t: "born", p: "verb", c: "Past participle. Pairs with the I — a bare, inarguable claim: <em>I was born</em>. He has to begin by establishing that he exists.", r: "Main verb (passive)." },
-      { t: " " },
-      { t: "in", p: "preposition", c: "Location preposition beginning a precise place-phrase. Douglass is fighting vagueness; slavery erased birth records, so he <em>names</em> what he can.", r: "Head of prep phrase <em>in Tuckahoe</em>." },
-      { t: " " },
-      { t: "Tuckahoe", p: "noun", c: "Proper noun — a specific place. Naming resists the erasure of identity that slavery imposed.", r: "Object of the preposition <em>in</em>." },
-      { t: ",", punct: true },
-      { t: " " },
-      { t: "near", p: "preposition", c: "A second preposition layers on more specificity — he will name not just town but county.", r: "Head of prep phrase <em>near Hillsborough</em>." },
-      { t: " " },
-      { t: "Hillsborough", p: "noun", c: "Another proper noun. Specific, verifiable — Douglass writes as testimony, not fiction.", r: "Object of the preposition <em>near</em>." },
-      { t: ",", punct: true },
-      { t: " " },
-      { t: "and", p: "conjunction", c: "A plain coordinating conjunction that pulls the sentence into a longer, documentary catalog.", r: "Joins two prepositional phrases." },
-      { t: " " },
-      { t: "about", p: "preposition", c: "The one <em>inexact</em> preposition — \"about twelve miles.\" Where the sentence has been precise with place, it softens with distance.", r: "Head of prep phrase modifying <em>Hillsborough</em>." },
-      { t: " " },
-      { t: "twelve", p: "adjective", c: "A numerical adjective. Measures the distance exactly. Specificity is Douglass's weapon against the vagueness slavery imposed.", r: "Modifies <em>miles</em>." },
-      { t: " " },
-      { t: "miles", p: "noun", c: "Unit of measurement — concrete, checkable. The reader could, if they wished, find the spot.", r: "Object of the preposition <em>about</em>." },
-      { t: " " },
-      { t: "from", p: "preposition", c: "Points backward to the reference point <em>Easton</em>. The sentence is building a map.", r: "Head of prep phrase <em>from Easton</em>." },
-      { t: " " },
-      { t: "Easton", p: "noun", c: "Proper noun, the county seat. Douglass is writing for readers who can verify — the abolitionist audience needed proof.", r: "Object of the preposition <em>from</em>." },
-      { t: ",", punct: true },
-      { t: " " },
-      { t: "in", p: "preposition" },
-      { t: " " },
-      { t: "Talbot", p: "noun", c: "Another proper noun. Each specific name makes the horror undeniable: this man was born, in a real place, and was still enslaved there.", r: "Adjective-functioning proper noun modifying <em>county</em>." },
-      { t: " " },
-      { t: "county", p: "noun", c: "The final place-noun, anchoring him geographically. After this detailed opening, he will note that he <em>does not know</em> his own birthday — the sharpest contrast of the chapter.", r: "Object of the preposition <em>in</em>." },
-      { t: ",", punct: true },
-      { t: " " },
-      { t: "Maryland", p: "noun", c: "State. The zoom-out is complete. Douglass has given us everything he can about where — the sentence's next move will be what he can't say: <em>when</em>.", r: "Appositive renaming <em>county</em>'s location." },
-      { t: ".", punct: true },
-    ],
-  },
 ];
 
 // ==========================================================================
-// CONCEPTS — cards for the eight traditional parts of speech
+// CONCEPTS
 // ==========================================================================
 const CONCEPTS = [
   { id: "noun", title: "Nouns", short: "Names a person, place, thing, or idea.",
     detail: `Nouns do the heavy lifting of naming. Every sentence needs at least one — usually as the subject.<br><br>
-    <strong>Proper</strong>: specific name (<em>Yukon, Douglass, Tuckahoe</em>).<br>
-    <strong>Common</strong>: general category (<em>trail, man, county</em>).<br>
-    <strong>Concrete</strong>: physical, perceivable (<em>feathers, pie, snow</em>).<br>
-    <strong>Abstract</strong>: ideas, feelings (<em>truth, hope, freedom</em>).<br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>Strong writers choose <em>specific</em> nouns over generic ones. <em>Sparrow</em> beats <em>bird</em>; <em>limestone</em> beats <em>rock</em>. Specificity is credibility.</div>` },
+    <strong>Proper</strong>: specific name (<em>Yukon, Sethe, Dickinson</em>).<br>
+    <strong>Common</strong>: general category (<em>trail, man, house</em>).<br>
+    <strong>Concrete</strong>: physical, perceivable (<em>pebbles, carriage, dust</em>).<br>
+    <strong>Abstract</strong>: ideas, feelings (<em>truth, venom, civility, haste</em>).<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Strong writers choose <em>specific</em> nouns over generic ones. <em>Sparrow</em> beats <em>bird</em>; <em>pall</em> beats <em>cloud</em>. Compare how Morrison opens with <em>venom</em> — not the gentler <em>anger</em> or <em>sadness</em> — and how Hemingway chooses <em>channels</em> over <em>streams</em>. Specificity is credibility.</div>` },
 
   { id: "pronoun", title: "Pronouns", short: "Stand in for nouns so we aren't endlessly repeating them.",
-    detail: `Pronouns keep language efficient. Instead of \"Marcus gave Marcus's hat to Marcus's sister,\" we say \"Marcus gave <em>his</em> hat to <em>his</em> sister.\"<br><br>
+    detail: `Pronouns keep language efficient — and they carry enormous weight in literary prose.<br><br>
     <strong>Personal</strong>: I, you, he, she, it, we, they (+ me, him, her, us, them)<br>
-    <strong>Possessive</strong>: my, your, his, her, its, our, their (+ mine, yours, hers, ours, theirs)<br>
+    <strong>Possessive</strong>: my, your, his, her, its, our, their<br>
     <strong>Reflexive</strong>: myself, yourself, herself, ourselves…<br>
     <strong>Relative</strong>: who, whom, whose, which, that<br>
     <strong>Demonstrative</strong>: this, that, these, those<br>
     <strong>Indefinite</strong>: anyone, everyone, nobody, some, all, each<br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>Ambiguous pronouns are the enemy of clarity. If two nouns come before \"she,\" the reader has to guess. Fix it or repeat the noun.</div>` },
+    <div class="tip"><div class="tip-label">Craft Note</div>Notice how pronoun choice signals perspective and intimacy. Hemingway's <em>we lived</em> submerges the individual into a group. Dickinson's <em>He</em> for Death turns an abstraction into a person. Morrison's <em>its yard</em> gives a house a self. Pronouns are never neutral.</div>` },
 
   { id: "verb", title: "Verbs", short: "Show action or state of being — the engine of every sentence.",
     detail: `Every sentence needs a verb. It tells us what the subject <em>does</em> or <em>is</em>.<br><br>
-    <strong>Action</strong>: run, write, perch, break, sing<br>
-    <strong>Linking</strong>: be, seem, become, feel, taste — connect subject to a description<br>
-    <strong>Helping / Auxiliary</strong>: have, be, do, will, can, must — combine with a main verb<br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>The single most powerful revision move: replace weak verbs with strong ones. <em>She was walking quickly</em> → <em>She strode</em>. Three words become one, and one vague image becomes one precise one. Verbs are where writing lives or dies.</div>` },
+    <strong>Action</strong>: went, turned, raised, powdered, stopped<br>
+    <strong>Linking</strong>: be, seem, become — connect subject to description<br>
+    <strong>Helping / Auxiliary</strong>: have, be, do, will, can, must, would<br>
+    <strong>Modal</strong>: must, may, can, could, would — express obligation, possibility, habit<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Compare the verbs across these passages: Hemingway's troops <em>went</em> (not marched, advanced, moved); London's day <em>broke</em> (not dawned, came, arrived); Morrison's house <em>was</em> spiteful (not seemed, felt, appeared). The verb choice reveals the writer's stance. Plain verbs feel inevitable; heightened verbs feel stylized. Neither is wrong — but the choice is always meaningful.</div>` },
 
   { id: "adjective", title: "Adjectives", short: "Describe or modify nouns and pronouns.",
     detail: `Adjectives answer: <em>which? what kind? how many? whose?</em><br><br>
-    <strong>Descriptive</strong>: cold, gray, ancient, narrow<br>
-    <strong>Limiting</strong>: three, several, my, this, each<br>
-    <strong>Participial</strong>: verb-based, like <em>acknowledged, broken, running</em><br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>Too many adjectives stack up into mush. One sharp adjective outperforms three vague ones. Compare: <em>a big, old, wooden house</em> vs. <em>a sagging farmhouse</em>. Precision beats quantity.</div>` },
+    <strong>Descriptive</strong>: cold, gray, spiteful, dry, white, late<br>
+    <strong>Numerical</strong>: nine, twelve, three<br>
+    <strong>Demonstrative</strong>: that year, such a man, this truth<br>
+    <strong>Participial</strong>: verb-based adjectives like <em>powdered, caught, acknowledged</em><br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>London repeats <em>cold</em> and <em>gray</em> four times in one sentence — radical, almost childlike insistence. Hemingway avoids most adjectives entirely, then places <em>dry</em> and <em>white</em> with surgical precision. Morrison opens with <em>spiteful</em>, which shouldn't apply to a house and therefore stops you cold. The number and placement of adjectives is a stylistic signature.</div>` },
 
   { id: "adverb", title: "Adverbs", short: "Modify verbs, adjectives, or other adverbs.",
-    detail: `Adverbs answer: <em>when? where? how? to what extent? why?</em><br><br>
-    • Modifying a verb: <em>ran <strong>quickly</strong></em><br>
+    detail: `Adverbs answer: <em>when? where? how? to what extent?</em><br><br>
+    • Modifying a verb: <em>went <strong>by</strong></em>, <em>stopped <strong>kindly</strong></em>, <em>drove <strong>slowly</strong></em><br>
     • Modifying an adjective: <em><strong>exceedingly</strong> cold</em><br>
-    • Modifying another adverb: <em><strong>very</strong> quietly</em><br><br>
-    Common forms end in <em>-ly</em> (quickly, carefully), but many don't: <em>never, always, there, then, here, soon, well, fast</em>.<br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>Stephen King: \"The road to hell is paved with adverbs.\" Overstatement, but the point is real — <em>spoke loudly</em> is usually weaker than <em>shouted</em>. Let strong verbs do the work.</div>` },
+    • Sentence modifier: <em><strong>However</strong> little known…</em><br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Hemingway uses almost no adverbs — <em>swiftly</em> appears once and stops you because it's so rare. London uses <em>exceedingly</em> with deliberate pomposity. Dickinson uses <em>kindly</em> to make Death civil. Each adverb choice tells you something about the narrator's voice and distance from the material.</div>` },
 
   { id: "preposition", title: "Prepositions", short: "Show relationships — usually of space, time, or direction.",
-    detail: `A preposition connects a noun or pronoun to the rest of the sentence, showing <em>how</em> they relate.<br><br>
-    <strong>Common prepositions:</strong> in, on, at, by, with, of, for, to, from, about, against, between, under, over, through, before, after, during, until, near<br><br>
-    A preposition always has an <strong>object</strong> (a noun/pronoun it points to). Together they form a <strong>prepositional phrase</strong>:<br>
-    <em>in the soul</em> · <em>from the main Yukon trail</em> · <em>with feathers</em><br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>Prepositional phrases stack easily — too many and sentences feel wheezy. \"The book on the shelf in the corner of the room in the back of the house…\" Prune mercilessly.</div>` },
+    detail: `A preposition connects a noun or pronoun to the rest of the sentence.<br><br>
+    <strong>Common prepositions:</strong> in, on, at, by, with, of, for, to, from, about, across, down, near, like<br><br>
+    A preposition always has an <strong>object</strong>. Together they form a <strong>prepositional phrase</strong>:<br>
+    <em>across the river</em> · <em>in the late summer</em> · <em>for Death</em><br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Hemingway opens his paragraph with a preposition phrase (<em>In the late summer of that year</em>) before introducing any person — he establishes <em>where</em> before <em>who</em>. Douglass uses stacked preposition phrases to build a geographic case for his existence. Dickinson uses <em>for</em> repeatedly to frame Death as someone you keep appointments with. The prepositions aren't decoration; they're architecture.</div>` },
 
   { id: "conjunction", title: "Conjunctions", short: "Join words, phrases, or clauses together.",
-    detail: `<strong>Coordinating</strong> (FANBOYS): <em>for, and, nor, but, or, yet, so</em>. Join equal elements.<br>
-    <strong>Subordinating</strong>: <em>because, when, although, if, since, while, until, after, before, though</em>… Introduce dependent clauses.<br>
-    <strong>Correlative</strong> (pairs): <em>either/or, neither/nor, both/and, not only/but also</em>.<br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>The conjunction you pick carries meaning. <em>And</em> simply adds. <em>But</em> signals contrast. <em>So</em> implies cause. <em>Although</em> promises complication. Swap one and you change the tone — compare \"<em>She studied hard, and she passed</em>\" with \"<em>She studied hard, but she passed</em>.\"</div>` },
+    detail: `<strong>Coordinating</strong> (FANBOYS): <em>for, and, nor, but, or, yet, so</em> — join equal elements.<br>
+    <strong>Subordinating</strong>: <em>because, when, although, if, since, while, until, after, before, though</em> — introduce dependent clauses.<br>
+    <strong>Correlative</strong>: <em>either/or, neither/nor, not only/but also</em><br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Dickinson opens an entire poem with <em>Because</em> — a subordinating conjunction that promises an explanation before delivering anything. Morrison opens a sentence with <em>So</em> — casual, spoken, community-voiced. The conjunction you choose carries a whole stance toward the reader: logical, emotional, conversational, formal.</div>` },
 
-  { id: "article", title: "Articles", short: "Signal whether a noun is specific or general — the most frequent words in English.",
-    detail: `Articles are tiny words that do precise work: they tell your reader whether you mean <em>a particular</em> thing or <em>any</em> thing of its type.<br><br>
-    <strong>Definite</strong>: <em>the</em> — refers to a specific, already-known noun: <em>the man, the trail, the soul</em>. Use <em>the</em> when both speaker and listener know which one.<br>
-    <strong>Indefinite</strong>: <em>a, an</em> — refers to any one member of a class: <em>a truth, an idea, a wife</em>. Use <em>a/an</em> for first mentions or non-specific nouns.<br><br>
-    Use <em>a</em> before consonant sounds; <em>an</em> before vowel sounds: <em>a cat</em>, <em>an hour</em> (the <em>h</em> is silent).<br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>Articles do quiet but powerful work. Austen writes \"<em>a</em> truth\" — not \"<em>the</em> truth\" — and that single letter carries her irony: it's merely one truth among many, not the grand universal it pretends to be. London writes \"<em>the</em> man\" (not \"<em>a</em> man\") to suggest this particular, doomed individual. Swap article and meaning shifts.</div>` },
+  { id: "article", title: "Articles", short: "Signal whether a noun is specific or general.",
+    detail: `Articles are tiny words that do precise work.<br><br>
+    <strong>Definite</strong>: <em>the</em> — refers to a specific, known noun: <em>the man, the trail, the Carriage</em>. Use when both speaker and reader know which one.<br>
+    <strong>Indefinite</strong>: <em>a, an</em> — any member of a class: <em>a truth, a house, a wife</em>. Use for first mentions or non-specific nouns.<br><br>
+    Use <em>a</em> before consonant sounds; <em>an</em> before vowel sounds (<em>an hour</em>, because the <em>h</em> is silent).<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Austen writes <em>a</em> truth, not <em>the</em> truth — one letter carries the whole irony. London writes <em>the</em> man, not <em>a</em> man — the definite article makes him archetypal, the representative human. Morrison omits an article before <em>124</em> entirely. These choices are not accidents. When you find yourself writing <em>a</em> or <em>the</em>, ask which you mean — and why.</div>` },
 
   { id: "interjection", title: "Interjections", short: "Express sudden emotion. Grammatically separate.",
     detail: `Interjections are outbursts — they carry emotion but don't connect to the grammar of the sentence around them.<br><br>
-    <strong>Examples:</strong> <em>Oh! Wow! Alas. Hey. Ouch. Well, Hmm.</em><br><br>
+    <strong>Examples:</strong> <em>Oh! Wow! Alas. Hey. Ouch. Well. Hmm.</em><br><br>
     They're usually set off by commas or exclamation points:<br>
     <em><strong>Oh,</strong> I forgot my keys.</em><br>
-    <em><strong>Ouch!</strong> That hurt.</em><br><br>
-    <div class="tip"><div class="tip-label">Craft Note</div>Interjections dominate dialogue and informal writing; they're rare in formal prose. When Dickens uses <em>alas</em>, it's ironic — he's parodying sentimental fiction. Be aware of the register an interjection invokes.</div>` },
+    <em><strong>Alas!</strong> The season is ended.</em><br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>None of the literary passages here use interjections — which tells you something. Interjections belong to dialogue, informal prose, and heightened emotion. Their absence from formal literary prose is a stylistic choice. When Dickens uses <em>alas</em>, it's ironic parody. When Zora Neale Hurston uses <em>Lawd</em>, it's dialect and character. The register an interjection invokes is everything.</div>` },
 ];
 
 // ==========================================================================
@@ -931,9 +1013,8 @@ function renderPassage() {
   document.getElementById('passageMeta').textContent = p.meta;
 
   const html = p.tokens.map((tok, i) => {
-    if (tok.break) return '<span class="token break"></span>';
+    if (tok.break) return '<span class="token break">\n</span>';
     if (tok.punct || !tok.p) return `<span class="token punct">${escapeHtml(tok.t)}</span>`;
-    // it's a word
     const clickable = tok.c || tok.r ? 'clickable' : '';
     return `<span class="token word ${clickable}" data-idx="${i}" data-pos="${tok.p}" onclick="selectToken(${i})">${escapeHtml(tok.t)}</span>`;
   }).join('');
@@ -965,13 +1046,12 @@ function applyFilter() {
     });
   }
 
-  // Update hint
   const hint = document.getElementById('filterHint');
   if (currentFilter === 'all') {
     hint.innerHTML = "Pick a category to highlight its words. Click any highlighted word to see how it's working in the sentence.";
   } else {
     const label = currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1) + 's';
-    hint.innerHTML = `<strong>${count}</strong> ${label.toLowerCase()} highlighted. Click any one to see the craft note and grammatical role.`;
+    hint.innerHTML = `<strong>${count}</strong> ${label.toLowerCase()} highlighted in this passage. Click any one to see the craft note and grammatical role.`;
   }
 }
 
