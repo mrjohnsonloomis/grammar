@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clauses — Grammar Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --ink: #2A2420;
+    --accent: #C44B2B;
+    --accent-light: #F4DDD6;
+    --blue: #2B6B8A;
+    --blue-light: #D6EAF2;
+    --green: #3A7D44;
+    --green-light: #D9EDDC;
+    --purple: #6B4C8A;
+    --purple-light: #E8DDF2;
+    --gold: #B8860B;
+    --gold-light: #F5ECD0;
+    --teal: #2A8A7A;
+    --teal-light: #D0F0EA;
+    --rose: #B84A6E;
+    --rose-light: #F5DDE4;
+    --indigo: #3F4B9A;
+    --indigo-light: #DDE0F2;
+    --card: #FFFFFF;
+    --border: #E5DED4;
+    --shadow: rgba(42, 36, 32, 0.08);
+    --muted: #9A9189;
+    --dimtext: #7A7168;
+    --bodytext: #5A534B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* --- NAV --- */
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--border);
+    background: #FFF;
+    font-size: 0.85rem;
+  }
+  .topnav a {
+    color: var(--dimtext);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+  }
+  .topnav a:hover { color: var(--accent); }
+  .topnav .nav-home { display: flex; align-items: center; gap: 6px; }
+  .topnav .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .topnav .nav-links a.current { color: var(--ink); }
+
+  .header {
+    text-align: center;
+    padding: 48px 24px 28px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(180deg, #FFF 0%, var(--bg) 100%);
+  }
+  .header h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .header p {
+    font-size: 1.02rem;
+    color: var(--dimtext);
+    margin-top: 8px;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  .section-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--dimtext);
+    margin-bottom: 20px;
+  }
+  .big-divider {
+    text-align: center;
+    margin: 56px 0 24px;
+    position: relative;
+  }
+  .big-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px; background: var(--border);
+    z-index: 0;
+  }
+  .big-divider span {
+    position: relative;
+    background: var(--bg);
+    padding: 0 16px;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
+
+  /* --- PHRASE VS CLAUSE INTRO --- */
+  .pvc {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 36px;
+  }
+  .pvc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 14px;
+  }
+  .pvc-card {
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .pvc-card.phrase { background: var(--rose-light); border: 1.5px solid var(--rose); }
+  .pvc-card.clause { background: var(--indigo-light); border: 1.5px solid var(--indigo); }
+  .pvc-card h4 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .pvc-card.phrase h4 { color: var(--rose); }
+  .pvc-card.clause h4 { color: var(--indigo); }
+  .pvc-card p { font-size: 0.88rem; color: var(--bodytext); line-height: 1.55; }
+  .pvc-card .ex {
+    background: #FFF;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .pvc-card .ex small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.75rem;
+    color: var(--dimtext);
+    margin-top: 3px;
+  }
+  .pvc-key {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--bodytext);
+    margin-top: 16px;
+    padding: 10px 14px;
+    background: #F5F2ED;
+    border-radius: 8px;
+  }
+  .pvc-key strong { color: var(--ink); }
+  .pvc-key .k-phrase { color: var(--rose); font-weight: 700; }
+  .pvc-key .k-clause { color: var(--indigo); font-weight: 700; }
+
+  /* --- EXAMPLE AREA --- */
+  .example-area {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+
+  .example-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .example-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .shuffle-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 7px 18px;
+    border-radius: 20px;
+    border: 1.5px solid var(--indigo);
+    background: transparent;
+    color: var(--indigo);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .shuffle-btn:hover { background: var(--indigo); color: #fff; }
+  .shuffle-btn svg { width: 14px; height: 14px; }
+
+  .build-steps {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .step-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .step-btn:hover { border-color: var(--indigo); color: var(--indigo); }
+  .step-btn.active { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+  .step-arrow { color: var(--border); font-size: 0.9rem; user-select: none; }
+
+  .sentence-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    min-height: 72px;
+  }
+
+  .word-chunk {
+    position: relative;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    user-select: none;
+    animation: fadeSlideIn 0.35s ease both;
+    cursor: default;
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .word-chunk.clickable { cursor: pointer; }
+  .word-chunk.clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 14px var(--shadow); }
+  .word-chunk.active { transform: translateY(-3px); box-shadow: 0 6px 20px var(--shadow); }
+
+  .word-chunk[data-role="plain"] {
+    color: var(--ink);
+    border-color: transparent;
+    background: transparent;
+    padding: 8px 4px;
+  }
+
+  /* Connector / conjunction chips - small and neutral */
+  .word-chunk[data-role="connector"] {
+    background: #F5F2ED;
+    color: var(--dimtext);
+    border-color: var(--border);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    padding: 6px 10px;
+  }
+
+  /* Function fills */
+  .word-chunk[data-func="independent"] { background: #FFF; color: var(--ink); border-color: var(--indigo) !important; border-style: solid; }
+  .word-chunk[data-func="subject"] { background: var(--blue-light); color: var(--blue); }
+  .word-chunk[data-func="do"] { background: var(--green-light); color: var(--green); }
+  .word-chunk[data-func="pn"],
+  .word-chunk[data-func="complement"] { background: var(--gold-light); color: var(--gold); }
+  .word-chunk[data-func="adj"] { background: var(--gold-light); color: var(--gold); }
+  .word-chunk[data-func="adv"] { background: var(--teal-light); color: var(--teal); }
+  .word-chunk[data-func="op"] { background: var(--purple-light); color: var(--purple); }
+
+  /* Structure borders */
+  .word-chunk[data-structure="phrase"] { border-color: var(--rose); }
+  .word-chunk[data-structure="clause"] { border-color: var(--indigo); border-style: dashed; }
+  .word-chunk[data-structure="clause-ind"] { border-color: var(--indigo); border-style: solid; }
+
+  .role-tag {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 1px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    color: #fff;
+    background: var(--indigo);
+  }
+  .word-chunk.clickable:hover .role-tag,
+  .word-chunk.active .role-tag { opacity: 1; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: #F5F2ED;
+    border-radius: 10px;
+  }
+  .legend-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .legend-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.72rem; font-weight: 600;
+    color: var(--dimtext);
+  }
+  .legend-border {
+    width: 16px; height: 11px;
+    border-radius: 3px;
+    border: 2px solid;
+    background: transparent;
+  }
+  .legend-border.dashed { border-style: dashed; }
+  .legend-fill {
+    width: 14px; height: 10px;
+    border-radius: 3px;
+  }
+  .legend-divider {
+    width: 1px; height: 16px; background: var(--border);
+    margin: 0 2px;
+  }
+
+  .callout {
+    background: #FDFCFA;
+    border-left: 4px solid var(--border);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    min-height: 72px;
+    transition: border-color 0.3s, opacity 0.3s;
+    opacity: 0.5;
+  }
+  .callout.visible { opacity: 1; }
+  .callout[data-active-structure^="clause"] { border-left-color: var(--indigo); }
+  .callout-title { font-weight: 700; font-size: 0.98rem; margin-bottom: 4px; }
+  .callout-body { font-size: 0.92rem; color: var(--bodytext); line-height: 1.65; }
+  .callout-body em { color: var(--ink); }
+  .callout-prompt { font-style: italic; color: var(--muted); font-size: 0.92rem; }
+  .callout-meta {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .callout-chip {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: #fff;
+  }
+  .callout-chip.structure { background: var(--indigo); }
+  .callout-chip.function { background: var(--ink); color: #fff; }
+
+  .build-narrative {
+    background: #F5F2ED;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    color: var(--bodytext);
+    line-height: 1.6;
+    border: 1px solid var(--border);
+  }
+  .build-narrative strong { color: var(--ink); }
+  .build-narrative em.indigo { color: var(--indigo); font-style: normal; font-weight: 700; }
+
+  /* --- SENTENCE-TYPE INTERACTIVE (second example area) --- */
+  .stype-toggle {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .stype-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .stype-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .stype-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .stype-formula {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--dimtext);
+    margin-bottom: 4px;
+  }
+  .stype-formula code {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    background: var(--indigo-light);
+    color: var(--indigo);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin: 0 2px;
+  }
+  .stype-formula code.dep {
+    background: var(--indigo-light);
+    color: var(--indigo);
+    border: 1px dashed var(--indigo);
+  }
+  .stype-formula code.conj {
+    background: #F5F2ED;
+    color: var(--dimtext);
+    font-weight: 400;
+  }
+
+  /* --- CONCEPT CARDS --- */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .concept-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: var(--indigo);
+  }
+  .concept-card[data-concept="noun-clause"]::before { background: var(--blue); }
+  .concept-card[data-concept="adj-clause"]::before { background: var(--gold); }
+  .concept-card[data-concept="adv-clause"]::before { background: var(--teal); }
+
+  .concept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow);
+    border-color: transparent;
+  }
+  .concept-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    padding-right: 24px;
+  }
+  .concept-card .short-def {
+    font-size: 0.86rem;
+    color: var(--dimtext);
+    line-height: 1.5;
+  }
+  .concept-card .expand-icon {
+    position: absolute;
+    top: 15px; right: 16px;
+    font-size: 1.2rem;
+    color: #C4BDB4;
+    transition: transform 0.25s;
+  }
+  .concept-card.open .expand-icon { transform: rotate(45deg); }
+
+  .concept-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+  }
+  .concept-card.open .concept-detail {
+    max-height: 900px;
+    margin-top: 14px;
+  }
+  .concept-detail-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-size: 0.88rem;
+    color: var(--bodytext);
+    line-height: 1.7;
+  }
+  .concept-detail-inner strong { color: var(--ink); }
+  .concept-detail-inner em { color: var(--ink); }
+
+  .tip {
+    background: #EDE9E3;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.84rem;
+  }
+  .tip-label {
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--indigo);
+    margin-bottom: 2px;
+  }
+  .mini-ex {
+    background: #FFF;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin: 6px 0;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  .mini-ex .hl { color: var(--indigo); font-style: normal; font-weight: 600; }
+  .mini-ex .hl-blue { color: var(--blue); font-style: normal; font-weight: 600; }
+  .mini-ex .hl-gold { color: var(--gold); font-style: normal; font-weight: 600; }
+  .mini-ex .hl-teal { color: var(--teal); font-style: normal; font-weight: 600; }
+
+  /* --- FINAL CTA --- */
+  .back-cta {
+    margin-top: 48px;
+    background: #F5F2ED;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+  .back-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow); }
+  .back-cta-text h4 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+  }
+  .back-cta-text p { font-size: 0.88rem; color: var(--bodytext); }
+  .back-cta-arrow { font-size: 1.5rem; color: var(--muted); }
+
+  @media (max-width: 640px) {
+    .header h1 { font-size: 1.8rem; }
+    .header { padding: 36px 16px 22px; }
+    .word-chunk { font-size: 1.05rem; padding: 6px 10px; }
+    .concepts-grid { grid-template-columns: 1fr; }
+    .container { padding: 20px 16px 60px; }
+    .example-area { padding: 20px 18px 24px; }
+    .step-btn { font-size: 0.72rem; padding: 5px 10px; }
+    .pvc-grid { grid-template-columns: 1fr; }
+    .topnav { padding: 12px 16px; font-size: 0.78rem; }
+    .topnav .nav-links { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="nav-home" href="index.html">← Grammar Explorer</a>
+  <div class="nav-links">
+    <a href="parts-of-speech.html">Parts of Speech</a>
+    <a href="sentence-parts.html">Sentence Parts</a>
+    <a href="verbals.html">Verbals</a>
+    <a href="phrases.html">Phrases</a>
+    <a href="clauses.html" class="current">Clauses</a>
+  </div>
+</nav>
+
+<div class="header">
+  <h1>Clauses &amp; Sentence Types</h1>
+  <p>A clause is a word group with its own subject and verb. Meet the two families — independent and dependent — then see how they combine into every sentence you'll ever write.</p>
+</div>
+
+<div class="container">
+
+  <!-- PHRASE VS CLAUSE INTRO (shared with phrases page) -->
+  <div class="pvc">
+    <div class="section-title">Phrase vs. Clause — The One Test</div>
+    <div class="section-sub">Before classifying anything, check for a subject + verb pair.</div>
+
+    <div class="pvc-grid">
+      <div class="pvc-card phrase">
+        <h4>Phrase</h4>
+        <p>A word group that acts as a unit but has <strong>NO</strong> subject-verb pair.</p>
+        <div class="ex">after the final bell
+          <small>No subject. No verb. Just a unit of meaning.</small>
+        </div>
+      </div>
+      <div class="pvc-card clause">
+        <h4>Clause</h4>
+        <p>A word group that <strong>DOES</strong> have a subject-verb pair.</p>
+        <div class="ex">after the final bell rang
+          <small>Subject: <em>bell</em>. Verb: <em>rang</em>. Now it's a clause.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="pvc-key">
+      <span class="k-phrase">Phrase = no S+V</span> &nbsp;·&nbsp; <span class="k-clause">Clause = has S+V</span>
+    </div>
+  </div>
+
+  <!-- PART 1: INDEPENDENT vs DEPENDENT -->
+  <div class="section-title">Part 1 — Independent vs. Dependent</div>
+  <div class="section-sub">All clauses have S+V. What separates them is whether they can stand on their own.</div>
+
+  <div class="example-area">
+    <div class="example-top-bar">
+      <div class="example-label">Compare: Same S+V, Different Status</div>
+      <button class="shuffle-btn" onclick="shuffleIndDep()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        New Example
+      </button>
+    </div>
+
+    <div class="build-steps" id="indDepSteps"></div>
+    <div class="build-narrative" id="indDepNarrative"></div>
+    <div class="sentence-display" id="indDepDisplay"></div>
+
+    <div class="legend">
+      <div class="legend-group">
+        <span class="legend-title">Structure</span>
+        <div class="legend-item"><div class="legend-border" style="border-color:var(--indigo)"></div>Independent</div>
+        <div class="legend-item"><div class="legend-border dashed" style="border-color:var(--indigo)"></div>Dependent</div>
+      </div>
+    </div>
+
+    <div class="callout" id="indDepCallout">
+      <div class="callout-prompt">← Click any clause above to understand what makes it dependent or independent.</div>
+    </div>
+  </div>
+
+  <!-- SENTENCE TYPES TOGGLE -->
+  <div class="example-area">
+    <div class="example-top-bar">
+      <div class="example-label">Sentence Types — Combine Clauses</div>
+    </div>
+
+    <div class="stype-toggle" id="stypeToggle"></div>
+    <div class="stype-formula" id="stypeFormula"></div>
+    <div class="build-narrative" id="stypeNarrative"></div>
+    <div class="sentence-display" id="stypeDisplay"></div>
+  </div>
+
+  <div class="big-divider"><span>then within dependents...</span></div>
+
+  <!-- PART 2: THE THREE DEPENDENT TYPES -->
+  <div class="section-title">Part 2 — The Three Dependent Clauses</div>
+  <div class="section-sub">Every dependent clause does one of three jobs in a sentence: it acts like a noun, an adjective, or an adverb. Click through each type.</div>
+
+  <div class="example-area">
+    <div class="example-top-bar">
+      <div class="example-label">Tour: Dependent Clause Types</div>
+      <button class="shuffle-btn" onclick="shuffleDepType()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        New Example
+      </button>
+    </div>
+
+    <div class="build-steps" id="depTypeSteps"></div>
+    <div class="build-narrative" id="depTypeNarrative"></div>
+    <div class="sentence-display" id="depTypeDisplay"></div>
+
+    <div class="legend">
+      <div class="legend-group">
+        <span class="legend-title">Structure</span>
+        <div class="legend-item"><div class="legend-border dashed" style="border-color:var(--indigo)"></div>Dependent Clause</div>
+      </div>
+      <div class="legend-divider"></div>
+      <div class="legend-group">
+        <span class="legend-title">Function (fill)</span>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--blue-light)"></div>Noun</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--gold-light)"></div>Adjective</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--teal-light)"></div>Adverb</div>
+      </div>
+    </div>
+
+    <div class="callout" id="depTypeCallout">
+      <div class="callout-prompt">← Click the dependent clause to see what type it is and what job it's doing.</div>
+    </div>
+  </div>
+
+  <!-- CONCEPT CARDS -->
+  <div class="section-title">Clause Concepts — Reference</div>
+  <div class="section-sub">Tap any card to expand the full explanation, tests, and examples.</div>
+  <div class="concepts-grid" id="conceptsGrid"></div>
+
+  <!-- BACK CTA -->
+  <a class="back-cta" href="index.html">
+    <div class="back-cta-text">
+      <h4>Back to the Grammar Explorer</h4>
+      <p>Revisit earlier lessons or browse the map of how it all fits together.</p>
+    </div>
+    <div class="back-cta-arrow">↩</div>
+  </a>
+</div>
+
+<script>
+// ==========================================================================
+// PART 1 — INDEPENDENT vs. DEPENDENT (contrasting clause pairs)
+// ==========================================================================
+const IND_DEP_SETS = [
+  {
+    steps: [
+      {
+        label: "Independent",
+        narrative: "An <strong>independent clause</strong> has a subject + verb AND expresses a complete thought. It can stand alone as a sentence.",
+        chunks: [
+          { text: "The bell rang.", structure: "clause-ind", func: "independent", tag: "Independent Clause", id: "c1", clickable: true },
+        ],
+        explanations: {
+          c1: { type: "Independent Clause", func: "Complete sentence", body: "<strong>\"The bell rang.\"</strong> — Subject: <em>The bell</em>. Verb: <em>rang</em>. It expresses a full thought, needs nothing else. This IS a sentence." }
+        }
+      },
+      {
+        label: "Dependent (same S+V!)",
+        narrative: "Add one word — a <em class='indigo'>subordinating conjunction</em> — and the same clause becomes <strong>dependent</strong>. It can no longer stand alone.",
+        chunks: [
+          { text: "When the bell rang", structure: "clause", func: null, tag: "Dependent Clause", id: "c1", clickable: true },
+        ],
+        explanations: {
+          c1: { type: "Dependent Clause", func: "Cannot stand alone", body: "<strong>\"When the bell rang\"</strong> — Same subject (<em>the bell</em>) and verb (<em>rang</em>), but the word <em>when</em> is a <strong>subordinating conjunction</strong>. It makes the reader expect more: <em>When the bell rang… what happened?</em> The clause now depends on an independent clause to complete the thought." }
+        }
+      },
+      {
+        label: "Combined",
+        narrative: "Attach the dependent clause to an independent one — now you have a <strong>complex sentence</strong>.",
+        chunks: [
+          { text: "When the bell rang,", structure: "clause", func: "adv", tag: "Dep. Clause (Adv)", id: "c1", clickable: true },
+          { text: "the students", structure: "clause-ind", func: "independent", tag: "Independent", id: "c2", clickable: true },
+          { text: "raced for the door.", structure: "clause-ind", func: "independent", id: "c2b", clickable: false, continueOf: "c2" },
+        ],
+        explanations: {
+          c1: { type: "Dependent Clause (Adverb)", func: "Modifies the main verb", body: "<strong>\"When the bell rang\"</strong> — answers <em>when did the students race?</em> So it acts as an <strong>adverb</strong> modifying <em>raced</em>. It's set off with a comma because it comes first." },
+          c2: { type: "Independent Clause", func: "The main clause", body: "<strong>\"the students raced for the door\"</strong> — complete thought, stands alone. This is the sentence's backbone; the dependent clause just adds context." },
+        }
+      },
+    ]
+  },
+  {
+    steps: [
+      {
+        label: "Independent",
+        narrative: "An <strong>independent clause</strong> has a subject + verb AND expresses a complete thought. It can stand alone as a sentence.",
+        chunks: [
+          { text: "I finished my homework.", structure: "clause-ind", func: "independent", tag: "Independent Clause", id: "c1", clickable: true },
+        ],
+        explanations: {
+          c1: { type: "Independent Clause", func: "Complete sentence", body: "<strong>\"I finished my homework.\"</strong> — Subject: <em>I</em>. Verb: <em>finished</em>. Full thought, punctuated. Standalone sentence." }
+        }
+      },
+      {
+        label: "Dependent (same S+V!)",
+        narrative: "Add one subordinating word and the clause becomes <strong>dependent</strong>.",
+        chunks: [
+          { text: "After I finished my homework", structure: "clause", func: null, tag: "Dependent Clause", id: "c1", clickable: true },
+        ],
+        explanations: {
+          c1: { type: "Dependent Clause", func: "Cannot stand alone", body: "<strong>\"After I finished my homework\"</strong> — The word <em>after</em> subordinates the clause: we now expect <em>After I finished my homework… then what?</em> The thought is left hanging. That's the mark of a dependent clause." }
+        }
+      },
+      {
+        label: "Combined",
+        narrative: "Pair it with an independent clause to make a <strong>complex sentence</strong>.",
+        chunks: [
+          { text: "After I finished my homework,", structure: "clause", func: "adv", tag: "Dep. Clause (Adv)", id: "c1", clickable: true },
+          { text: "I watched a movie.", structure: "clause-ind", func: "independent", tag: "Independent", id: "c2", clickable: true },
+        ],
+        explanations: {
+          c1: { type: "Dependent Clause (Adverb)", func: "Modifies the main verb", body: "<strong>\"After I finished my homework\"</strong> — answers <em>when did I watch?</em> It's an adverb clause of time, modifying <em>watched</em>." },
+          c2: { type: "Independent Clause", func: "The main clause", body: "<strong>\"I watched a movie\"</strong> — full thought, would be a sentence on its own." },
+        }
+      },
+    ]
+  },
+];
+
+// ==========================================================================
+// PART 1b — SENTENCE TYPE TOGGLE (using consistent clauses so student sees structure)
+// ==========================================================================
+// Base clauses we'll remix:
+// IND1: "She studied hard"
+// IND2: "she aced the test"
+// DEP:  "because the exam was tough"
+
+const SENTENCE_TYPES = [
+  {
+    label: "Simple",
+    formula: '<code>IND</code>',
+    narrative: "<strong>Simple sentence</strong> = one independent clause. No connectors, no dependent clauses.",
+    chunks: [
+      { text: "She studied hard.", structure: "clause-ind", func: "independent", tag: "Independent", id: "i1" },
+    ],
+  },
+  {
+    label: "Compound",
+    formula: '<code>IND</code> <code class="conj">, and/but/or…</code> <code>IND</code>',
+    narrative: "<strong>Compound sentence</strong> = two (or more) independent clauses joined by a comma + coordinating conjunction (FANBOYS) or a semicolon.",
+    chunks: [
+      { text: "She studied hard,", structure: "clause-ind", func: "independent", tag: "Independent", id: "i1" },
+      { text: "and", structure: null, role: "connector" },
+      { text: "she aced the test.", structure: "clause-ind", func: "independent", tag: "Independent", id: "i2" },
+    ],
+  },
+  {
+    label: "Complex",
+    formula: '<code class="dep">DEP</code> <code>IND</code>',
+    narrative: "<strong>Complex sentence</strong> = one independent clause + one (or more) dependent clauses. The dependent clause is subordinate to the main idea.",
+    chunks: [
+      { text: "Because the exam was tough,", structure: "clause", func: "adv", tag: "Dependent (Adv)", id: "d1" },
+      { text: "she studied hard.", structure: "clause-ind", func: "independent", tag: "Independent", id: "i1" },
+    ],
+  },
+  {
+    label: "Compound-Complex",
+    formula: '<code class="dep">DEP</code> <code>IND</code> <code class="conj">, and</code> <code>IND</code>',
+    narrative: "<strong>Compound-complex sentence</strong> = at least two independent clauses AND at least one dependent clause. The heavyweight of sentence structures.",
+    chunks: [
+      { text: "Because the exam was tough,", structure: "clause", func: "adv", tag: "Dependent (Adv)", id: "d1" },
+      { text: "she studied hard,", structure: "clause-ind", func: "independent", tag: "Independent", id: "i1" },
+      { text: "and", structure: null, role: "connector" },
+      { text: "she aced the test.", structure: "clause-ind", func: "independent", tag: "Independent", id: "i2" },
+    ],
+  },
+];
+
+// ==========================================================================
+// PART 2 — THE THREE DEPENDENT CLAUSE TYPES
+// Each step = one type. Shuffle swaps the example within that type.
+// ==========================================================================
+const DEP_TYPE_SETS = [
+  // SET A
+  {
+    steps: [
+      {
+        label: "Noun Clause",
+        narrative: "A <strong>noun clause</strong> acts like a <em class='indigo'>noun</em> — subject, direct object, predicate nominative, or object of a preposition. It usually starts with <em>that, what, who, whoever, whether, if, why, how…</em>",
+        chunks: [
+          { text: "She believes", structure: null, role: "plain" },
+          { text: "that honesty is the best policy.", structure: "clause", func: "do", tag: "Noun Clause (DO)", id: "c1", clickable: true },
+        ],
+        explanations: {
+          c1: { type: "Noun Clause", func: "Direct Object", body: "<strong>\"that honesty is the best policy\"</strong> — a full mini-sentence inside the sentence. Subject: <em>honesty</em>. Verb: <em>is</em>. The whole clause answers <em>\"She believes what?\"</em> — so it's the <strong>direct object</strong>, doing a noun's job.<br><br><em>Test:</em> replace the clause with \"it\" → \"She believes <em>it</em>.\" ✓ That confirms noun function." }
+        }
+      },
+      {
+        label: "Adjective Clause",
+        narrative: "An <strong>adjective clause</strong> acts like an <em class='indigo'>adjective</em> — it modifies a noun. It usually starts with a relative pronoun: <em>who, whom, whose, which, that</em>.",
+        chunks: [
+          { text: "The student", structure: null, role: "plain" },
+          { text: "who sits in the front row", structure: "clause", func: "adj", tag: "Adj. Clause", id: "c1", clickable: true },
+          { text: "always asks great questions.", structure: null, role: "plain" },
+        ],
+        explanations: {
+          c1: { type: "Adjective Clause", func: "Modifies a noun", body: "<strong>\"who sits in the front row\"</strong> — the relative pronoun <em>who</em> refers back to <em>student</em>. Subject of the clause: <em>who</em> (= the student). Verb: <em>sits</em>. The whole clause tells us <em>which</em> student, modifying a noun — an <strong>adjective</strong> job.<br><br>Adjective clauses come <em>right after</em> the noun they modify. Also called <em>relative clauses</em>." }
+        }
+      },
+      {
+        label: "Adverb Clause",
+        narrative: "An <strong>adverb clause</strong> acts like an <em class='indigo'>adverb</em> — it modifies a verb, adjective, or adverb. It starts with a subordinating conjunction: <em>because, when, although, if, since, while, until, so that…</em>",
+        chunks: [
+          { text: "We cancelled the picnic", structure: null, role: "plain" },
+          { text: "because it was raining.", structure: "clause", func: "adv", tag: "Adv. Clause", id: "c1", clickable: true },
+        ],
+        explanations: {
+          c1: { type: "Adverb Clause", func: "Modifies the main verb", body: "<strong>\"because it was raining\"</strong> — Subject: <em>it</em>. Verb: <em>was raining</em>. The subordinator <em>because</em> answers <em>\"cancelled why?\"</em> So the clause modifies <em>cancelled</em> — an <strong>adverb</strong> job (specifically, an adverb of <em>reason</em>).<br><br>Adverb clauses can move around: \"<em>Because it was raining</em>, we cancelled the picnic.\" (Comma when it leads.)" }
+        }
+      },
+    ]
+  },
+  // SET B
+  {
+    steps: [
+      {
+        label: "Noun Clause",
+        narrative: "A <strong>noun clause</strong> acts like a <em class='indigo'>noun</em> — subject, direct object, predicate nominative, or object of a preposition.",
+        chunks: [
+          { text: "What he said", structure: "clause", func: "subject", tag: "Noun Clause (Subject)", id: "c1", clickable: true },
+          { text: "surprised everyone.", structure: null, role: "plain" },
+        ],
+        explanations: {
+          c1: { type: "Noun Clause", func: "Subject", body: "<strong>\"What he said\"</strong> — Subject of clause: <em>he</em>. Verb: <em>said</em>. The whole clause is the <strong>subject</strong> of <em>surprised</em>. <em>What surprised everyone? → What he said.</em><br><br><em>Test:</em> replace the clause with \"it\" → \"<em>It</em> surprised everyone.\" ✓ — noun function confirmed." }
+        }
+      },
+      {
+        label: "Adjective Clause",
+        narrative: "An <strong>adjective clause</strong> acts like an <em class='indigo'>adjective</em> — it modifies a noun. It usually starts with a relative pronoun.",
+        chunks: [
+          { text: "I returned the book", structure: null, role: "plain" },
+          { text: "that I borrowed last week.", structure: "clause", func: "adj", tag: "Adj. Clause", id: "c1", clickable: true },
+        ],
+        explanations: {
+          c1: { type: "Adjective Clause", func: "Modifies a noun", body: "<strong>\"that I borrowed last week\"</strong> — the relative pronoun <em>that</em> refers to <em>book</em>. Subject of the clause: <em>I</em>. Verb: <em>borrowed</em>. The clause tells us <em>which</em> book.<br><br>Notice: you could drop <em>that</em> here — \"the book I borrowed last week\" — and it still works. That's fine when the relative pronoun is a <em>direct object</em> inside the clause." }
+        }
+      },
+      {
+        label: "Adverb Clause",
+        narrative: "An <strong>adverb clause</strong> acts like an <em class='indigo'>adverb</em> — it modifies a verb, adjective, or adverb. It starts with a subordinating conjunction.",
+        chunks: [
+          { text: "Although she was tired,", structure: "clause", func: "adv", tag: "Adv. Clause", id: "c1", clickable: true },
+          { text: "she finished the race.", structure: null, role: "plain" },
+        ],
+        explanations: {
+          c1: { type: "Adverb Clause", func: "Modifies the main verb", body: "<strong>\"Although she was tired\"</strong> — Subject: <em>she</em>. Verb: <em>was</em>. The subordinator <em>although</em> sets up a contrast, modifying <em>finished</em>. It's an adverb clause of <em>concession</em> (a surprising contrast).<br><br>Because the clause leads the sentence, a comma follows it." }
+        }
+      },
+    ]
+  },
+];
+
+// ==========================================================================
+// CONCEPTS
+// ==========================================================================
+const CONCEPTS = [
+  { id: "clause-def", title: "What Is a Clause?", short: "A word group WITH a subject + verb pair.",
+    detail: `A clause is a word group that contains both a <strong>subject</strong> and a <strong>finite verb</strong> (a verb that takes a tense, like <em>runs</em>, <em>ran</em>, <em>is running</em>).<br><br>
+    Every clause falls into one of two groups:<br>
+    • <strong>Independent</strong> — can stand alone as a sentence.<br>
+    • <strong>Dependent</strong> — cannot stand alone; needs attaching to an independent clause.<br><br>
+    <div class="tip"><div class="tip-label">The S+V Test</div>Point to the subject. Point to the verb. Both there? It's a clause, not a phrase.</div>` },
+
+  { id: "independent", title: "Independent Clause", short: "S + V + complete thought. Stands on its own.",
+    detail: `An independent clause has everything a sentence needs: subject, verb, complete thought. It could be punctuated as a sentence by itself.<br><br>
+    <div class="mini-ex"><span class="hl">The storm passed.</span></div>
+    <div class="mini-ex"><span class="hl">My brother makes the best pancakes.</span></div>
+    Every sentence contains <em>at least one</em> independent clause. Compound and compound-complex sentences contain two or more.<br><br>
+    <div class="tip"><div class="tip-label">Connecting Independent Clauses</div>To join two independent clauses, you need one of three things:<br>
+    1. A comma + FANBOYS (<em>for, and, nor, but, or, yet, so</em>)<br>
+    2. A semicolon<br>
+    3. A colon or dash (for dramatic effect)<br>
+    Using just a comma creates a <em>comma splice</em> — a common error.</div>` },
+
+  { id: "dependent", title: "Dependent Clause", short: "Has S+V, but starts with a subordinator — can't stand alone.",
+    detail: `A dependent (or <em>subordinate</em>) clause has a subject and verb, but a single word at the front makes it unable to stand alone:<br><br>
+    • <strong>Subordinating conjunctions</strong>: because, when, although, if, since, while, until, after, before, though, unless, so that, whereas…<br>
+    • <strong>Relative pronouns</strong>: who, whom, whose, which, that<br>
+    • <strong>Interrogative / "wh-" words</strong>: what, whatever, whoever, how, why, whether<br><br>
+    <div class="mini-ex">✗ <span class="hl">Because I was late.</span> <small>(fragment — not a complete thought)</small></div>
+    <div class="mini-ex">✓ <span class="hl">Because I was late</span>, I missed the bus.</div>
+    <div class="tip"><div class="tip-label">Three Jobs</div>Every dependent clause does one of three jobs: noun, adjective, or adverb. That job determines its type.</div>` },
+
+  { id: "noun-clause", title: "Noun Clause", short: "A dependent clause acting as a noun.",
+    detail: `A noun clause fills a noun slot — anywhere a single noun could sit.<br><br>
+    <strong>Common starters:</strong> <em>that, what, whatever, who, whoever, whom, which, whether, if, why, how, when, where</em>.<br><br>
+    <strong>As subject:</strong><br>
+    <div class="mini-ex"><span class="hl-blue">That she won</span> shocked no one.</div>
+    <strong>As direct object:</strong><br>
+    <div class="mini-ex">I know <span class="hl-blue">what you did last summer</span>.</div>
+    <strong>As predicate nominative:</strong><br>
+    <div class="mini-ex">The problem is <span class="hl-blue">that we're out of time</span>.</div>
+    <strong>As object of preposition:</strong><br>
+    <div class="mini-ex">Give the prize to <span class="hl-blue">whoever finishes first</span>.</div>
+    <div class="tip"><div class="tip-label">The "It" Test</div>Replace the whole clause with "it." If the sentence still works grammatically, it's a noun clause.</div>` },
+
+  { id: "adj-clause", title: "Adjective Clause", short: "A dependent clause acting as an adjective — modifies a noun.",
+    detail: `Also called a <em>relative clause</em>. It sits right after the noun it describes and usually starts with a relative pronoun: <em>who, whom, whose, which, that</em>.<br><br>
+    <div class="mini-ex">The scientist <span class="hl-gold">who discovered penicillin</span> was Alexander Fleming.</div>
+    <div class="mini-ex">This is the restaurant <span class="hl-gold">that we love</span>.</div>
+    <strong>Restrictive (essential, no commas):</strong> the clause identifies which one.<br>
+    <div class="mini-ex">Students <span class="hl-gold">who study daily</span> succeed.</div>
+    <strong>Non-restrictive (extra info, use commas):</strong> the clause adds detail to an already-identified noun.<br>
+    <div class="mini-ex">My sister, <span class="hl-gold">who lives in Boston</span>, is visiting.</div>
+    <div class="tip"><div class="tip-label">That vs. Which</div>Use <em>that</em> for restrictive clauses (no commas). Use <em>which</em> for non-restrictive clauses (with commas). <em>Who/whom</em> works for both, but comma rules still apply.</div>` },
+
+  { id: "adv-clause", title: "Adverb Clause", short: "A dependent clause acting as an adverb — modifies a verb, adjective, or adverb.",
+    detail: `An adverb clause starts with a <strong>subordinating conjunction</strong> and answers an adverb question: <em>when? where? why? how? to what extent? under what condition?</em><br><br>
+    <strong>By meaning category:</strong><br>
+    • <em>Time</em>: when, before, after, until, since, while, as<br>
+    • <em>Cause/Reason</em>: because, since, as<br>
+    • <em>Purpose</em>: so that, in order that<br>
+    • <em>Condition</em>: if, unless, provided that<br>
+    • <em>Concession</em>: although, though, even though, while<br>
+    • <em>Comparison</em>: than, as…as<br><br>
+    <div class="mini-ex"><span class="hl-teal">When the movie ended</span>, we left. (time)</div>
+    <div class="mini-ex">He succeeded <span class="hl-teal">because he worked hard</span>. (reason)</div>
+    <div class="mini-ex"><span class="hl-teal">If it rains</span>, we'll stay inside. (condition)</div>
+    <div class="tip"><div class="tip-label">Comma Rule</div>Adverb clause FIRST → comma after it.<br>
+    Adverb clause LAST → usually no comma.<br>
+    <em>When he called, I answered.</em> / <em>I answered when he called.</em></div>` },
+
+  { id: "simple", title: "Simple Sentence", short: "One independent clause.",
+    detail: `A simple sentence contains exactly <strong>one independent clause</strong> and no dependent clauses. It may still have phrases and multiple subjects or verbs.<br><br>
+    <div class="mini-ex">Birds fly.</div>
+    <div class="mini-ex">The old oak tree in our yard fell during the storm. <small>(still simple — one S+V)</small></div>
+    <div class="mini-ex">Maya and Jonas studied and aced the exam. <small>(compound subject + compound verb, but still ONE independent clause)</small></div>
+    <div class="tip"><div class="tip-label">Easy to Misread</div>Length doesn't matter. A sentence with twelve prepositional phrases can still be "simple" if it has just one S+V pair and no dependent clauses.</div>` },
+
+  { id: "compound", title: "Compound Sentence", short: "Two or more independent clauses joined together.",
+    detail: `A compound sentence joins <strong>two (or more) independent clauses</strong> into a single sentence. Three legal joiners:<br><br>
+    <strong>1. Comma + FANBOYS</strong> (<em>For, And, Nor, But, Or, Yet, So</em>):<br>
+    <div class="mini-ex">I wanted to go<strong>,</strong> but I was too tired.</div>
+    <strong>2. Semicolon</strong> (when the clauses are closely related):<br>
+    <div class="mini-ex">The rain stopped<strong>;</strong> we went outside.</div>
+    <strong>3. Semicolon + conjunctive adverb</strong> (<em>however, therefore, meanwhile, nevertheless</em>):<br>
+    <div class="mini-ex">She studied hard<strong>;</strong> however, she still failed.</div>
+    <div class="tip"><div class="tip-label">Comma Splice Warning</div>Joining two independents with <em>only</em> a comma is incorrect:<br>
+    ✗ I wanted to go, I was tired.<br>
+    ✓ I wanted to go, but I was tired.</div>` },
+
+  { id: "complex", title: "Complex Sentence", short: "One independent + one or more dependent clauses.",
+    detail: `A complex sentence has exactly <strong>one independent clause</strong> and <strong>at least one dependent clause</strong>.<br><br>
+    <div class="mini-ex"><span class="hl">When the alarm rang</span>, I woke up.</div>
+    <div class="mini-ex">The book <span class="hl">that I'm reading</span> is fascinating.</div>
+    <div class="mini-ex">She smiled <span class="hl">because she had won</span>.</div>
+    <div class="tip"><div class="tip-label">Why Use Complex Sentences?</div>They let you show the <em>relationship</em> between ideas: cause (because), time (when), contrast (although), condition (if). Compound sentences just add; complex sentences subordinate, showing which idea matters more.</div>` },
+
+  { id: "compound-complex", title: "Compound-Complex Sentence", short: "At least two independents AND at least one dependent.",
+    detail: `The heavyweight: at least <strong>two independent clauses</strong> AND at least <strong>one dependent clause</strong>.<br><br>
+    <div class="mini-ex"><span class="hl">Although it was cold</span>, we went outside, and we built a snowman.</div>
+    <em>Dependent:</em> Although it was cold<br>
+    <em>Independent 1:</em> we went outside<br>
+    <em>Independent 2:</em> we built a snowman<br><br>
+    <div class="tip"><div class="tip-label">Variety Is Key</div>Good writing mixes all four sentence types. Too many simple sentences feel choppy; too many compound-complex feel bloated. Rhythm comes from variation.</div>` },
+];
+
+// ==========================================================================
+// HELPERS / RENDERERS
+// ==========================================================================
+function renderChunks(chunks, containerId, clickHandler) {
+  document.getElementById(containerId).innerHTML = chunks.map((c, i) => {
+    const clickable = c.clickable ? 'clickable' : '';
+    const structAttr = c.structure ? `data-structure="${c.structure}"` : '';
+    const funcAttr = c.func ? `data-func="${c.func}"` : '';
+    const roleAttr = c.role ? `data-role="${c.role}"` : '';
+    const idAttr = c.id ? `data-id="${c.id}"` : '';
+    const onclick = c.clickable ? `onclick="${clickHandler}('${c.id}', this)"` : '';
+    const tag = c.tag ? `<span class="role-tag">${c.tag}</span>` : '';
+    return `<div class="word-chunk ${clickable}" ${structAttr} ${funcAttr} ${roleAttr} ${idAttr} ${onclick} style="animation-delay:${i * 0.06}s">${tag}${c.text}</div>`;
+  }).join(' ');
+}
+
+function resetCallout(calloutId, prompt) {
+  const c = document.getElementById(calloutId);
+  c.removeAttribute('data-active-structure');
+  c.classList.remove('visible');
+  c.innerHTML = `<div class="callout-prompt">${prompt}</div>`;
+}
+
+function showCallout(calloutId, ex, el) {
+  const callout = document.getElementById(calloutId);
+  const structure = el.getAttribute('data-structure');
+  callout.setAttribute('data-active-structure', structure);
+  callout.classList.add('visible');
+  callout.innerHTML = `
+    <div class="callout-meta">
+      <span class="callout-chip structure">${ex.type}</span>
+      <span class="callout-chip function">Acts as: ${ex.func}</span>
+    </div>
+    <div class="callout-body">${ex.body}</div>`;
+}
+
+// ==========================================================================
+// PART 1 RENDERER — Ind vs Dep
+// ==========================================================================
+let indDepSetIdx = 0;
+let indDepStepIdx = 0;
+
+function renderIndDepSteps() {
+  const set = IND_DEP_SETS[indDepSetIdx];
+  document.getElementById('indDepSteps').innerHTML = set.steps.map((s, i) => {
+    let cls = 'step-btn';
+    if (i === indDepStepIdx) cls += ' active';
+    return (i > 0 ? '<span class="step-arrow">→</span>' : '') +
+      `<button class="${cls}" onclick="goIndDep(${i})">${s.label}</button>`;
+  }).join('');
+}
+
+function renderIndDep() {
+  const step = IND_DEP_SETS[indDepSetIdx].steps[indDepStepIdx];
+  renderChunks(step.chunks, 'indDepDisplay', 'showIndDepEx');
+  document.getElementById('indDepNarrative').innerHTML = step.narrative;
+  resetCallout('indDepCallout', "← Click any clause above to understand what makes it dependent or independent.");
+}
+
+function goIndDep(i) {
+  indDepStepIdx = i;
+  renderIndDepSteps();
+  renderIndDep();
+}
+
+function showIndDepEx(id, el) {
+  const step = IND_DEP_SETS[indDepSetIdx].steps[indDepStepIdx];
+  const ex = step.explanations[id];
+  if (!ex) return;
+  document.querySelectorAll('#indDepDisplay .word-chunk').forEach(e => e.classList.remove('active'));
+  // highlight all chunks that are continuations of same id
+  const related = Array.from(document.querySelectorAll('#indDepDisplay .word-chunk')).filter(e =>
+    e.getAttribute('data-id') === id
+  );
+  related.forEach(e => e.classList.add('active'));
+  showCallout('indDepCallout', ex, el);
+}
+
+function shuffleIndDep() {
+  indDepSetIdx = (indDepSetIdx + 1) % IND_DEP_SETS.length;
+  renderIndDepSteps();
+  renderIndDep();
+}
+
+// ==========================================================================
+// SENTENCE TYPES TOGGLE
+// ==========================================================================
+let stypeIdx = 0;
+
+function renderStypeToggle() {
+  document.getElementById('stypeToggle').innerHTML = SENTENCE_TYPES.map((t, i) =>
+    `<button class="stype-btn ${i === stypeIdx ? 'active' : ''}" onclick="goStype(${i})">${t.label}</button>`
+  ).join('');
+}
+
+function renderStype() {
+  const t = SENTENCE_TYPES[stypeIdx];
+  document.getElementById('stypeFormula').innerHTML = t.formula;
+  document.getElementById('stypeNarrative').innerHTML = t.narrative;
+  renderChunks(t.chunks, 'stypeDisplay', 'noop');
+}
+
+function goStype(i) {
+  stypeIdx = i;
+  renderStypeToggle();
+  renderStype();
+}
+
+// no-op placeholder for chunks that aren't clickable
+function noop() {}
+
+// ==========================================================================
+// PART 2 — Dependent Type Tour
+// ==========================================================================
+let depSetIdx = 0;
+let depStepIdx = 0;
+
+function renderDepTypeSteps() {
+  const set = DEP_TYPE_SETS[depSetIdx];
+  document.getElementById('depTypeSteps').innerHTML = set.steps.map((s, i) => {
+    let cls = 'step-btn';
+    if (i === depStepIdx) cls += ' active';
+    return (i > 0 ? '<span class="step-arrow">·</span>' : '') +
+      `<button class="${cls}" onclick="goDepType(${i})">${s.label}</button>`;
+  }).join('');
+}
+
+function renderDepType() {
+  const step = DEP_TYPE_SETS[depSetIdx].steps[depStepIdx];
+  renderChunks(step.chunks, 'depTypeDisplay', 'showDepTypeEx');
+  document.getElementById('depTypeNarrative').innerHTML = step.narrative;
+  resetCallout('depTypeCallout', "← Click the dependent clause to see what type it is and what job it's doing.");
+}
+
+function goDepType(i) {
+  depStepIdx = i;
+  renderDepTypeSteps();
+  renderDepType();
+}
+
+function showDepTypeEx(id, el) {
+  const step = DEP_TYPE_SETS[depSetIdx].steps[depStepIdx];
+  const ex = step.explanations[id];
+  if (!ex) return;
+  document.querySelectorAll('#depTypeDisplay .word-chunk').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  showCallout('depTypeCallout', ex, el);
+}
+
+function shuffleDepType() {
+  depSetIdx = (depSetIdx + 1) % DEP_TYPE_SETS.length;
+  renderDepTypeSteps();
+  renderDepType();
+  const btn = event.currentTarget;
+  if (btn) {
+    btn.style.transform = 'scale(0.92)';
+    setTimeout(() => btn.style.transform = '', 150);
+  }
+}
+
+// ==========================================================================
+// CONCEPTS
+// ==========================================================================
+function renderConcepts() {
+  document.getElementById('conceptsGrid').innerHTML = CONCEPTS.map(c =>
+    `<div class="concept-card" data-concept="${c.id}" onclick="toggleConcept(this)">
+      <span class="expand-icon">+</span>
+      <h3>${c.title}</h3>
+      <div class="short-def">${c.short}</div>
+      <div class="concept-detail"><div class="concept-detail-inner">${c.detail}</div></div>
+    </div>`
+  ).join('');
+}
+
+function toggleConcept(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.concept-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+// ==========================================================================
+// INIT
+// ==========================================================================
+renderIndDepSteps();
+renderIndDep();
+renderStypeToggle();
+renderStype();
+renderDepTypeSteps();
+renderDepType();
+renderConcepts();
+</script>
+</body>
+</html>

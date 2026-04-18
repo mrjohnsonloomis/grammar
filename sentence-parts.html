@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parts of a Sentence</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --ink: #2A2420;
+    --accent: #C44B2B;
+    --accent-light: #F4DDD6;
+    --blue: #2B6B8A;
+    --blue-light: #D6EAF2;
+    --green: #3A7D44;
+    --green-light: #D9EDDC;
+    --purple: #6B4C8A;
+    --purple-light: #E8DDF2;
+    --gold: #B8860B;
+    --gold-light: #F5ECD0;
+    --teal: #2A8A7A;
+    --teal-light: #D0F0EA;
+    --card: #FFFFFF;
+    --border: #E5DED4;
+    --shadow: rgba(42, 36, 32, 0.08);
+    --muted: #9A9189;
+    --dimtext: #7A7168;
+    --bodytext: #5A534B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--border);
+    background: #FFF;
+    font-size: 0.85rem;
+  }
+  .topnav a {
+    color: var(--dimtext);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+  }
+  .topnav a:hover { color: var(--accent); }
+  .topnav .nav-home { display: flex; align-items: center; gap: 6px; }
+  .topnav .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .topnav .nav-links a.current { color: var(--ink); }
+  @media (max-width: 640px) {
+    .topnav { padding: 12px 16px; font-size: 0.78rem; }
+    .topnav .nav-links { gap: 14px; }
+  }
+
+  .header {
+    text-align: center;
+    padding: 48px 24px 28px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(180deg, #FFF 0%, var(--bg) 100%);
+  }
+  .header h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .header p {
+    font-size: 1.02rem;
+    color: var(--dimtext);
+    margin-top: 8px;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  .section-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--dimtext);
+    margin-bottom: 20px;
+  }
+
+  /* --- EXAMPLE AREA --- */
+  .example-area {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+
+  .example-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .example-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .shuffle-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 7px 18px;
+    border-radius: 20px;
+    border: 1.5px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .shuffle-btn:hover { background: var(--accent); color: #fff; }
+  .shuffle-btn svg { width: 14px; height: 14px; }
+
+  /* --- BUILD STEPS --- */
+  .build-steps {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .step-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .step-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .step-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .step-btn.reached { border-color: var(--accent); color: var(--accent); }
+  .step-btn.reached.active { background: var(--accent); color: #fff; }
+
+  .step-arrow {
+    color: var(--border);
+    font-size: 0.9rem;
+    user-select: none;
+  }
+
+  /* --- SENTENCE DISPLAY --- */
+  .sentence-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 16px;
+    min-height: 58px;
+  }
+
+  .word-chunk {
+    position: relative;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    user-select: none;
+    animation: fadeSlideIn 0.35s ease both;
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .word-chunk:hover { transform: translateY(-2px); box-shadow: 0 4px 14px var(--shadow); }
+  .word-chunk.active { transform: translateY(-3px); box-shadow: 0 6px 20px var(--shadow); }
+
+  .word-chunk[data-role="subject"] { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
+  .word-chunk[data-role="verb"] { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+  .word-chunk[data-role="do"] { background: var(--green-light); border-color: var(--green); color: var(--green); }
+  .word-chunk[data-role="io"] { background: var(--purple-light); border-color: var(--purple); color: var(--purple); }
+  .word-chunk[data-role="sc"] { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+  .word-chunk[data-role="oc"] { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+  .word-chunk[data-role="pn"] { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+  .word-chunk[data-role="pa"] { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+  .word-chunk[data-role="modifier"] { background: var(--teal-light); border-color: var(--teal); color: var(--teal); }
+
+  .role-tag {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 1px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    color: #fff;
+  }
+  .word-chunk:hover .role-tag, .word-chunk.active .role-tag { opacity: 1; }
+
+  .word-chunk[data-role="subject"] .role-tag { background: var(--blue); }
+  .word-chunk[data-role="verb"] .role-tag { background: var(--accent); }
+  .word-chunk[data-role="do"] .role-tag { background: var(--green); }
+  .word-chunk[data-role="io"] .role-tag { background: var(--purple); }
+  .word-chunk[data-role="sc"] .role-tag,
+  .word-chunk[data-role="oc"] .role-tag,
+  .word-chunk[data-role="pn"] .role-tag,
+  .word-chunk[data-role="pa"] .role-tag { background: var(--gold); }
+  .word-chunk[data-role="modifier"] .role-tag { background: var(--teal); }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.7rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--dimtext);
+  }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+
+  /* --- CALLOUT --- */
+  .callout {
+    background: #FDFCFA;
+    border-left: 4px solid var(--border);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    min-height: 72px;
+    transition: border-color 0.3s, opacity 0.3s;
+    opacity: 0.5;
+  }
+  .callout.visible { opacity: 1; }
+  .callout[data-active="subject"] { border-left-color: var(--blue); }
+  .callout[data-active="verb"] { border-left-color: var(--accent); }
+  .callout[data-active="do"] { border-left-color: var(--green); }
+  .callout[data-active="io"] { border-left-color: var(--purple); }
+  .callout[data-active="sc"],
+  .callout[data-active="oc"],
+  .callout[data-active="pn"],
+  .callout[data-active="pa"] { border-left-color: var(--gold); }
+  .callout[data-active="modifier"] { border-left-color: var(--teal); }
+
+  .callout-title { font-weight: 700; font-size: 0.98rem; margin-bottom: 4px; }
+  .callout-body { font-size: 0.92rem; color: var(--bodytext); line-height: 1.65; }
+  .callout-prompt { font-style: italic; color: var(--muted); font-size: 0.92rem; }
+
+  .build-narrative {
+    background: #F5F2ED;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-size: 0.88rem;
+    color: var(--bodytext);
+    line-height: 1.6;
+    border: 1px solid var(--border);
+  }
+  .build-narrative strong { color: var(--ink); }
+
+  /* --- CONCEPT CARDS --- */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .concept-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+  }
+  .concept-card[data-concept="subject"]::before { background: var(--blue); }
+  .concept-card[data-concept="predicate"]::before { background: #999; }
+  .concept-card[data-concept="verb"]::before { background: var(--accent); }
+  .concept-card[data-concept="do"]::before { background: var(--green); }
+  .concept-card[data-concept="io"]::before { background: var(--purple); }
+  .concept-card[data-concept="complement"]::before { background: var(--gold); }
+  .concept-card[data-concept="pn"]::before { background: var(--gold); }
+  .concept-card[data-concept="pa"]::before { background: var(--gold); }
+  .concept-card[data-concept="oc"]::before { background: var(--gold); }
+  .concept-card[data-concept="modifier"]::before { background: var(--teal); }
+
+  .concept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow);
+    border-color: transparent;
+  }
+  .concept-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    padding-right: 24px;
+  }
+  .concept-card .short-def {
+    font-size: 0.86rem;
+    color: var(--dimtext);
+    line-height: 1.5;
+  }
+  .concept-card .expand-icon {
+    position: absolute;
+    top: 15px; right: 16px;
+    font-size: 1.2rem;
+    color: #C4BDB4;
+    transition: transform 0.25s;
+  }
+  .concept-card.open .expand-icon { transform: rotate(45deg); }
+
+  .concept-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+  }
+  .concept-card.open .concept-detail {
+    max-height: 700px;
+    margin-top: 14px;
+  }
+  .concept-detail-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-size: 0.88rem;
+    color: var(--bodytext);
+    line-height: 1.7;
+  }
+  .concept-detail-inner strong { color: var(--ink); }
+
+  .tip {
+    background: #EDE9E3;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.84rem;
+  }
+  .tip-label {
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.8rem; }
+    .header { padding: 36px 16px 22px; }
+    .word-chunk { font-size: 1.12rem; padding: 6px 10px; }
+    .concepts-grid { grid-template-columns: 1fr; }
+    .container { padding: 20px 16px 60px; }
+    .example-area { padding: 20px 18px 24px; }
+    .step-btn { font-size: 0.72rem; padding: 5px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="nav-home" href="index.html">← Grammar Explorer</a>
+  <div class="nav-links">
+    <a href="parts-of-speech.html">Parts of Speech</a>
+    <a href="sentence-parts.html" class="current">Sentence Parts</a>
+    <a href="verbals.html">Verbals</a>
+    <a href="phrases.html">Phrases</a>
+    <a href="clauses.html">Clauses</a>
+  </div>
+</nav>
+
+<div class="header">
+  <h1>Parts of a Sentence</h1>
+  <p>Watch a sentence grow step by step — each button adds a new layer. Click words to explore their roles, then shuffle for a fresh example.</p>
+</div>
+
+<div class="container">
+
+  <div class="example-area">
+    <div class="example-top-bar">
+      <div class="example-label">Build a Sentence</div>
+      <button class="shuffle-btn" onclick="shuffleSet()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        Shuffle
+      </button>
+    </div>
+
+    <div class="build-steps" id="buildSteps"></div>
+    <div class="build-narrative" id="buildNarrative"></div>
+    <div class="sentence-display" id="sentenceDisplay"></div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Subject</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Verb</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Direct Obj</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Indirect Obj</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>Complement</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Modifier</div>
+    </div>
+
+    <div class="callout" id="callout">
+      <div class="callout-prompt">← Click any colored word above to learn about its role in the sentence.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Key Concepts</div>
+  <div class="section-sub">Tap a card to expand its full explanation, examples, and quick tests.</div>
+  <div class="concepts-grid" id="conceptsGrid"></div>
+</div>
+
+<script>
+// ===== DATA: Progressive sentence sets =====
+const SETS = [
+  {
+    steps: [
+      {
+        label: "S + V",
+        narrative: "Every sentence starts with a <strong>subject</strong> and a <strong>verb</strong> — who does what.",
+        words: [
+          { text: "The dog", role: "subject", tag: "Subject" },
+          { text: "chased.", role: "verb", tag: "Main Verb" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The dog\"", "The subject tells us WHO performs the action. Ask: <em>\"Who chased?\"</em> → The dog."],
+          verb: ["Main Verb: \"chased\"", "The main verb is the action word — the engine of the predicate (everything that isn't the subject)."],
+        }
+      },
+      {
+        label: "+ Direct Obj",
+        narrative: "Add a <strong>direct object</strong> — the thing that receives the action. <em>Chased what?</em>",
+        words: [
+          { text: "The dog", role: "subject", tag: "Subject" },
+          { text: "chased", role: "verb", tag: "Main Verb" },
+          { text: "the ball.", role: "do", tag: "Direct Object" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The dog\"", "Still our performer. <em>Who chased the ball?</em> → The dog."],
+          verb: ["Main Verb: \"chased\"", "Now <strong>transitive</strong> — it transfers action to an object."],
+          do: ["Direct Object: \"the ball\"", "The DO receives the action. Ask: <em>\"Chased what?\"</em> → the ball. Passive test: \"The ball was chased\" ✓ — so it's a DO."],
+        }
+      },
+      {
+        label: "+ Indirect Obj",
+        narrative: "Insert an <strong>indirect object</strong> — who the ball is being fetched <em>for</em>.",
+        words: [
+          { text: "The dog", role: "subject", tag: "Subject" },
+          { text: "fetched", role: "verb", tag: "Main Verb" },
+          { text: "its owner", role: "io", tag: "Indirect Object" },
+          { text: "the ball.", role: "do", tag: "Direct Object" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The dog\"", "<em>Who fetched?</em> → The dog."],
+          verb: ["Main Verb: \"fetched\"", "Swapped to \"fetched\" — a <strong>ditransitive</strong> verb that naturally takes both an IO and DO."],
+          io: ["Indirect Object: \"its owner\"", "The IO tells us <em>for whom</em> the action is done. <em>\"Fetched for whom?\"</em> → its owner. Rephrase: \"fetched the ball <em>for</em> its owner.\""],
+          do: ["Direct Object: \"the ball\"", "Still the thing being fetched. The IO sits between the verb and the DO."],
+        }
+      },
+      {
+        label: "+ Modifiers",
+        narrative: "<strong>Modifiers</strong> add detail — <em>when, where, how, which one</em>. They're optional; remove them and the core sentence still stands.",
+        words: [
+          { text: "The loyal dog", role: "subject", tag: "Subject" },
+          { text: "eagerly", role: "modifier", tag: "Modifier" },
+          { text: "fetched", role: "verb", tag: "Main Verb" },
+          { text: "its owner", role: "io", tag: "Indirect Object" },
+          { text: "the ball", role: "do", tag: "Direct Object" },
+          { text: "at the park.", role: "modifier", tag: "Modifier" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The loyal dog\"", "\"Loyal\" is an adjective modifier inside the complete subject. The simple subject is still \"dog.\""],
+          verb: ["Main Verb: \"fetched\"", "Unchanged. Modifiers orbit the verb but don't change what it is."],
+          io: ["Indirect Object: \"its owner\"", "<em>For whom?</em> → its owner."],
+          do: ["Direct Object: \"the ball\"", "<em>Fetched what?</em> → the ball."],
+          modifier: ["Modifiers: \"loyal,\" \"eagerly,\" \"at the park\"", "Three modifiers, three jobs: \"loyal\" (adj. — <em>which</em> dog), \"eagerly\" (adverb — <em>how</em>), \"at the park\" (prep. phrase — <em>where</em>). Remove all three: \"The dog fetched its owner the ball\" still works."],
+        }
+      },
+    ]
+  },
+  {
+    steps: [
+      {
+        label: "S + V",
+        narrative: "Core: <strong>subject</strong> and <strong>verb</strong>.",
+        words: [
+          { text: "Mrs. Reyes", role: "subject", tag: "Subject" },
+          { text: "explained.", role: "verb", tag: "Main Verb" },
+        ],
+        explanations: {
+          subject: ["Subject: \"Mrs. Reyes\"", "A proper noun as subject. <em>Who explained?</em> → Mrs. Reyes."],
+          verb: ["Main Verb: \"explained\"", "An action verb. Right now intransitive (no object), but it can take one."],
+        }
+      },
+      {
+        label: "+ Direct Obj",
+        narrative: "Add a <strong>direct object</strong> — <em>explained what?</em>",
+        words: [
+          { text: "Mrs. Reyes", role: "subject", tag: "Subject" },
+          { text: "explained", role: "verb", tag: "Main Verb" },
+          { text: "the lesson.", role: "do", tag: "Direct Object" },
+        ],
+        explanations: {
+          subject: ["Subject: \"Mrs. Reyes\"", "<em>Who explained?</em> → Mrs. Reyes."],
+          verb: ["Main Verb: \"explained\"", "Now transitive — transferring action to \"the lesson.\""],
+          do: ["Direct Object: \"the lesson\"", "Receives the action. <em>Explained what?</em> → the lesson."],
+        }
+      },
+      {
+        label: "+ Indirect Obj",
+        narrative: "Add an <strong>indirect object</strong> — <em>explained to whom?</em>",
+        words: [
+          { text: "Mrs. Reyes", role: "subject", tag: "Subject" },
+          { text: "explained", role: "verb", tag: "Main Verb" },
+          { text: "the students", role: "io", tag: "Indirect Object" },
+          { text: "the lesson.", role: "do", tag: "Direct Object" },
+        ],
+        explanations: {
+          subject: ["Subject: \"Mrs. Reyes\"", "<em>Who explained?</em>"],
+          verb: ["Main Verb: \"explained\"", "Ditransitive — taking both an IO and DO."],
+          io: ["Indirect Object: \"the students\"", "<em>Explained to whom?</em> → the students. Rephrase: \"explained the lesson <em>to</em> the students.\""],
+          do: ["Direct Object: \"the lesson\"", "The thing being explained."],
+        }
+      },
+      {
+        label: "+ Modifiers",
+        narrative: "Layer in <strong>modifiers</strong> for detail.",
+        words: [
+          { text: "Mrs. Reyes", role: "subject", tag: "Subject" },
+          { text: "patiently", role: "modifier", tag: "Modifier" },
+          { text: "explained", role: "verb", tag: "Main Verb" },
+          { text: "the confused students", role: "io", tag: "Indirect Object" },
+          { text: "the difficult lesson", role: "do", tag: "Direct Object" },
+          { text: "after lunch.", role: "modifier", tag: "Modifier" },
+        ],
+        explanations: {
+          subject: ["Subject: \"Mrs. Reyes\"", "Unchanged."],
+          verb: ["Main Verb: \"explained\"", "Still the core action."],
+          io: ["Indirect Object: \"the confused students\"", "\"Confused\" is a modifier within the IO phrase. The IO answers <em>to whom?</em>"],
+          do: ["Direct Object: \"the difficult lesson\"", "\"Difficult\" modifies \"lesson\" but the whole phrase is still the DO."],
+          modifier: ["Modifiers: \"patiently,\" \"confused,\" \"difficult,\" \"after lunch\"", "\"Patiently\" (adverb — <em>how</em>), \"confused\" (adj. — <em>which</em> students), \"difficult\" (adj. — <em>which</em> lesson), \"after lunch\" (prep. phrase — <em>when</em>)."],
+        }
+      },
+    ]
+  },
+  {
+    steps: [
+      {
+        label: "S + Linking V",
+        narrative: "<strong>Linking verbs</strong> don't show action — they connect the subject to a description.",
+        words: [
+          { text: "The sky", role: "subject", tag: "Subject" },
+          { text: "looks.", role: "verb", tag: "Linking Verb" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The sky\"", "<em>What looks?</em> → The sky."],
+          verb: ["Linking Verb: \"looks\"", "\"Looks\" here is a linking verb — it doesn't mean the sky is actively looking at something. It connects the subject to a description. Others: is, seems, becomes, appears, feels, tastes, sounds."],
+        }
+      },
+      {
+        label: "+ Pred. Adjective",
+        narrative: "A linking verb needs a <strong>complement</strong>. A <strong>predicate adjective</strong> <em>describes</em> the subject with an adjective.",
+        words: [
+          { text: "The sky", role: "subject", tag: "Subject" },
+          { text: "looks", role: "verb", tag: "Linking Verb" },
+          { text: "beautiful.", role: "pa", tag: "Pred. Adjective" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The sky\"", "<em>What looks beautiful?</em> → The sky."],
+          verb: ["Linking Verb: \"looks\"", "Connects subject → description. No action, no object."],
+          pa: ["Predicate Adjective: \"beautiful\"", "A <strong>predicate adjective</strong> is a subject complement that uses an <em>adjective</em> to describe the subject through a linking verb. The sky = beautiful. Compare with a <strong>predicate nominative</strong>, which uses a <em>noun</em> to rename the subject."],
+        }
+      },
+      {
+        label: "+ Modifiers",
+        narrative: "Add <strong>modifiers</strong> for richer description.",
+        words: [
+          { text: "The evening sky", role: "subject", tag: "Subject" },
+          { text: "looks", role: "verb", tag: "Linking Verb" },
+          { text: "absolutely", role: "modifier", tag: "Modifier" },
+          { text: "beautiful", role: "pa", tag: "Pred. Adjective" },
+          { text: "tonight.", role: "modifier", tag: "Modifier" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The evening sky\"", "\"Evening\" modifies \"sky\" within the complete subject."],
+          verb: ["Linking Verb: \"looks\"", "Still linking, still connecting."],
+          pa: ["Predicate Adjective: \"beautiful\"", "Describes the subject. \"Absolutely\" intensifies it but doesn't change its grammatical role."],
+          modifier: ["Modifiers: \"evening,\" \"absolutely,\" \"tonight\"", "\"Evening\" (adj. — <em>which</em> sky), \"absolutely\" (adverb — <em>how much</em>), \"tonight\" (adverb — <em>when</em>)."],
+        }
+      },
+    ]
+  },
+  {
+    steps: [
+      {
+        label: "S + Linking V",
+        narrative: "<strong>Subject + linking verb</strong> — incomplete on its own.",
+        words: [
+          { text: "She", role: "subject", tag: "Subject" },
+          { text: "is.", role: "verb", tag: "Linking Verb" },
+        ],
+        explanations: {
+          subject: ["Subject: \"She\"", "A pronoun as subject. <em>Who is?</em> → She."],
+          verb: ["Linking Verb: \"is\"", "The most common linking verb. It connects but shows no action. This sentence feels incomplete — it needs a complement."],
+        }
+      },
+      {
+        label: "+ Pred. Nominative",
+        narrative: "A <strong>predicate nominative</strong> is a <em>noun</em> that renames the subject. She = doctor.",
+        words: [
+          { text: "She", role: "subject", tag: "Subject" },
+          { text: "is", role: "verb", tag: "Linking Verb" },
+          { text: "a doctor.", role: "pn", tag: "Pred. Nominative" },
+        ],
+        explanations: {
+          subject: ["Subject: \"She\"", "<em>Who is a doctor?</em> → She."],
+          verb: ["Linking Verb: \"is\"", "Connects the subject to a renaming noun."],
+          pn: ["Predicate Nominative: \"a doctor\"", "A <strong>predicate nominative</strong> is a noun that <em>renames</em> the subject through a linking verb. She = a doctor. This is NOT a direct object — nothing is being acted upon. Compare: \"She <em>visited</em> a doctor\" (DO — she ≠ doctor, action verb) vs. \"She <em>is</em> a doctor\" (PN — she = doctor, linking verb)."],
+        }
+      },
+      {
+        label: "+ Modifiers",
+        narrative: "Layer in <strong>modifiers</strong>.",
+        words: [
+          { text: "She", role: "subject", tag: "Subject" },
+          { text: "is", role: "verb", tag: "Linking Verb" },
+          { text: "actually", role: "modifier", tag: "Modifier" },
+          { text: "a brilliant doctor", role: "pn", tag: "Pred. Nominative" },
+          { text: "at the hospital.", role: "modifier", tag: "Modifier" },
+        ],
+        explanations: {
+          subject: ["Subject: \"She\"", "Unchanged."],
+          verb: ["Linking Verb: \"is\"", "Still linking."],
+          pn: ["Predicate Nominative: \"a brilliant doctor\"", "\"Brilliant\" modifies \"doctor\" within the PN phrase, but the whole noun phrase renames \"she.\""],
+          modifier: ["Modifiers: \"actually,\" \"brilliant,\" \"at the hospital\"", "\"Actually\" (adverb — <em>emphasis</em>), \"brilliant\" (adj. — <em>which kind</em> of doctor), \"at the hospital\" (prep. phrase — <em>where</em>)."],
+        }
+      },
+    ]
+  },
+  {
+    steps: [
+      {
+        label: "S + V",
+        narrative: "Subject + action verb.",
+        words: [
+          { text: "The team", role: "subject", tag: "Subject" },
+          { text: "elected.", role: "verb", tag: "Main Verb" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The team\"", "<em>Who elected?</em> → The team."],
+          verb: ["Main Verb: \"elected\"", "An action verb that naturally needs an object — elected whom?"],
+        }
+      },
+      {
+        label: "+ Direct Obj",
+        narrative: "<em>Elected whom?</em> Add a <strong>direct object</strong>.",
+        words: [
+          { text: "The team", role: "subject", tag: "Subject" },
+          { text: "elected", role: "verb", tag: "Main Verb" },
+          { text: "Jordan.", role: "do", tag: "Direct Object" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The team\"", "<em>Who elected?</em>"],
+          verb: ["Main Verb: \"elected\"", "Transitive — transferring action to Jordan."],
+          do: ["Direct Object: \"Jordan\"", "<em>Elected whom?</em> → Jordan."],
+        }
+      },
+      {
+        label: "+ Obj. Complement",
+        narrative: "An <strong>object complement</strong> renames or describes the <em>direct object</em> (not the subject).",
+        words: [
+          { text: "The team", role: "subject", tag: "Subject" },
+          { text: "elected", role: "verb", tag: "Main Verb" },
+          { text: "Jordan", role: "do", tag: "Direct Object" },
+          { text: "captain.", role: "oc", tag: "Obj. Complement" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The team\"", "<em>Who elected?</em>"],
+          verb: ["Main Verb: \"elected\"", "Takes the pattern S + V + DO + OC."],
+          do: ["Direct Object: \"Jordan\"", "The person being elected."],
+          oc: ["Object Complement: \"captain\"", "An <strong>object complement</strong> renames or describes the DIRECT OBJECT. Jordan = captain. Compare: a <em>subject complement</em> describes the subject via a linking verb. Here \"elected\" is an <em>action</em> verb — that's the key difference."],
+        }
+      },
+      {
+        label: "+ Modifiers",
+        narrative: "Polish with <strong>modifiers</strong>.",
+        words: [
+          { text: "The varsity team", role: "subject", tag: "Subject" },
+          { text: "unanimously", role: "modifier", tag: "Modifier" },
+          { text: "elected", role: "verb", tag: "Main Verb" },
+          { text: "Jordan", role: "do", tag: "Direct Object" },
+          { text: "team captain", role: "oc", tag: "Obj. Complement" },
+          { text: "last Friday.", role: "modifier", tag: "Modifier" },
+        ],
+        explanations: {
+          subject: ["Subject: \"The varsity team\"", "\"Varsity\" modifies \"team.\""],
+          verb: ["Main Verb: \"elected\"", "Core action, unchanged."],
+          do: ["Direct Object: \"Jordan\"", "Person elected."],
+          oc: ["Object Complement: \"team captain\"", "Renames Jordan. Jordan = team captain."],
+          modifier: ["Modifiers: \"varsity,\" \"unanimously,\" \"last Friday\"", "\"Varsity\" (adj. — <em>which</em> team), \"unanimously\" (adverb — <em>how</em>), \"last Friday\" (noun phrase as adverb — <em>when</em>)."],
+        }
+      },
+    ]
+  },
+  {
+    steps: [
+      {
+        label: "S + V",
+        narrative: "Subject + verb.",
+        words: [
+          { text: "Grandma", role: "subject", tag: "Subject" },
+          { text: "baked.", role: "verb", tag: "Main Verb" },
+        ],
+        explanations: {
+          subject: ["Subject: \"Grandma\"", "<em>Who baked?</em> → Grandma."],
+          verb: ["Main Verb: \"baked\"", "An action verb. Currently intransitive."],
+        }
+      },
+      {
+        label: "+ Direct Obj",
+        narrative: "<em>Baked what?</em> Add a <strong>direct object</strong>.",
+        words: [
+          { text: "Grandma", role: "subject", tag: "Subject" },
+          { text: "baked", role: "verb", tag: "Main Verb" },
+          { text: "a pie.", role: "do", tag: "Direct Object" },
+        ],
+        explanations: {
+          subject: ["Subject: \"Grandma\"", "<em>Who baked?</em>"],
+          verb: ["Main Verb: \"baked\"", "Now transitive."],
+          do: ["Direct Object: \"a pie\"", "<em>Baked what?</em> → a pie."],
+        }
+      },
+      {
+        label: "+ Indirect Obj",
+        narrative: "<em>Baked for whom?</em> Add an <strong>indirect object</strong>.",
+        words: [
+          { text: "Grandma", role: "subject", tag: "Subject" },
+          { text: "baked", role: "verb", tag: "Main Verb" },
+          { text: "us", role: "io", tag: "Indirect Object" },
+          { text: "a pie.", role: "do", tag: "Direct Object" },
+        ],
+        explanations: {
+          subject: ["Subject: \"Grandma\"", "<em>Who baked?</em>"],
+          verb: ["Main Verb: \"baked\"", "Ditransitive — IO + DO."],
+          io: ["Indirect Object: \"us\"", "<em>Baked for whom?</em> → us. Rephrase: \"baked a pie <em>for</em> us.\""],
+          do: ["Direct Object: \"a pie\"", "The thing being baked."],
+        }
+      },
+      {
+        label: "+ Modifiers",
+        narrative: "Finish with <strong>modifiers</strong>.",
+        words: [
+          { text: "Our grandma", role: "subject", tag: "Subject" },
+          { text: "lovingly", role: "modifier", tag: "Modifier" },
+          { text: "baked", role: "verb", tag: "Main Verb" },
+          { text: "us", role: "io", tag: "Indirect Object" },
+          { text: "a warm apple pie", role: "do", tag: "Direct Object" },
+          { text: "yesterday.", role: "modifier", tag: "Modifier" },
+        ],
+        explanations: {
+          subject: ["Subject: \"Our grandma\"", "\"Our\" is a possessive modifier."],
+          verb: ["Main Verb: \"baked\"", "Core action, unchanged."],
+          io: ["Indirect Object: \"us\"", "<em>For whom?</em> → us."],
+          do: ["Direct Object: \"a warm apple pie\"", "\"Warm\" and \"apple\" modify \"pie\" inside the DO."],
+          modifier: ["Modifiers: \"Our,\" \"lovingly,\" \"warm,\" \"apple,\" \"yesterday\"", "\"Our\" (possessive adj.), \"lovingly\" (adverb — <em>how</em>), \"warm\" & \"apple\" (adj. — <em>what kind</em>), \"yesterday\" (adverb — <em>when</em>)."],
+        }
+      },
+    ]
+  },
+];
+
+// ===== CONCEPTS =====
+const CONCEPTS = [
+  { id: "subject", title: "Subject", short: "The WHO or WHAT the sentence is about.",
+    detail: `The subject is the noun or pronoun that performs (or is linked to) the action. Every complete sentence needs one.<br><br><strong>How to find it:</strong> Ask "Who?" or "What?" before the verb.<br><strong>Complete vs. Simple:</strong> "The <em>tall</em> coach" is the complete subject; "coach" alone is the simple subject.<br><br><div class="tip"><div class="tip-label">Quick Test</div>The subject usually comes before the verb, except in questions ("Did <em>she</em> leave?") and inverted sentences ("Here <em>comes</em> the bus").</div>` },
+  { id: "predicate", title: "Predicate", short: "Everything said about the subject — always contains the verb.",
+    detail: `The predicate is everything that is NOT the subject. It says what the subject does, is, or has.<br><br><strong>Simple predicate</strong> = just the verb. <strong>Complete predicate</strong> = the verb + all objects, complements, and modifiers.<br><br><div class="tip"><div class="tip-label">Key Rule</div>Subject + Predicate = a complete sentence. Missing either creates a fragment.</div>` },
+  { id: "verb", title: "Main Verb", short: "The action or state — the engine of every predicate.",
+    detail: `<strong>Action verbs:</strong> show doing (run, give, write).<br><strong>Linking verbs:</strong> connect the subject to a description (is, seem, become, look, taste).<br><br>The verb type determines what follows: action verbs take <em>objects</em>, linking verbs take <em>complements</em>.<br><br><div class="tip"><div class="tip-label">Linking Verb Test</div>Substitute "is/are." If the sentence still makes sense, it's likely a linking verb. "The soup <em>tastes</em> great" → "The soup <em>is</em> great." ✓</div>` },
+  { id: "do", title: "Direct Object", short: "The person or thing that receives the action.",
+    detail: `Ask "whom?" or "what?" after an action verb. Not every sentence has one — intransitive verbs (sleep, arrive) don't take objects.<br><br><div class="tip"><div class="tip-label">Quick Test</div>Make it passive. If you can, the DO becomes the subject: "She kicked <em>the ball</em>" → "<em>The ball</em> was kicked."</div>` },
+  { id: "io", title: "Indirect Object", short: "Who receives the direct object — the secondary receiver.",
+    detail: `The IO tells TO WHOM or FOR WHOM the action is done. It only exists alongside a DO.<br><br><strong>Two positions:</strong><br>Before the DO: "She gave <em>him</em> a book."<br>As a prep phrase: "She gave a book <em>to him</em>."<br><br><div class="tip"><div class="tip-label">Quick Test</div>Rephrase with "to ___" or "for ___." If the meaning holds, it's an IO.</div>` },
+  { id: "complement", title: "Complements (Overview)", short: "Words that complete the verb's meaning by describing or renaming.",
+    detail: `Complements "complete" the verb. Two families:<br><br><strong>Subject complements</strong> follow linking verbs → describe/rename the <em>subject</em>.<br>— Predicate nominative (noun): She is <em>a doctor</em>.<br>— Predicate adjective (adjective): She seems <em>happy</em>.<br><br><strong>Object complements</strong> follow a DO → describe/rename <em>it</em>.<br>— They elected her <em>president</em>. (noun)<br>— The news made him <em>anxious</em>. (adjective)<br><br><div class="tip"><div class="tip-label">Complement vs. DO</div>A complement = the subject or object. "She is a doctor" → she = doctor. A DO is separate: "She visited a doctor" → she ≠ doctor.</div>` },
+  { id: "pn", title: "Predicate Nominative", short: "A noun that renames the subject through a linking verb.",
+    detail: `A predicate nominative (PN) is a <strong>noun or noun phrase</strong> after a linking verb that <em>renames</em> the subject. Subject = PN.<br><br>"She is <em>a doctor</em>." → She = a doctor.<br>"My favorite food is <em>pizza</em>." → favorite food = pizza.<br><br><div class="tip"><div class="tip-label">PN vs. DO</div>"She <em>is</em> a doctor" (PN — linking verb, she = doctor).<br>"She <em>visited</em> a doctor" (DO — action verb, she ≠ doctor).</div>` },
+  { id: "pa", title: "Predicate Adjective", short: "An adjective that describes the subject through a linking verb.",
+    detail: `A predicate adjective (PA) appears after a linking verb and uses an <em>adjective</em> to describe the subject.<br><br>"The soup tastes <em>delicious</em>." → describes the soup.<br>"She seems <em>tired</em>." → describes she.<br><br><div class="tip"><div class="tip-label">PA vs. PN</div>If the complement is an <strong>adjective</strong> → predicate adjective.<br>If it's a <strong>noun</strong> → predicate nominative.<br>"She is <em>happy</em>" (PA). "She is <em>a teacher</em>" (PN).</div>` },
+  { id: "oc", title: "Object Complement", short: "Renames or describes the direct object, not the subject.",
+    detail: `An object complement follows the DO and describes or renames it.<br><br><strong>As a noun:</strong> "They elected her <em>president</em>." → her = president.<br><strong>As an adjective:</strong> "The news made him <em>anxious</em>." → him = anxious.<br><br><div class="tip"><div class="tip-label">OC vs. Subject Complement</div>Subject complement: describes <em>subject</em> via linking verb.<br>Object complement: describes <em>DO</em> via action verb.<br>"She is happy" (SC). "The joke made her happy" (OC).</div>` },
+  { id: "modifier", title: "Modifiers", short: "Adjectives, adverbs, and phrases that add optional detail.",
+    detail: `Modifiers answer: <em>when? where? how? why? which one? how many?</em><br><br><strong>Adjectives</strong> modify nouns: "the <em>red</em> car."<br><strong>Adverbs</strong> modify verbs/adj./adverbs: "ran <em>quickly</em>."<br><strong>Phrases</strong>: "the house <em>on the hill</em>."<br><br><div class="tip"><div class="tip-label">Quick Test</div>Remove the modifier. Still grammatical? Then it's a modifier. "She ran quickly." → "She ran." ✓</div>` },
+];
+
+// ===== STATE =====
+let currentSetIndex = 0;
+let currentStep = 0;
+let usedIndices = [];
+
+function getCurrentSet() { return SETS[currentSetIndex]; }
+
+function renderBuildSteps() {
+  const set = getCurrentSet();
+  document.getElementById('buildSteps').innerHTML = set.steps.map((s, i) => {
+    let cls = 'step-btn';
+    if (i === currentStep) cls += ' active';
+    else if (i < currentStep) cls += ' reached';
+    return (i > 0 ? '<span class="step-arrow">→</span>' : '') +
+      `<button class="${cls}" onclick="goToStep(${i})">${s.label}</button>`;
+  }).join('');
+}
+
+function renderSentence() {
+  const step = getCurrentSet().steps[currentStep];
+  document.getElementById('sentenceDisplay').innerHTML = step.words.map((w, i) =>
+    `<div class="word-chunk" data-role="${w.role}" data-index="${i}" onclick="showExplanation(${i})" style="animation-delay:${i * 0.06}s">
+      <span class="role-tag">${w.tag}</span>${w.text}</div>`
+  ).join('');
+  document.getElementById('buildNarrative').innerHTML = step.narrative;
+  resetCallout();
+}
+
+function goToStep(i) {
+  currentStep = i;
+  renderBuildSteps();
+  renderSentence();
+}
+
+function shuffleSet() {
+  usedIndices.push(currentSetIndex);
+  if (usedIndices.length >= SETS.length) usedIndices = [];
+  let avail = [];
+  for (let i = 0; i < SETS.length; i++) {
+    if (!usedIndices.includes(i) && i !== currentSetIndex) avail.push(i);
+  }
+  if (avail.length === 0) avail = SETS.map((_, i) => i).filter(i => i !== currentSetIndex);
+  currentSetIndex = avail[Math.floor(Math.random() * avail.length)];
+  currentStep = 0;
+  renderBuildSteps();
+  renderSentence();
+  const btn = document.querySelector('.shuffle-btn');
+  btn.style.transform = 'scale(0.92)';
+  setTimeout(() => btn.style.transform = '', 150);
+}
+
+function showExplanation(index) {
+  const step = getCurrentSet().steps[currentStep];
+  const w = step.words[index];
+  const ex = step.explanations[w.role];
+  if (!ex) return;
+  document.querySelectorAll('.word-chunk').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.word-chunk')[index].classList.add('active');
+  const callout = document.getElementById('callout');
+  callout.setAttribute('data-active', w.role);
+  callout.classList.add('visible');
+  callout.innerHTML = `<div class="callout-title">${ex[0]}</div><div class="callout-body">${ex[1]}</div>`;
+}
+
+function resetCallout() {
+  const c = document.getElementById('callout');
+  c.removeAttribute('data-active');
+  c.classList.remove('visible');
+  c.innerHTML = `<div class="callout-prompt">← Click any colored word above to learn about its role in the sentence.</div>`;
+}
+
+function renderConcepts() {
+  document.getElementById('conceptsGrid').innerHTML = CONCEPTS.map(c =>
+    `<div class="concept-card" data-concept="${c.id}" onclick="toggleConcept(this)">
+      <span class="expand-icon">+</span>
+      <h3>${c.title}</h3>
+      <div class="short-def">${c.short}</div>
+      <div class="concept-detail"><div class="concept-detail-inner">${c.detail}</div></div>
+    </div>`
+  ).join('');
+}
+
+function toggleConcept(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.concept-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+renderBuildSteps();
+renderSentence();
+renderConcepts();
+</script>
+</body>
+</html>

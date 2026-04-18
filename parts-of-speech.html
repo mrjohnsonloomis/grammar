@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parts of Speech — Grammar Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --ink: #2A2420;
+    --accent: #C44B2B;
+    --accent-light: #F4DDD6;
+    --blue: #2B6B8A;
+    --blue-light: #D6EAF2;
+    --green: #3A7D44;
+    --green-light: #D9EDDC;
+    --purple: #6B4C8A;
+    --purple-light: #E8DDF2;
+    --gold: #B8860B;
+    --gold-light: #F5ECD0;
+    --teal: #2A8A7A;
+    --teal-light: #D0F0EA;
+    --rose: #B84A6E;
+    --rose-light: #F5DDE4;
+    --indigo: #3F4B9A;
+    --indigo-light: #DDE0F2;
+    --brown: #8B5A3C;
+    --brown-light: #EADBCC;
+    --card: #FFFFFF;
+    --border: #E5DED4;
+    --shadow: rgba(42, 36, 32, 0.08);
+    --muted: #9A9189;
+    --dimtext: #7A7168;
+    --bodytext: #5A534B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--border);
+    background: #FFF;
+    font-size: 0.85rem;
+  }
+  .topnav a {
+    color: var(--dimtext);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+  }
+  .topnav a:hover { color: var(--accent); }
+  .topnav .nav-home { display: flex; align-items: center; gap: 6px; }
+  .topnav .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .topnav .nav-links a.current { color: var(--ink); }
+
+  .header {
+    text-align: center;
+    padding: 48px 24px 28px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(180deg, #FFF 0%, var(--bg) 100%);
+  }
+  .header h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .header p {
+    font-size: 1.02rem;
+    color: var(--dimtext);
+    margin-top: 8px;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  .section-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--dimtext);
+    margin-bottom: 20px;
+  }
+
+  /* ---- POS FILTER BAR ---- */
+  .pos-filter-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 26px 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+  .filter-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .pos-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .pos-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .pos-btn .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  .pos-btn:hover { transform: translateY(-1px); }
+  .pos-btn.active { color: #fff; border-color: currentColor; }
+  .pos-btn[data-pos="noun"] .dot { background: var(--blue); }
+  .pos-btn[data-pos="pronoun"] .dot { background: var(--indigo); }
+  .pos-btn[data-pos="verb"] .dot { background: var(--accent); }
+  .pos-btn[data-pos="adjective"] .dot { background: var(--gold); }
+  .pos-btn[data-pos="adverb"] .dot { background: var(--teal); }
+  .pos-btn[data-pos="preposition"] .dot { background: var(--purple); }
+  .pos-btn[data-pos="conjunction"] .dot { background: var(--rose); }
+  .pos-btn[data-pos="interjection"] .dot { background: var(--brown); }
+  .pos-btn[data-pos="article"] .dot { background: var(--muted); }
+
+  .pos-btn[data-pos="noun"].active { background: var(--blue); border-color: var(--blue); }
+  .pos-btn[data-pos="pronoun"].active { background: var(--indigo); border-color: var(--indigo); }
+  .pos-btn[data-pos="verb"].active { background: var(--accent); border-color: var(--accent); }
+  .pos-btn[data-pos="adjective"].active { background: var(--gold); border-color: var(--gold); }
+  .pos-btn[data-pos="adverb"].active { background: var(--teal); border-color: var(--teal); }
+  .pos-btn[data-pos="preposition"].active { background: var(--purple); border-color: var(--purple); }
+  .pos-btn[data-pos="conjunction"].active { background: var(--rose); border-color: var(--rose); }
+  .pos-btn[data-pos="interjection"].active { background: var(--brown); border-color: var(--brown); }
+  .pos-btn[data-pos="article"].active { background: var(--muted); border-color: var(--muted); }
+  .pos-btn.active .dot { background: #fff; }
+
+  .filter-hint {
+    font-size: 0.8rem;
+    color: var(--dimtext);
+    font-style: italic;
+    margin-top: 10px;
+  }
+
+  /* ---- PASSAGE CARD ---- */
+  .passage-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+  .passage-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .passage-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .passage-meta {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--dimtext);
+  }
+  .passage-switcher {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .passage-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 18px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .passage-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .passage-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ---- PASSAGE TEXT ---- */
+  .passage-text {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.32rem;
+    line-height: 2;
+    color: var(--ink);
+    padding: 8px 4px 4px;
+    transition: color 0.3s;
+  }
+  .passage-text.filtered { color: #C9C3BA; }
+  .passage-text.poetry { white-space: pre-line; }
+  .passage-text.poetry .token.break { display: block; height: 0.2em; }
+
+  .token {
+    position: relative;
+    transition: all 0.2s;
+    padding: 1px 2px;
+    border-radius: 4px;
+  }
+  .token.word.clickable { cursor: pointer; }
+  .token.word.clickable:hover { background: rgba(196, 75, 43, 0.08); }
+  .token.punct { color: inherit; }
+
+  /* When a filter is active, matching words light up */
+  .token.highlight {
+    color: #fff !important;
+    padding: 2px 6px;
+    margin: 0 1px;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  .token.highlight[data-pos="noun"] { background: var(--blue); }
+  .token.highlight[data-pos="pronoun"] { background: var(--indigo); }
+  .token.highlight[data-pos="verb"] { background: var(--accent); }
+  .token.highlight[data-pos="adjective"] { background: var(--gold); }
+  .token.highlight[data-pos="adverb"] { background: var(--teal); }
+  .token.highlight[data-pos="preposition"] { background: var(--purple); }
+  .token.highlight[data-pos="conjunction"] { background: var(--rose); }
+  .token.highlight[data-pos="interjection"] { background: var(--brown); }
+  .token.highlight[data-pos="article"] { background: var(--muted); }
+
+  /* Clicked word stays emphasized */
+  .token.selected {
+    outline: 2.5px solid var(--ink);
+    outline-offset: 2px;
+    color: #fff !important;
+    padding: 2px 6px;
+    margin: 0 1px;
+    font-weight: 600;
+  }
+  .token.selected[data-pos="noun"] { background: var(--blue); }
+  .token.selected[data-pos="pronoun"] { background: var(--indigo); }
+  .token.selected[data-pos="verb"] { background: var(--accent); }
+  .token.selected[data-pos="adjective"] { background: var(--gold); }
+  .token.selected[data-pos="adverb"] { background: var(--teal); }
+  .token.selected[data-pos="preposition"] { background: var(--purple); }
+  .token.selected[data-pos="conjunction"] { background: var(--rose); }
+  .token.selected[data-pos="interjection"] { background: var(--brown); }
+  .token.selected[data-pos="article"] { background: var(--muted); }
+
+  /* ---- CALLOUT ---- */
+  .callout {
+    background: #FDFCFA;
+    border-left: 4px solid var(--border);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    min-height: 90px;
+    margin-top: 20px;
+    transition: border-color 0.3s, opacity 0.3s;
+    opacity: 0.6;
+  }
+  .callout.visible { opacity: 1; }
+  .callout[data-active="noun"] { border-left-color: var(--blue); }
+  .callout[data-active="pronoun"] { border-left-color: var(--indigo); }
+  .callout[data-active="verb"] { border-left-color: var(--accent); }
+  .callout[data-active="adjective"] { border-left-color: var(--gold); }
+  .callout[data-active="adverb"] { border-left-color: var(--teal); }
+  .callout[data-active="preposition"] { border-left-color: var(--purple); }
+  .callout[data-active="conjunction"] { border-left-color: var(--rose); }
+  .callout[data-active="interjection"] { border-left-color: var(--brown); }
+  .callout[data-active="article"] { border-left-color: var(--muted); }
+
+  .callout-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .callout-word {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .callout-chip {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 9px;
+    border-radius: 10px;
+    color: #fff;
+  }
+  .callout-chip[data-pos="noun"] { background: var(--blue); }
+  .callout-chip[data-pos="pronoun"] { background: var(--indigo); }
+  .callout-chip[data-pos="verb"] { background: var(--accent); }
+  .callout-chip[data-pos="adjective"] { background: var(--gold); }
+  .callout-chip[data-pos="adverb"] { background: var(--teal); }
+  .callout-chip[data-pos="preposition"] { background: var(--purple); }
+  .callout-chip[data-pos="conjunction"] { background: var(--rose); }
+  .callout-chip[data-pos="interjection"] { background: var(--brown); }
+  .callout-chip[data-pos="article"] { background: var(--muted); }
+
+  .callout-section {
+    margin-bottom: 8px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .callout-section-label {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-right: 6px;
+  }
+  .callout-section.craft {
+    background: #F5F2ED;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 0 0 10px 0;
+  }
+  .callout-section.craft .callout-section-label {
+    color: var(--accent);
+  }
+  .callout-section.role {
+    color: var(--bodytext);
+    padding: 2px 2px;
+  }
+  .callout-section.role .callout-section-label {
+    color: var(--ink);
+  }
+  .callout-prompt {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .callout em { color: var(--ink); font-style: italic; }
+  .callout strong { color: var(--ink); }
+
+  /* ---- COUNT BADGE ---- */
+  .match-count {
+    display: inline-block;
+    margin-left: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--dimtext);
+    padding: 2px 8px;
+    background: var(--bg);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  /* ---- CONCEPT CARDS ---- */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .concept-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+  }
+  .concept-card[data-concept="noun"]::before { background: var(--blue); }
+  .concept-card[data-concept="pronoun"]::before { background: var(--indigo); }
+  .concept-card[data-concept="verb"]::before { background: var(--accent); }
+  .concept-card[data-concept="adjective"]::before { background: var(--gold); }
+  .concept-card[data-concept="adverb"]::before { background: var(--teal); }
+  .concept-card[data-concept="preposition"]::before { background: var(--purple); }
+  .concept-card[data-concept="conjunction"]::before { background: var(--rose); }
+  .concept-card[data-concept="interjection"]::before { background: var(--brown); }
+
+  .concept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow);
+    border-color: transparent;
+  }
+  .concept-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    padding-right: 24px;
+  }
+  .concept-card .short-def {
+    font-size: 0.86rem;
+    color: var(--dimtext);
+    line-height: 1.5;
+  }
+  .concept-card .expand-icon {
+    position: absolute;
+    top: 15px; right: 16px;
+    font-size: 1.2rem;
+    color: #C4BDB4;
+    transition: transform 0.25s;
+  }
+  .concept-card.open .expand-icon { transform: rotate(45deg); }
+
+  .concept-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+  }
+  .concept-card.open .concept-detail {
+    max-height: 900px;
+    margin-top: 14px;
+  }
+  .concept-detail-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-size: 0.88rem;
+    color: var(--bodytext);
+    line-height: 1.7;
+  }
+  .concept-detail-inner strong { color: var(--ink); }
+  .concept-detail-inner em { color: var(--ink); }
+  .tip {
+    background: #EDE9E3;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.84rem;
+  }
+  .tip-label {
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+  .concept-card[data-concept="noun"] .tip-label { color: var(--blue); }
+  .concept-card[data-concept="pronoun"] .tip-label { color: var(--indigo); }
+  .concept-card[data-concept="verb"] .tip-label { color: var(--accent); }
+  .concept-card[data-concept="adjective"] .tip-label { color: var(--gold); }
+  .concept-card[data-concept="adverb"] .tip-label { color: var(--teal); }
+  .concept-card[data-concept="preposition"] .tip-label { color: var(--purple); }
+  .concept-card[data-concept="conjunction"] .tip-label { color: var(--rose); }
+  .concept-card[data-concept="interjection"] .tip-label { color: var(--brown); }
+
+  /* ---- NEXT CTA ---- */
+  .next-cta {
+    margin-top: 48px;
+    background: var(--accent-light);
+    border: 1.5px solid var(--accent);
+    border-radius: 14px;
+    padding: 22px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+  .next-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow); }
+  .next-cta-text h4 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .next-cta-text p { font-size: 0.88rem; color: var(--bodytext); }
+  .next-cta-arrow { font-size: 1.5rem; color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .header h1 { font-size: 1.8rem; }
+    .header { padding: 36px 16px 22px; }
+    .container { padding: 20px 16px 60px; }
+    .concepts-grid { grid-template-columns: 1fr; }
+    .passage-card { padding: 20px 18px 24px; }
+    .passage-text { font-size: 1.12rem; line-height: 1.9; }
+    .pos-btn { font-size: 0.74rem; padding: 6px 10px; }
+    .topnav { padding: 12px 16px; font-size: 0.78rem; }
+    .topnav .nav-links { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="nav-home" href="index.html">← Grammar Explorer</a>
+  <div class="nav-links">
+    <a href="parts-of-speech.html" class="current">Parts of Speech</a>
+    <a href="sentence-parts.html">Sentence Parts</a>
+    <a href="verbals.html">Verbals</a>
+    <a href="phrases.html">Phrases</a>
+    <a href="clauses.html">Clauses</a>
+  </div>
+</nav>
+
+<div class="header">
+  <h1>Parts of Speech</h1>
+  <p>Eight word-categories do all the work in English. Pick one from the filter to see every instance light up in a passage — then click a single word to hear why the author might have chosen it.</p>
+</div>
+
+<div class="container">
+
+  <!-- FILTER BAR -->
+  <div class="pos-filter-card">
+    <div class="filter-label">Highlight a Part of Speech</div>
+    <div class="pos-filters" id="posFilters">
+      <button class="pos-btn active" data-pos="all" onclick="setFilter('all')"><div class="dot" style="background:var(--ink)"></div>Show All</button>
+      <button class="pos-btn" data-pos="noun" onclick="setFilter('noun')"><div class="dot"></div>Nouns</button>
+      <button class="pos-btn" data-pos="pronoun" onclick="setFilter('pronoun')"><div class="dot"></div>Pronouns</button>
+      <button class="pos-btn" data-pos="verb" onclick="setFilter('verb')"><div class="dot"></div>Verbs</button>
+      <button class="pos-btn" data-pos="adjective" onclick="setFilter('adjective')"><div class="dot"></div>Adjectives</button>
+      <button class="pos-btn" data-pos="adverb" onclick="setFilter('adverb')"><div class="dot"></div>Adverbs</button>
+      <button class="pos-btn" data-pos="preposition" onclick="setFilter('preposition')"><div class="dot"></div>Prepositions</button>
+      <button class="pos-btn" data-pos="conjunction" onclick="setFilter('conjunction')"><div class="dot"></div>Conjunctions</button>
+      <button class="pos-btn" data-pos="interjection" onclick="setFilter('interjection')"><div class="dot"></div>Interjections</button>
+    </div>
+    <div class="filter-hint" id="filterHint">Pick a category to highlight its words. Click any highlighted word to see how it's working in the sentence.</div>
+  </div>
+
+  <!-- PASSAGE CARD -->
+  <div class="passage-card">
+    <div class="passage-switcher" id="passageSwitcher"></div>
+    <div class="passage-top">
+      <div class="passage-title" id="passageTitle"></div>
+      <div class="passage-meta" id="passageMeta"></div>
+    </div>
+    <div class="passage-text" id="passageText"></div>
+
+    <div class="callout" id="callout">
+      <div class="callout-prompt">← Pick a part of speech above, then click any highlighted word to see what it's doing.</div>
+    </div>
+  </div>
+
+  <!-- CONCEPTS -->
+  <div class="section-title">The Eight Parts of Speech</div>
+  <div class="section-sub">Tap any card for a full explanation, tests, and examples.</div>
+  <div class="concepts-grid" id="conceptsGrid"></div>
+
+  <!-- NEXT CTA -->
+  <a class="next-cta" href="sentence-parts.html">
+    <div class="next-cta-text">
+      <h4>Up Next: Parts of a Sentence</h4>
+      <p>Now that you can identify every word's <em>category</em>, see how those words combine into subjects, verbs, objects, and modifiers.</p>
+    </div>
+    <div class="next-cta-arrow">→</div>
+  </a>
+</div>
+
+<script>
+// ==========================================================================
+// TOKEN FORMAT
+// Each token is either punctuation/whitespace or a clickable word.
+// { t: text, p: part-of-speech, c: craft-note, r: role-in-sentence }
+// p values: noun, pronoun, verb, adjective, adverb, preposition,
+//           conjunction, interjection, article, (or null for punct)
+// "punct" or "break" types aren't highlighted/clickable.
+// ==========================================================================
+
+const PASSAGES = [
+  // ========================================================================
+  // 1. PRIDE AND PREJUDICE — opening line
+  // ========================================================================
+  {
+    title: "Pride and Prejudice",
+    meta: "Jane Austen, 1813 — opening line",
+    type: "narrative",
+    tokens: [
+      { t: "It", p: "pronoun", c: "A \"dummy\" or placeholder pronoun — it doesn't refer to any real thing, just fills the subject slot so Austen can delay the real idea (<em>a single man… must be in want of a wife</em>) until the end for comic effect.", r: "Subject of <em>is</em>." },
+      { t: " " },
+      { t: "is", p: "verb", c: "A linking verb — small, quiet, but essential. Austen uses it to make a grand-sounding <em>declaration</em>, mimicking the style of philosophical truths.", r: "Main verb; links <em>It</em> to its predicate nominative <em>a truth</em>." },
+      { t: " " },
+      { t: "a", p: "article", c: "Indefinite article — signals \"any,\" which amplifies the satirical universalism: this isn't a truth, it's <em>a</em> truth, one of many.", r: "Modifies <em>truth</em>." },
+      { t: " " },
+      { t: "truth", p: "noun", c: "Abstract noun elevating the whole sentence to mock-philosophical register. Austen is using the gravity of \"truth\" against the triviality of the claim.", r: "Predicate nominative — renames <em>It</em>." },
+      { t: " " },
+      { t: "universally", p: "adverb", c: "Modifier that doubles down on the satire — as though this petty social observation holds everywhere in the world. Placement between <em>truth</em> and <em>acknowledged</em> makes it pompous.", r: "Modifies the participle <em>acknowledged</em>." },
+      { t: " " },
+      { t: "acknowledged", p: "adjective", c: "Past participle used as an adjective describing <em>truth</em>. Gives the sentence its stately, formal ring.", r: "Adjective modifying <em>truth</em> (participial adjective)." },
+      { t: ",", punct: true },
+      { t: " " },
+      { t: "that", p: "conjunction", c: "A subordinating conjunction introducing a noun clause — the real content of the sentence, held in suspense until now.", r: "Introduces the noun clause that renames <em>truth</em>." },
+      { t: " " },
+      { t: "a", p: "article" },
+      { t: " " },
+      { t: "single", p: "adjective", c: "Precise descriptor — not <em>young</em>, not <em>handsome</em>, but <em>single</em>. This is the only quality that matters in the novel's marriage market.", r: "Modifies <em>man</em>." },
+      { t: " " },
+      { t: "man", p: "noun", c: "A general, stock noun — Austen deliberately avoids a specific character. The statement is pretending to be universal.", r: "Subject of <em>must be</em> inside the noun clause." },
+      { t: " " },
+      { t: "in", p: "preposition", c: "Begins a prepositional phrase modifying <em>man</em>, specifying the one quality that \"matters\": wealth.", r: "Head of prep phrase <em>in possession of a good fortune</em>." },
+      { t: " " },
+      { t: "possession", p: "noun", c: "Formal, legalistic word — as if a wife could also be \"possessed.\" Austen is already planting her critique.", r: "Object of the preposition <em>in</em>." },
+      { t: " " },
+      { t: "of", p: "preposition" },
+      { t: " " },
+      { t: "a", p: "article" },
+      { t: " " },
+      { t: "good", p: "adjective", c: "Deceptively plain. In context, <em>good</em> means \"large\" — another coded Regency word for money.", r: "Modifies <em>fortune</em>." },
+      { t: " " },
+      { t: "fortune", p: "noun", c: "Concrete noun standing in for the abstract idea of wealth. Specific enough to feel real, general enough to be universal.", r: "Object of the preposition <em>of</em>." },
+      { t: ",", punct: true },
+      { t: " " },
+      { t: "must", p: "verb", c: "A modal verb expressing <em>necessity</em> — the comedy hinges on this. He doesn't <em>probably</em> want a wife; he <em>must</em>.", r: "Helping verb combining with <em>be</em>." },
+      { t: " " },
+      { t: "be", p: "verb", c: "The main verb inside the noun clause, linking <em>man</em> to its state.", r: "Main verb of the noun clause." },
+      { t: " " },
+      { t: "in", p: "preposition" },
+      { t: " " },
+      { t: "want", p: "noun", c: "Old-fashioned usage — \"want\" here means <em>need</em> or <em>lack</em>, not <em>desire</em>. The irony: the man doesn't feel he wants a wife; society assumes he must.", r: "Object of the preposition <em>in</em>." },
+      { t: " " },
+      { t: "of", p: "preposition" },
+      { t: " " },
+      { t: "a", p: "article" },
+      { t: " " },
+      { t: "wife", p: "noun", c: "The punchline — held until the final word. Every marker of universal, philosophical truth (<em>truth, universally, acknowledged, must</em>) collapses onto this one ordinary noun.", r: "Object of the preposition <em>of</em>." },
+      { t: ".", punct: true },
+    ],
+  },
+
+  // ========================================================================
+  // 2. TO BUILD A FIRE — Jack London (descriptive)
+  // ========================================================================
+  {
+    title: "To Build a Fire",
+    meta: "Jack London, 1908 — from the opening",
+    type: "descriptive",
+    tokens: [
+      { t: "Day", p: "noun", c: "A simple, elemental noun opening the story — London strips every opening sentence down to essentials. No articles, no adjectives. Just <em>day</em>.", r: "Subject of <em>had broken</em>." },
+      { t: " " },
+      { t: "had", p: "verb", c: "Auxiliary forming the past perfect <em>had broken</em> — an action completed before the story's present.", r: "Helping verb with <em>broken</em>." },
+      { t: " " },
+      { t: "broken", p: "verb", c: "Past participle of <em>break</em>. London reuses the word <em>break</em> twice in this sentence — a deliberate, hammering repetition. The day doesn't <em>arrive</em>; it <em>breaks</em>, suggesting violence and suddenness.", r: "Main verb (with <em>had</em>)." },
+      { t: " " },
+      { t: "cold", p: "adjective", c: "The single most important adjective in the whole story. London withholds everything else but temperature — <em>cold</em> will become the antagonist.", r: "Adjective modifying <em>day</em> (subject complement)." },
+      { t: " " },
+      { t: "and", p: "conjunction", c: "A plain connector, but here it joins three weather adjectives into a crescendo: <em>cold and gray, exceedingly cold and gray</em>.", r: "Joins the two <em>cold</em>/<em>gray</em> pairs." },
+      { t: " " },
+      { t: "gray", p: "adjective", c: "Paired with <em>cold</em> to establish a monochrome, lifeless world. No color means no warmth, no hope.", r: "Adjective modifying <em>day</em>." },
+      { t: ",", punct: true },
+      { t: " " },
+      { t: "exceedingly", p: "adverb", c: "An intensifier raised to a near-comic formality — as if the narrator can't help stressing just how grim this is. A rare moment of rhetorical excess.", r: "Modifies the adjective <em>cold</em>." },
+      { t: " " },
+      { t: "cold", p: "adjective", c: "Repeated for emphasis. London doesn't trust you to have felt it yet.", r: "Adjective modifying <em>day</em>." },
+      { t: " " },
+      { t: "and", p: "conjunction" },
+      { t: " " },
+      { t: "gray", p: "adjective", c: "Repetition again. Four adjectives, only two different words. The world is reduced.", r: "Adjective modifying <em>day</em>." },
+      { t: ",", punct: true },
+      { t: " " },
+      { t: "when", p: "conjunction", c: "Subordinating conjunction — begins a dependent clause that pins the scene to a specific moment of action.", r: "Introduces the adverb clause telling <em>when</em>." },
+      { t: " " },
+      { t: "the", p: "article" },
+      { t: " " },
+      { t: "man", p: "noun", c: "Not <em>Tom</em>, not <em>the prospector</em> — just <em>the man</em>. London refuses to name him, making him a stand-in for any overconfident human facing nature.", r: "Subject of <em>turned aside</em>." },
+      { t: " " },
+      { t: "turned", p: "verb", c: "A quiet, physical verb — no drama yet. The whole story will build on the fatal consequences of this small choice to turn aside.", r: "Main verb of the dependent clause." },
+      { t: " " },
+      { t: "aside", p: "adverb", c: "Directional adverb — he leaves the trail. One short word for the decision that kills him.", r: "Modifies <em>turned</em>." },
+      { t: " " },
+      { t: "from", p: "preposition", c: "Signals movement <em>away</em> — begins a phrase explaining what he abandoned.", r: "Head of prep phrase <em>from the main Yukon trail</em>." },
+      { t: " " },
+      { t: "the", p: "article" },
+      { t: " " },
+      { t: "main", p: "adjective", c: "<em>Main</em> — meaning the safe, traveled path. London uses the plainest possible word and lets context give it weight.", r: "Modifies <em>trail</em>." },
+      { t: " " },
+      { t: "Yukon", p: "noun", c: "Proper noun — places the scene geographically and culturally (gold-rush territory, the harshest inhabited North).", r: "Adjective-functioning proper noun modifying <em>trail</em>." },
+      { t: " " },
+      { t: "trail", p: "noun", c: "Concrete noun — a line of safety through a trackless land. The whole plot turns on his leaving it.", r: "Object of the preposition <em>from</em>." },
+      { t: ".", punct: true },
+    ],
+  },
+
+  // ========================================================================
+  // 3. EMILY DICKINSON — "Hope is the thing with feathers" (poetic)
+  // ========================================================================
+  {
+    title: '"Hope is the thing with feathers"',
+    meta: "Emily Dickinson, c. 1861 — stanza 1",
+    type: "poetic",
+    tokens: [
+      { t: "\"Hope\"", p: "noun", c: "Abstract noun made strange by quotation marks — Dickinson is examining the <em>word</em> as well as the feeling. An abstraction treated as a specimen.", r: "Subject of <em>is</em>." },
+      { t: " " },
+      { t: "is", p: "verb", c: "Linking verb carrying the whole metaphor. <em>A is B</em> — hope is redefined as a bird. Simple verb, massive work.", r: "Main verb, links subject to complement." },
+      { t: " " },
+      { t: "the", p: "article" },
+      { t: " " },
+      { t: "thing", p: "noun", c: "Strikingly plain — Dickinson doesn't name the bird. \"Thing\" keeps the metaphor tentative, almost childlike, as if she's still searching for the right word.", r: "Predicate nominative — renames Hope." },
+      { t: " " },
+      { t: "with", p: "preposition", c: "Introduces the defining feature. <em>With feathers</em> turns the vague \"thing\" into a living, flying creature.", r: "Head of the prep phrase modifying <em>thing</em>." },
+      { t: " " },
+      { t: "feathers", p: "noun", c: "Concrete, sensory noun — the whole metaphor pivots on this one word. Feathers suggest lightness, flight, delicacy, warmth.", r: "Object of the preposition <em>with</em>." },
+      { t: " -", punct: true },
+      { t: "\n", break: true },
+      { t: "That", p: "pronoun", c: "Relative pronoun linking the second line back to <em>thing</em> — the bird is being given an action.", r: "Subject of the relative clause <em>That perches</em>…" },
+      { t: " " },
+      { t: "perches", p: "verb", c: "Vivid, specific verb — not <em>sits</em>, not <em>rests</em>. Birds <em>perch</em>. The action grounds the metaphor in reality.", r: "Verb of the relative clause." },
+      { t: " " },
+      { t: "in", p: "preposition", c: "Location preposition pinning the bird — hope isn't abstract; it lives somewhere specific.", r: "Head of prep phrase <em>in the soul</em>." },
+      { t: " " },
+      { t: "the", p: "article" },
+      { t: " " },
+      { t: "soul", p: "noun", c: "The place hope inhabits. Abstract noun, but treated as a physical space the bird can sit inside.", r: "Object of the preposition <em>in</em>." },
+      { t: " -", punct: true },
+      { t: "\n", break: true },
+      { t: "And", p: "conjunction", c: "Connector that keeps the sentence moving across line breaks — typical of Dickinson's breathless, unfinished feel.", r: "Joins the relative clauses." },
+      { t: " " },
+      { t: "sings", p: "verb", c: "Second vivid verb for the bird. Perching is stillness; singing is voice. Hope is both quiet and audible.", r: "Second verb of the relative clause (parallel with <em>perches</em>)." },
+      { t: " " },
+      { t: "the", p: "article" },
+      { t: " " },
+      { t: "tune", p: "noun", c: "Concrete noun making the song tangible. But the next line will tell us it has <em>no words</em> — this song can't be explained.", r: "Direct object of <em>sings</em>." },
+      { t: " " },
+      { t: "without", p: "preposition", c: "A negative preposition — it takes something <em>away</em>. The song has no lyrics.", r: "Head of prep phrase <em>without the words</em>." },
+      { t: " " },
+      { t: "the", p: "article" },
+      { t: " " },
+      { t: "words", p: "noun", c: "Paradox: a tune without <em>words</em>. Hope resists language — it sings, but it cannot be said.", r: "Object of the preposition <em>without</em>." },
+      { t: " -", punct: true },
+      { t: "\n", break: true },
+      { t: "And", p: "conjunction" },
+      { t: " " },
+      { t: "never", p: "adverb", c: "Absolute adverb — not <em>sometimes</em>, not <em>rarely</em>, but <em>never</em>. Hope is defined by what it refuses to do: stop.", r: "Modifies <em>stops</em>." },
+      { t: " " },
+      { t: "stops", p: "verb", c: "The negated verb sets up the poem's quiet claim: hope is persistent, endless. The whole rest of the poem will test this against storm and cold.", r: "Third parallel verb of the relative clause." },
+      { t: " -", punct: true },
+      { t: " " },
+      { t: "at", p: "preposition", c: "Begins a phrase that delivers the punchline of the stanza: hope sings everywhere, <em>at all</em>.", r: "Head of the prep phrase <em>at all</em>." },
+      { t: " " },
+      { t: "all", p: "pronoun", c: "Indefinite pronoun with universal reach — meaning \"to any degree,\" \"in any way.\" It seals the absoluteness of <em>never</em>.", r: "Object of the preposition <em>at</em>." },
+      { t: " -", punct: true },
+    ],
+  },
+
+  // ========================================================================
+  // 4. FREDERICK DOUGLASS — Narrative of the Life (1845) — narrative/rhetoric
+  // ========================================================================
+  {
+    title: "Narrative of the Life of Frederick Douglass",
+    meta: "Frederick Douglass, 1845 — from Chapter I",
+    type: "narrative",
+    tokens: [
+      { t: "I", p: "pronoun", c: "The first word of the sentence — and of the whole memoir's project: to speak as <em>I</em>, a self, a witness. Rhetorically powerful in a context that denied his personhood.", r: "Subject of <em>was born</em>." },
+      { t: " " },
+      { t: "was", p: "verb", c: "Auxiliary forming the passive voice <em>was born</em>. Passive because the act of birth happens <em>to</em> a person, but for Douglass it also marks how little control he had from the start.", r: "Helping verb with <em>born</em>." },
+      { t: " " },
+      { t: "born", p: "verb", c: "Past participle. Pairs with the I — a bare, inarguable claim: <em>I was born</em>. He has to begin by establishing that he exists.", r: "Main verb (passive)." },
+      { t: " " },
+      { t: "in", p: "preposition", c: "Location preposition beginning a precise place-phrase. Douglass is fighting vagueness; slavery erased birth records, so he <em>names</em> what he can.", r: "Head of prep phrase <em>in Tuckahoe</em>." },
+      { t: " " },
+      { t: "Tuckahoe", p: "noun", c: "Proper noun — a specific place. Naming resists the erasure of identity that slavery imposed.", r: "Object of the preposition <em>in</em>." },
+      { t: ",", punct: true },
+      { t: " " },
+      { t: "near", p: "preposition", c: "A second preposition layers on more specificity — he will name not just town but county.", r: "Head of prep phrase <em>near Hillsborough</em>." },
+      { t: " " },
+      { t: "Hillsborough", p: "noun", c: "Another proper noun. Specific, verifiable — Douglass writes as testimony, not fiction.", r: "Object of the preposition <em>near</em>." },
+      { t: ",", punct: true },
+      { t: " " },
+      { t: "and", p: "conjunction", c: "A plain coordinating conjunction that pulls the sentence into a longer, documentary catalog.", r: "Joins two prepositional phrases." },
+      { t: " " },
+      { t: "about", p: "preposition", c: "The one <em>inexact</em> preposition — \"about twelve miles.\" Where the sentence has been precise with place, it softens with distance.", r: "Head of prep phrase modifying <em>Hillsborough</em>." },
+      { t: " " },
+      { t: "twelve", p: "adjective", c: "A numerical adjective. Measures the distance exactly. Specificity is Douglass's weapon against the vagueness slavery imposed.", r: "Modifies <em>miles</em>." },
+      { t: " " },
+      { t: "miles", p: "noun", c: "Unit of measurement — concrete, checkable. The reader could, if they wished, find the spot.", r: "Object of the preposition <em>about</em>." },
+      { t: " " },
+      { t: "from", p: "preposition", c: "Points backward to the reference point <em>Easton</em>. The sentence is building a map.", r: "Head of prep phrase <em>from Easton</em>." },
+      { t: " " },
+      { t: "Easton", p: "noun", c: "Proper noun, the county seat. Douglass is writing for readers who can verify — the abolitionist audience needed proof.", r: "Object of the preposition <em>from</em>." },
+      { t: ",", punct: true },
+      { t: " " },
+      { t: "in", p: "preposition" },
+      { t: " " },
+      { t: "Talbot", p: "noun", c: "Another proper noun. Each specific name makes the horror undeniable: this man was born, in a real place, and was still enslaved there.", r: "Adjective-functioning proper noun modifying <em>county</em>." },
+      { t: " " },
+      { t: "county", p: "noun", c: "The final place-noun, anchoring him geographically. After this detailed opening, he will note that he <em>does not know</em> his own birthday — the sharpest contrast of the chapter.", r: "Object of the preposition <em>in</em>." },
+      { t: ",", punct: true },
+      { t: " " },
+      { t: "Maryland", p: "noun", c: "State. The zoom-out is complete. Douglass has given us everything he can about where — the sentence's next move will be what he can't say: <em>when</em>.", r: "Appositive renaming <em>county</em>'s location." },
+      { t: ".", punct: true },
+    ],
+  },
+];
+
+// ==========================================================================
+// CONCEPTS — cards for the eight traditional parts of speech
+// ==========================================================================
+const CONCEPTS = [
+  { id: "noun", title: "Nouns", short: "Names a person, place, thing, or idea.",
+    detail: `Nouns do the heavy lifting of naming. Every sentence needs at least one — usually as the subject.<br><br>
+    <strong>Proper</strong>: specific name (<em>Yukon, Douglass, Tuckahoe</em>).<br>
+    <strong>Common</strong>: general category (<em>trail, man, county</em>).<br>
+    <strong>Concrete</strong>: physical, perceivable (<em>feathers, pie, snow</em>).<br>
+    <strong>Abstract</strong>: ideas, feelings (<em>truth, hope, freedom</em>).<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Strong writers choose <em>specific</em> nouns over generic ones. <em>Sparrow</em> beats <em>bird</em>; <em>limestone</em> beats <em>rock</em>. Specificity is credibility.</div>` },
+
+  { id: "pronoun", title: "Pronouns", short: "Stand in for nouns so we aren't endlessly repeating them.",
+    detail: `Pronouns keep language efficient. Instead of \"Marcus gave Marcus's hat to Marcus's sister,\" we say \"Marcus gave <em>his</em> hat to <em>his</em> sister.\"<br><br>
+    <strong>Personal</strong>: I, you, he, she, it, we, they (+ me, him, her, us, them)<br>
+    <strong>Possessive</strong>: my, your, his, her, its, our, their (+ mine, yours, hers, ours, theirs)<br>
+    <strong>Reflexive</strong>: myself, yourself, herself, ourselves…<br>
+    <strong>Relative</strong>: who, whom, whose, which, that<br>
+    <strong>Demonstrative</strong>: this, that, these, those<br>
+    <strong>Indefinite</strong>: anyone, everyone, nobody, some, all, each<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Ambiguous pronouns are the enemy of clarity. If two nouns come before \"she,\" the reader has to guess. Fix it or repeat the noun.</div>` },
+
+  { id: "verb", title: "Verbs", short: "Show action or state of being — the engine of every sentence.",
+    detail: `Every sentence needs a verb. It tells us what the subject <em>does</em> or <em>is</em>.<br><br>
+    <strong>Action</strong>: run, write, perch, break, sing<br>
+    <strong>Linking</strong>: be, seem, become, feel, taste — connect subject to a description<br>
+    <strong>Helping / Auxiliary</strong>: have, be, do, will, can, must — combine with a main verb<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>The single most powerful revision move: replace weak verbs with strong ones. <em>She was walking quickly</em> → <em>She strode</em>. Three words become one, and one vague image becomes one precise one. Verbs are where writing lives or dies.</div>` },
+
+  { id: "adjective", title: "Adjectives", short: "Describe or modify nouns and pronouns.",
+    detail: `Adjectives answer: <em>which? what kind? how many? whose?</em><br><br>
+    <strong>Descriptive</strong>: cold, gray, ancient, narrow<br>
+    <strong>Limiting</strong>: three, several, my, this, each<br>
+    <strong>Participial</strong>: verb-based, like <em>acknowledged, broken, running</em><br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Too many adjectives stack up into mush. One sharp adjective outperforms three vague ones. Compare: <em>a big, old, wooden house</em> vs. <em>a sagging farmhouse</em>. Precision beats quantity.</div>` },
+
+  { id: "adverb", title: "Adverbs", short: "Modify verbs, adjectives, or other adverbs.",
+    detail: `Adverbs answer: <em>when? where? how? to what extent? why?</em><br><br>
+    • Modifying a verb: <em>ran <strong>quickly</strong></em><br>
+    • Modifying an adjective: <em><strong>exceedingly</strong> cold</em><br>
+    • Modifying another adverb: <em><strong>very</strong> quietly</em><br><br>
+    Common forms end in <em>-ly</em> (quickly, carefully), but many don't: <em>never, always, there, then, here, soon, well, fast</em>.<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Stephen King: \"The road to hell is paved with adverbs.\" Overstatement, but the point is real — <em>spoke loudly</em> is usually weaker than <em>shouted</em>. Let strong verbs do the work.</div>` },
+
+  { id: "preposition", title: "Prepositions", short: "Show relationships — usually of space, time, or direction.",
+    detail: `A preposition connects a noun or pronoun to the rest of the sentence, showing <em>how</em> they relate.<br><br>
+    <strong>Common prepositions:</strong> in, on, at, by, with, of, for, to, from, about, against, between, under, over, through, before, after, during, until, near<br><br>
+    A preposition always has an <strong>object</strong> (a noun/pronoun it points to). Together they form a <strong>prepositional phrase</strong>:<br>
+    <em>in the soul</em> · <em>from the main Yukon trail</em> · <em>with feathers</em><br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Prepositional phrases stack easily — too many and sentences feel wheezy. \"The book on the shelf in the corner of the room in the back of the house…\" Prune mercilessly.</div>` },
+
+  { id: "conjunction", title: "Conjunctions", short: "Join words, phrases, or clauses together.",
+    detail: `<strong>Coordinating</strong> (FANBOYS): <em>for, and, nor, but, or, yet, so</em>. Join equal elements.<br>
+    <strong>Subordinating</strong>: <em>because, when, although, if, since, while, until, after, before, though</em>… Introduce dependent clauses.<br>
+    <strong>Correlative</strong> (pairs): <em>either/or, neither/nor, both/and, not only/but also</em>.<br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>The conjunction you pick carries meaning. <em>And</em> simply adds. <em>But</em> signals contrast. <em>So</em> implies cause. <em>Although</em> promises complication. Swap one and you change the tone — compare \"<em>She studied hard, and she passed</em>\" with \"<em>She studied hard, but she passed</em>.\"</div>` },
+
+  { id: "interjection", title: "Interjections", short: "Express sudden emotion. Grammatically separate.",
+    detail: `Interjections are outbursts — they carry emotion but don't connect to the grammar of the sentence around them.<br><br>
+    <strong>Examples:</strong> <em>Oh! Wow! Alas. Hey. Ouch. Well, Hmm.</em><br><br>
+    They're usually set off by commas or exclamation points:<br>
+    <em><strong>Oh,</strong> I forgot my keys.</em><br>
+    <em><strong>Ouch!</strong> That hurt.</em><br><br>
+    <div class="tip"><div class="tip-label">Craft Note</div>Interjections dominate dialogue and informal writing; they're rare in formal prose. When Dickens uses <em>alas</em>, it's ironic — he's parodying sentimental fiction. Be aware of the register an interjection invokes.</div>` },
+];
+
+// ==========================================================================
+// STATE
+// ==========================================================================
+let currentPassage = 0;
+let currentFilter = 'all';
+let selectedTokenIdx = null;
+
+// ==========================================================================
+// RENDERERS
+// ==========================================================================
+function renderPassageSwitcher() {
+  document.getElementById('passageSwitcher').innerHTML = PASSAGES.map((p, i) =>
+    `<button class="passage-btn ${i === currentPassage ? 'active' : ''}" onclick="selectPassage(${i})">${p.title}</button>`
+  ).join('');
+}
+
+function renderPassage() {
+  const p = PASSAGES[currentPassage];
+  document.getElementById('passageTitle').textContent = p.title;
+  document.getElementById('passageMeta').textContent = p.meta;
+
+  const html = p.tokens.map((tok, i) => {
+    if (tok.break) return '<span class="token break"></span>';
+    if (tok.punct || !tok.p) return `<span class="token punct">${escapeHtml(tok.t)}</span>`;
+    // it's a word
+    const clickable = tok.c || tok.r ? 'clickable' : '';
+    return `<span class="token word ${clickable}" data-idx="${i}" data-pos="${tok.p}" onclick="selectToken(${i})">${escapeHtml(tok.t)}</span>`;
+  }).join('');
+
+  const textEl = document.getElementById('passageText');
+  textEl.className = 'passage-text' + (p.type === 'poetic' ? ' poetry' : '');
+  textEl.innerHTML = html;
+
+  applyFilter();
+}
+
+function applyFilter() {
+  const textEl = document.getElementById('passageText');
+  const words = textEl.querySelectorAll('.token.word');
+  let count = 0;
+
+  if (currentFilter === 'all') {
+    textEl.classList.remove('filtered');
+    words.forEach(w => w.classList.remove('highlight'));
+  } else {
+    textEl.classList.add('filtered');
+    words.forEach(w => {
+      if (w.getAttribute('data-pos') === currentFilter) {
+        w.classList.add('highlight');
+        count++;
+      } else {
+        w.classList.remove('highlight');
+      }
+    });
+  }
+
+  // Update hint
+  const hint = document.getElementById('filterHint');
+  if (currentFilter === 'all') {
+    hint.innerHTML = "Pick a category to highlight its words. Click any highlighted word to see how it's working in the sentence.";
+  } else {
+    const label = currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1) + 's';
+    hint.innerHTML = `<strong>${count}</strong> ${label.toLowerCase()} highlighted. Click any one to see the craft note and grammatical role.`;
+  }
+}
+
+function setFilter(pos) {
+  currentFilter = pos;
+  selectedTokenIdx = null;
+  document.querySelectorAll('.pos-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-pos') === pos);
+  });
+  applyFilter();
+  resetCallout();
+}
+
+function selectToken(idx) {
+  const tok = PASSAGES[currentPassage].tokens[idx];
+  if (!tok.c && !tok.r) return;
+  selectedTokenIdx = idx;
+  document.querySelectorAll('.token').forEach(t => t.classList.remove('selected'));
+  document.querySelector(`.token[data-idx="${idx}"]`)?.classList.add('selected');
+  showCallout(tok);
+}
+
+function showCallout(tok) {
+  const callout = document.getElementById('callout');
+  callout.setAttribute('data-active', tok.p);
+  callout.classList.add('visible');
+  const posLabel = tok.p.charAt(0).toUpperCase() + tok.p.slice(1);
+  const craft = tok.c ? `<div class="callout-section craft"><span class="callout-section-label">Why this word?</span>${tok.c}</div>` : '';
+  const role = tok.r ? `<div class="callout-section role"><span class="callout-section-label">In the sentence:</span>${tok.r}</div>` : '';
+  callout.innerHTML = `
+    <div class="callout-header">
+      <div class="callout-word">"${escapeHtml(tok.t.trim())}"</div>
+      <span class="callout-chip" data-pos="${tok.p}">${posLabel}</span>
+    </div>
+    ${craft}
+    ${role}`;
+}
+
+function resetCallout() {
+  const c = document.getElementById('callout');
+  c.removeAttribute('data-active');
+  c.classList.remove('visible');
+  c.innerHTML = `<div class="callout-prompt">← Pick a part of speech above, then click any highlighted word to see what it's doing.</div>`;
+}
+
+function selectPassage(i) {
+  currentPassage = i;
+  selectedTokenIdx = null;
+  renderPassageSwitcher();
+  renderPassage();
+  resetCallout();
+}
+
+function renderConcepts() {
+  document.getElementById('conceptsGrid').innerHTML = CONCEPTS.map(c =>
+    `<div class="concept-card" data-concept="${c.id}" onclick="toggleConcept(this)">
+      <span class="expand-icon">+</span>
+      <h3>${c.title}</h3>
+      <div class="short-def">${c.short}</div>
+      <div class="concept-detail"><div class="concept-detail-inner">${c.detail}</div></div>
+    </div>`
+  ).join('');
+}
+
+function toggleConcept(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.concept-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// INIT
+renderPassageSwitcher();
+renderPassage();
+renderConcepts();
+</script>
+</body>
+</html>

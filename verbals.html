@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbals — Grammar Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --ink: #2A2420;
+    --accent: #C44B2B;
+    --accent-light: #F4DDD6;
+    --blue: #2B6B8A;
+    --blue-light: #D6EAF2;
+    --green: #3A7D44;
+    --green-light: #D9EDDC;
+    --purple: #6B4C8A;
+    --purple-light: #E8DDF2;
+    --gold: #B8860B;
+    --gold-light: #F5ECD0;
+    --teal: #2A8A7A;
+    --teal-light: #D0F0EA;
+    --rose: #B84A6E;
+    --rose-light: #F5DDE4;
+    --indigo: #3F4B9A;
+    --indigo-light: #DDE0F2;
+    --card: #FFFFFF;
+    --border: #E5DED4;
+    --shadow: rgba(42, 36, 32, 0.08);
+    --muted: #9A9189;
+    --dimtext: #7A7168;
+    --bodytext: #5A534B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--border);
+    background: #FFF;
+    font-size: 0.85rem;
+  }
+  .topnav a {
+    color: var(--dimtext);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+  }
+  .topnav a:hover { color: var(--accent); }
+  .topnav .nav-home { display: flex; align-items: center; gap: 6px; }
+  .topnav .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .topnav .nav-links a.current { color: var(--ink); }
+
+  .header {
+    text-align: center;
+    padding: 48px 24px 28px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(180deg, #FFF 0%, var(--bg) 100%);
+  }
+  .header h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .header p {
+    font-size: 1.02rem;
+    color: var(--dimtext);
+    margin-top: 8px;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  .section-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--dimtext);
+    margin-bottom: 20px;
+  }
+  .big-divider {
+    text-align: center;
+    margin: 56px 0 24px;
+    position: relative;
+  }
+  .big-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px; background: var(--border);
+    z-index: 0;
+  }
+  .big-divider span {
+    position: relative;
+    background: var(--bg);
+    padding: 0 16px;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
+
+  /* --- INTRO CARD --- */
+  .intro-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 36px;
+  }
+  .intro-card h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .intro-card p { font-size: 0.95rem; color: var(--bodytext); line-height: 1.65; margin-bottom: 12px; }
+  .intro-card p:last-child { margin-bottom: 0; }
+  .intro-card em { color: var(--ink); font-style: italic; }
+  .intro-card strong { color: var(--ink); }
+  .verbal-types {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0 6px;
+  }
+  .verbal-type-tag {
+    text-align: center;
+    padding: 12px 10px;
+    border-radius: 10px;
+    border: 1.5px solid;
+    background: #FFF;
+  }
+  .verbal-type-tag[data-t="participle"] { border-color: var(--gold); background: var(--gold-light); }
+  .verbal-type-tag[data-t="gerund"] { border-color: var(--blue); background: var(--blue-light); }
+  .verbal-type-tag[data-t="infinitive"] { border-color: var(--teal); background: var(--teal-light); }
+  .vt-name {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .verbal-type-tag[data-t="participle"] .vt-name { color: var(--gold); }
+  .verbal-type-tag[data-t="gerund"] .vt-name { color: var(--blue); }
+  .verbal-type-tag[data-t="infinitive"] .vt-name { color: var(--teal); }
+  .vt-form {
+    font-size: 0.78rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--bodytext);
+    font-weight: 600;
+  }
+  .vt-acts {
+    font-size: 0.72rem;
+    color: var(--dimtext);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* --- EXAMPLE AREA (reused) --- */
+  .example-area {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+
+  .example-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .example-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .shuffle-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 7px 18px;
+    border-radius: 20px;
+    border: 1.5px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .shuffle-btn:hover { background: var(--accent); color: #fff; }
+  .shuffle-btn svg { width: 14px; height: 14px; }
+
+  .build-steps {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .step-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .step-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .step-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .step-arrow { color: var(--border); font-size: 0.9rem; user-select: none; }
+
+  .sentence-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    min-height: 72px;
+  }
+
+  .word-chunk {
+    position: relative;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    user-select: none;
+    animation: fadeSlideIn 0.35s ease both;
+    cursor: default;
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .word-chunk.clickable { cursor: pointer; }
+  .word-chunk.clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 14px var(--shadow); }
+  .word-chunk.active { transform: translateY(-3px); box-shadow: 0 6px 20px var(--shadow); }
+
+  .word-chunk[data-role="plain"] {
+    color: var(--ink);
+    border-color: transparent;
+    background: transparent;
+    padding: 8px 4px;
+  }
+
+  /* Verbal type fills */
+  .word-chunk[data-verbal="participle"] { background: var(--gold-light); color: var(--gold); border-color: var(--gold); }
+  .word-chunk[data-verbal="gerund"] { background: var(--blue-light); color: var(--blue); border-color: var(--blue); }
+  .word-chunk[data-verbal="infinitive"] { background: var(--teal-light); color: var(--teal); border-color: var(--teal); }
+
+  /* Real verb — matches the accent color from sentence-parts */
+  .word-chunk[data-verbal="real-verb"] { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+
+  /* Phrase structure — rose border wraps a verbal when it leads a phrase */
+  .word-chunk[data-structure="phrase"] { border-style: dashed; border-color: var(--rose); }
+
+  .role-tag {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 1px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    color: #fff;
+    background: var(--ink);
+  }
+  .word-chunk[data-verbal="participle"] .role-tag { background: var(--gold); }
+  .word-chunk[data-verbal="gerund"] .role-tag { background: var(--blue); }
+  .word-chunk[data-verbal="infinitive"] .role-tag { background: var(--teal); }
+  .word-chunk[data-verbal="real-verb"] .role-tag { background: var(--accent); }
+  .word-chunk.clickable:hover .role-tag,
+  .word-chunk.active .role-tag { opacity: 1; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: #F5F2ED;
+    border-radius: 10px;
+  }
+  .legend-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .legend-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.72rem; font-weight: 600;
+    color: var(--dimtext);
+  }
+  .legend-fill {
+    width: 14px; height: 10px;
+    border-radius: 3px;
+  }
+  .legend-border {
+    width: 16px; height: 11px;
+    border-radius: 3px;
+    border: 2px dashed;
+    background: transparent;
+  }
+  .legend-divider {
+    width: 1px; height: 16px; background: var(--border);
+    margin: 0 2px;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: #FDFCFA;
+    border-left: 4px solid var(--border);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    min-height: 72px;
+    transition: border-color 0.3s, opacity 0.3s;
+    opacity: 0.5;
+  }
+  .callout.visible { opacity: 1; }
+  .callout[data-verbal="participle"] { border-left-color: var(--gold); }
+  .callout[data-verbal="gerund"] { border-left-color: var(--blue); }
+  .callout[data-verbal="infinitive"] { border-left-color: var(--teal); }
+  .callout[data-verbal="real-verb"] { border-left-color: var(--accent); }
+
+  .callout-title { font-weight: 700; font-size: 0.98rem; margin-bottom: 4px; }
+  .callout-body { font-size: 0.92rem; color: var(--bodytext); line-height: 1.65; }
+  .callout-body em { color: var(--ink); }
+  .callout-body strong { color: var(--ink); }
+  .callout-prompt { font-style: italic; color: var(--muted); font-size: 0.92rem; }
+  .callout-meta {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .callout-chip {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: #fff;
+  }
+  .callout-chip.type[data-v="participle"] { background: var(--gold); }
+  .callout-chip.type[data-v="gerund"] { background: var(--blue); }
+  .callout-chip.type[data-v="infinitive"] { background: var(--teal); }
+  .callout-chip.type[data-v="real-verb"] { background: var(--accent); }
+  .callout-chip.function { background: var(--ink); color: #fff; }
+
+  .build-narrative {
+    background: #F5F2ED;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    color: var(--bodytext);
+    line-height: 1.6;
+    border: 1px solid var(--border);
+  }
+  .build-narrative strong { color: var(--ink); }
+  .build-narrative em.accent { color: var(--accent); font-style: normal; font-weight: 700; }
+
+  /* --- TRAP SECTION --- */
+  .trap-section {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 28px;
+  }
+  .trap-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .trap-pill {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .trap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 18px 0 10px;
+  }
+  .trap-pair {
+    background: #FDFCFA;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1.5px solid var(--border);
+  }
+  .trap-pair.verbal { border-color: var(--rose); }
+  .trap-pair.real { border-color: var(--accent); }
+  .trap-pair-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .trap-pair.verbal .trap-pair-label { color: var(--rose); }
+  .trap-pair.real .trap-pair-label { color: var(--accent); }
+  .trap-sentence {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .trap-sentence .marked {
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+  .trap-pair.verbal .trap-sentence .marked {
+    background: var(--gold-light);
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+  }
+  .trap-pair.real .trap-sentence .marked {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+  }
+  .trap-why {
+    font-size: 0.86rem;
+    color: var(--bodytext);
+    line-height: 1.55;
+  }
+  .trap-why em { color: var(--ink); }
+  .trap-why strong { color: var(--ink); }
+
+  .trap-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .trap-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .trap-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .trap-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .trap-test-box {
+    background: #EDE9E3;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 14px;
+    font-size: 0.86rem;
+  }
+  .trap-test-box strong { color: var(--ink); }
+
+  /* CONCEPT CARDS */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .concept-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+  }
+  .concept-card[data-concept="participle"]::before,
+  .concept-card[data-concept="participial-phrase"]::before { background: var(--gold); }
+  .concept-card[data-concept="gerund"]::before,
+  .concept-card[data-concept="gerund-phrase"]::before { background: var(--blue); }
+  .concept-card[data-concept="infinitive"]::before,
+  .concept-card[data-concept="infinitive-phrase"]::before { background: var(--teal); }
+  .concept-card[data-concept="verbal-overview"]::before,
+  .concept-card[data-concept="test"]::before { background: var(--accent); }
+
+  .concept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow);
+    border-color: transparent;
+  }
+  .concept-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    padding-right: 24px;
+  }
+  .concept-card .short-def {
+    font-size: 0.86rem;
+    color: var(--dimtext);
+    line-height: 1.5;
+  }
+  .concept-card .expand-icon {
+    position: absolute;
+    top: 15px; right: 16px;
+    font-size: 1.2rem;
+    color: #C4BDB4;
+    transition: transform 0.25s;
+  }
+  .concept-card.open .expand-icon { transform: rotate(45deg); }
+
+  .concept-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+  }
+  .concept-card.open .concept-detail {
+    max-height: 900px;
+    margin-top: 14px;
+  }
+  .concept-detail-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-size: 0.88rem;
+    color: var(--bodytext);
+    line-height: 1.7;
+  }
+  .concept-detail-inner strong { color: var(--ink); }
+  .concept-detail-inner em { color: var(--ink); }
+  .tip {
+    background: #EDE9E3;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.84rem;
+  }
+  .tip-label {
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .mini-ex {
+    background: #FFF;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin: 6px 0;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  .mini-ex .hl-gold { color: var(--gold); font-style: normal; font-weight: 600; }
+  .mini-ex .hl-blue { color: var(--blue); font-style: normal; font-weight: 600; }
+  .mini-ex .hl-teal { color: var(--teal); font-style: normal; font-weight: 600; }
+  .mini-ex .hl-accent { color: var(--accent); font-style: normal; font-weight: 600; }
+
+  /* NEXT CTA */
+  .next-cta {
+    margin-top: 48px;
+    background: var(--rose-light);
+    border: 1.5px solid var(--rose);
+    border-radius: 14px;
+    padding: 22px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+  .next-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow); }
+  .next-cta-text h4 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.25rem;
+    color: var(--rose);
+    margin-bottom: 2px;
+  }
+  .next-cta-text p { font-size: 0.88rem; color: var(--bodytext); }
+  .next-cta-arrow { font-size: 1.5rem; color: var(--rose); }
+
+  @media (max-width: 640px) {
+    .header h1 { font-size: 1.8rem; }
+    .header { padding: 36px 16px 22px; }
+    .container { padding: 20px 16px 60px; }
+    .concepts-grid { grid-template-columns: 1fr; }
+    .example-area, .trap-section { padding: 20px 18px 24px; }
+    .word-chunk { font-size: 1.05rem; padding: 6px 10px; }
+    .step-btn { font-size: 0.72rem; padding: 5px 10px; }
+    .verbal-types { grid-template-columns: 1fr; gap: 8px; }
+    .trap-grid { grid-template-columns: 1fr; }
+    .topnav { padding: 12px 16px; font-size: 0.78rem; }
+    .topnav .nav-links { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="nav-home" href="index.html">← Grammar Explorer</a>
+  <div class="nav-links">
+    <a href="parts-of-speech.html">Parts of Speech</a>
+    <a href="sentence-parts.html">Sentence Parts</a>
+    <a href="verbals.html" class="current">Verbals</a>
+    <a href="phrases.html">Phrases</a>
+    <a href="clauses.html">Clauses</a>
+  </div>
+</nav>
+
+<div class="header">
+  <h1>Verbals</h1>
+  <p>Verbals are verb forms in disguise — they look like verbs but do the work of nouns, adjectives, or adverbs. Learn the three types, see them build into phrases, then practice spotting them in the wild.</p>
+</div>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <h2>What Is a Verbal?</h2>
+    <p>A <strong>verbal</strong> is a word formed from a verb that does <em>not</em> function as a verb in the sentence. It borrows the verb's shape but lends its meaning to some other part of speech — noun, adjective, or adverb.</p>
+    <p>Because verbals look like verbs, they're easy to misidentify. The test is never the word's form — it's the <em>job</em> the word is doing in its sentence.</p>
+    <div class="verbal-types">
+      <div class="verbal-type-tag" data-t="participle">
+        <div class="vt-name">Participle</div>
+        <div class="vt-form">-ing or -ed form</div>
+        <div class="vt-acts">acts as ADJECTIVE</div>
+      </div>
+      <div class="verbal-type-tag" data-t="gerund">
+        <div class="vt-name">Gerund</div>
+        <div class="vt-form">-ing form</div>
+        <div class="vt-acts">acts as NOUN</div>
+      </div>
+      <div class="verbal-type-tag" data-t="infinitive">
+        <div class="vt-name">Infinitive</div>
+        <div class="vt-form">to + base verb</div>
+        <div class="vt-acts">acts as N, ADJ, or ADV</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 1: THE THREE VERBALS -->
+  <div class="section-title">Part 1 — The Three Verbals</div>
+  <div class="section-sub">Click through each verbal type. The verbal itself is colored; click it to see what it is and what job it's doing.</div>
+
+  <div class="example-area">
+    <div class="example-top-bar">
+      <div class="example-label">Tour: Verbal Types</div>
+      <button class="shuffle-btn" onclick="shuffleVerbal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        New Example
+      </button>
+    </div>
+
+    <div class="build-steps" id="verbalSteps"></div>
+    <div class="build-narrative" id="verbalNarrative"></div>
+    <div class="sentence-display" id="verbalDisplay"></div>
+
+    <div class="legend">
+      <div class="legend-group">
+        <span class="legend-title">Verbal Type</span>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--gold-light); border:1.5px solid var(--gold);"></div>Participle</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--blue-light); border:1.5px solid var(--blue);"></div>Gerund</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--teal-light); border:1.5px solid var(--teal);"></div>Infinitive</div>
+      </div>
+    </div>
+
+    <div class="callout" id="verbalCallout">
+      <div class="callout-prompt">← Click the colored verbal above to see its type and what it's doing.</div>
+    </div>
+  </div>
+
+  <div class="big-divider"><span>then verbals grow into phrases...</span></div>
+
+  <!-- PART 2: VERBAL PHRASES -->
+  <div class="section-title">Part 2 — Verbal Phrases</div>
+  <div class="section-sub">A verbal rarely stands alone. It usually pulls along objects and modifiers, forming a phrase. The <em>whole phrase</em> does the noun/adjective/adverb job.</div>
+
+  <div class="example-area">
+    <div class="example-top-bar">
+      <div class="example-label">Tour: Verbal Phrases</div>
+      <button class="shuffle-btn" onclick="shufflePhrase()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        New Example
+      </button>
+    </div>
+
+    <div class="build-steps" id="phraseSteps"></div>
+    <div class="build-narrative" id="phraseNarrative"></div>
+    <div class="sentence-display" id="phraseDisplay"></div>
+
+    <div class="legend">
+      <div class="legend-group">
+        <span class="legend-title">Verbal Type (fill)</span>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--gold-light); border:1.5px solid var(--gold);"></div>Participial</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--blue-light); border:1.5px solid var(--blue);"></div>Gerund</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--teal-light); border:1.5px solid var(--teal);"></div>Infinitive</div>
+      </div>
+      <div class="legend-divider"></div>
+      <div class="legend-group">
+        <span class="legend-title">Structure</span>
+        <div class="legend-item"><div class="legend-border" style="border-color:var(--rose)"></div>Phrase</div>
+      </div>
+    </div>
+
+    <div class="callout" id="phraseCallout">
+      <div class="callout-prompt">← Click the phrase above to see how it's built and what job the whole thing is doing.</div>
+    </div>
+  </div>
+
+  <div class="big-divider"><span>beware the lookalikes...</span></div>
+
+  <!-- PART 3: THE TRAP -->
+  <div class="trap-section">
+    <div class="trap-header">
+      <div class="section-title">Part 3 — Verbal or Real Verb?</div>
+      <span class="trap-pill">The Trap</span>
+    </div>
+    <div class="section-sub">The <em>same -ing word</em> can be a verbal in one sentence and a real verb in another. Form isn't enough — you have to check the job.</div>
+
+    <div class="trap-nav" id="trapNav"></div>
+
+    <div class="trap-grid" id="trapGrid"></div>
+
+    <div class="trap-test-box" id="trapTestBox"></div>
+  </div>
+
+  <!-- CONCEPTS -->
+  <div class="section-title">Verbal Concepts — Reference</div>
+  <div class="section-sub">Tap any card for a full explanation, tests, and examples.</div>
+  <div class="concepts-grid" id="conceptsGrid"></div>
+
+  <!-- NEXT CTA -->
+  <a class="next-cta" href="phrases.html">
+    <div class="next-cta-text">
+      <h4>Up Next: Phrases</h4>
+      <p>Verbal phrases are three of the six major phrase types. See them alongside prepositional, appositive, and absolute phrases.</p>
+    </div>
+    <div class="next-cta-arrow">→</div>
+  </a>
+</div>
+
+<script>
+// ==========================================================================
+// PART 1 — THREE VERBALS (standalone, no phrases yet)
+// ==========================================================================
+const VERBAL_SETS = [
+  // Set A
+  {
+    steps: [
+      {
+        label: "Participle",
+        narrative: "A <strong>participle</strong> is a verb form acting as an <em class='accent'>adjective</em>. It describes a noun. Most end in <em>-ing</em> (present) or <em>-ed</em> (past).",
+        chunks: [
+          { text: "The", role: "plain" },
+          { text: "shattered", verbal: "participle", tag: "Participle (Adj)", id: "v1", clickable: true },
+          { text: "vase", role: "plain" },
+          { text: "lay on the floor.", role: "plain" },
+        ],
+        explanations: {
+          v1: {
+            type: "Participle", func: "Adjective",
+            body: "<strong>\"shattered\"</strong> — past participle of <em>shatter</em>. It doesn't function as a verb here (the real verb is <em>lay</em>). Instead, it modifies <em>vase</em>, answering <em>which vase?</em> That's an adjective's job.<br><br><em>Test:</em> could you replace it with another adjective like <em>broken</em> or <em>red</em>? → \"The broken vase lay on the floor.\" ✓ Yes — it's functioning as an adjective."
+          },
+        }
+      },
+      {
+        label: "Gerund",
+        narrative: "A <strong>gerund</strong> is an <em>-ing</em> verb form acting as a <em class='accent'>noun</em>. It names an activity — and takes a noun's slot in the sentence.",
+        chunks: [
+          { text: "Reading", verbal: "gerund", tag: "Gerund (Subj)", id: "v1", clickable: true },
+          { text: "relaxes", role: "plain" },
+          { text: "her.", role: "plain" },
+        ],
+        explanations: {
+          v1: {
+            type: "Gerund", func: "Noun (Subject)",
+            body: "<strong>\"Reading\"</strong> — <em>-ing</em> form of <em>read</em>, but here it <em>names</em> an activity instead of performing it. The real verb of the sentence is <em>relaxes</em>; <em>reading</em> is what relaxes her — the <strong>subject</strong>.<br><br><em>Test:</em> can you replace it with \"it\"? → \"It relaxes her.\" ✓ Noun confirmed."
+          },
+        }
+      },
+      {
+        label: "Infinitive",
+        narrative: "An <strong>infinitive</strong> is <em>to</em> + a base verb. It can act as a <em class='accent'>noun</em>, <em class='accent'>adjective</em>, or <em class='accent'>adverb</em> — the most versatile verbal.",
+        chunks: [
+          { text: "Her goal is", role: "plain" },
+          { text: "to graduate.", verbal: "infinitive", tag: "Infinitive (PN)", id: "v1", clickable: true },
+        ],
+        explanations: {
+          v1: {
+            type: "Infinitive", func: "Noun (Predicate Nominative)",
+            body: "<strong>\"to graduate\"</strong> — <em>to</em> + base verb. Here it renames <em>goal</em> after the linking verb <em>is</em>. Goal = to graduate. That's a <strong>noun</strong> role (predicate nominative).<br><br><em>Don't confuse:</em> \"to\" + noun (<em>to the store</em>) is a <em>prepositional</em> phrase. \"to\" + verb (<em>to graduate</em>) is an <em>infinitive</em>."
+          },
+        }
+      },
+    ]
+  },
+  // Set B
+  {
+    steps: [
+      {
+        label: "Participle",
+        narrative: "A <strong>participle</strong> is a verb form acting as an <em class='accent'>adjective</em>. It describes a noun.",
+        chunks: [
+          { text: "A", role: "plain" },
+          { text: "whispering", verbal: "participle", tag: "Participle (Adj)", id: "v1", clickable: true },
+          { text: "wind", role: "plain" },
+          { text: "moved through the pines.", role: "plain" },
+        ],
+        explanations: {
+          v1: {
+            type: "Participle", func: "Adjective",
+            body: "<strong>\"whispering\"</strong> — present participle of <em>whisper</em>. The real verb is <em>moved</em>; this is describing <em>wind</em>. What kind of wind? A whispering one. That's adjective work.<br><br>Notice how much more vivid <em>whispering wind</em> is than <em>soft wind</em>. Participles turn verbs' energy into description."
+          },
+        }
+      },
+      {
+        label: "Gerund",
+        narrative: "A <strong>gerund</strong> is an <em>-ing</em> verb form acting as a <em class='accent'>noun</em>.",
+        chunks: [
+          { text: "She loves", role: "plain" },
+          { text: "swimming.", verbal: "gerund", tag: "Gerund (DO)", id: "v1", clickable: true },
+        ],
+        explanations: {
+          v1: {
+            type: "Gerund", func: "Noun (Direct Object)",
+            body: "<strong>\"swimming\"</strong> — here the <em>-ing</em> word names the activity. <em>Loves what?</em> → swimming. So it's the <strong>direct object</strong> of <em>loves</em>, doing a noun's job.<br><br><em>Danger zone:</em> \"She is swimming\" uses <em>swimming</em> as part of the verb (present progressive). Same word form, entirely different job. Context decides everything."
+          },
+        }
+      },
+      {
+        label: "Infinitive",
+        narrative: "An <strong>infinitive</strong> is <em>to</em> + a base verb. It's the most flexible verbal.",
+        chunks: [
+          { text: "He trained hard", role: "plain" },
+          { text: "to win.", verbal: "infinitive", tag: "Infinitive (Adv)", id: "v1", clickable: true },
+        ],
+        explanations: {
+          v1: {
+            type: "Infinitive", func: "Adverb",
+            body: "<strong>\"to win\"</strong> — <em>to</em> + base verb. It answers <em>why did he train hard?</em> To win. That's an <strong>adverb</strong> job (specifically, purpose), modifying <em>trained</em>.<br><br>If you can substitute \"in order to\" without awkwardness (\"he trained hard <em>in order to</em> win\"), it's an adverb of purpose."
+          },
+        }
+      },
+    ]
+  },
+];
+
+// ==========================================================================
+// PART 2 — VERBAL PHRASES
+// ==========================================================================
+const PHRASE_SETS = [
+  // Set A
+  {
+    steps: [
+      {
+        label: "Participial Phrase",
+        narrative: "A <strong>participial phrase</strong> = participle + objects + modifiers. The whole phrase acts as an <em class='accent'>adjective</em>.",
+        chunks: [
+          { text: "Exhausted from the long climb,", verbal: "participle", structure: "phrase", tag: "Participial Phrase (Adj)", id: "v1", clickable: true },
+          { text: "the hikers", role: "plain" },
+          { text: "sat down to rest.", role: "plain" },
+        ],
+        explanations: {
+          v1: {
+            type: "Participial Phrase", func: "Adjective",
+            body: "<strong>\"Exhausted from the long climb\"</strong> — led by the past participle <em>exhausted</em>, which pulls along a prepositional phrase (<em>from the long climb</em>) telling <em>why</em>. The whole phrase describes <em>hikers</em>.<br><br><em>Watch for dangling modifiers:</em> a participial phrase at the start of a sentence MUST modify the subject that follows. \"Exhausted from the long climb, <strong>the hikers</strong>…\" ✓ The hikers are exhausted."
+          },
+        }
+      },
+      {
+        label: "Gerund Phrase",
+        narrative: "A <strong>gerund phrase</strong> = gerund + objects + modifiers. The whole phrase acts as a <em class='accent'>noun</em>.",
+        chunks: [
+          { text: "Running a marathon", verbal: "gerund", structure: "phrase", tag: "Gerund Phrase (Subj)", id: "v1", clickable: true },
+          { text: "requires", role: "plain" },
+          { text: "months of training.", role: "plain" },
+        ],
+        explanations: {
+          v1: {
+            type: "Gerund Phrase", func: "Noun (Subject)",
+            body: "<strong>\"Running a marathon\"</strong> — led by the gerund <em>running</em>, which takes <em>a marathon</em> as its own object (gerunds keep some verb qualities even while acting as nouns). The whole phrase is the <strong>subject</strong> of <em>requires</em>.<br><br><em>Test:</em> \"It requires months of training.\" ✓ Noun confirmed."
+          },
+        }
+      },
+      {
+        label: "Infinitive Phrase",
+        narrative: "An <strong>infinitive phrase</strong> = infinitive + objects + modifiers. The whole phrase can act as noun, adjective, or adverb.",
+        chunks: [
+          { text: "She stayed late", role: "plain" },
+          { text: "to finish the project.", verbal: "infinitive", structure: "phrase", tag: "Infinitive Phrase (Adv)", id: "v1", clickable: true },
+        ],
+        explanations: {
+          v1: {
+            type: "Infinitive Phrase", func: "Adverb (Purpose)",
+            body: "<strong>\"to finish the project\"</strong> — infinitive <em>to finish</em> + direct object <em>the project</em>. Answers <em>why did she stay late?</em> — so it's an <strong>adverb</strong> modifying <em>stayed</em>.<br><br>Infinitive phrases can also be nouns (<em>\"To forgive is divine\"</em>) or adjectives (<em>\"the key to open the door\"</em>). Check the job, not the shape."
+          },
+        }
+      },
+    ]
+  },
+  // Set B
+  {
+    steps: [
+      {
+        label: "Participial Phrase",
+        narrative: "A <strong>participial phrase</strong> = participle + objects + modifiers. The whole phrase acts as an <em class='accent'>adjective</em>.",
+        chunks: [
+          { text: "The boy", role: "plain" },
+          { text: "wearing a red jacket", verbal: "participle", structure: "phrase", tag: "Participial Phrase (Adj)", id: "v1", clickable: true },
+          { text: "waved at us.", role: "plain" },
+        ],
+        explanations: {
+          v1: {
+            type: "Participial Phrase", func: "Adjective",
+            body: "<strong>\"wearing a red jacket\"</strong> — led by participle <em>wearing</em>, which takes its own direct object <em>a red jacket</em>. The phrase sits right next to <em>boy</em> and modifies it: <em>which boy?</em> The one wearing a red jacket.<br><br>When the participial phrase is essential to identify the noun, no commas. When it's extra info, use commas: \"My brother, <em>wearing a red jacket</em>, waved at us.\""
+          },
+        }
+      },
+      {
+        label: "Gerund Phrase",
+        narrative: "A <strong>gerund phrase</strong> = gerund + objects + modifiers. The whole phrase acts as a <em class='accent'>noun</em>.",
+        chunks: [
+          { text: "They enjoy", role: "plain" },
+          { text: "hiking in the mountains.", verbal: "gerund", structure: "phrase", tag: "Gerund Phrase (DO)", id: "v1", clickable: true },
+        ],
+        explanations: {
+          v1: {
+            type: "Gerund Phrase", func: "Noun (Direct Object)",
+            body: "<strong>\"hiking in the mountains\"</strong> — gerund <em>hiking</em> + prepositional phrase <em>in the mountains</em> modifying it. <em>Enjoy what?</em> → hiking in the mountains. That's a <strong>direct object</strong> — a noun's job.<br><br>Gerunds are subtle workhorses — this single construction names an entire activity without needing a new clause."
+          },
+        }
+      },
+      {
+        label: "Infinitive Phrase",
+        narrative: "An <strong>infinitive phrase</strong> can act as noun, adjective, or adverb.",
+        chunks: [
+          { text: "I need", role: "plain" },
+          { text: "someone", role: "plain" },
+          { text: "to help me move.", verbal: "infinitive", structure: "phrase", tag: "Infinitive Phrase (Adj)", id: "v1", clickable: true },
+        ],
+        explanations: {
+          v1: {
+            type: "Infinitive Phrase", func: "Adjective",
+            body: "<strong>\"to help me move\"</strong> — modifies <em>someone</em>. <em>Which someone?</em> Someone <em>to help me move</em>. That's an <strong>adjective</strong> job.<br><br>The same infinitive would act as an adverb if it explained <em>why</em> you need someone, or as a noun if it named what you need (\"I need <em>to sleep</em>\" = noun/DO)."
+          },
+        }
+      },
+    ]
+  },
+];
+
+// ==========================================================================
+// PART 3 — THE TRAP (verbal vs. real verb)
+// Same -ing or infinitive word doing totally different jobs.
+// ==========================================================================
+const TRAPS = [
+  {
+    word: "running",
+    pairs: {
+      verbal: {
+        sentence: ['The ', { m: 'running' }, ' water froze overnight.'],
+        why: "Here <em>running</em> is a <strong>participle</strong> (verbal acting as adjective). It describes <em>water</em> — what kind of water? The running kind. The real verb of the sentence is <em>froze</em>.",
+      },
+      real: {
+        sentence: ['The water ', { m: 'is running' }, ' down the driveway.'],
+        why: "Here <em>is running</em> is the <strong>main verb</strong> — a present progressive form (<em>is</em> + participle). It tells us what the water is doing <em>right now</em>. This is <em>verbing</em>, not a verbal.",
+      },
+    },
+    test: "<strong>The test:</strong> Is there a helping verb (<em>is, was, has been</em>) next to the -ing word? If yes, it's probably part of the real verb. If the -ing word stands on its own and modifies a noun or names a thing, it's a verbal.",
+  },
+  {
+    word: "cooking",
+    pairs: {
+      verbal: {
+        sentence: [{ m: 'Cooking' }, ' is my favorite hobby.'],
+        why: "Here <em>Cooking</em> is a <strong>gerund</strong> (verbal acting as noun). It's the <em>subject</em> of <em>is</em> — it names an activity. The real verb is <em>is</em>.",
+      },
+      real: {
+        sentence: ['My sister ', { m: 'is cooking' }, ' dinner tonight.'],
+        why: "Here <em>is cooking</em> is the <strong>main verb</strong> of the sentence — a present progressive form. It tells us what the sister is doing. It has both subject and verb role filled — not a verbal.",
+      },
+    },
+    test: "<strong>The test:</strong> Drop the helping verb. Does the -ing word still <em>name</em> the activity, or is it left hanging? \"<em>Cooking</em> is my favorite hobby\" → works standalone. \"My sister <em>cooking</em> dinner\" → broken; it needs <em>is</em>. That's the tell.",
+  },
+  {
+    word: "to eat",
+    pairs: {
+      verbal: {
+        sentence: ['We stopped ', { m: 'to eat' }, ' at a small café.'],
+        why: "Here <em>to eat</em> is an <strong>infinitive</strong> (verbal acting as adverb). It answers <em>why did we stop?</em> The main verb is <em>stopped</em>; the infinitive adds purpose.",
+      },
+      real: {
+        sentence: ['We ', { m: 'ate' }, ' at a small café.'],
+        why: "Here <em>ate</em> is the <strong>main verb</strong> — conjugated for tense and subject. If you see a verb that shows tense and agrees with a subject, it's a real verb, not an infinitive.",
+      },
+    },
+    test: "<strong>The test:</strong> Can you change the tense of the word? Real verbs do this: <em>ate, eats, will eat</em>. Infinitives don't — <em>to eat</em> stays <em>to eat</em> whether the sentence is past, present, or future. The invariability is a dead giveaway.",
+  },
+  {
+    word: "broken",
+    pairs: {
+      verbal: {
+        sentence: ['The ', { m: 'broken' }, ' chair sat in the corner.'],
+        why: "Here <em>broken</em> is a <strong>participle</strong> (verbal acting as adjective). It describes <em>chair</em>. The real verb of the sentence is <em>sat</em>.",
+      },
+      real: {
+        sentence: ['The chair ', { m: 'was broken' }, ' by the movers.'],
+        why: "Here <em>was broken</em> is the <strong>main verb</strong> — a passive form (<em>was</em> + past participle). Together they describe what happened <em>to</em> the chair. The helping verb <em>was</em> is the tell.",
+      },
+    },
+    test: "<strong>The test:</strong> Past participles (<em>-ed</em> / irregular) look identical whether they're verbals or part of a passive verb. The difference: does a helping verb come with it? No helper = participle. Helper = real verb.",
+  },
+];
+
+// ==========================================================================
+// CONCEPTS
+// ==========================================================================
+const CONCEPTS = [
+  { id: "verbal-overview", title: "What's a Verbal?", short: "A verb form doing another part of speech's job.",
+    detail: `A verbal is a word <em>made from a verb</em> that doesn't function as a verb in its sentence. Instead, it serves as a noun, adjective, or adverb.<br><br>
+    <strong>The three types:</strong><br>
+    • <em>Participles</em> → act as adjectives<br>
+    • <em>Gerunds</em> → act as nouns<br>
+    • <em>Infinitives</em> → act as nouns, adjectives, or adverbs<br><br>
+    <div class="tip"><div class="tip-label">Why Do They Matter?</div>Verbals pack verb energy into other slots in the sentence. <em>The crying baby</em> has more force than <em>the sad baby</em> — the verbal keeps its motion. Good writers use verbals to compress action into description.</div>` },
+
+  { id: "participle", title: "Participle", short: "Verb form acting as an adjective.",
+    detail: `A participle modifies a noun or pronoun — it acts like an adjective.<br><br>
+    <strong>Present participle</strong>: <em>-ing</em> form.<br>
+    <div class="mini-ex">the <span class="hl-gold">crying</span> child · the <span class="hl-gold">roaring</span> fire</div>
+    <strong>Past participle</strong>: usually <em>-ed</em>, sometimes irregular (broken, gone, written, seen, torn).<br>
+    <div class="mini-ex">the <span class="hl-gold">shattered</span> window · a <span class="hl-gold">worn</span> shoe</div>
+    <div class="tip"><div class="tip-label">Participle vs. Real Verb</div>\"The <em>crying</em> baby\" — participle (adjective).<br>
+    \"The baby <em>is crying</em>\" — real verb (present progressive).<br>
+    If there's a helping verb, it's probably the verb. If it stands alone and modifies a noun, it's a participle.</div>` },
+
+  { id: "gerund", title: "Gerund", short: "-ing verb form acting as a noun.",
+    detail: `A gerund looks exactly like a present participle — same <em>-ing</em> form — but it does a noun's work instead of an adjective's.<br><br>
+    <strong>As subject:</strong><br>
+    <div class="mini-ex"><span class="hl-blue">Swimming</span> is great exercise.</div>
+    <strong>As direct object:</strong><br>
+    <div class="mini-ex">She loves <span class="hl-blue">painting</span>.</div>
+    <strong>As predicate nominative:</strong><br>
+    <div class="mini-ex">His passion is <span class="hl-blue">teaching</span>.</div>
+    <strong>As object of preposition:</strong><br>
+    <div class="mini-ex">He was punished for <span class="hl-blue">lying</span>.</div>
+    <div class="tip"><div class="tip-label">Gerund vs. Participle</div>Ask: is the -ing word NAMING something (gerund) or DESCRIBING a noun (participle)?<br>
+    \"<em>Running</em> is fun\" → names it → gerund.<br>
+    \"The <em>running</em> water\" → describes water → participle.</div>` },
+
+  { id: "infinitive", title: "Infinitive", short: "'to' + base verb. Acts as noun, adjective, or adverb.",
+    detail: `The most versatile verbal. An infinitive is the base (dictionary) form of a verb preceded by <em>to</em>.<br><br>
+    <strong>As a noun:</strong><br>
+    <div class="mini-ex"><span class="hl-teal">To forgive</span> is human. <small>(subject)</small></div>
+    <div class="mini-ex">She wants <span class="hl-teal">to leave</span>. <small>(direct object)</small></div>
+    <strong>As an adjective</strong> (modifies a noun):<br>
+    <div class="mini-ex">a reason <span class="hl-teal">to celebrate</span> · homework <span class="hl-teal">to finish</span></div>
+    <strong>As an adverb</strong> (usually shows purpose):<br>
+    <div class="mini-ex">She trained hard <span class="hl-teal">to win</span>. <small>(why did she train?)</small></div>
+    <div class="tip"><div class="tip-label">Warning</div>\"to + noun\" is a PREPOSITION, not an infinitive.<br>
+    <em>to the store</em> → prep phrase<br>
+    <em>to study</em> → infinitive<br>
+    The word after <em>to</em> tells you which.</div>` },
+
+  { id: "participial-phrase", title: "Participial Phrase", short: "A participle plus its objects and modifiers.",
+    detail: `When a participle brings along other words to form a cluster, you have a participial phrase. The whole phrase acts as an adjective.<br><br>
+    <div class="mini-ex"><span class="hl-gold">Frozen solid from the overnight storm</span>, the pond glittered.</div>
+    <div class="mini-ex">The woman <span class="hl-gold">holding the umbrella</span> waited for a taxi.</div>
+    <div class="tip"><div class="tip-label">Dangling Modifier Alert</div>A participial phrase at the start of a sentence MUST modify the subject that follows.<br>
+    ✗ <em>Running down the street, my hat flew off.</em> (The hat wasn't running.)<br>
+    ✓ <em>Running down the street, I lost my hat.</em></div>` },
+
+  { id: "gerund-phrase", title: "Gerund Phrase", short: "A gerund plus its objects and modifiers.",
+    detail: `A gerund phrase behaves like a single noun — you can swap it out for \"it\" to confirm.<br><br>
+    <div class="mini-ex"><span class="hl-blue">Eating leafy greens daily</span> improves digestion. <small>(subject)</small></div>
+    <div class="mini-ex">He was caught <span class="hl-blue">skipping class</span>. <small>(after a preposition)</small></div>
+    <div class="mini-ex">We celebrated by <span class="hl-blue">ordering pizza</span>. <small>(object of preposition)</small></div>
+    <div class="tip"><div class="tip-label">Possessives Before Gerunds</div>When a gerund phrase has an \"owner,\" use the possessive form:<br>
+    ✗ <em>I appreciate <em>you</em> helping me.</em><br>
+    ✓ <em>I appreciate <em>your</em> helping me.</em><br>
+    The gerund acts as a noun, so its owner takes the possessive — same as \"I appreciate <em>your</em> help.\"</div>` },
+
+  { id: "infinitive-phrase", title: "Infinitive Phrase", short: "An infinitive plus its objects and modifiers.",
+    detail: `Like the infinitive alone, an infinitive phrase can function as noun, adjective, or adverb — determined by what it's doing in its sentence.<br><br>
+    <div class="mini-ex"><span class="hl-teal">To become a doctor</span> requires years of study. <small>(noun — subject)</small></div>
+    <div class="mini-ex">He bought a book <span class="hl-teal">to read on the plane</span>. <small>(adj — modifies book)</small></div>
+    <div class="mini-ex">She whispered <span class="hl-teal">to avoid waking the baby</span>. <small>(adv — modifies whispered)</small></div>
+    <div class="tip"><div class="tip-label">Split Infinitives</div>\"To boldly go where no one has gone before\" — the adverb <em>boldly</em> sits between <em>to</em> and <em>go</em>. Once taboo, now fine. Clarity beats rules; split if it reads better.</div>` },
+
+  { id: "test", title: "The Key Test: Job, Not Form", short: "Form can fool you. Function is the only reliable test.",
+    detail: `Because verbals share their forms with real verbs, you can't identify them by spelling alone. Always ask: <strong>what job is this word doing in its sentence?</strong><br><br>
+    <strong>Three checks:</strong><br>
+    1. <em>Is there a helping verb nearby?</em> (<em>is, was, has been, will be…</em>) → probably part of a real verb.<br>
+    2. <em>What question does the word answer?</em><br>
+    — Which / what kind → adjective (participle)<br>
+    — What / it → noun (gerund, or infinitive-as-noun)<br>
+    — When / why / how / to what extent → adverb (infinitive)<br>
+    3. <em>What's the real verb of the sentence?</em> Find that first; everything else must be doing another job.<br><br>
+    <div class="tip"><div class="tip-label">The Pay-off</div>Once you can spot verbals reliably, whole sentences open up. You'll see how Dickens compresses a paragraph of action into one participial phrase, or how Dickinson makes a whole metaphor hinge on a single gerund. Grammar becomes craft.</div>` },
+];
+
+// ==========================================================================
+// RENDERERS — Part 1 (Verbals)
+// ==========================================================================
+let verbalSetIdx = 0;
+let verbalStepIdx = 0;
+
+function renderVerbalSteps() {
+  const set = VERBAL_SETS[verbalSetIdx];
+  document.getElementById('verbalSteps').innerHTML = set.steps.map((s, i) => {
+    let cls = 'step-btn';
+    if (i === verbalStepIdx) cls += ' active';
+    return (i > 0 ? '<span class="step-arrow">·</span>' : '') +
+      `<button class="${cls}" onclick="goVerbal(${i})">${s.label}</button>`;
+  }).join('');
+}
+
+function renderVerbal() {
+  const step = VERBAL_SETS[verbalSetIdx].steps[verbalStepIdx];
+  renderChunks(step.chunks, 'verbalDisplay', 'showVerbalEx');
+  document.getElementById('verbalNarrative').innerHTML = step.narrative;
+  resetCallout('verbalCallout', "← Click the colored verbal above to see its type and what it's doing.");
+}
+
+function goVerbal(i) {
+  verbalStepIdx = i;
+  renderVerbalSteps();
+  renderVerbal();
+}
+
+function showVerbalEx(id, el) {
+  const step = VERBAL_SETS[verbalSetIdx].steps[verbalStepIdx];
+  const ex = step.explanations[id];
+  if (!ex) return;
+  document.querySelectorAll('#verbalDisplay .word-chunk').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  showCallout('verbalCallout', ex, el);
+}
+
+function shuffleVerbal() {
+  verbalSetIdx = (verbalSetIdx + 1) % VERBAL_SETS.length;
+  renderVerbalSteps();
+  renderVerbal();
+}
+
+// ==========================================================================
+// RENDERERS — Part 2 (Verbal Phrases)
+// ==========================================================================
+let phraseSetIdx = 0;
+let phraseStepIdx = 0;
+
+function renderPhraseSteps() {
+  const set = PHRASE_SETS[phraseSetIdx];
+  document.getElementById('phraseSteps').innerHTML = set.steps.map((s, i) => {
+    let cls = 'step-btn';
+    if (i === phraseStepIdx) cls += ' active';
+    return (i > 0 ? '<span class="step-arrow">·</span>' : '') +
+      `<button class="${cls}" onclick="goPhrase(${i})">${s.label}</button>`;
+  }).join('');
+}
+
+function renderPhrase() {
+  const step = PHRASE_SETS[phraseSetIdx].steps[phraseStepIdx];
+  renderChunks(step.chunks, 'phraseDisplay', 'showPhraseEx');
+  document.getElementById('phraseNarrative').innerHTML = step.narrative;
+  resetCallout('phraseCallout', "← Click the phrase above to see how it's built and what job the whole thing is doing.");
+}
+
+function goPhrase(i) {
+  phraseStepIdx = i;
+  renderPhraseSteps();
+  renderPhrase();
+}
+
+function showPhraseEx(id, el) {
+  const step = PHRASE_SETS[phraseSetIdx].steps[phraseStepIdx];
+  const ex = step.explanations[id];
+  if (!ex) return;
+  document.querySelectorAll('#phraseDisplay .word-chunk').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  showCallout('phraseCallout', ex, el);
+}
+
+function shufflePhrase() {
+  phraseSetIdx = (phraseSetIdx + 1) % PHRASE_SETS.length;
+  renderPhraseSteps();
+  renderPhrase();
+}
+
+// ==========================================================================
+// SHARED CHUNK RENDERER
+// ==========================================================================
+function renderChunks(chunks, containerId, clickHandler) {
+  document.getElementById(containerId).innerHTML = chunks.map((c, i) => {
+    const clickable = c.clickable ? 'clickable' : '';
+    const verbalAttr = c.verbal ? `data-verbal="${c.verbal}"` : '';
+    const structAttr = c.structure ? `data-structure="${c.structure}"` : '';
+    const roleAttr = c.role ? `data-role="${c.role}"` : '';
+    const idAttr = c.id ? `data-id="${c.id}"` : '';
+    const onclick = c.clickable ? `onclick="${clickHandler}('${c.id}', this)"` : '';
+    const tag = c.tag ? `<span class="role-tag">${c.tag}</span>` : '';
+    return `<div class="word-chunk ${clickable}" ${verbalAttr} ${structAttr} ${roleAttr} ${idAttr} ${onclick} style="animation-delay:${i * 0.06}s">${tag}${c.text}</div>`;
+  }).join(' ');
+}
+
+function resetCallout(calloutId, prompt) {
+  const c = document.getElementById(calloutId);
+  c.removeAttribute('data-verbal');
+  c.classList.remove('visible');
+  c.innerHTML = `<div class="callout-prompt">${prompt}</div>`;
+}
+
+function showCallout(calloutId, ex, el) {
+  const callout = document.getElementById(calloutId);
+  const verbal = el.getAttribute('data-verbal');
+  callout.setAttribute('data-verbal', verbal);
+  callout.classList.add('visible');
+  callout.innerHTML = `
+    <div class="callout-meta">
+      <span class="callout-chip type" data-v="${verbal}">${ex.type}</span>
+      <span class="callout-chip function">Acts as: ${ex.func}</span>
+    </div>
+    <div class="callout-body">${ex.body}</div>`;
+}
+
+// ==========================================================================
+// PART 3 — TRAP
+// ==========================================================================
+let trapIdx = 0;
+
+function renderTrapNav() {
+  document.getElementById('trapNav').innerHTML = TRAPS.map((t, i) =>
+    `<button class="trap-btn ${i === trapIdx ? 'active' : ''}" onclick="goTrap(${i})">"${t.word}"</button>`
+  ).join('');
+}
+
+function renderSentenceFragments(frags) {
+  return frags.map(f => {
+    if (typeof f === 'string') return f;
+    if (f.m) return `<span class="marked">${f.m}</span>`;
+    return '';
+  }).join('');
+}
+
+function renderTrap() {
+  const t = TRAPS[trapIdx];
+  document.getElementById('trapGrid').innerHTML = `
+    <div class="trap-pair verbal">
+      <div class="trap-pair-label">Verbal</div>
+      <div class="trap-sentence">${renderSentenceFragments(t.pairs.verbal.sentence)}</div>
+      <div class="trap-why">${t.pairs.verbal.why}</div>
+    </div>
+    <div class="trap-pair real">
+      <div class="trap-pair-label">Real Verb</div>
+      <div class="trap-sentence">${renderSentenceFragments(t.pairs.real.sentence)}</div>
+      <div class="trap-why">${t.pairs.real.why}</div>
+    </div>`;
+  document.getElementById('trapTestBox').innerHTML = t.test;
+}
+
+function goTrap(i) {
+  trapIdx = i;
+  renderTrapNav();
+  renderTrap();
+}
+
+// ==========================================================================
+// CONCEPTS
+// ==========================================================================
+function renderConcepts() {
+  document.getElementById('conceptsGrid').innerHTML = CONCEPTS.map(c =>
+    `<div class="concept-card" data-concept="${c.id}" onclick="toggleConcept(this)">
+      <span class="expand-icon">+</span>
+      <h3>${c.title}</h3>
+      <div class="short-def">${c.short}</div>
+      <div class="concept-detail"><div class="concept-detail-inner">${c.detail}</div></div>
+    </div>`
+  ).join('');
+}
+
+function toggleConcept(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.concept-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+// INIT
+renderVerbalSteps();
+renderVerbal();
+renderPhraseSteps();
+renderPhrase();
+renderTrapNav();
+renderTrap();
+renderConcepts();
+</script>
+</body>
+</html>

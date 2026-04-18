@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrases — Grammar Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --ink: #2A2420;
+    --accent: #C44B2B;
+    --accent-light: #F4DDD6;
+    --blue: #2B6B8A;
+    --blue-light: #D6EAF2;
+    --green: #3A7D44;
+    --green-light: #D9EDDC;
+    --purple: #6B4C8A;
+    --purple-light: #E8DDF2;
+    --gold: #B8860B;
+    --gold-light: #F5ECD0;
+    --teal: #2A8A7A;
+    --teal-light: #D0F0EA;
+    --rose: #B84A6E;
+    --rose-light: #F5DDE4;
+    --indigo: #3F4B9A;
+    --indigo-light: #DDE0F2;
+    --card: #FFFFFF;
+    --border: #E5DED4;
+    --shadow: rgba(42, 36, 32, 0.08);
+    --muted: #9A9189;
+    --dimtext: #7A7168;
+    --bodytext: #5A534B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* --- NAV --- */
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--border);
+    background: #FFF;
+    font-size: 0.85rem;
+  }
+  .topnav a {
+    color: var(--dimtext);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+  }
+  .topnav a:hover { color: var(--accent); }
+  .topnav .nav-home { display: flex; align-items: center; gap: 6px; }
+  .topnav .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .topnav .nav-links a.current { color: var(--ink); }
+
+  .header {
+    text-align: center;
+    padding: 48px 24px 28px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(180deg, #FFF 0%, var(--bg) 100%);
+  }
+  .header h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .header p {
+    font-size: 1.02rem;
+    color: var(--dimtext);
+    margin-top: 8px;
+    max-width: 620px;
+    margin-inline: auto;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  .section-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--dimtext);
+    margin-bottom: 20px;
+  }
+
+  /* --- PHRASE VS CLAUSE INTRO --- */
+  .pvc {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 36px;
+  }
+  .pvc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 14px;
+  }
+  .pvc-card {
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .pvc-card.phrase { background: var(--rose-light); border: 1.5px solid var(--rose); }
+  .pvc-card.clause { background: var(--indigo-light); border: 1.5px solid var(--indigo); }
+  .pvc-card h4 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .pvc-card.phrase h4 { color: var(--rose); }
+  .pvc-card.clause h4 { color: var(--indigo); }
+  .pvc-card p { font-size: 0.88rem; color: var(--bodytext); line-height: 1.55; }
+  .pvc-card .ex {
+    background: #FFF;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .pvc-card .ex small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.75rem;
+    color: var(--dimtext);
+    margin-top: 3px;
+  }
+  .pvc-key {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--bodytext);
+    margin-top: 16px;
+    padding: 10px 14px;
+    background: #F5F2ED;
+    border-radius: 8px;
+  }
+  .pvc-key strong { color: var(--ink); }
+  .pvc-key .k-phrase { color: var(--rose); font-weight: 700; }
+  .pvc-key .k-clause { color: var(--indigo); font-weight: 700; }
+
+  /* --- EXAMPLE AREA (same as sentence-parts) --- */
+  .example-area {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+
+  .example-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .example-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .shuffle-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 7px 18px;
+    border-radius: 20px;
+    border: 1.5px solid var(--rose);
+    background: transparent;
+    color: var(--rose);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .shuffle-btn:hover { background: var(--rose); color: #fff; }
+  .shuffle-btn svg { width: 14px; height: 14px; }
+
+  /* --- TYPE STEPS --- */
+  .build-steps {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .step-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .step-btn:hover { border-color: var(--rose); color: var(--rose); }
+  .step-btn.active { background: var(--rose); border-color: var(--rose); color: #fff; }
+
+  /* --- SENTENCE DISPLAY --- */
+  .sentence-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    min-height: 72px;
+  }
+
+  .word-chunk {
+    position: relative;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    user-select: none;
+    animation: fadeSlideIn 0.35s ease both;
+    cursor: default;
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .word-chunk.clickable { cursor: pointer; }
+  .word-chunk.clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 14px var(--shadow); }
+  .word-chunk.active { transform: translateY(-3px); box-shadow: 0 6px 20px var(--shadow); }
+
+  /* Plain words (not part of a phrase) */
+  .word-chunk[data-role="plain"] {
+    color: var(--ink);
+    border-color: transparent;
+    background: transparent;
+    padding: 8px 4px;
+  }
+
+  /* Function fills (for phrases/clauses acting as a role) */
+  .word-chunk[data-func="subject"] { background: var(--blue-light); color: var(--blue); }
+  .word-chunk[data-func="verb"] { background: var(--accent-light); color: var(--accent); }
+  .word-chunk[data-func="do"] { background: var(--green-light); color: var(--green); }
+  .word-chunk[data-func="io"] { background: var(--purple-light); color: var(--purple); }
+  .word-chunk[data-func="complement"],
+  .word-chunk[data-func="adj"] { background: var(--gold-light); color: var(--gold); }
+  .word-chunk[data-func="adv"],
+  .word-chunk[data-func="modifier"] { background: var(--teal-light); color: var(--teal); }
+  .word-chunk[data-func="appos"] { background: var(--purple-light); color: var(--purple); }
+
+  /* Structure borders (rose = phrase, indigo = clause; overrides transparent border) */
+  .word-chunk[data-structure="phrase"] { border-color: var(--rose); }
+  .word-chunk[data-structure="clause"] { border-color: var(--indigo); }
+
+  /* Role tag - shows "Prep Phrase (Adv)" etc */
+  .role-tag {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 1px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    color: #fff;
+    background: var(--rose);
+  }
+  .word-chunk[data-structure="clause"] .role-tag { background: var(--indigo); }
+  .word-chunk.clickable:hover .role-tag,
+  .word-chunk.active .role-tag { opacity: 1; }
+
+  /* --- LEGEND --- */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: #F5F2ED;
+    border-radius: 10px;
+  }
+  .legend-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .legend-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.72rem; font-weight: 600;
+    color: var(--dimtext);
+  }
+  .legend-border {
+    width: 14px; height: 10px;
+    border-radius: 3px;
+    border: 2px solid;
+    background: transparent;
+  }
+  .legend-fill {
+    width: 14px; height: 10px;
+    border-radius: 3px;
+  }
+  .legend-divider {
+    width: 1px; height: 16px; background: var(--border);
+    margin: 0 2px;
+  }
+
+  /* --- CALLOUT --- */
+  .callout {
+    background: #FDFCFA;
+    border-left: 4px solid var(--border);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    min-height: 72px;
+    transition: border-color 0.3s, opacity 0.3s;
+    opacity: 0.5;
+  }
+  .callout.visible { opacity: 1; }
+  .callout[data-active-structure="phrase"] { border-left-color: var(--rose); }
+  .callout[data-active-structure="clause"] { border-left-color: var(--indigo); }
+  .callout-title { font-weight: 700; font-size: 0.98rem; margin-bottom: 4px; }
+  .callout-body { font-size: 0.92rem; color: var(--bodytext); line-height: 1.65; }
+  .callout-body em { color: var(--ink); }
+  .callout-prompt { font-style: italic; color: var(--muted); font-size: 0.92rem; }
+  .callout-meta {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .callout-chip {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: #fff;
+  }
+  .callout-chip.structure { background: var(--rose); }
+  .callout-chip.structure.clause { background: var(--indigo); }
+  .callout-chip.function { background: var(--ink); color: #fff; }
+
+  .build-narrative {
+    background: #F5F2ED;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    color: var(--bodytext);
+    line-height: 1.6;
+    border: 1px solid var(--border);
+  }
+  .build-narrative strong { color: var(--ink); }
+  .build-narrative em.rose { color: var(--rose); font-style: normal; font-weight: 700; }
+
+  /* --- CONCEPT CARDS --- */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .concept-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: var(--rose);
+  }
+  .concept-card[data-concept="phrase-def"]::before,
+  .concept-card[data-concept="head-word"]::before { background: var(--rose); }
+
+  .concept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow);
+    border-color: transparent;
+  }
+  .concept-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    padding-right: 24px;
+  }
+  .concept-card .short-def {
+    font-size: 0.86rem;
+    color: var(--dimtext);
+    line-height: 1.5;
+  }
+  .concept-card .expand-icon {
+    position: absolute;
+    top: 15px; right: 16px;
+    font-size: 1.2rem;
+    color: #C4BDB4;
+    transition: transform 0.25s;
+  }
+  .concept-card.open .expand-icon { transform: rotate(45deg); }
+
+  .concept-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+  }
+  .concept-card.open .concept-detail {
+    max-height: 900px;
+    margin-top: 14px;
+  }
+  .concept-detail-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-size: 0.88rem;
+    color: var(--bodytext);
+    line-height: 1.7;
+  }
+  .concept-detail-inner strong { color: var(--ink); }
+  .concept-detail-inner em { color: var(--ink); }
+
+  .tip {
+    background: #EDE9E3;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.84rem;
+  }
+  .tip-label {
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--rose);
+    margin-bottom: 2px;
+  }
+  .mini-ex {
+    background: #FFF;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin: 6px 0;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  .mini-ex .hl { color: var(--rose); font-style: normal; font-weight: 600; }
+
+  /* --- NEXT LESSON CTA --- */
+  .next-cta {
+    margin-top: 48px;
+    background: var(--indigo-light);
+    border: 1.5px solid var(--indigo);
+    border-radius: 14px;
+    padding: 22px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+  .next-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow); }
+  .next-cta-text h4 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.25rem;
+    color: var(--indigo);
+    margin-bottom: 2px;
+  }
+  .next-cta-text p { font-size: 0.88rem; color: var(--bodytext); }
+  .next-cta-arrow { font-size: 1.5rem; color: var(--indigo); }
+
+  @media (max-width: 640px) {
+    .header h1 { font-size: 1.8rem; }
+    .header { padding: 36px 16px 22px; }
+    .word-chunk { font-size: 1.08rem; padding: 6px 10px; }
+    .concepts-grid { grid-template-columns: 1fr; }
+    .container { padding: 20px 16px 60px; }
+    .example-area { padding: 20px 18px 24px; }
+    .step-btn { font-size: 0.72rem; padding: 5px 10px; }
+    .pvc-grid { grid-template-columns: 1fr; }
+    .topnav { padding: 12px 16px; font-size: 0.78rem; }
+    .topnav .nav-links { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="nav-home" href="index.html">← Grammar Explorer</a>
+  <div class="nav-links">
+    <a href="parts-of-speech.html">Parts of Speech</a>
+    <a href="sentence-parts.html">Sentence Parts</a>
+    <a href="verbals.html">Verbals</a>
+    <a href="phrases.html" class="current">Phrases</a>
+    <a href="clauses.html">Clauses</a>
+  </div>
+</nav>
+
+<div class="header">
+  <h1>Phrases</h1>
+  <p>A phrase is a group of words that acts as a unit — but it has no subject-verb pair of its own. Click through each type to see how phrases work inside real sentences.</p>
+</div>
+
+<div class="container">
+
+  <!-- PHRASE VS CLAUSE INTRO -->
+  <div class="pvc">
+    <div class="section-title">First, a Quick Distinction</div>
+    <div class="section-sub">Before we dive in: every multi-word chunk in English is either a phrase or a clause. The difference is one thing.</div>
+
+    <div class="pvc-grid">
+      <div class="pvc-card phrase">
+        <h4>Phrase</h4>
+        <p>A group of words that works as a single unit but does <strong>NOT</strong> contain a subject + verb pair.</p>
+        <div class="ex">on the old wooden porch
+          <small>No subject. No verb. A unit modifying something else.</small>
+        </div>
+      </div>
+      <div class="pvc-card clause">
+        <h4>Clause</h4>
+        <p>A group of words that <strong>DOES</strong> contain a subject + verb pair — a mini-sentence inside a sentence.</p>
+        <div class="ex">because the rain was falling
+          <small>Subject: <em>the rain</em>. Verb: <em>was falling</em>.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="pvc-key">
+      <span class="k-phrase">Phrase = no S+V</span> &nbsp;·&nbsp; <span class="k-clause">Clause = has S+V</span> &nbsp;·&nbsp; That single test decides everything.
+    </div>
+  </div>
+
+  <!-- INTERACTIVE TOUR -->
+  <div class="example-area">
+    <div class="example-top-bar">
+      <div class="example-label">Tour: Types of Phrases</div>
+      <button class="shuffle-btn" onclick="shuffleSet()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        New Example
+      </button>
+    </div>
+
+    <div class="build-steps" id="buildSteps"></div>
+    <div class="build-narrative" id="buildNarrative"></div>
+    <div class="sentence-display" id="sentenceDisplay"></div>
+
+    <div class="legend">
+      <div class="legend-group">
+        <span class="legend-title">Structure</span>
+        <div class="legend-item"><div class="legend-border" style="border-color:var(--rose)"></div>Phrase</div>
+      </div>
+      <div class="legend-divider"></div>
+      <div class="legend-group">
+        <span class="legend-title">Function (fill)</span>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--blue-light)"></div>Noun role</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--gold-light)"></div>Adjective</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--teal-light)"></div>Adverb</div>
+        <div class="legend-item"><div class="legend-fill" style="background:var(--accent-light)"></div>Verb</div>
+      </div>
+    </div>
+
+    <div class="callout" id="callout">
+      <div class="callout-prompt">← Click any outlined phrase above to see what it is and how it's working.</div>
+    </div>
+  </div>
+
+  <!-- CONCEPT CARDS -->
+  <div class="section-title">Phrase Types — Reference</div>
+  <div class="section-sub">Tap a card to expand its full explanation, examples, and quick tests.</div>
+  <div class="concepts-grid" id="conceptsGrid"></div>
+
+  <!-- NEXT CTA -->
+  <a class="next-cta" href="clauses.html">
+    <div class="next-cta-text">
+      <h4>Up Next: Clauses &amp; Sentence Types</h4>
+      <p>Now that phrases are clear, meet their big siblings — word groups that bring their own subject and verb along.</p>
+    </div>
+    <div class="next-cta-arrow">→</div>
+  </a>
+</div>
+
+<script>
+// ===== DATA: Phrase-type tour =====
+// Each step introduces a phrase type. The sentence is rendered as chunks;
+// some chunks are the phrase itself (with structure="phrase" + a function),
+// others are plain words that contextualize.
+const SETS = [
+  // ---- SET 1: The full phrase types in context ----
+  {
+    steps: [
+      {
+        label: "Prepositional",
+        narrative: "A <strong>prepositional phrase</strong> starts with a preposition and ends with a noun (the <em>object of the preposition</em>). It acts as an <em class='rose'>adjective</em> or <em class='rose'>adverb</em>.",
+        chunks: [
+          { text: "The cat", structure: null, func: null, role: "plain" },
+          { text: "on the windowsill", structure: "phrase", func: "adj", tag: "Prep Phrase (Adj)", id: "p1" },
+          { text: "watched birds", structure: null, func: null, role: "plain" },
+          { text: "for hours.", structure: "phrase", func: "adv", tag: "Prep Phrase (Adv)", id: "p2" },
+        ],
+        explanations: {
+          p1: {
+            type: "Prepositional Phrase", func: "Adjective",
+            body: "<strong>\"on the windowsill\"</strong> — preposition <em>on</em> + object <em>the windowsill</em>. It modifies <em>cat</em> (which cat? the one <em>on the windowsill</em>), so it acts as an <strong>adjective</strong>."
+          },
+          p2: {
+            type: "Prepositional Phrase", func: "Adverb",
+            body: "<strong>\"for hours\"</strong> — preposition <em>for</em> + object <em>hours</em>. It modifies the verb <em>watched</em> (watched <em>when/how long?</em> for hours), so it acts as an <strong>adverb</strong>."
+          },
+        }
+      },
+      {
+        label: "Participial",
+        narrative: "A <strong>participial phrase</strong> starts with a participle (<em>-ing</em> or <em>-ed</em> form of a verb) and acts as an <em class='rose'>adjective</em>. It describes a noun.",
+        chunks: [
+          { text: "Exhausted from the hike,", structure: "phrase", func: "adj", tag: "Participial (Adj)", id: "p1" },
+          { text: "Marcus", structure: null, func: null, role: "plain" },
+          { text: "collapsed", structure: null, func: null, role: "plain" },
+          { text: "onto the couch.", structure: "phrase", func: "adv", tag: "Prep Phrase (Adv)", id: "p2" },
+        ],
+        explanations: {
+          p1: {
+            type: "Participial Phrase", func: "Adjective",
+            body: "<strong>\"Exhausted from the hike\"</strong> — starts with the past participle <em>exhausted</em>. It describes <em>Marcus</em> (what kind of Marcus? one who is <em>exhausted from the hike</em>), so it acts as an <strong>adjective</strong>. Note: a participial phrase at the start of a sentence is set off with a comma."
+          },
+          p2: {
+            type: "Prepositional Phrase", func: "Adverb",
+            body: "<strong>\"onto the couch\"</strong> — a prepositional phrase modifying <em>collapsed</em> (collapsed <em>where?</em>)."
+          },
+        }
+      },
+      {
+        label: "Gerund",
+        narrative: "A <strong>gerund phrase</strong> starts with a gerund (<em>-ing</em> form acting as a <em>noun</em>). The whole phrase functions as a <em class='rose'>noun</em> — subject, object, etc.",
+        chunks: [
+          { text: "Running through the park", structure: "phrase", func: "subject", tag: "Gerund Phrase (Subject)", id: "p1" },
+          { text: "is", structure: null, func: null, role: "plain" },
+          { text: "her favorite hobby.", structure: null, func: null, role: "plain" },
+        ],
+        explanations: {
+          p1: {
+            type: "Gerund Phrase", func: "Noun (Subject)",
+            body: "<strong>\"Running through the park\"</strong> — <em>running</em> is an -ing verb form, but here it names an activity, like a noun. The whole phrase is the <strong>subject</strong> of <em>is</em>. <br><br><em>Test: could you replace it with \"It\"? → \"It is her favorite hobby.\"</em> ✓ That confirms it's acting as a noun."
+          },
+        }
+      },
+      {
+        label: "Infinitive",
+        narrative: "An <strong>infinitive phrase</strong> starts with <em>to</em> + a base verb. It can function as a <em class='rose'>noun</em>, <em class='rose'>adjective</em>, or <em class='rose'>adverb</em> — the most flexible phrase type.",
+        chunks: [
+          { text: "She", structure: null, func: null, role: "plain" },
+          { text: "studies late", structure: null, func: null, role: "plain" },
+          { text: "to ace the exam.", structure: "phrase", func: "adv", tag: "Infinitive (Adv)", id: "p1" },
+        ],
+        explanations: {
+          p1: {
+            type: "Infinitive Phrase", func: "Adverb",
+            body: "<strong>\"to ace the exam\"</strong> — <em>to</em> + base verb <em>ace</em> + object <em>the exam</em>. It answers <em>why does she study late?</em> → to ace the exam. Because it explains the <em>purpose</em> of the verb, it acts as an <strong>adverb</strong>.<br><br>Infinitives can also act as nouns (<em>\"To err is human\"</em>) or adjectives (<em>\"a book to read\"</em>)."
+          },
+        }
+      },
+      {
+        label: "Appositive",
+        narrative: "An <strong>appositive phrase</strong> is a noun phrase that <em>renames</em> another noun right beside it. It's almost always set off by commas.",
+        chunks: [
+          { text: "My neighbor,", structure: null, func: null, role: "plain" },
+          { text: "a retired firefighter,", structure: "phrase", func: "appos", tag: "Appositive Phrase", id: "p1" },
+          { text: "tells the best stories.", structure: null, func: null, role: "plain" },
+        ],
+        explanations: {
+          p1: {
+            type: "Appositive Phrase", func: "Renames a noun",
+            body: "<strong>\"a retired firefighter\"</strong> — a noun phrase that <em>renames</em> <em>my neighbor</em>. It gives extra identification. Because it's non-essential (the sentence still works without it), it's set off with commas.<br><br><em>Essential appositives</em> (ones you need for meaning) take <em>no</em> commas: \"My brother <em>Jake</em> called.\" (suggests more than one brother)."
+          },
+        }
+      },
+      {
+        label: "Absolute",
+        narrative: "An <strong>absolute phrase</strong> modifies the <em>whole sentence</em>, not just one word. It usually contains a noun + a participle — close to a clause, but missing a conjugated verb.",
+        chunks: [
+          { text: "His arms crossed in frustration,", structure: "phrase", func: "modifier", tag: "Absolute Phrase", id: "p1" },
+          { text: "Dad", structure: null, func: null, role: "plain" },
+          { text: "waited for an apology.", structure: null, func: null, role: "plain" },
+        ],
+        explanations: {
+          p1: {
+            type: "Absolute Phrase", func: "Modifies whole sentence",
+            body: "<strong>\"His arms crossed in frustration\"</strong> — has a noun (<em>arms</em>) and a participle (<em>crossed</em>), but no conjugated verb like <em>were crossed</em>. It paints the scene for the whole sentence: how Dad was standing while he waited.<br><br>Absolutes are always set off with commas and feel almost poetic — great for adding rich detail without another clause."
+          },
+        }
+      },
+    ]
+  },
+  // ---- SET 2: Alternative examples, same six types in same order ----
+  {
+    steps: [
+      {
+        label: "Prepositional",
+        narrative: "A <strong>prepositional phrase</strong> starts with a preposition and ends with a noun (the <em>object of the preposition</em>). It acts as an <em class='rose'>adjective</em> or <em class='rose'>adverb</em>.",
+        chunks: [
+          { text: "The book", structure: null, func: null, role: "plain" },
+          { text: "on the top shelf", structure: "phrase", func: "adj", tag: "Prep Phrase (Adj)", id: "p1" },
+          { text: "belongs", structure: null, func: null, role: "plain" },
+          { text: "to my grandfather.", structure: "phrase", func: "adv", tag: "Prep Phrase (Adv)", id: "p2" },
+        ],
+        explanations: {
+          p1: {
+            type: "Prepositional Phrase", func: "Adjective",
+            body: "<strong>\"on the top shelf\"</strong> — preposition <em>on</em> + object <em>the top shelf</em>. It tells us <em>which</em> book, modifying the noun <em>book</em>. That's an <strong>adjective</strong> job."
+          },
+          p2: {
+            type: "Prepositional Phrase", func: "Adverb",
+            body: "<strong>\"to my grandfather\"</strong> — modifies the verb <em>belongs</em> (belongs <em>to whom?</em>). That's an <strong>adverb</strong> job."
+          },
+        }
+      },
+      {
+        label: "Participial",
+        narrative: "A <strong>participial phrase</strong> starts with a participle (<em>-ing</em> or <em>-ed</em> form of a verb) and acts as an <em class='rose'>adjective</em>. It describes a noun.",
+        chunks: [
+          { text: "The dog", structure: null, func: null, role: "plain" },
+          { text: "barking at the mailman", structure: "phrase", func: "adj", tag: "Participial (Adj)", id: "p1" },
+          { text: "belongs to my sister.", structure: null, func: null, role: "plain" },
+        ],
+        explanations: {
+          p1: {
+            type: "Participial Phrase", func: "Adjective",
+            body: "<strong>\"barking at the mailman\"</strong> — starts with the present participle <em>barking</em>. It modifies <em>dog</em> (which dog?), so it acts as an <strong>adjective</strong>.<br><br><em>Watch out:</em> \"The dog is barking\" uses <em>barking</em> as part of the verb, not as a participle. Context decides."
+          },
+        }
+      },
+      {
+        label: "Gerund",
+        narrative: "A <strong>gerund phrase</strong> starts with a gerund (<em>-ing</em> form acting as a <em>noun</em>). The whole phrase functions as a <em class='rose'>noun</em> — subject, object, etc.",
+        chunks: [
+          { text: "Coach", structure: null, func: null, role: "plain" },
+          { text: "hates", structure: null, func: null, role: "plain" },
+          { text: "losing to our rivals.", structure: "phrase", func: "do", tag: "Gerund Phrase (DO)", id: "p1" },
+        ],
+        explanations: {
+          p1: {
+            type: "Gerund Phrase", func: "Noun (Direct Object)",
+            body: "<strong>\"losing to our rivals\"</strong> — <em>losing</em> is a gerund here (an -ing form acting as a noun). The phrase answers <em>\"Coach hates what?\"</em> → losing. It's the <strong>direct object</strong>.<br><br><em>Gerund vs. participle test:</em> is the -ing word naming a thing (noun) or describing a noun (adjective)? Here it names what Coach hates, so: noun."
+          },
+        }
+      },
+      {
+        label: "Infinitive",
+        narrative: "An <strong>infinitive phrase</strong> starts with <em>to</em> + a base verb. It can function as a <em class='rose'>noun</em>, <em class='rose'>adjective</em>, or <em class='rose'>adverb</em> — the most flexible phrase type.",
+        chunks: [
+          { text: "I need", structure: null, func: null, role: "plain" },
+          { text: "a pen", structure: null, func: null, role: "plain" },
+          { text: "to sign the form.", structure: "phrase", func: "adj", tag: "Infinitive (Adj)", id: "p1" },
+        ],
+        explanations: {
+          p1: {
+            type: "Infinitive Phrase", func: "Adjective",
+            body: "<strong>\"to sign the form\"</strong> — modifies <em>pen</em>. <em>Which pen?</em> One <em>to sign the form</em>. Because it describes a noun, the infinitive is acting as an <strong>adjective</strong>.<br><br>Infinitives are the Swiss Army knife of phrases: they can do any of the three big modifier/noun jobs."
+          },
+        }
+      },
+      {
+        label: "Appositive",
+        narrative: "An <strong>appositive phrase</strong> is a noun phrase that <em>renames</em> another noun right beside it. It's almost always set off by commas.",
+        chunks: [
+          { text: "Ms. Chen,", structure: null, func: null, role: "plain" },
+          { text: "our biology teacher,", structure: "phrase", func: "appos", tag: "Appositive Phrase", id: "p1" },
+          { text: "runs the science fair.", structure: null, func: null, role: "plain" },
+        ],
+        explanations: {
+          p1: {
+            type: "Appositive Phrase", func: "Renames a noun",
+            body: "<strong>\"our biology teacher\"</strong> — renames <em>Ms. Chen</em>. Extra identification, not strictly needed for the sentence to make sense — so it's set off with commas.<br><br>Appositives are a favorite tool of good writers: they pack in information without starting a new clause."
+          },
+        }
+      },
+      {
+        label: "Absolute",
+        narrative: "An <strong>absolute phrase</strong> modifies the <em>whole sentence</em>, not just one word. It usually contains a noun + a participle — close to a clause, but missing a conjugated verb.",
+        chunks: [
+          { text: "The storm finally ending,", structure: "phrase", func: "modifier", tag: "Absolute Phrase", id: "p1" },
+          { text: "we", structure: null, func: null, role: "plain" },
+          { text: "stepped outside.", structure: null, func: null, role: "plain" },
+        ],
+        explanations: {
+          p1: {
+            type: "Absolute Phrase", func: "Modifies whole sentence",
+            body: "<strong>\"The storm finally ending\"</strong> — noun (<em>storm</em>) + participle (<em>ending</em>), no conjugated verb. If it said \"The storm <em>had</em> ended,\" it would be a full clause. As written, it modifies the whole main clause, giving us the circumstances.<br><br><em>Test to spot it:</em> it could become a clause with one small tweak to the verb."
+          },
+        }
+      },
+    ]
+  },
+];
+
+// ===== CONCEPTS (reference cards) =====
+const CONCEPTS = [
+  { id: "phrase-def", title: "What Is a Phrase?", short: "A word group that works as a unit — with NO subject-verb pair.",
+    detail: `A phrase is any cluster of words acting together as a single grammatical unit, but lacking the subject + verb pair that would make it a clause.<br><br>
+    <strong>Every phrase has a \"head word\"</strong> that determines its type:<br>
+    • preposition → prepositional phrase<br>
+    • participle → participial phrase<br>
+    • gerund → gerund phrase<br>
+    • infinitive marker <em>to</em> + verb → infinitive phrase<br>
+    • noun → appositive phrase (usually)<br><br>
+    <div class="tip"><div class="tip-label">Quick Test</div>Find the subject and the finite verb. If one is missing (or neither is there), you have a phrase — not a clause.</div>` },
+
+  { id: "prep", title: "Prepositional Phrase", short: "Preposition + object (a noun). Acts as an adjective or adverb.",
+    detail: `<strong>Structure:</strong> preposition + (optional modifiers) + noun/pronoun object.<br><br>
+    <div class="mini-ex"><span class="hl">in the morning</span>, <span class="hl">across the dusty field</span>, <span class="hl">without him</span></div>
+    <strong>As an adjective</strong> — modifies a noun:<br>
+    <div class="mini-ex">The girl <span class="hl">with the red hat</span> waved. (which girl?)</div>
+    <strong>As an adverb</strong> — modifies a verb, adjective, or adverb:<br>
+    <div class="mini-ex">She ran <span class="hl">into the hallway</span>. (ran where?)</div>
+    <div class="tip"><div class="tip-label">Heads Up</div>Prepositional phrases can stack: \"the man <em>in the house</em> <em>on the corner</em> <em>of Main Street</em>.\" Each one modifies the noun before it.</div>` },
+
+  { id: "participial", title: "Participial Phrase", short: "Starts with an -ing or -ed verb form. Acts as an adjective.",
+    detail: `A participle is a verb form used as an adjective. The <strong>participial phrase</strong> is the participle plus anything attached to it (objects, modifiers).<br><br>
+    <strong>Present participle</strong> (<em>-ing</em>):<br>
+    <div class="mini-ex"><span class="hl">Smiling broadly</span>, she accepted the award.</div>
+    <strong>Past participle</strong> (usually <em>-ed</em>, sometimes irregular):<br>
+    <div class="mini-ex">The cake, <span class="hl">baked to perfection</span>, disappeared in minutes.</div>
+    <div class="tip"><div class="tip-label">Warning: Dangling Modifiers</div>A participial phrase at the start of a sentence must modify the subject that follows. Otherwise it \"dangles\":<br>
+    ✗ <em>Running down the street, my hat flew off.</em> (Was the hat running?)<br>
+    ✓ <em>Running down the street, I lost my hat.</em></div>` },
+
+  { id: "gerund", title: "Gerund Phrase", short: "Starts with an -ing verb form acting as a noun.",
+    detail: `A gerund looks exactly like a present participle (<em>-ing</em>) but does a noun's job: naming an activity or thing.<br><br>
+    <strong>As a subject:</strong><br>
+    <div class="mini-ex"><span class="hl">Eating vegetables</span> keeps you healthy.</div>
+    <strong>As a direct object:</strong><br>
+    <div class="mini-ex">She enjoys <span class="hl">painting watercolors</span>.</div>
+    <strong>As an object of a preposition:</strong><br>
+    <div class="mini-ex">He got in trouble for <span class="hl">skipping class</span>.</div>
+    <div class="tip"><div class="tip-label">Gerund vs. Participle Test</div>Ask: is the -ing word NAMING something (noun → gerund) or DESCRIBING a noun (adjective → participle)?<br>
+    \"<em>Running</em> is fun\" → names an activity → gerund.<br>
+    \"The <em>running</em> water\" → describes water → participle.</div>` },
+
+  { id: "infinitive", title: "Infinitive Phrase", short: "Starts with 'to' + base verb. Works as noun, adjective, OR adverb.",
+    detail: `The infinitive form is <em>to</em> + a base verb. The infinitive phrase includes any objects or modifiers.<br><br>
+    <strong>As a noun</strong> (subject, DO, PN):<br>
+    <div class="mini-ex"><span class="hl">To forgive</span> is divine. (subject)</div>
+    <div class="mini-ex">She wants <span class="hl">to become a doctor</span>. (DO)</div>
+    <strong>As an adjective</strong> (modifies a noun):<br>
+    <div class="mini-ex">I have homework <span class="hl">to finish</span>.</div>
+    <strong>As an adverb</strong> (usually shows purpose):<br>
+    <div class="mini-ex">He practices daily <span class="hl">to improve his game</span>.</div>
+    <div class="tip"><div class="tip-label">Don't Confuse</div>\"to the store\" is a <em>prepositional</em> phrase (<em>to</em> + noun).<br>
+    \"to go\" is an <em>infinitive</em> (<em>to</em> + verb).</div>` },
+
+  { id: "appositive", title: "Appositive Phrase", short: "A noun phrase that renames another noun.",
+    detail: `An appositive sits right next to a noun and provides another name for it — more identification, a title, a definition.<br><br>
+    <strong>Non-essential (use commas):</strong> the info is extra; the sentence works without it.<br>
+    <div class="mini-ex">Mr. Ellis, <span class="hl">our principal</span>, gave a speech.</div>
+    <strong>Essential (no commas):</strong> the info is needed to identify which one.<br>
+    <div class="mini-ex">The poet <span class="hl">Robert Frost</span> wrote about New England. (which poet?)</div>
+    <div class="tip"><div class="tip-label">Comma Rule</div>Ask yourself: if I removed the appositive, would it still be clear who/what is meant?<br>
+    Yes → add commas.<br>
+    No → no commas.</div>` },
+
+  { id: "absolute", title: "Absolute Phrase", short: "Noun + participle. Modifies the whole sentence.",
+    detail: `An absolute phrase is a mini-description — a noun with a participle attached — that hovers over the whole sentence.<br><br>
+    <div class="mini-ex"><span class="hl">Hands trembling</span>, she opened the letter.</div>
+    <div class="mini-ex">The game over, the players shook hands. <small>(noun + understood participle <em>being</em>)</small></div>
+    <strong>Why use them?</strong> Absolutes let you add detail to a whole scene without starting a new clause. They're especially loved by narrative writers.<br><br>
+    <div class="tip"><div class="tip-label">Spot-the-Difference</div>Absolute: <em>The sun having set, we lit the fire.</em><br>
+    Participial: <em>Having set, the sun painted the sky red.</em><br>
+    The absolute has its own noun (<em>sun</em>); the participial just describes the sentence's subject.</div>` },
+
+  { id: "head-word", title: "Finding the Head Word", short: "Every phrase takes its name from the word that starts it.",
+    detail: `To classify any phrase, find its <strong>head word</strong> — the word that drives the whole group.<br><br>
+    • Starts with a preposition → <strong>prepositional</strong><br>
+    • Starts with a participle (-ing / -ed describing a noun) → <strong>participial</strong><br>
+    • Starts with a gerund (-ing acting as a noun) → <strong>gerund</strong><br>
+    • Starts with <em>to</em> + verb → <strong>infinitive</strong><br>
+    • A noun renaming another noun → <strong>appositive</strong><br>
+    • Noun + participle, modifying the whole sentence → <strong>absolute</strong><br><br>
+    <div class="tip"><div class="tip-label">Double Check</div>After you spot the head word, ask: \"What job is this whole phrase doing in the sentence?\" That's how you find its <em>function</em> (noun, adjective, adverb). Every phrase has both a <em>type</em> AND a <em>function</em>.</div>` },
+];
+
+// ===== STATE =====
+let currentSetIndex = 0;
+let currentStep = 0;
+let usedIndices = [];
+
+function getCurrentSet() { return SETS[currentSetIndex]; }
+
+function renderBuildSteps() {
+  const set = getCurrentSet();
+  document.getElementById('buildSteps').innerHTML = set.steps.map((s, i) => {
+    let cls = 'step-btn';
+    if (i === currentStep) cls += ' active';
+    return (i > 0 ? '<span class="step-arrow" style="color:var(--border);font-size:0.9rem;user-select:none;">·</span>' : '') +
+      `<button class="${cls}" onclick="goToStep(${i})">${s.label}</button>`;
+  }).join('');
+}
+
+function renderSentence() {
+  const step = getCurrentSet().steps[currentStep];
+  document.getElementById('sentenceDisplay').innerHTML = step.chunks.map((c, i) => {
+    const clickable = c.structure ? 'clickable' : '';
+    const structAttr = c.structure ? `data-structure="${c.structure}"` : '';
+    const funcAttr = c.func ? `data-func="${c.func}"` : '';
+    const roleAttr = !c.structure ? `data-role="plain"` : '';
+    const id = c.id ? `data-id="${c.id}"` : '';
+    const onclick = c.structure ? `onclick="showExplanation('${c.id}', this)"` : '';
+    const tag = c.tag ? `<span class="role-tag">${c.tag}</span>` : '';
+    return `<div class="word-chunk ${clickable}" ${structAttr} ${funcAttr} ${roleAttr} ${id} ${onclick} style="animation-delay:${i * 0.06}s">${tag}${c.text}</div>`;
+  }).join(' ');
+  document.getElementById('buildNarrative').innerHTML = step.narrative;
+  resetCallout();
+}
+
+function goToStep(i) {
+  currentStep = i;
+  renderBuildSteps();
+  renderSentence();
+}
+
+function shuffleSet() {
+  usedIndices.push(currentSetIndex);
+  if (usedIndices.length >= SETS.length) usedIndices = [];
+  let avail = [];
+  for (let i = 0; i < SETS.length; i++) {
+    if (!usedIndices.includes(i) && i !== currentSetIndex) avail.push(i);
+  }
+  if (avail.length === 0) avail = SETS.map((_, i) => i).filter(i => i !== currentSetIndex);
+  currentSetIndex = avail[Math.floor(Math.random() * avail.length)];
+  // keep the student on the same phrase type they were exploring
+  renderBuildSteps();
+  renderSentence();
+  const btn = document.querySelector('.shuffle-btn');
+  btn.style.transform = 'scale(0.92)';
+  setTimeout(() => btn.style.transform = '', 150);
+}
+
+function showExplanation(id, el) {
+  const step = getCurrentSet().steps[currentStep];
+  const ex = step.explanations[id];
+  if (!ex) return;
+  document.querySelectorAll('.word-chunk').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  const callout = document.getElementById('callout');
+  const structure = el.getAttribute('data-structure');
+  callout.setAttribute('data-active-structure', structure);
+  callout.classList.add('visible');
+  callout.innerHTML = `
+    <div class="callout-meta">
+      <span class="callout-chip structure ${structure === 'clause' ? 'clause' : ''}">${ex.type}</span>
+      <span class="callout-chip function">Acts as: ${ex.func}</span>
+    </div>
+    <div class="callout-body">${ex.body}</div>`;
+}
+
+function resetCallout() {
+  const c = document.getElementById('callout');
+  c.removeAttribute('data-active-structure');
+  c.classList.remove('visible');
+  c.innerHTML = `<div class="callout-prompt">← Click any outlined phrase above to see what it is and how it's working.</div>`;
+}
+
+function renderConcepts() {
+  document.getElementById('conceptsGrid').innerHTML = CONCEPTS.map(c =>
+    `<div class="concept-card" data-concept="${c.id}" onclick="toggleConcept(this)">
+      <span class="expand-icon">+</span>
+      <h3>${c.title}</h3>
+      <div class="short-def">${c.short}</div>
+      <div class="concept-detail"><div class="concept-detail-inner">${c.detail}</div></div>
+    </div>`
+  ).join('');
+}
+
+function toggleConcept(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.concept-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+renderBuildSteps();
+renderSentence();
+renderConcepts();
+</script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --ink: #2A2420;
+    --accent: #C44B2B;
+    --accent-light: #F4DDD6;
+    --blue: #2B6B8A;
+    --blue-light: #D6EAF2;
+    --green: #3A7D44;
+    --green-light: #D9EDDC;
+    --purple: #6B4C8A;
+    --purple-light: #E8DDF2;
+    --gold: #B8860B;
+    --gold-light: #F5ECD0;
+    --teal: #2A8A7A;
+    --teal-light: #D0F0EA;
+    --rose: #B84A6E;
+    --rose-light: #F5DDE4;
+    --indigo: #3F4B9A;
+    --indigo-light: #DDE0F2;
+    --card: #FFFFFF;
+    --border: #E5DED4;
+    --shadow: rgba(42, 36, 32, 0.08);
+    --muted: #9A9189;
+    --dimtext: #7A7168;
+    --bodytext: #5A534B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .header {
+    text-align: center;
+    padding: 64px 24px 36px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(180deg, #FFF 0%, var(--bg) 100%);
+  }
+  .header h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .header .subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+  .header p {
+    font-size: 1.02rem;
+    color: var(--dimtext);
+    margin-top: 16px;
+    max-width: 620px;
+    margin-inline: auto;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 44px 24px 80px;
+  }
+
+  .section-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 0.95rem;
+    color: var(--dimtext);
+    margin-bottom: 24px;
+  }
+
+  /* --- LESSON CARDS --- */
+  .lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-bottom: 56px;
+  }
+
+  .lesson-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 26px 26px 24px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .lesson-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 5px;
+  }
+  .lesson-card[data-topic="pos"]::before { background: linear-gradient(90deg, var(--blue), var(--gold), var(--teal)); }
+  .lesson-card[data-topic="parts"]::before { background: linear-gradient(90deg, var(--blue), var(--accent), var(--green)); }
+  .lesson-card[data-topic="verbals"]::before { background: linear-gradient(90deg, var(--gold), var(--blue), var(--teal)); }
+  .lesson-card[data-topic="phrases"]::before { background: var(--rose); }
+  .lesson-card[data-topic="clauses"]::before { background: var(--indigo); }
+  .lesson-card[data-topic="coming"]::before { background: var(--border); }
+
+  .lesson-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px var(--shadow);
+    border-color: transparent;
+  }
+  .lesson-card[data-topic="coming"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  .lesson-card[data-topic="coming"]:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border);
+  }
+
+  .lesson-num {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .lesson-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .lesson-card .lesson-desc {
+    font-size: 0.92rem;
+    color: var(--bodytext);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .lesson-card .lesson-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .lesson-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 9px;
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--dimtext);
+    border: 1px solid var(--border);
+  }
+  .lesson-arrow {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    font-size: 1.2rem;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+  .lesson-card:not([data-topic="coming"]):hover .lesson-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+
+  /* --- GRAMMAR MAP --- */
+  .map-wrap {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px 28px;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 40px;
+  }
+  .map-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .map-sub {
+    font-size: 0.88rem;
+    color: var(--dimtext);
+    margin-bottom: 22px;
+  }
+
+  .grammar-map {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    display: block;
+    height: auto;
+  }
+
+  .map-node {
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .map-node:hover .map-node-bg {
+    stroke-width: 2.5;
+    filter: brightness(0.97);
+  }
+  .map-node text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+  }
+  .map-node-title {
+    font-family: 'Crimson Pro', serif !important;
+    font-weight: 700 !important;
+    font-size: 15px;
+  }
+  .map-node-sub {
+    font-size: 10.5px;
+    fill: var(--dimtext);
+  }
+  .map-line {
+    stroke: var(--border);
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .map-legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.78rem;
+    color: var(--dimtext);
+  }
+  .map-legend-swatch {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    border: 1.5px solid;
+  }
+
+  /* --- FOOTER --- */
+  .footer-note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    font-family: 'Crimson Pro', serif;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .header h1 { font-size: 2.1rem; }
+    .header { padding: 44px 16px 28px; }
+    .container { padding: 28px 16px 60px; }
+    .lesson-grid { grid-template-columns: 1fr; }
+    .map-wrap { padding: 22px 18px 20px; }
+    .grammar-map { min-width: 560px; }
+    .map-scroll { overflow-x: auto; margin: 0 -6px; padding: 0 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Grammar Explorer</h1>
+  <div class="subtitle">interactive lessons in English grammar</div>
+  <p>A growing collection of click-through tutorials. Each lesson lets you build, take apart, and color-code real sentences so the rules make visible sense.</p>
+</div>
+
+<div class="container">
+
+  <div class="section-title">Lessons</div>
+  <div class="section-sub">Start anywhere. Each lesson is self-contained, but they build on each other naturally.</div>
+
+  <div class="lesson-grid">
+
+    <a class="lesson-card" data-topic="pos" href="parts-of-speech.html">
+      <span class="lesson-arrow">→</span>
+      <div class="lesson-num">Lesson 01</div>
+      <h3>Parts of Speech</h3>
+      <div class="lesson-desc">Eight word-categories do all the work in English. Highlight them in passages from Austen, Dickinson, London, and Douglass — then click words to see why the author chose each one.</div>
+      <div class="lesson-tags">
+        <span class="lesson-tag">Noun</span>
+        <span class="lesson-tag">Verb</span>
+        <span class="lesson-tag">Adjective</span>
+        <span class="lesson-tag">Adverb</span>
+      </div>
+    </a>
+
+    <a class="lesson-card" data-topic="parts" href="sentence-parts.html">
+      <span class="lesson-arrow">→</span>
+      <div class="lesson-num">Lesson 02</div>
+      <h3>Parts of a Sentence</h3>
+      <div class="lesson-desc">Watch a sentence grow from a bare subject and verb into a full predicate with objects, complements, and modifiers.</div>
+      <div class="lesson-tags">
+        <span class="lesson-tag">Subject</span>
+        <span class="lesson-tag">Verb</span>
+        <span class="lesson-tag">Objects</span>
+        <span class="lesson-tag">Complements</span>
+      </div>
+    </a>
+
+    <a class="lesson-card" data-topic="verbals" href="verbals.html">
+      <span class="lesson-arrow">→</span>
+      <div class="lesson-num">Lesson 03</div>
+      <h3>Verbals</h3>
+      <div class="lesson-desc">Participles, gerunds, and infinitives — verb forms that do the work of nouns, adjectives, or adverbs. Plus the trap: same word, totally different job.</div>
+      <div class="lesson-tags">
+        <span class="lesson-tag">Participle</span>
+        <span class="lesson-tag">Gerund</span>
+        <span class="lesson-tag">Infinitive</span>
+      </div>
+    </a>
+
+    <a class="lesson-card" data-topic="phrases" href="phrases.html">
+      <span class="lesson-arrow">→</span>
+      <div class="lesson-num">Lesson 04</div>
+      <h3>Phrases</h3>
+      <div class="lesson-desc">A phrase is a group of words that works as a unit but has no subject-verb pair. Tour every major type — prepositional, participial, gerund, infinitive, appositive, absolute.</div>
+      <div class="lesson-tags">
+        <span class="lesson-tag">Prepositional</span>
+        <span class="lesson-tag">Verbal</span>
+        <span class="lesson-tag">Appositive</span>
+        <span class="lesson-tag">Absolute</span>
+      </div>
+    </a>
+
+    <a class="lesson-card" data-topic="clauses" href="clauses.html">
+      <span class="lesson-arrow">→</span>
+      <div class="lesson-num">Lesson 05</div>
+      <h3>Clauses &amp; Sentence Types</h3>
+      <div class="lesson-desc">A clause has its own subject and verb. Learn independent vs. dependent, the three dependent types (noun, adjective, adverb), and how they combine into sentence types.</div>
+      <div class="lesson-tags">
+        <span class="lesson-tag">Independent</span>
+        <span class="lesson-tag">Noun Clause</span>
+        <span class="lesson-tag">Adjective</span>
+        <span class="lesson-tag">Adverb</span>
+      </div>
+    </a>
+
+    <div class="lesson-card" data-topic="coming">
+      <div class="lesson-num">Coming soon</div>
+      <h3>More Lessons</h3>
+      <div class="lesson-desc">Verb tenses, punctuation, agreement, usage — the collection will keep growing.</div>
+    </div>
+
+  </div>
+
+  <!-- GRAMMAR MAP -->
+  <div class="map-wrap">
+    <div class="map-title">How It All Fits Together</div>
+    <div class="map-sub">English grammar stacks in layers. Words build phrases and clauses; those build sentences.</div>
+
+    <div class="map-scroll">
+    <svg class="grammar-map" viewBox="0 0 780 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mapTitle">
+      <title id="mapTitle">A concept map showing how words build into phrases and clauses, which build into sentences.</title>
+
+      <!-- Connector lines (drawn first so nodes sit on top) -->
+      <!-- WORDS -> PARTS OF SPEECH (vertical short) -->
+      <path class="map-line" d="M 390 95 L 390 125" />
+
+      <!-- WORDS node -> phrases and clauses branches -->
+      <path class="map-line" d="M 390 185 C 390 215, 200 215, 200 245" />
+      <path class="map-line" d="M 390 185 C 390 215, 580 215, 580 245" />
+
+      <!-- PHRASES -> phrase types -->
+      <path class="map-line" d="M 200 305 C 200 345, 90 345, 90 385" />
+      <path class="map-line" d="M 200 305 C 200 345, 200 345, 200 385" />
+      <path class="map-line" d="M 200 305 C 200 345, 310 345, 310 385" />
+
+      <!-- VERBALS leaf -> verbal subtypes -->
+      <path class="map-line" d="M 200 427 L 200 453" stroke-dasharray="3 3" opacity="0.7" />
+
+      <!-- CLAUSES -> independent / dependent -->
+      <path class="map-line" d="M 580 305 C 580 345, 480 345, 480 385" />
+      <path class="map-line" d="M 580 305 C 580 345, 680 345, 680 385" />
+
+      <!-- DEPENDENT -> noun/adj/adv -->
+      <path class="map-line" d="M 680 445 C 680 480, 560 480, 560 515" />
+      <path class="map-line" d="M 680 445 C 680 480, 680 480, 680 515" />
+      <path class="map-line" d="M 680 445 C 680 480, 740 480, 740 515" />
+
+      <!-- PHRASES/CLAUSES converge into SENTENCE -->
+      <path class="map-line" d="M 200 445 C 200 545, 390 565, 390 565" stroke-dasharray="4 4" opacity="0.5" />
+      <path class="map-line" d="M 480 445 C 480 520, 390 550, 390 565" stroke-dasharray="4 4" opacity="0.5" />
+
+      <!-- NODE: WORDS (root) -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="320" y="45" width="140" height="50" rx="10" fill="#F5F2ED" stroke="#9A9189" stroke-width="1.5"/>
+        <text class="map-node-title" x="390" y="63" fill="#2A2420">Words</text>
+        <text class="map-node-sub" x="390" y="81">the building blocks</text>
+      </g>
+
+      <!-- NODE: PARTS OF SPEECH (under words) -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="280" y="125" width="220" height="60" rx="10" fill="#FFFFFF" stroke="#2A2420" stroke-width="1.5"/>
+        <text class="map-node-title" x="390" y="148" fill="#2A2420" style="font-size:13px;">Parts of Speech</text>
+        <text class="map-node-sub" x="390" y="167" fill="#7A7168" style="font-size:10px;">noun · pronoun · verb · adj · adv</text>
+        <text class="map-node-sub" x="390" y="180" fill="#7A7168" style="font-size:10px;">prep · conj · interjection</text>
+      </g>
+
+      <!-- NODE: PHRASES -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="130" y="245" width="140" height="60" rx="10" fill="#F5DDE4" stroke="#B84A6E" stroke-width="2"/>
+        <text class="map-node-title" x="200" y="267" fill="#B84A6E">Phrases</text>
+        <text class="map-node-sub" x="200" y="287">word group, no S+V</text>
+      </g>
+
+      <!-- NODE: CLAUSES -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="510" y="245" width="140" height="60" rx="10" fill="#DDE0F2" stroke="#3F4B9A" stroke-width="2"/>
+        <text class="map-node-title" x="580" y="267" fill="#3F4B9A">Clauses</text>
+        <text class="map-node-sub" x="580" y="287">word group WITH S+V</text>
+      </g>
+
+      <!-- PHRASE TYPE LEAVES -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="30" y="385" width="120" height="42" rx="8" fill="#FFFFFF" stroke="#B84A6E" stroke-width="1.5"/>
+        <text class="map-node-sub" x="90" y="407" fill="#5A534B" style="font-size:11px; font-weight:600;">Prepositional</text>
+      </g>
+      <g class="map-node">
+        <rect class="map-node-bg" x="140" y="385" width="120" height="42" rx="8" fill="#FFFFFF" stroke="#B84A6E" stroke-width="1.5"/>
+        <text class="map-node-sub" x="200" y="407" fill="#5A534B" style="font-size:11px; font-weight:600;">Verbals</text>
+      </g>
+      <g class="map-node">
+        <rect class="map-node-bg" x="250" y="385" width="120" height="42" rx="8" fill="#FFFFFF" stroke="#B84A6E" stroke-width="1.5"/>
+        <text class="map-node-sub" x="310" y="407" fill="#5A534B" style="font-size:11px; font-weight:600;">Appositive / Absolute</text>
+      </g>
+
+      <!-- VERBAL SUBTYPES (new layer under Verbals leaf) -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="90" y="453" width="72" height="34" rx="6" fill="#F5ECD0" stroke="#B8860B" stroke-width="1.2"/>
+        <text class="map-node-sub" x="126" y="471" fill="#B8860B" style="font-size:10px; font-weight:700;">Participle</text>
+      </g>
+      <g class="map-node">
+        <rect class="map-node-bg" x="168" y="453" width="64" height="34" rx="6" fill="#D6EAF2" stroke="#2B6B8A" stroke-width="1.2"/>
+        <text class="map-node-sub" x="200" y="471" fill="#2B6B8A" style="font-size:10px; font-weight:700;">Gerund</text>
+      </g>
+      <g class="map-node">
+        <rect class="map-node-bg" x="238" y="453" width="72" height="34" rx="6" fill="#D0F0EA" stroke="#2A8A7A" stroke-width="1.2"/>
+        <text class="map-node-sub" x="274" y="471" fill="#2A8A7A" style="font-size:10px; font-weight:700;">Infinitive</text>
+      </g>
+
+      <!-- CLAUSE LEAVES: Independent / Dependent -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="420" y="385" width="120" height="60" rx="8" fill="#FFFFFF" stroke="#3F4B9A" stroke-width="1.5"/>
+        <text class="map-node-sub" x="480" y="407" fill="#2A2420" style="font-size:12px; font-weight:700;">Independent</text>
+        <text class="map-node-sub" x="480" y="425" fill="#7A7168">stands alone</text>
+      </g>
+      <g class="map-node">
+        <rect class="map-node-bg" x="620" y="385" width="120" height="60" rx="8" fill="#FFFFFF" stroke="#3F4B9A" stroke-width="1.5"/>
+        <text class="map-node-sub" x="680" y="407" fill="#2A2420" style="font-size:12px; font-weight:700;">Dependent</text>
+        <text class="map-node-sub" x="680" y="425" fill="#7A7168">needs a main clause</text>
+      </g>
+
+      <!-- DEPENDENT SUBTYPES -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="510" y="515" width="100" height="38" rx="8" fill="#D6EAF2" stroke="#2B6B8A" stroke-width="1.5"/>
+        <text class="map-node-sub" x="560" y="535" fill="#2B6B8A" style="font-size:11px; font-weight:700;">Noun</text>
+      </g>
+      <g class="map-node">
+        <rect class="map-node-bg" x="630" y="515" width="100" height="38" rx="8" fill="#F5ECD0" stroke="#B8860B" stroke-width="1.5"/>
+        <text class="map-node-sub" x="680" y="535" fill="#B8860B" style="font-size:11px; font-weight:700;">Adjective</text>
+      </g>
+      <g class="map-node">
+        <rect class="map-node-bg" x="690" y="515" width="100" height="38" rx="8" fill="#D0F0EA" stroke="#2A8A7A" stroke-width="1.5"/>
+        <text class="map-node-sub" x="740" y="535" fill="#2A8A7A" style="font-size:11px; font-weight:700;">Adverb</text>
+      </g>
+
+      <!-- SENTENCE destination -->
+      <g class="map-node">
+        <rect class="map-node-bg" x="310" y="550" width="160" height="40" rx="10" fill="#F4DDD6" stroke="#C44B2B" stroke-width="2"/>
+        <text class="map-node-title" x="390" y="575" fill="#C44B2B" style="font-size:14px;">SENTENCES</text>
+      </g>
+    </svg>
+    </div>
+
+    <div class="map-legend">
+      <div class="map-legend-item"><div class="map-legend-swatch" style="background:var(--rose-light); border-color:var(--rose);"></div>Phrases</div>
+      <div class="map-legend-item"><div class="map-legend-swatch" style="background:var(--indigo-light); border-color:var(--indigo);"></div>Clauses</div>
+      <div class="map-legend-item"><div class="map-legend-swatch" style="background:var(--blue-light); border-color:var(--blue);"></div>Noun function</div>
+      <div class="map-legend-item"><div class="map-legend-swatch" style="background:var(--gold-light); border-color:var(--gold);"></div>Adjective function</div>
+      <div class="map-legend-item"><div class="map-legend-swatch" style="background:var(--teal-light); border-color:var(--teal);"></div>Adverb function</div>
+    </div>
+  </div>
+
+  <div class="footer-note">Built for curious students. Made with care.</div>
+
+</div>
+
+</body>
+</html>
