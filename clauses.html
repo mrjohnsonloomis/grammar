@@ -608,6 +608,87 @@
   .back-cta-text p { font-size: 0.88rem; color: var(--bodytext); }
   .back-cta-arrow { font-size: 1.5rem; color: var(--muted); }
 
+  /* --- SIDEBAR NOTE (when/where/why ambiguity) --- */
+  .sidebar-note {
+    background: #FDFCFA;
+    border: 1.5px solid var(--indigo);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin: 0 0 28px;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+  .sidebar-note-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--indigo);
+    margin-bottom: 6px;
+  }
+  .sidebar-note-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .sidebar-note > p {
+    font-size: 0.9rem;
+    color: var(--bodytext);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .sidebar-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .sidebar-col {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+  }
+  .sidebar-col-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 8px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    color: #fff;
+  }
+  .sidebar-col-label.adv { background: var(--teal); }
+  .sidebar-col-label.noun { background: var(--blue); }
+  .sidebar-col-label.adj { background: var(--gold); }
+  .sidebar-ex {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 8px 0 6px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .sidebar-ex strong { font-style: normal; }
+  .sidebar-col-body {
+    font-size: 0.82rem;
+    color: var(--bodytext);
+    line-height: 1.55;
+  }
+  .sidebar-col-body em { color: var(--ink); }
+  .sidebar-footer {
+    font-size: 0.88rem;
+    color: var(--bodytext);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 4px;
+  }
+  .sidebar-footer strong { color: var(--ink); }
+
   @media (max-width: 640px) {
     .header h1 { font-size: 1.8rem; }
     .header { padding: 36px 16px 22px; }
@@ -617,6 +698,7 @@
     .example-area { padding: 20px 18px 24px; }
     .step-btn { font-size: 0.72rem; padding: 5px 10px; }
     .pvc-grid { grid-template-columns: 1fr; }
+    .sidebar-trio { grid-template-columns: 1fr; }
     .topnav { padding: 12px 16px; font-size: 0.78rem; }
     .topnav .nav-links { gap: 14px; }
   }
@@ -747,6 +829,31 @@
     <div class="callout" id="depTypeCallout">
       <div class="callout-prompt">← Click the dependent clause to see what type it is and what job it's doing.</div>
     </div>
+  </div>
+
+  <!-- SIDEBAR: when/where/why double duty -->
+  <div class="sidebar-note">
+    <div class="sidebar-note-label">A Common Point of Confusion</div>
+    <div class="sidebar-note-title">The double life of <em>when</em>, <em>where</em>, and <em>why</em></div>
+    <p>These words appear in the introductory lists for <em>both</em> adverb clauses (as subordinating conjunctions) and noun clauses (as interrogative words). The same word does a completely different job depending on context — and the only way to tell them apart is to ask what job the <em>whole clause</em> is doing.</p>
+    <div class="sidebar-trio">
+      <div class="sidebar-col">
+        <div class="sidebar-col-label adv">Adverb Clause</div>
+        <div class="sidebar-ex">"Call me <strong>when you arrive</strong>."</div>
+        <div class="sidebar-col-body">The clause answers <em>when?</em> — it modifies the verb <em>call</em>. <em>When</em> is a <strong>subordinating conjunction</strong>.</div>
+      </div>
+      <div class="sidebar-col">
+        <div class="sidebar-col-label noun">Noun Clause</div>
+        <div class="sidebar-ex">"I know <strong>when the bus arrives</strong>."</div>
+        <div class="sidebar-col-body">The clause fills the DO slot — <em>know what?</em> → when the bus arrives. <em>When</em> is an <strong>interrogative word</strong>.</div>
+      </div>
+      <div class="sidebar-col">
+        <div class="sidebar-col-label adj">Adjective Clause</div>
+        <div class="sidebar-ex">"I remember the day <strong>when we first met</strong>."</div>
+        <div class="sidebar-col-body">The clause describes <em>day</em> — <em>which</em> day? <em>When</em> is a <strong>relative adverb</strong> (like a relative pronoun).</div>
+      </div>
+    </div>
+    <div class="sidebar-footer"><strong>The test:</strong> ask what job the whole clause is doing. Modifying a verb → adverb clause. Filling a noun slot (subject, DO, PN) → noun clause. Describing the noun right before it → adjective clause. The same logic applies to <em>where</em> and <em>why</em>.</div>
   </div>
 
   <!-- CONCEPT CARDS -->
