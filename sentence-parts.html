@@ -469,16 +469,16 @@ const SETS = [
         narrative: "Every sentence starts with a <strong>subject</strong> and a <strong>verb</strong> — who does what.",
         words: [
           { text: "The dog", role: "subject", tag: "Subject" },
-          { text: "chased.", role: "verb", tag: "Main Verb" },
+          { text: "slept.", role: "verb", tag: "Main Verb" },
         ],
         explanations: {
-          subject: ["Subject: \"The dog\"", "The subject tells us WHO performs the action. Ask: <em>\"Who chased?\"</em> → The dog."],
-          verb: ["Main Verb: \"chased\"", "The main verb is the action word — the engine of the predicate (everything that isn't the subject)."],
+          subject: ["Subject: \"The dog\"", "The subject tells us WHO performs the action. Ask: <em>\"Who slept?\"</em> → The dog."],
+          verb: ["Main Verb: \"slept\"", "The main verb is the action word — the engine of the predicate (everything that isn't the subject). <em>Slept</em> is intransitive — it needs no object to be complete."],
         }
       },
       {
         label: "+ Direct Obj",
-        narrative: "Add a <strong>direct object</strong> — the thing that receives the action. <em>Chased what?</em>",
+        narrative: "Some verbs are <strong>transitive</strong> — they pass their action to an object. Switch to <em>chased</em>: <em>chased what?</em>",
         words: [
           { text: "The dog", role: "subject", tag: "Subject" },
           { text: "chased", role: "verb", tag: "Main Verb" },
@@ -486,7 +486,7 @@ const SETS = [
         ],
         explanations: {
           subject: ["Subject: \"The dog\"", "Still our performer. <em>Who chased the ball?</em> → The dog."],
-          verb: ["Main Verb: \"chased\"", "Now <strong>transitive</strong> — it transfers action to an object."],
+          verb: ["Main Verb: \"chased\"", "<strong>Transitive</strong> — it transfers action to an object. Unlike <em>slept</em>, <em>chased</em> requires something to chase; the sentence would feel incomplete without it."],
           do: ["Direct Object: \"the ball\"", "The DO receives the action. Ask: <em>\"Chased what?\"</em> → the ball. Passive test: \"The ball was chased\" ✓ — so it's a DO."],
         }
       },
