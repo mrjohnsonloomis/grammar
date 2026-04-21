@@ -570,6 +570,11 @@
   <div class="section-sub">Tap any card for a full explanation, tests, and examples.</div>
   <div class="concepts-grid" id="conceptsGrid"></div>
 
+  <!-- CHECK YOURSELF -->
+  <div class="section-title" style="margin-top: 48px;">Check Yourself</div>
+  <div class="section-sub">Three quick questions on what you just learned. The explanations are worth reading even when you're right.</div>
+  <div id="practice-container"></div>
+
   <a class="next-cta" href="sentence-parts.html">
     <div class="next-cta-text">
       <h4>Up Next: Parts of a Sentence</h4>
@@ -1130,6 +1135,15 @@ function escapeHtml(s) {
 renderPassageSwitcher();
 renderPassage();
 renderConcepts();
+</script>
+<link rel="stylesheet" href="shared/practice.css">
+<script src="shared/practice.js"></script>
+<script>
+  Practice.mount({
+    container: '#practice-container',
+    bankUrl: 'data/problems/parts-of-speech.json',
+    filter: { count: 3 }
+  });
 </script>
 </body>
 </html>
