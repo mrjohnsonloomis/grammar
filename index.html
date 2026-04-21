@@ -5,44 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grammar Explorer</title>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/styles.css">
 <style>
-  :root {
-    --bg: #FAF7F2;
-    --ink: #2A2420;
-    --accent: #C44B2B;
-    --accent-light: #F4DDD6;
-    --blue: #2B6B8A;
-    --blue-light: #D6EAF2;
-    --green: #3A7D44;
-    --green-light: #D9EDDC;
-    --purple: #6B4C8A;
-    --purple-light: #E8DDF2;
-    --gold: #B8860B;
-    --gold-light: #F5ECD0;
-    --teal: #2A8A7A;
-    --teal-light: #D0F0EA;
-    --rose: #B84A6E;
-    --rose-light: #F5DDE4;
-    --indigo: #3F4B9A;
-    --indigo-light: #DDE0F2;
-    --card: #FFFFFF;
-    --border: #E5DED4;
-    --shadow: rgba(42, 36, 32, 0.08);
-    --muted: #9A9189;
-    --dimtext: #7A7168;
-    --bodytext: #5A534B;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-
   .header {
     text-align: center;
     padding: 64px 24px 36px;
@@ -122,6 +86,7 @@
   .lesson-card[data-topic="phrases"]::before { background: var(--rose); }
   .lesson-card[data-topic="clauses"]::before { background: var(--indigo); }
   .lesson-card[data-topic="coming"]::before { background: var(--border); }
+  .lesson-card[data-topic="practice"]::before { background: linear-gradient(90deg, var(--accent), var(--purple), var(--indigo)); }
 
   .lesson-card:hover {
     transform: translateY(-3px);
@@ -364,11 +329,17 @@
       </div>
     </a>
 
-    <div class="lesson-card" data-topic="coming">
-      <div class="lesson-num">Coming soon</div>
-      <h3>More Lessons</h3>
-      <div class="lesson-desc">Verb tenses, punctuation, agreement, usage — the collection will keep growing.</div>
-    </div>
+    <a class="lesson-card" data-topic="practice" href="practice.html">
+      <span class="lesson-arrow">→</span>
+      <div class="lesson-num">Practice</div>
+      <h3>Check Yourself</h3>
+      <div class="lesson-desc">Filter by concept, pick a length, and test your knowledge. Three problem types — click words, classify in context, or pick from choices. Feedback after every answer.</div>
+      <div class="lesson-tags">
+        <span class="lesson-tag">Identify</span>
+        <span class="lesson-tag">Classify</span>
+        <span class="lesson-tag">Multiple Choice</span>
+      </div>
+    </a>
 
   </div>
 
