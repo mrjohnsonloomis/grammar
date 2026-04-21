@@ -1,0 +1,1035 @@
+{
+  "lesson": "parts-of-speech",
+  "lessonTitle": "Parts of Speech",
+  "problems": [
+
+    {
+      "id": "pos-noun-001",
+      "type": "identify",
+      "tags": ["noun"],
+      "difficulty": 1,
+      "instruction": "Click every noun in the sentence.",
+      "sentence": ["The", "captain", "steered", "the", "ship", "through", "the", "storm", "."],
+      "answer": [1, 4, 7],
+      "explanation": "Nouns name people, places, things, or ideas. Here: 'captain' (person), 'ship' (thing), 'storm' (thing). 'The' is an article, 'steered' is a verb, 'through' is a preposition."
+    },
+    {
+      "id": "pos-noun-002",
+      "type": "identify",
+      "tags": ["noun"],
+      "difficulty": 1,
+      "instruction": "Click every noun.",
+      "sentence": ["Maya", "found", "happiness", "in", "small", "moments", "."],
+      "answer": [0, 2, 5],
+      "explanation": "'Maya' is a proper noun (a specific person). 'Happiness' is an abstract noun (an idea/feeling). 'Moments' is a common concrete noun."
+    },
+    {
+      "id": "pos-noun-003",
+      "type": "multiple-choice",
+      "tags": ["noun"],
+      "difficulty": 1,
+      "prompt": "Which word is an abstract noun?",
+      "choices": ["desk", "freedom", "elephant", "river"],
+      "answer": 1,
+      "explanation": "'Freedom' names an idea — you can't see or touch it. The other three are concrete nouns: physical things you can perceive with your senses."
+    },
+    {
+      "id": "pos-noun-004",
+      "type": "multiple-choice",
+      "tags": ["noun"],
+      "difficulty": 2,
+      "prompt": "Which sentence contains a proper noun?",
+      "choices": [
+        "The dog barked at the mailman.",
+        "She drove to the store.",
+        "We hiked in Yosemite last summer.",
+        "The children played in the yard."
+      ],
+      "answer": 2,
+      "explanation": "'Yosemite' is a proper noun — it names a specific place and is capitalized. The other sentences contain only common nouns."
+    },
+    {
+      "id": "pos-noun-005",
+      "type": "classify",
+      "tags": ["noun", "verb"],
+      "difficulty": 2,
+      "target": "run",
+      "sentence": "She scored a run in the final inning.",
+      "prompt": "What part of speech is 'run' in this sentence?",
+      "choices": ["Noun", "Verb", "Adjective", "Adverb"],
+      "answer": 0,
+      "explanation": "Here 'run' names a thing (a score in baseball) — so it's a noun. The same word is a verb in 'I run every morning.' Form doesn't determine part of speech; function does."
+    },
+    {
+      "id": "pos-noun-006",
+      "type": "classify",
+      "tags": ["noun", "verb"],
+      "difficulty": 2,
+      "target": "light",
+      "sentence": "The light from the window woke me up.",
+      "prompt": "What part of speech is 'light' in this sentence?",
+      "choices": ["Noun", "Verb", "Adjective"],
+      "answer": 0,
+      "explanation": "'Light' here names a thing — the thing that woke her up. Compare: 'Light a candle' (verb) or 'a light jacket' (adjective). Same word, three jobs."
+    },
+    {
+      "id": "pos-noun-007",
+      "type": "identify",
+      "tags": ["noun"],
+      "difficulty": 2,
+      "instruction": "Click every noun. Watch for abstract ones.",
+      "sentence": ["Courage", "is", "not", "the", "absence", "of", "fear", "."],
+      "answer": [0, 4, 6],
+      "explanation": "Three abstract nouns: 'courage,' 'absence,' 'fear' — all ideas or states, not physical things. Abstract nouns are easy to miss because they don't 'feel' like things."
+    },
+    {
+      "id": "pos-noun-008",
+      "type": "multiple-choice",
+      "tags": ["noun"],
+      "difficulty": 2,
+      "prompt": "How many nouns are in: 'The wisdom of the elders shaped our traditions'?",
+      "choices": ["2", "3", "4", "5"],
+      "answer": 1,
+      "explanation": "Three nouns: 'wisdom' (abstract), 'elders' (concrete), 'traditions' (abstract). 'The' is an article, 'of' is a preposition, 'shaped' is a verb, 'our' is a pronoun."
+    },
+    {
+      "id": "pos-noun-009",
+      "type": "classify",
+      "tags": ["noun"],
+      "difficulty": 3,
+      "target": "reading",
+      "sentence": "Reading is her favorite activity.",
+      "prompt": "What part of speech is 'reading' in this sentence?",
+      "choices": ["Noun (gerund)", "Verb", "Adjective (participle)"],
+      "answer": 0,
+      "explanation": "'Reading' names an activity and is the subject of 'is' — so it's functioning as a noun. When an -ing word acts as a noun, it's called a gerund. (Compare: 'She is reading' where 'reading' is part of the verb, or 'the reading lamp' where it's an adjective.)"
+    },
+    {
+      "id": "pos-noun-010",
+      "type": "identify",
+      "tags": ["noun"],
+      "difficulty": 3,
+      "instruction": "Click every noun — including any -ing words acting as nouns.",
+      "sentence": ["Swimming", "improves", "strength", "and", "flexibility", "."],
+      "answer": [0, 2, 4],
+      "explanation": "'Swimming' is a gerund (an -ing word acting as a noun) — here it's the subject. 'Strength' and 'flexibility' are abstract nouns. 'Improves' is the verb."
+    },
+
+    {
+      "id": "pos-pronoun-001",
+      "type": "identify",
+      "tags": ["pronoun"],
+      "difficulty": 1,
+      "instruction": "Click every pronoun.",
+      "sentence": ["She", "gave", "him", "her", "old", "notebook", "."],
+      "answer": [0, 2, 3],
+      "explanation": "'She' (subject pronoun), 'him' (object pronoun), 'her' (possessive pronoun). Pronouns stand in for nouns so we don't have to repeat names."
+    },
+    {
+      "id": "pos-pronoun-002",
+      "type": "multiple-choice",
+      "tags": ["pronoun"],
+      "difficulty": 1,
+      "prompt": "Which of these is NOT a pronoun?",
+      "choices": ["they", "ours", "house", "themselves"],
+      "answer": 2,
+      "explanation": "'House' is a noun. The others: 'they' (personal), 'ours' (possessive), 'themselves' (reflexive)."
+    },
+    {
+      "id": "pos-pronoun-003",
+      "type": "multiple-choice",
+      "tags": ["pronoun"],
+      "difficulty": 2,
+      "prompt": "Which type of pronoun is 'who' in: 'The teacher who called me was kind'?",
+      "choices": ["Personal", "Possessive", "Relative", "Reflexive"],
+      "answer": 2,
+      "explanation": "'Who' is a relative pronoun — it introduces a clause that describes 'teacher.' Relative pronouns include who, whom, whose, which, that."
+    },
+    {
+      "id": "pos-pronoun-004",
+      "type": "identify",
+      "tags": ["pronoun"],
+      "difficulty": 2,
+      "instruction": "Click every pronoun.",
+      "sentence": ["Everyone", "brought", "something", "for", "themselves", "to", "share", "."],
+      "answer": [0, 2, 4],
+      "explanation": "'Everyone' and 'something' are indefinite pronouns. 'Themselves' is a reflexive pronoun. Indefinite pronouns are easy to miss because they don't look like typical pronouns."
+    },
+    {
+      "id": "pos-pronoun-005",
+      "type": "classify",
+      "tags": ["pronoun", "adjective"],
+      "difficulty": 2,
+      "target": "her",
+      "sentence": "Her coat was hanging by the door.",
+      "prompt": "What part of speech is 'her' in this sentence?",
+      "choices": ["Pronoun (personal)", "Adjective (possessive)", "Noun"],
+      "answer": 1,
+      "explanation": "This is tricky — when a possessive word comes before a noun to modify it ('her coat'), many grammar traditions call it a possessive adjective. When it stands alone ('the coat is hers'), it's a possessive pronoun. Context decides."
+    },
+    {
+      "id": "pos-pronoun-006",
+      "type": "multiple-choice",
+      "tags": ["pronoun"],
+      "difficulty": 2,
+      "prompt": "Which sentence uses a reflexive pronoun correctly?",
+      "choices": [
+        "Myself went to the store.",
+        "She taught herself to play piano.",
+        "The gift is for John and myself.",
+        "Please give the form to myself."
+      ],
+      "answer": 1,
+      "explanation": "Reflexive pronouns (myself, herself, etc.) refer back to the subject. 'She taught herself' ✓ — she is teaching who? Herself. The others misuse reflexives where ordinary pronouns belong ('I went,' 'John and me,' 'give it to me')."
+    },
+    {
+      "id": "pos-pronoun-007",
+      "type": "identify",
+      "tags": ["pronoun"],
+      "difficulty": 2,
+      "instruction": "Click every pronoun. Watch for demonstratives.",
+      "sentence": ["That", "is", "the", "book", "I", "wanted", "."],
+      "answer": [0, 4],
+      "explanation": "'That' is a demonstrative pronoun (it stands for the book). 'I' is a personal pronoun. (If 'that' had a noun after it — 'that book' — it would be a demonstrative adjective instead.)"
+    },
+    {
+      "id": "pos-pronoun-008",
+      "type": "multiple-choice",
+      "tags": ["pronoun"],
+      "difficulty": 3,
+      "prompt": "In 'The student whose essay won was surprised,' what kind of pronoun is 'whose'?",
+      "choices": ["Personal", "Possessive relative", "Interrogative", "Indefinite"],
+      "answer": 1,
+      "explanation": "'Whose' here is a relative pronoun in its possessive form — it introduces a relative clause AND shows possession (the essay belonging to the student). 'Whose' can also be interrogative ('Whose coat is this?'), but context determines which."
+    },
+    {
+      "id": "pos-pronoun-009",
+      "type": "identify",
+      "tags": ["pronoun"],
+      "difficulty": 3,
+      "instruction": "Click every pronoun. Some are harder to spot.",
+      "sentence": ["Nobody", "knows", "which", "of", "these", "is", "mine", "."],
+      "answer": [0, 2, 4, 6],
+      "explanation": "Four pronouns: 'Nobody' (indefinite), 'which' (interrogative/relative), 'these' (demonstrative), 'mine' (possessive). Indefinite and demonstrative pronouns are the most often missed."
+    },
+    {
+      "id": "pos-pronoun-010",
+      "type": "classify",
+      "tags": ["pronoun"],
+      "difficulty": 3,
+      "target": "that",
+      "sentence": "That was the best meal I've had all year.",
+      "prompt": "What part of speech is 'that' in this sentence?",
+      "choices": ["Demonstrative pronoun", "Demonstrative adjective", "Relative pronoun", "Conjunction"],
+      "answer": 0,
+      "explanation": "'That' stands alone as the subject — it's a demonstrative pronoun (it points at the meal). Compare 'That meal was great' (demonstrative adjective modifying 'meal') or 'the meal that I had' (relative pronoun). Same word, four possible jobs."
+    },
+
+    {
+      "id": "pos-verb-001",
+      "type": "identify",
+      "tags": ["verb"],
+      "difficulty": 1,
+      "instruction": "Click every verb.",
+      "sentence": ["The", "dog", "barked", "and", "chased", "the", "car", "."],
+      "answer": [2, 4],
+      "explanation": "Two action verbs: 'barked' and 'chased.' Compound verbs (two verbs sharing one subject) are common and sometimes missed."
+    },
+    {
+      "id": "pos-verb-002",
+      "type": "multiple-choice",
+      "tags": ["verb"],
+      "difficulty": 1,
+      "prompt": "Which word is a linking verb in: 'The soup tastes delicious'?",
+      "choices": ["The", "soup", "tastes", "delicious"],
+      "answer": 2,
+      "explanation": "'Tastes' here is a linking verb — it connects the subject (soup) to a description (delicious). Linking verbs include be, seem, become, appear, and sensory verbs like taste, smell, sound, feel, look."
+    },
+    {
+      "id": "pos-verb-003",
+      "type": "classify",
+      "tags": ["verb"],
+      "difficulty": 2,
+      "target": "tastes",
+      "sentence": "She tastes the soup before serving it.",
+      "prompt": "In this sentence, is 'tastes' an action verb or a linking verb?",
+      "choices": ["Action verb", "Linking verb"],
+      "answer": 0,
+      "explanation": "Here 'tastes' is an action verb — she is actively doing the tasting. Compare 'The soup tastes good' (linking: soup = good). Test: substitute 'is' — does it still make sense? 'She IS the soup' ✗ — not linking."
+    },
+    {
+      "id": "pos-verb-004",
+      "type": "identify",
+      "tags": ["verb"],
+      "difficulty": 2,
+      "instruction": "Click every verb, including helping verbs.",
+      "sentence": ["She", "has", "been", "studying", "all", "night", "."],
+      "answer": [1, 2, 3],
+      "explanation": "'Has been studying' is a three-word verb phrase. 'Has' and 'been' are helping verbs; 'studying' is the main verb. Present perfect progressive tense."
+    },
+    {
+      "id": "pos-verb-005",
+      "type": "multiple-choice",
+      "tags": ["verb"],
+      "difficulty": 2,
+      "prompt": "In 'We will finish the project tomorrow,' which is the main verb?",
+      "choices": ["will", "finish", "project", "tomorrow"],
+      "answer": 1,
+      "explanation": "'Finish' is the main verb (the action). 'Will' is a helping/modal verb that shows future tense. Together they form the verb phrase 'will finish.'"
+    },
+    {
+      "id": "pos-verb-006",
+      "type": "classify",
+      "tags": ["verb", "noun"],
+      "difficulty": 3,
+      "target": "running",
+      "sentence": "She is running in the marathon.",
+      "prompt": "What part of speech is 'running' in this sentence?",
+      "choices": ["Verb (part of 'is running')", "Noun (gerund)", "Adjective (participle)"],
+      "answer": 0,
+      "explanation": "Here 'running' is part of the verb 'is running' (present progressive tense). The helping verb 'is' is the tell. Compare: 'Running is fun' (gerund/noun) or 'the running water' (participle/adjective)."
+    },
+    {
+      "id": "pos-verb-007",
+      "type": "classify",
+      "tags": ["verb", "adjective"],
+      "difficulty": 3,
+      "target": "broken",
+      "sentence": "The window was broken during the storm.",
+      "prompt": "In this sentence, 'was broken' is what?",
+      "choices": ["Passive verb", "Linking verb + adjective", "Helping verb + gerund"],
+      "answer": 0,
+      "explanation": "'Was broken' is a passive verb construction — the subject (window) receives the action rather than performing it. Test: who broke the window? The storm did. Passive voice uses a form of 'be' + past participle."
+    },
+    {
+      "id": "pos-verb-008",
+      "type": "identify",
+      "tags": ["verb"],
+      "difficulty": 2,
+      "instruction": "Click every verb in this sentence with two clauses.",
+      "sentence": ["When", "the", "bell", "rang", ",", "the", "students", "cheered", "."],
+      "answer": [3, 7],
+      "explanation": "Two verbs, one per clause: 'rang' (in the dependent clause) and 'cheered' (in the main clause). Each clause needs its own verb."
+    },
+    {
+      "id": "pos-verb-009",
+      "type": "multiple-choice",
+      "tags": ["verb"],
+      "difficulty": 3,
+      "prompt": "Which sentence contains a linking verb?",
+      "choices": [
+        "The children ran to the playground.",
+        "The cake looks delicious.",
+        "She painted the fence yesterday.",
+        "They whispered during the movie."
+      ],
+      "answer": 1,
+      "explanation": "'Looks' in 'The cake looks delicious' is a linking verb — it connects 'cake' to its description 'delicious.' Test: substitute 'is' → 'the cake IS delicious' ✓. The other sentences use action verbs."
+    },
+    {
+      "id": "pos-verb-010",
+      "type": "classify",
+      "tags": ["verb"],
+      "difficulty": 3,
+      "target": "must",
+      "sentence": "You must finish your homework before dinner.",
+      "prompt": "What kind of verb is 'must' here?",
+      "choices": ["Main verb", "Modal helping verb", "Linking verb"],
+      "answer": 1,
+      "explanation": "'Must' is a modal helping verb — it expresses necessity. Modals (must, should, can, may, will, would, could, might) always pair with a base verb. Here 'must finish' is the full verb phrase; 'finish' is the main verb."
+    },
+
+    {
+      "id": "pos-adjective-001",
+      "type": "identify",
+      "tags": ["adjective"],
+      "difficulty": 1,
+      "instruction": "Click every adjective.",
+      "sentence": ["The", "old", "wooden", "door", "creaked", "loudly", "."],
+      "answer": [1, 2],
+      "explanation": "'Old' and 'wooden' both describe 'door' — what kind of door? An old, wooden one. 'Loudly' is an adverb (it modifies 'creaked,' not a noun)."
+    },
+    {
+      "id": "pos-adjective-002",
+      "type": "multiple-choice",
+      "tags": ["adjective"],
+      "difficulty": 1,
+      "prompt": "Which word is an adjective in: 'She wore a bright red scarf'?",
+      "choices": ["wore", "bright", "scarf", "she"],
+      "answer": 1,
+      "explanation": "'Bright' modifies 'red' (how red? bright red) — so technically it's an adverb modifying an adjective! But in most traditional grammar, both 'bright' and 'red' are treated as adjectives modifying 'scarf.' The safer answer: both describe qualities of the scarf."
+    },
+    {
+      "id": "pos-adjective-003",
+      "type": "identify",
+      "tags": ["adjective"],
+      "difficulty": 2,
+      "instruction": "Click every adjective, including predicate adjectives.",
+      "sentence": ["The", "sunset", "was", "absolutely", "breathtaking", "."],
+      "answer": [4],
+      "explanation": "'Breathtaking' is a predicate adjective — it comes after the linking verb 'was' and describes the subject 'sunset.' 'Absolutely' is an adverb modifying 'breathtaking.'"
+    },
+    {
+      "id": "pos-adjective-004",
+      "type": "classify",
+      "tags": ["adjective", "noun"],
+      "difficulty": 2,
+      "target": "glass",
+      "sentence": "She picked up the glass vase carefully.",
+      "prompt": "What part of speech is 'glass' in this sentence?",
+      "choices": ["Noun", "Adjective", "Verb"],
+      "answer": 1,
+      "explanation": "Here 'glass' describes 'vase' — what kind of vase? A glass one. So it's functioning as an adjective (some grammars call this an attributive noun). 'Glass' is a noun in 'She drank from the glass.'"
+    },
+    {
+      "id": "pos-adjective-005",
+      "type": "multiple-choice",
+      "tags": ["adjective"],
+      "difficulty": 2,
+      "prompt": "How many adjectives are in: 'The small, brown puppy slept peacefully on the soft blanket'?",
+      "choices": ["2", "3", "4", "5"],
+      "answer": 1,
+      "explanation": "Three adjectives: 'small,' 'brown' (both describe puppy), 'soft' (describes blanket). 'Peacefully' is an adverb — it modifies 'slept.'"
+    },
+    {
+      "id": "pos-adjective-006",
+      "type": "classify",
+      "tags": ["adjective", "verb"],
+      "difficulty": 3,
+      "target": "frozen",
+      "sentence": "The frozen lake sparkled in the sun.",
+      "prompt": "What part of speech is 'frozen' in this sentence?",
+      "choices": ["Verb", "Adjective (participle)", "Noun"],
+      "answer": 1,
+      "explanation": "'Frozen' is a past participle being used as an adjective — it describes 'lake' (what kind of lake? a frozen one). The main verb is 'sparkled.' Compare: 'The lake was frozen' (there 'was frozen' is a passive verb)."
+    },
+    {
+      "id": "pos-adjective-007",
+      "type": "multiple-choice",
+      "tags": ["adjective"],
+      "difficulty": 2,
+      "prompt": "Which is a demonstrative adjective?",
+      "choices": ["beautiful", "this", "quickly", "because"],
+      "answer": 1,
+      "explanation": "'This' is a demonstrative adjective when it modifies a noun ('this book'). It becomes a demonstrative pronoun when it stands alone ('This is mine'). Other demonstratives: that, these, those."
+    },
+    {
+      "id": "pos-adjective-008",
+      "type": "identify",
+      "tags": ["adjective"],
+      "difficulty": 2,
+      "instruction": "Click every adjective.",
+      "sentence": ["Several", "tired", "travelers", "waited", "for", "the", "late", "train", "."],
+      "answer": [0, 1, 6],
+      "explanation": "'Several' (how many? — quantitative), 'tired' (what kind?), 'late' (what kind?) all modify nouns. Numbers and quantity words like 'several,' 'many,' 'few' are adjectives."
+    },
+    {
+      "id": "pos-adjective-009",
+      "type": "classify",
+      "tags": ["adjective", "verb"],
+      "difficulty": 3,
+      "target": "running",
+      "sentence": "The running water was ice cold.",
+      "prompt": "What part of speech is 'running' in this sentence?",
+      "choices": ["Verb", "Adjective (participle)", "Noun (gerund)"],
+      "answer": 1,
+      "explanation": "Here 'running' describes 'water' (what kind of water? the running kind) — so it's a participial adjective. The main verb is 'was.' Compare 'Running is fun' (gerund/noun) or 'She is running' (part of verb)."
+    },
+    {
+      "id": "pos-adjective-010",
+      "type": "multiple-choice",
+      "tags": ["adjective"],
+      "difficulty": 3,
+      "prompt": "In 'The book on the shelf is mine,' what modifies 'book'?",
+      "choices": [
+        "An adjective only",
+        "An article and a prepositional phrase acting as an adjective",
+        "A verb",
+        "Nothing modifies 'book'"
+      ],
+      "answer": 1,
+      "explanation": "'The' is the article modifying 'book,' and 'on the shelf' is a prepositional phrase acting as an adjective (telling WHICH book). Phrases can do adjective work too — not just single words."
+    },
+
+    {
+      "id": "pos-adverb-001",
+      "type": "identify",
+      "tags": ["adverb"],
+      "difficulty": 1,
+      "instruction": "Click every adverb.",
+      "sentence": ["She", "quickly", "finished", "her", "homework", "yesterday", "."],
+      "answer": [1, 5],
+      "explanation": "'Quickly' tells HOW she finished (modifying the verb). 'Yesterday' tells WHEN. Both are adverbs — they modify the verb 'finished.'"
+    },
+    {
+      "id": "pos-adverb-002",
+      "type": "multiple-choice",
+      "tags": ["adverb"],
+      "difficulty": 1,
+      "prompt": "Adverbs answer which of these questions?",
+      "choices": [
+        "Which? What kind?",
+        "Who? What?",
+        "When? Where? How? To what extent?",
+        "Before? After?"
+      ],
+      "answer": 2,
+      "explanation": "Adverbs answer when/where/how/to what extent. Adjectives answer which/what kind. Both are modifiers, but they modify different things: adverbs modify verbs, adjectives, or other adverbs; adjectives modify nouns and pronouns."
+    },
+    {
+      "id": "pos-adverb-003",
+      "type": "identify",
+      "tags": ["adverb"],
+      "difficulty": 2,
+      "instruction": "Click every adverb. Not all adverbs end in -ly.",
+      "sentence": ["He", "rarely", "arrives", "here", "early", "."],
+      "answer": [1, 3, 4],
+      "explanation": "'Rarely' (how often), 'here' (where), 'early' (when) are all adverbs modifying 'arrives.' Not all adverbs end in -ly — and not all -ly words are adverbs ('friendly' and 'lovely' are adjectives)."
+    },
+    {
+      "id": "pos-adverb-004",
+      "type": "classify",
+      "tags": ["adverb", "adjective"],
+      "difficulty": 2,
+      "target": "fast",
+      "sentence": "She runs fast every morning.",
+      "prompt": "What part of speech is 'fast' in this sentence?",
+      "choices": ["Adjective", "Adverb", "Verb", "Noun"],
+      "answer": 1,
+      "explanation": "'Fast' modifies 'runs' (HOW does she run?) — so it's an adverb. 'Fast' is an adjective in 'a fast car.' Some words (fast, hard, late, early) are both adjective and adverb depending on what they modify."
+    },
+    {
+      "id": "pos-adverb-005",
+      "type": "multiple-choice",
+      "tags": ["adverb"],
+      "difficulty": 2,
+      "prompt": "In 'The extremely hot coffee burned her tongue,' what does 'extremely' modify?",
+      "choices": ["The noun 'coffee'", "The adjective 'hot'", "The verb 'burned'", "The noun 'tongue'"],
+      "answer": 1,
+      "explanation": "'Extremely' modifies the adjective 'hot' — HOW hot? Extremely hot. Adverbs modify verbs, adjectives, and other adverbs. This one modifies an adjective."
+    },
+    {
+      "id": "pos-adverb-006",
+      "type": "identify",
+      "tags": ["adverb"],
+      "difficulty": 2,
+      "instruction": "Click every adverb.",
+      "sentence": ["Surprisingly", ",", "the", "team", "played", "very", "well", "yesterday", "."],
+      "answer": [0, 5, 6, 7],
+      "explanation": "Four adverbs: 'Surprisingly' (modifies the whole sentence), 'very' (modifies 'well'), 'well' (modifies 'played'), 'yesterday' (modifies 'played'). Adverbs are remarkably flexible."
+    },
+    {
+      "id": "pos-adverb-007",
+      "type": "classify",
+      "tags": ["adverb", "adjective"],
+      "difficulty": 3,
+      "target": "lovely",
+      "sentence": "She wore a lovely dress.",
+      "prompt": "What part of speech is 'lovely'?",
+      "choices": ["Adjective", "Adverb"],
+      "answer": 0,
+      "explanation": "Despite ending in -ly, 'lovely' is an adjective — it modifies 'dress.' The -ly suffix USUALLY signals an adverb, but not always. Other -ly adjectives: friendly, ugly, deadly, costly, silly."
+    },
+    {
+      "id": "pos-adverb-008",
+      "type": "multiple-choice",
+      "tags": ["adverb"],
+      "difficulty": 2,
+      "prompt": "Which sentence contains a conjunctive adverb?",
+      "choices": [
+        "She was tired, so she went to bed.",
+        "She was tired; however, she kept working.",
+        "She was tired when she came home.",
+        "She was tired and hungry."
+      ],
+      "answer": 1,
+      "explanation": "'However' is a conjunctive adverb — it shows a relationship between two independent clauses. Conjunctive adverbs (however, therefore, moreover, consequently) are typically preceded by a semicolon, not a comma."
+    },
+    {
+      "id": "pos-adverb-009",
+      "type": "identify",
+      "tags": ["adverb"],
+      "difficulty": 3,
+      "instruction": "Click every adverb. Remember, adverbs can modify more than just verbs.",
+      "sentence": ["The", "book", "is", "quite", "long", "but", "surprisingly", "readable", "."],
+      "answer": [3, 6],
+      "explanation": "'Quite' modifies the adjective 'long' (how long? quite). 'Surprisingly' modifies the adjective 'readable' (how readable? surprisingly). Adverbs often modify adjectives, not just verbs."
+    },
+    {
+      "id": "pos-adverb-010",
+      "type": "classify",
+      "tags": ["adverb", "preposition"],
+      "difficulty": 3,
+      "target": "up",
+      "sentence": "She climbed up quickly.",
+      "prompt": "What part of speech is 'up' in this sentence?",
+      "choices": ["Preposition", "Adverb", "Verb"],
+      "answer": 1,
+      "explanation": "Here 'up' has no object (no noun follows it) — it's an adverb telling WHERE she climbed. Compare 'She climbed up the ladder,' where 'up' is a preposition with 'ladder' as its object. Same word, different job based on whether it takes an object."
+    },
+
+    {
+      "id": "pos-preposition-001",
+      "type": "identify",
+      "tags": ["preposition"],
+      "difficulty": 1,
+      "instruction": "Click every preposition.",
+      "sentence": ["The", "cat", "sat", "on", "the", "mat", "by", "the", "door", "."],
+      "answer": [3, 6],
+      "explanation": "'On' (on what? the mat) and 'by' (by what? the door) are prepositions. Each one has an object (the noun that follows). Together, preposition + object = prepositional phrase."
+    },
+    {
+      "id": "pos-preposition-002",
+      "type": "multiple-choice",
+      "tags": ["preposition"],
+      "difficulty": 1,
+      "prompt": "Which is NOT a preposition?",
+      "choices": ["across", "during", "quickly", "beneath"],
+      "answer": 2,
+      "explanation": "'Quickly' is an adverb. The others are prepositions: 'across' (space), 'during' (time), 'beneath' (space)."
+    },
+    {
+      "id": "pos-preposition-003",
+      "type": "identify",
+      "tags": ["preposition"],
+      "difficulty": 2,
+      "instruction": "Click every preposition in this sentence.",
+      "sentence": ["She", "walked", "from", "the", "park", "to", "the", "library", "after", "lunch", "."],
+      "answer": [2, 5, 8],
+      "explanation": "Three prepositions: 'from,' 'to,' and 'after.' Each has its own object (park, library, lunch). Sentences often stack multiple prepositional phrases."
+    },
+    {
+      "id": "pos-preposition-004",
+      "type": "multiple-choice",
+      "tags": ["preposition"],
+      "difficulty": 2,
+      "prompt": "What is the object of the preposition in 'The painting above the fireplace is old'?",
+      "choices": ["painting", "above", "fireplace", "old"],
+      "answer": 2,
+      "explanation": "'Fireplace' is the object of 'above.' Every preposition has an object — the noun (or pronoun) that follows it. Together: 'above the fireplace' is a prepositional phrase."
+    },
+    {
+      "id": "pos-preposition-005",
+      "type": "classify",
+      "tags": ["preposition", "adverb"],
+      "difficulty": 2,
+      "target": "in",
+      "sentence": "She walked in slowly.",
+      "prompt": "What part of speech is 'in' in this sentence?",
+      "choices": ["Preposition", "Adverb"],
+      "answer": 1,
+      "explanation": "Here 'in' has no object — nothing follows it that it's the 'in' of. So it's an adverb (telling where she walked). Compare 'She walked in the room' where 'in' is a preposition with 'room' as its object."
+    },
+    {
+      "id": "pos-preposition-006",
+      "type": "identify",
+      "tags": ["preposition"],
+      "difficulty": 2,
+      "instruction": "Click every preposition.",
+      "sentence": ["The", "book", "about", "dragons", "on", "my", "desk", "belongs", "to", "my", "sister", "."],
+      "answer": [2, 4, 8],
+      "explanation": "Three prepositions: 'about' (about what? dragons), 'on' (on what? desk), 'to' (to whom? sister). Each starts a prepositional phrase."
+    },
+    {
+      "id": "pos-preposition-007",
+      "type": "multiple-choice",
+      "tags": ["preposition"],
+      "difficulty": 3,
+      "prompt": "Which word is NOT functioning as a preposition?",
+      "choices": [
+        "She sat near the window.",
+        "The dog ran around the yard.",
+        "I haven't seen him since Monday.",
+        "He felt tired after working all day."
+      ],
+      "answer": 3,
+      "explanation": "'After' in option 4 is a subordinating conjunction — it introduces a dependent clause ('working all day' is a gerund phrase, but 'after' here is subordinating). Tricky: many words (after, before, since, until) can be either prepositions or subordinating conjunctions. Test: does it introduce a clause with a verb? If yes, conjunction. If it just takes a noun/pronoun object, preposition."
+    },
+    {
+      "id": "pos-preposition-008",
+      "type": "classify",
+      "tags": ["preposition"],
+      "difficulty": 2,
+      "target": "to",
+      "sentence": "She drove to the store.",
+      "prompt": "What part of speech is 'to' in this sentence?",
+      "choices": ["Preposition", "Part of an infinitive"],
+      "answer": 0,
+      "explanation": "Here 'to' takes a noun object (the store) — so it's a preposition. Compare 'She wanted to shop' where 'to' is followed by a verb (shop) — there it's part of the infinitive 'to shop.' Rule: 'to' + noun = preposition, 'to' + verb = infinitive."
+    },
+    {
+      "id": "pos-preposition-009",
+      "type": "identify",
+      "tags": ["preposition"],
+      "difficulty": 3,
+      "instruction": "Click every preposition. Don't click any infinitives.",
+      "sentence": ["She", "went", "to", "the", "park", "to", "meet", "her", "friends", "."],
+      "answer": [2],
+      "explanation": "Only the first 'to' is a preposition (to WHAT? the park). The second 'to' is part of the infinitive 'to meet' (to + verb). Same word, two jobs."
+    },
+    {
+      "id": "pos-preposition-010",
+      "type": "multiple-choice",
+      "tags": ["preposition"],
+      "difficulty": 3,
+      "prompt": "What job does the prepositional phrase 'with blue eyes' do in 'The girl with blue eyes smiled'?",
+      "choices": [
+        "It's the subject",
+        "It acts as an adjective modifying 'girl'",
+        "It acts as an adverb modifying 'smiled'",
+        "It's the direct object"
+      ],
+      "answer": 1,
+      "explanation": "Prepositional phrases most often act as adjectives or adverbs. Here 'with blue eyes' tells us WHICH girl — that's an adjective's job. Prepositional phrases acting as adjectives usually sit right next to the noun they modify."
+    },
+
+    {
+      "id": "pos-conjunction-001",
+      "type": "identify",
+      "tags": ["conjunction"],
+      "difficulty": 1,
+      "instruction": "Click every conjunction.",
+      "sentence": ["She", "studied", "hard", "and", "aced", "the", "test", "."],
+      "answer": [3],
+      "explanation": "'And' is a coordinating conjunction — it joins two equal parts ('studied hard' and 'aced the test'). The seven coordinating conjunctions spell FANBOYS: for, and, nor, but, or, yet, so."
+    },
+    {
+      "id": "pos-conjunction-002",
+      "type": "multiple-choice",
+      "tags": ["conjunction"],
+      "difficulty": 1,
+      "prompt": "Which is NOT a coordinating conjunction (FANBOYS)?",
+      "choices": ["and", "but", "because", "or"],
+      "answer": 2,
+      "explanation": "'Because' is a SUBORDINATING conjunction — it introduces a dependent clause. The coordinating conjunctions (FANBOYS) are: for, and, nor, but, or, yet, so."
+    },
+    {
+      "id": "pos-conjunction-003",
+      "type": "identify",
+      "tags": ["conjunction"],
+      "difficulty": 2,
+      "instruction": "Click every conjunction.",
+      "sentence": ["Although", "it", "was", "cold", ",", "we", "went", "outside", "and", "built", "a", "snowman", "."],
+      "answer": [0, 8],
+      "explanation": "'Although' is a subordinating conjunction (introducing the dependent clause). 'And' is a coordinating conjunction (joining 'went outside' and 'built a snowman'). Both are conjunctions — different jobs."
+    },
+    {
+      "id": "pos-conjunction-004",
+      "type": "classify",
+      "tags": ["conjunction"],
+      "difficulty": 2,
+      "target": "because",
+      "sentence": "We stayed inside because it was raining.",
+      "prompt": "What kind of conjunction is 'because'?",
+      "choices": ["Coordinating", "Subordinating", "Correlative"],
+      "answer": 1,
+      "explanation": "'Because' is a subordinating conjunction — it makes the following clause dependent. 'Because it was raining' cannot stand alone; it needs the main clause to complete the thought."
+    },
+    {
+      "id": "pos-conjunction-005",
+      "type": "multiple-choice",
+      "tags": ["conjunction"],
+      "difficulty": 2,
+      "prompt": "Which sentence contains correlative conjunctions?",
+      "choices": [
+        "She likes tea and coffee.",
+        "She likes either tea or coffee.",
+        "She likes tea because it warms her.",
+        "She likes tea, but he likes coffee."
+      ],
+      "answer": 1,
+      "explanation": "'Either...or' are correlative conjunctions — they come in pairs. Other pairs: neither/nor, both/and, not only/but also, whether/or."
+    },
+    {
+      "id": "pos-conjunction-006",
+      "type": "identify",
+      "tags": ["conjunction"],
+      "difficulty": 2,
+      "instruction": "Click every conjunction, including correlative pairs.",
+      "sentence": ["Neither", "the", "teacher", "nor", "the", "students", "knew", "the", "answer", "."],
+      "answer": [0, 3],
+      "explanation": "'Neither...nor' is a correlative pair. Both parts need to be clicked — they work together as one conjunction."
+    },
+    {
+      "id": "pos-conjunction-007",
+      "type": "multiple-choice",
+      "tags": ["conjunction"],
+      "difficulty": 3,
+      "prompt": "In 'Wait here until I return,' what part of speech is 'until'?",
+      "choices": ["Preposition", "Subordinating conjunction", "Adverb"],
+      "answer": 1,
+      "explanation": "Here 'until' introduces a clause with its own subject and verb ('I return') — so it's a subordinating conjunction. Compare 'Wait here until noon' where 'until' is a preposition (object: noon). Many words can be either prepositions or conjunctions depending on what follows."
+    },
+    {
+      "id": "pos-conjunction-008",
+      "type": "classify",
+      "tags": ["conjunction"],
+      "difficulty": 2,
+      "target": "so",
+      "sentence": "It was late, so we went home.",
+      "prompt": "What kind of conjunction is 'so' in this sentence?",
+      "choices": ["Coordinating (FANBOYS)", "Subordinating", "Correlative"],
+      "answer": 0,
+      "explanation": "'So' is one of the coordinating conjunctions (FANBOYS). It joins two independent clauses: 'It was late' + 'we went home.' Note the comma before 'so' — that's the rule when joining two independent clauses with a coordinating conjunction."
+    },
+    {
+      "id": "pos-conjunction-009",
+      "type": "identify",
+      "tags": ["conjunction"],
+      "difficulty": 3,
+      "instruction": "Click every conjunction in this longer sentence.",
+      "sentence": ["When", "the", "bell", "rang", ",", "the", "students", "packed", "up", "and", "left", ",", "but", "one", "student", "stayed", "behind", "."],
+      "answer": [0, 9, 12],
+      "explanation": "Three conjunctions doing three jobs: 'When' (subordinating — introduces dependent clause), 'and' (coordinating — joins 'packed up' and 'left'), 'but' (coordinating — joins two independent clauses)."
+    },
+    {
+      "id": "pos-conjunction-010",
+      "type": "multiple-choice",
+      "tags": ["conjunction"],
+      "difficulty": 3,
+      "prompt": "What's the difference between 'and' in these two sentences? 'She sang and danced' vs. 'She sang, and she danced.'",
+      "choices": [
+        "No difference — 'and' is a coordinating conjunction in both",
+        "The first joins verbs; the second joins independent clauses — but 'and' is still a coordinating conjunction in both",
+        "The first is a coordinating conjunction; the second is subordinating",
+        "The comma changes it to a subordinating conjunction"
+      ],
+      "answer": 1,
+      "explanation": "'And' is a coordinating conjunction in both cases. What changes is WHAT it's joining — verbs in the first (no comma needed), full independent clauses in the second (comma required). The word itself doesn't change; its job scales up."
+    },
+
+    {
+      "id": "pos-article-001",
+      "type": "identify",
+      "tags": ["article"],
+      "difficulty": 1,
+      "instruction": "Click every article.",
+      "sentence": ["The", "cat", "sat", "on", "a", "chair", "near", "an", "open", "window", "."],
+      "answer": [0, 4, 7],
+      "explanation": "Three articles: 'The' (definite), 'a' (indefinite, before a consonant sound), 'an' (indefinite, before a vowel sound). Articles always precede a noun (sometimes with other modifiers in between)."
+    },
+    {
+      "id": "pos-article-002",
+      "type": "multiple-choice",
+      "tags": ["article"],
+      "difficulty": 1,
+      "prompt": "What's the difference between 'a' and 'an'?",
+      "choices": [
+        "'A' is more formal than 'an'",
+        "'A' comes before consonant sounds; 'an' comes before vowel sounds",
+        "'A' is singular; 'an' is plural",
+        "No difference"
+      ],
+      "answer": 1,
+      "explanation": "The rule is about SOUND, not letter. 'A university' (starts with a 'yoo' sound — consonant), 'an hour' (silent h, starts with 'ow' — vowel sound). Listen, don't look at the spelling."
+    },
+    {
+      "id": "pos-article-003",
+      "type": "multiple-choice",
+      "tags": ["article"],
+      "difficulty": 2,
+      "prompt": "Which blank should have 'an' rather than 'a'?",
+      "choices": [
+        "I bought ___ university textbook.",
+        "She waited ___ hour for the bus.",
+        "He gave me ___ one-dollar bill.",
+        "We found ___ European restaurant."
+      ],
+      "answer": 1,
+      "explanation": "'An hour' — the 'h' is silent, so the word starts with a vowel sound. The others all begin with consonant sounds despite their spellings: 'university' (yoo), 'one' (wuhn), 'European' (yoor)."
+    },
+    {
+      "id": "pos-article-004",
+      "type": "multiple-choice",
+      "tags": ["article"],
+      "difficulty": 2,
+      "prompt": "When do you use 'the' instead of 'a'?",
+      "choices": [
+        "Always with proper nouns",
+        "When both speaker and reader know WHICH one",
+        "Only with plural nouns",
+        "When the noun is abstract"
+      ],
+      "answer": 1,
+      "explanation": "'The' is the definite article — used when a specific noun is meant. 'A/an' is indefinite — any one of a group. Compare: 'I need a pen' (any pen) vs. 'I need the pen' (that specific one)."
+    },
+    {
+      "id": "pos-article-005",
+      "type": "identify",
+      "tags": ["article"],
+      "difficulty": 2,
+      "instruction": "Click every article.",
+      "sentence": ["An", "old", "man", "gave", "the", "children", "a", "small", "gift", "."],
+      "answer": [0, 4, 6],
+      "explanation": "Three articles: 'An' (indefinite, before vowel sound), 'the' (definite), 'a' (indefinite). Notice how articles can have adjectives between them and their noun: 'an old man,' 'a small gift.'"
+    },
+    {
+      "id": "pos-article-006",
+      "type": "multiple-choice",
+      "tags": ["article"],
+      "difficulty": 2,
+      "prompt": "Which sentence uses articles correctly?",
+      "choices": [
+        "She is a honest person.",
+        "She is an honest person.",
+        "She is the honest person.",
+        "She is honest person."
+      ],
+      "answer": 1,
+      "explanation": "'An honest' — the 'h' is silent, so 'honest' starts with a vowel sound. Always go by sound, not spelling. Other silent-h examples: 'an hour,' 'an heir.'"
+    },
+    {
+      "id": "pos-article-007",
+      "type": "multiple-choice",
+      "tags": ["article"],
+      "difficulty": 3,
+      "prompt": "Why does this sound wrong: 'I went to the Paris last summer'?",
+      "choices": [
+        "Proper nouns usually don't take 'the'",
+        "'Paris' should be plural",
+        "You need 'a' instead",
+        "Nothing is wrong"
+      ],
+      "answer": 0,
+      "explanation": "Most proper nouns for cities, people, and continents don't take articles: 'Paris,' 'Japan,' 'Africa.' Exceptions: some country names ('the United States,' 'the Netherlands'), rivers ('the Nile'), oceans, and mountain ranges."
+    },
+    {
+      "id": "pos-article-008",
+      "type": "identify",
+      "tags": ["article"],
+      "difficulty": 2,
+      "instruction": "Click every article.",
+      "sentence": ["The", "children", "read", "a", "book", "about", "the", "ocean", "."],
+      "answer": [0, 3, 6],
+      "explanation": "Three articles. Notice 'read' is not followed by 'the' or 'a' — some verbs don't require articles for their objects, but this one does: 'a book.'"
+    },
+    {
+      "id": "pos-article-009",
+      "type": "multiple-choice",
+      "tags": ["article"],
+      "difficulty": 3,
+      "prompt": "What's the difference in meaning? 'I'd like a coffee' vs. 'I'd like the coffee.'",
+      "choices": [
+        "No difference",
+        "'A coffee' = any/one coffee; 'the coffee' = a specific coffee we both know about",
+        "'The coffee' is more polite",
+        "'A coffee' is grammatically wrong"
+      ],
+      "answer": 1,
+      "explanation": "The articles carry a lot of meaning. 'A coffee' = any coffee; you're ordering one. 'The coffee' = a specific coffee already mentioned or pointed at. The tiny word shifts the whole meaning."
+    },
+    {
+      "id": "pos-article-010",
+      "type": "multiple-choice",
+      "tags": ["article"],
+      "difficulty": 3,
+      "prompt": "Why do we say 'I love music' but 'I love the music of Beethoven'?",
+      "choices": [
+        "Music with an article always sounds wrong",
+        "General abstract concepts skip the article; specific ones take 'the'",
+        "Proper nouns always take 'the'",
+        "It's just inconsistent"
+      ],
+      "answer": 1,
+      "explanation": "When talking about something in general (music as a whole), English often skips the article. When narrowing to a specific instance ('the music of Beethoven'), 'the' reappears. Same pattern: 'I love art' vs. 'the art in this museum.'"
+    },
+
+    {
+      "id": "pos-interjection-001",
+      "type": "identify",
+      "tags": ["interjection"],
+      "difficulty": 1,
+      "instruction": "Click the interjection.",
+      "sentence": ["Wow", ",", "that", "sunset", "is", "beautiful", "!"],
+      "answer": [0],
+      "explanation": "'Wow' is an interjection — it expresses emotion (surprise, admiration). Interjections are grammatically independent from the rest of the sentence; they're often set off by commas or exclamation points."
+    },
+    {
+      "id": "pos-interjection-002",
+      "type": "multiple-choice",
+      "tags": ["interjection"],
+      "difficulty": 1,
+      "prompt": "Which word is an interjection?",
+      "choices": ["quickly", "because", "ouch", "between"],
+      "answer": 2,
+      "explanation": "'Ouch' is an interjection expressing pain. It doesn't connect grammatically to a sentence — you could say just 'Ouch!' on its own. The others are adverb, conjunction, preposition."
+    },
+    {
+      "id": "pos-interjection-003",
+      "type": "multiple-choice",
+      "tags": ["interjection"],
+      "difficulty": 2,
+      "prompt": "What's the key feature of an interjection?",
+      "choices": [
+        "It must end with an exclamation point",
+        "It's grammatically independent from the rest of the sentence",
+        "It must be a single word",
+        "It always expresses negative emotion"
+      ],
+      "answer": 1,
+      "explanation": "Interjections stand apart from the grammar of the sentence they appear in. You can remove them without affecting grammatical structure: 'Wow, the sunset is beautiful' → 'The sunset is beautiful.' ✓ Both work."
+    },
+    {
+      "id": "pos-interjection-004",
+      "type": "identify",
+      "tags": ["interjection"],
+      "difficulty": 2,
+      "instruction": "Click every interjection.",
+      "sentence": ["Oh", ",", "well", ",", "I", "guess", "we", "'ll", "try", "again", "."],
+      "answer": [0, 2],
+      "explanation": "Two interjections: 'Oh' (expressing realization) and 'Well' (signaling hesitation). Interjections are common in dialogue and informal writing; they're rare in formal prose."
+    },
+    {
+      "id": "pos-interjection-005",
+      "type": "classify",
+      "tags": ["interjection", "adverb"],
+      "difficulty": 2,
+      "target": "Well",
+      "sentence": "Well, that was unexpected.",
+      "prompt": "What part of speech is 'Well' in this sentence?",
+      "choices": ["Interjection", "Adverb", "Adjective"],
+      "answer": 0,
+      "explanation": "Here 'Well' is an interjection — a filler expressing hesitation, set off by a comma. Compare 'She sings well' where 'well' is an adverb, or 'I'm not well' where it's an adjective. Same word, three jobs."
+    },
+    {
+      "id": "pos-interjection-006",
+      "type": "multiple-choice",
+      "tags": ["interjection"],
+      "difficulty": 2,
+      "prompt": "Which sentence would you be least likely to find in formal academic writing?",
+      "choices": [
+        "The study examined data from three trials.",
+        "Researchers concluded that the effect was significant.",
+        "Oh, the results were quite surprising!",
+        "Further investigation is needed."
+      ],
+      "answer": 2,
+      "explanation": "Interjections like 'Oh' are almost never found in formal academic writing. They belong to speech, dialogue, and informal prose. If you see one in a textbook, it's probably quoting someone."
+    },
+    {
+      "id": "pos-interjection-007",
+      "type": "identify",
+      "tags": ["interjection"],
+      "difficulty": 3,
+      "instruction": "Click every interjection in this informal text.",
+      "sentence": ["Hey", ",", "um", ",", "do", "you", "have", "a", "minute", "?"],
+      "answer": [0, 2],
+      "explanation": "'Hey' (getting attention) and 'um' (hesitation) are both interjections. Verbal fillers like 'um,' 'uh,' 'er' are interjections too — though they're usually removed in writing."
+    },
+    {
+      "id": "pos-interjection-008",
+      "type": "multiple-choice",
+      "tags": ["interjection"],
+      "difficulty": 3,
+      "prompt": "In 'Alas, the season has ended,' the interjection 'Alas' carries what tone?",
+      "choices": [
+        "Anger",
+        "Sadness or regret",
+        "Excitement",
+        "Confusion"
+      ],
+      "answer": 1,
+      "explanation": "'Alas' expresses sorrow, regret, or pity. It's archaic-sounding in modern English — often used ironically or for literary effect. Each interjection carries its own emotional register."
+    }
+  ]
+}

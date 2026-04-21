@@ -1,0 +1,356 @@
+/* ============================================================================
+   practice.css — styles for the practice widget
+   Reuses the site's CSS variables (defined in each page or shared/styles.css)
+   ============================================================================ */
+
+.practice-widget {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 16px var(--shadow);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ---- Progress ---- */
+.practice-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.practice-progress-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.practice-progress-dots {
+  display: flex;
+  gap: 6px;
+}
+.practice-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: all 0.25s ease;
+}
+.practice-dot.current {
+  background: var(--accent);
+  transform: scale(1.15);
+}
+.practice-dot.correct { background: var(--green); }
+.practice-dot.incorrect { background: var(--accent); }
+
+/* ---- Problem body ---- */
+.practice-body {
+  margin-bottom: 20px;
+}
+
+.practice-prompt {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.2rem;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+/* ---- Classify: sentence with highlighted target ---- */
+.practice-classify-sentence {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background: #FDFCFA;
+  border-left: 3px solid var(--border);
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  border-radius: 0 8px 8px 0;
+}
+.practice-target {
+  background: var(--gold-light);
+  color: var(--gold);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  border-bottom: 2px solid var(--gold);
+}
+
+/* ---- Multiple-choice / classify: choice buttons ---- */
+.practice-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.practice-choice {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.08rem;
+  text-align: left;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.practice-choice:hover:not(.locked) {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  transform: translateX(3px);
+}
+.practice-choice.locked {
+  cursor: default;
+}
+.practice-choice.correct {
+  border-color: var(--green);
+  background: var(--green-light);
+  color: var(--green);
+  font-weight: 600;
+}
+.practice-choice.correct::after {
+  content: '  ✓';
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+}
+.practice-choice.incorrect {
+  border-color: var(--accent);
+  background: #FBE5DF;
+  color: var(--accent);
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+
+/* ---- Identify: clickable words ---- */
+.practice-identify-sentence {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.25rem;
+  line-height: 2.1;
+  padding: 16px 18px;
+  background: #FDFCFA;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  border: 1px solid var(--border);
+}
+.practice-word {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 2px solid transparent;
+  margin: 0 1px;
+}
+.practice-word.punct {
+  cursor: default;
+  padding: 3px 1px;
+}
+.practice-word:not(.punct):hover:not(.locked) {
+  background: rgba(196, 75, 43, 0.08);
+}
+.practice-word.selected {
+  background: var(--teal-light);
+  color: var(--teal);
+  font-weight: 600;
+  border-color: var(--teal);
+}
+.practice-word.locked { cursor: default; }
+/* Feedback states for identify */
+.practice-word.correct-picked {
+  background: var(--green-light);
+  color: var(--green);
+  border-color: var(--green);
+  font-weight: 600;
+}
+.practice-word.correct-picked::after {
+  content: ' ✓';
+  font-family: 'DM Sans', sans-serif;
+}
+.practice-word.wrong-picked {
+  background: #FBE5DF;
+  color: var(--accent);
+  border-color: var(--accent);
+  text-decoration: line-through;
+}
+.practice-word.missed {
+  background: var(--green-light);
+  color: var(--green);
+  border: 2px dashed var(--green);
+  font-weight: 600;
+}
+.practice-word.missed::after {
+  content: ' ← missed';
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* ---- Check button for identify ---- */
+.practice-check-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 22px;
+  border: 1.5px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  margin-top: 4px;
+}
+.practice-check-btn:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+/* ---- Feedback panel ---- */
+.practice-feedback {
+  margin-top: 18px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  border-left: 4px solid;
+  animation: feedbackIn 0.3s ease both;
+}
+@keyframes feedbackIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.practice-feedback.correct {
+  background: var(--green-light);
+  border-left-color: var(--green);
+}
+.practice-feedback.incorrect {
+  background: #FBE5DF;
+  border-left-color: var(--accent);
+}
+.practice-feedback-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.practice-feedback-icon {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.practice-feedback.correct .practice-feedback-icon,
+.practice-feedback.correct .practice-feedback-label { color: var(--green); }
+.practice-feedback.incorrect .practice-feedback-icon,
+.practice-feedback.incorrect .practice-feedback-label { color: var(--accent); }
+.practice-feedback-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.practice-feedback-body {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1rem;
+  color: var(--bodytext);
+  line-height: 1.6;
+}
+.practice-feedback-body em { color: var(--ink); font-style: italic; }
+.practice-feedback-body strong { color: var(--ink); }
+
+/* ---- Next button ---- */
+.practice-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+.practice-next-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 22px;
+  border: 1.5px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.practice-next-btn:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+/* ---- Summary ---- */
+.practice-summary {
+  text-align: center;
+  padding: 24px 12px;
+}
+.practice-summary-score {
+  font-family: 'Crimson Pro', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.practice-summary-message {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--bodytext);
+  margin-bottom: 22px;
+}
+.practice-summary-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-bottom: 26px;
+}
+.practice-summary-dots .practice-dot {
+  width: 14px;
+  height: 14px;
+}
+.practice-retry-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 26px;
+  border-radius: 22px;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.practice-retry-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---- Error / empty states ---- */
+.practice-error,
+.practice-empty {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+  padding: 28px 16px;
+}
+.practice-error small {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  display: block;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .practice-widget { padding: 20px 18px; }
+  .practice-prompt { font-size: 1.05rem; }
+  .practice-classify-sentence { font-size: 1.1rem; }
+  .practice-identify-sentence { font-size: 1.08rem; line-height: 1.9; }
+  .practice-choice { font-size: 0.98rem; }
+  .practice-summary-score { font-size: 2.6rem; }
+}

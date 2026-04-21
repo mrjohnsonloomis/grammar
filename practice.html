@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice — Grammar Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/practice.css">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --ink: #2A2420;
+    --accent: #C44B2B;
+    --accent-light: #F4DDD6;
+    --blue: #2B6B8A;
+    --blue-light: #D6EAF2;
+    --green: #3A7D44;
+    --green-light: #D9EDDC;
+    --purple: #6B4C8A;
+    --purple-light: #E8DDF2;
+    --gold: #B8860B;
+    --gold-light: #F5ECD0;
+    --teal: #2A8A7A;
+    --teal-light: #D0F0EA;
+    --rose: #B84A6E;
+    --rose-light: #F5DDE4;
+    --indigo: #3F4B9A;
+    --indigo-light: #DDE0F2;
+    --brown: #8B5A3C;
+    --card: #FFFFFF;
+    --border: #E5DED4;
+    --shadow: rgba(42, 36, 32, 0.08);
+    --muted: #9A9189;
+    --dimtext: #7A7168;
+    --bodytext: #5A534B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--border);
+    background: #FFF;
+    font-size: 0.85rem;
+  }
+  .topnav a {
+    color: var(--dimtext);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+  }
+  .topnav a:hover { color: var(--accent); }
+  .topnav .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .topnav .nav-links a.current { color: var(--ink); }
+
+  .header {
+    text-align: center;
+    padding: 48px 24px 28px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(180deg, #FFF 0%, var(--bg) 100%);
+  }
+  .header h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .header p {
+    font-size: 1.02rem;
+    color: var(--dimtext);
+    margin-top: 8px;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  .filter-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 26px 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+  .filter-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .tag-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--dimtext);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tag-btn .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .tag-btn:hover { transform: translateY(-1px); }
+  .tag-btn.active { color: #fff; border-color: currentColor; }
+  .tag-btn.active .dot { background: #fff !important; }
+  .tag-btn[data-tag="all"].active { background: var(--ink); border-color: var(--ink); }
+  .tag-btn[data-tag="noun"].active { background: var(--blue); border-color: var(--blue); }
+  .tag-btn[data-tag="pronoun"].active { background: var(--indigo); border-color: var(--indigo); }
+  .tag-btn[data-tag="verb"].active { background: var(--accent); border-color: var(--accent); }
+  .tag-btn[data-tag="adjective"].active { background: var(--gold); border-color: var(--gold); }
+  .tag-btn[data-tag="adverb"].active { background: var(--teal); border-color: var(--teal); }
+  .tag-btn[data-tag="preposition"].active { background: var(--purple); border-color: var(--purple); }
+  .tag-btn[data-tag="conjunction"].active { background: var(--rose); border-color: var(--rose); }
+  .tag-btn[data-tag="article"].active { background: var(--muted); border-color: var(--muted); }
+  .tag-btn[data-tag="interjection"].active { background: var(--brown); border-color: var(--brown); }
+  .tag-btn[data-tag="noun"] .dot { background: var(--blue); }
+  .tag-btn[data-tag="pronoun"] .dot { background: var(--indigo); }
+  .tag-btn[data-tag="verb"] .dot { background: var(--accent); }
+  .tag-btn[data-tag="adjective"] .dot { background: var(--gold); }
+  .tag-btn[data-tag="adverb"] .dot { background: var(--teal); }
+  .tag-btn[data-tag="preposition"] .dot { background: var(--purple); }
+  .tag-btn[data-tag="conjunction"] .dot { background: var(--rose); }
+  .tag-btn[data-tag="article"] .dot { background: var(--muted); }
+  .tag-btn[data-tag="interjection"] .dot { background: var(--brown); }
+  .tag-btn[data-tag="all"] .dot { background: var(--ink); }
+
+  .count-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--dimtext);
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .count-row label { font-weight: 600; }
+  .count-row select {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    padding: 5px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .count-row .spacer { flex: 1; }
+  .start-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 7px 20px;
+    border-radius: 20px;
+    border: 1.5px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .start-btn:hover { background: transparent; color: var(--accent); }
+
+  .intro-hint {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.92rem;
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--card);
+    border: 1.5px dashed var(--border);
+    border-radius: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .header h1 { font-size: 1.8rem; }
+    .header { padding: 36px 16px 22px; }
+    .container { padding: 20px 16px 60px; }
+    .filter-card { padding: 18px 18px 16px; }
+    .topnav { padding: 12px 16px; font-size: 0.78rem; }
+    .topnav .nav-links { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html">← Grammar Explorer</a>
+  <div class="nav-links">
+    <a href="parts-of-speech.html">Parts of Speech</a>
+    <a href="sentence-parts.html">Sentence Parts</a>
+    <a href="verbals.html">Verbals</a>
+    <a href="phrases.html">Phrases</a>
+    <a href="clauses.html">Clauses</a>
+    <a href="practice.html" class="current">Practice</a>
+  </div>
+</nav>
+
+<div class="header">
+  <h1>Practice</h1>
+  <p>Pick a concept, pick a length, and go. The feedback is where the learning happens — read it carefully even when you're right.</p>
+</div>
+
+<div class="container">
+
+  <div class="filter-card">
+    <div class="filter-label">Focus On</div>
+    <div class="tag-filters" id="tagFilters">
+      <button class="tag-btn active" data-tag="all"><span class="dot"></span>All Parts of Speech</button>
+      <button class="tag-btn" data-tag="noun"><span class="dot"></span>Nouns</button>
+      <button class="tag-btn" data-tag="pronoun"><span class="dot"></span>Pronouns</button>
+      <button class="tag-btn" data-tag="verb"><span class="dot"></span>Verbs</button>
+      <button class="tag-btn" data-tag="adjective"><span class="dot"></span>Adjectives</button>
+      <button class="tag-btn" data-tag="adverb"><span class="dot"></span>Adverbs</button>
+      <button class="tag-btn" data-tag="preposition"><span class="dot"></span>Prepositions</button>
+      <button class="tag-btn" data-tag="conjunction"><span class="dot"></span>Conjunctions</button>
+      <button class="tag-btn" data-tag="article"><span class="dot"></span>Articles</button>
+      <button class="tag-btn" data-tag="interjection"><span class="dot"></span>Interjections</button>
+    </div>
+    <div class="count-row">
+      <label for="countSelect">How many questions?</label>
+      <select id="countSelect">
+        <option value="3">3</option>
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+      </select>
+      <div class="spacer"></div>
+      <button class="start-btn" id="startBtn">Start Practice</button>
+    </div>
+  </div>
+
+  <div id="practice-container">
+    <div class="intro-hint">Pick a focus area above, then click <strong>Start Practice</strong>.</div>
+  </div>
+
+</div>
+
+<script src="shared/practice.js"></script>
+<script>
+  let currentTag = 'all';
+
+  document.querySelectorAll('.tag-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTag = btn.dataset.tag;
+    });
+  });
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    const count = parseInt(document.getElementById('countSelect').value, 10);
+    const filter = { count };
+    if (currentTag !== 'all') filter.tags = [currentTag];
+
+    Practice.mount({
+      container: '#practice-container',
+      bankUrl: 'data/problems/parts-of-speech.json',
+      filter: filter
+    });
+
+    document.getElementById('practice-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+</body>
+</html>
