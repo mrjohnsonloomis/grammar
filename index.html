@@ -122,6 +122,7 @@
   .lesson-card[data-topic="phrases"]::before { background: var(--rose); }
   .lesson-card[data-topic="clauses"]::before { background: var(--indigo); }
   .lesson-card[data-topic="coming"]::before { background: var(--border); }
+  .lesson-card[data-topic="practice"]::before { background: linear-gradient(90deg, var(--accent), var(--purple), var(--indigo)); }
 
   .lesson-card:hover {
     transform: translateY(-3px);
@@ -364,11 +365,17 @@
       </div>
     </a>
 
-    <div class="lesson-card" data-topic="coming">
-      <div class="lesson-num">Coming soon</div>
-      <h3>More Lessons</h3>
-      <div class="lesson-desc">Verb tenses, punctuation, agreement, usage — the collection will keep growing.</div>
-    </div>
+    <a class="lesson-card" data-topic="practice" href="practice.html">
+      <span class="lesson-arrow">→</span>
+      <div class="lesson-num">Practice</div>
+      <h3>Check Yourself</h3>
+      <div class="lesson-desc">Filter by concept, pick a length, and test your knowledge. Three problem types — click words, classify in context, or pick from choices. Feedback after every answer.</div>
+      <div class="lesson-tags">
+        <span class="lesson-tag">Identify</span>
+        <span class="lesson-tag">Classify</span>
+        <span class="lesson-tag">Multiple Choice</span>
+      </div>
+    </a>
 
   </div>
 
