@@ -1,0 +1,289 @@
+{
+  "groups": [
+    {
+      "id": "kernel",
+      "cards": [
+        {
+          "id": "sentence", "concept": "clause", "term": "Sentence", "lesson": "01", "glossary": true,
+          "short": "A subject plus a verb, expressing a complete thought.",
+          "detail": "A sentence is the smallest complete move a writer can make: <strong>someone or something</strong> (the subject) <strong>doing or being something</strong> (the verb), forming a thought that stands on its own.<br><br><div class=\"mini-ex\">Ice melts. · The crowd roared. · She is a pilot.</div>Everything else you will ever learn about sentences — objects, phrases, clauses — is an expansion of this kernel.<br><br><div class=\"tip\"><div class=\"tip-label\">The Kernel Test</div>Point to the subject. Point to the verb. Ask: does this feel finished? If yes, you have a sentence.</div>"
+        },
+        {
+          "id": "subject", "concept": "subject", "term": "Subject", "lesson": "01", "glossary": true,
+          "short": "The WHO or WHAT the sentence is about.",
+          "detail": "The subject is the noun or pronoun that performs (or is linked to) the action. Every complete sentence needs one.<br><br><strong>How to find it:</strong> ask \"Who?\" or \"What?\" before the verb.<br><strong>Complete vs. simple:</strong> \"The <em>tall</em> coach\" is the complete subject; \"coach\" alone is the simple subject.<br><br><div class=\"tip\"><div class=\"tip-label\">Quick Test</div>The subject usually comes before the verb — except in questions (\"Did <em>she</em> leave?\") and inverted sentences (\"Here <em>comes</em> the bus\").</div>"
+        },
+        {
+          "id": "predicate", "concept": "verb", "term": "Predicate", "lesson": "01", "glossary": true,
+          "short": "Everything said about the subject — always contains the verb.",
+          "detail": "The predicate is everything that is NOT the subject. It says what the subject does, is, or has.<br><br><strong>Simple predicate</strong> = just the verb. <strong>Complete predicate</strong> = the verb plus all its objects, complements, and modifiers.<br><br><div class=\"tip\"><div class=\"tip-label\">Key Idea</div>Subject + predicate = a complete sentence. Leave either out and you have a fragment — an unfinished move.</div>"
+        },
+        {
+          "id": "verb-main", "concept": "verb", "term": "Verb (main)", "lesson": "01", "glossary": true,
+          "short": "The action or state — the engine of every predicate.",
+          "detail": "<strong>Action verbs</strong> show doing (<em>run, give, write</em>).<br><strong>Linking verbs</strong> connect the subject to a description (<em>is, seem, become, look, taste</em>).<br><br>The verb type determines what follows: action verbs can take <em>objects</em>; linking verbs take <em>complements</em>.<br><br><div class=\"tip\"><div class=\"tip-label\">Linking Verb Test</div>Substitute \"is/are.\" If the sentence still makes sense, it's likely a linking verb. \"The soup <em>tastes</em> great\" → \"The soup <em>is</em> great.\" ✓</div>"
+        },
+        {
+          "id": "fragment", "concept": "clause", "term": "Fragment", "lesson": "01", "glossary": true,
+          "short": "A group of words missing its subject, its verb, or its finished thought.",
+          "detail": "A fragment is an <em>incomplete move</em> — a sentence that hasn't finished happening yet. Something is missing: the subject, the verb, or the sense of completion.<br><br><div class=\"mini-ex\">Running down the hall. <small>(who ran?)</small></div><div class=\"mini-ex\">The girl in the red jacket. <small>(what did she do?)</small></div><div class=\"mini-ex\">Because the power went out. <small>(…then what happened?)</small></div>Writers use deliberate fragments for punch — <em>Not today.</em> — but a fragment you didn't choose leaves the reader hanging.<br><br><div class=\"tip\"><div class=\"tip-label\">The Fix Is a Build</div>Don't just spot fragments — finish them. Add the missing subject or verb, or attach the fragment to the sentence it belongs to.</div>"
+        }
+      ]
+    },
+    {
+      "id": "verb-demands",
+      "cards": [
+        {
+          "id": "do", "concept": "do", "term": "Direct Object", "lesson": "02", "glossary": true,
+          "short": "The person or thing that receives the action.",
+          "detail": "Ask \"whom?\" or \"what?\" after an action verb. Not every sentence has one — intransitive verbs (<em>sleep, arrive</em>) don't take objects.<br><br><div class=\"tip\"><div class=\"tip-label\">Quick Test</div>Make it passive. If you can, the DO becomes the subject: \"She kicked <em>the ball</em>\" → \"<em>The ball</em> was kicked.\"</div>"
+        },
+        {
+          "id": "io", "concept": "io", "term": "Indirect Object", "lesson": "02", "glossary": true,
+          "short": "Who receives the direct object — the secondary receiver.",
+          "detail": "The IO tells TO WHOM or FOR WHOM the action is done. It only exists alongside a DO.<br><br><strong>Two positions:</strong><br>Before the DO: \"She gave <em>him</em> a book.\"<br>As a prepositional phrase instead: \"She gave a book <em>to him</em>.\"<br><br><div class=\"tip\"><div class=\"tip-label\">Quick Test</div>Rephrase with \"to ___\" or \"for ___.\" If the meaning holds, it's an IO. Note that only some verbs accept one: you can <em>hand</em> someone a note, but you <em>explain</em> a lesson <em>to</em> someone.</div>"
+        },
+        {
+          "id": "complement", "concept": "complement", "term": "Complement (overview)", "lesson": "02", "glossary": true,
+          "short": "Words that complete the verb's meaning by describing or renaming.",
+          "detail": "Complements \"complete\" the verb. Two families:<br><br><strong>Subject complements</strong> follow linking verbs → describe or rename the <em>subject</em>.<br>— Predicate nominative (noun): She is <em>a doctor</em>.<br>— Predicate adjective (adjective): She seems <em>happy</em>.<br><br><strong>Object complements</strong> follow a DO → describe or rename <em>it</em>.<br>— They elected her <em>president</em>. (noun)<br>— The news made him <em>anxious</em>. (adjective)<br><br><div class=\"tip\"><div class=\"tip-label\">Complement vs. DO</div>A complement = the subject or object. \"She is a doctor\" → she = doctor. A DO is a separate thing: \"She visited a doctor\" → she ≠ doctor.</div>"
+        },
+        {
+          "id": "pn", "concept": "pn", "term": "Predicate Nominative", "lesson": "02", "glossary": true,
+          "short": "A noun that renames the subject through a linking verb.",
+          "detail": "A predicate nominative (PN) is a <strong>noun or noun phrase</strong> after a linking verb that <em>renames</em> the subject. Subject = PN.<br><br><div class=\"mini-ex\">She is <span class=\"hl-gold\">a doctor</span>. <small>She = a doctor.</small></div><div class=\"mini-ex\">My favorite food is <span class=\"hl-gold\">pizza</span>.</div><div class=\"tip\"><div class=\"tip-label\">PN vs. DO</div>\"She <em>is</em> a doctor\" (PN — linking verb, she = doctor).<br>\"She <em>visited</em> a doctor\" (DO — action verb, she ≠ doctor).</div>"
+        },
+        {
+          "id": "pa", "concept": "pa", "term": "Predicate Adjective", "lesson": "02", "glossary": true,
+          "short": "An adjective that describes the subject through a linking verb.",
+          "detail": "A predicate adjective (PA) appears after a linking verb and uses an <em>adjective</em> to describe the subject.<br><br><div class=\"mini-ex\">The soup tastes <span class=\"hl-gold\">delicious</span>.</div><div class=\"mini-ex\">She seems <span class=\"hl-gold\">tired</span>.</div><div class=\"tip\"><div class=\"tip-label\">PA vs. PN</div>If the complement is an <strong>adjective</strong> → predicate adjective.<br>If it's a <strong>noun</strong> → predicate nominative.<br>\"She is <em>happy</em>\" (PA). \"She is <em>a teacher</em>\" (PN).</div>"
+        },
+        {
+          "id": "oc", "concept": "oc", "term": "Object Complement", "lesson": "02", "glossary": true,
+          "short": "Renames or describes the direct object, not the subject.",
+          "detail": "An object complement follows the DO and describes or renames it.<br><br><strong>As a noun:</strong> \"They elected her <em>president</em>.\" → her = president.<br><strong>As an adjective:</strong> \"The news made him <em>anxious</em>.\" → him = anxious.<br><br><div class=\"mini-ex\">…it is the wish of most masters to keep their slaves <span class=\"hl-gold\">ignorant</span>. <small>— Douglass. <em>Ignorant</em> completes <em>keep</em>.</small></div><div class=\"tip\"><div class=\"tip-label\">OC vs. Subject Complement</div>Subject complement: describes the <em>subject</em> via a linking verb.<br>Object complement: describes the <em>DO</em> via an action verb.<br>\"She is happy\" (SC). \"The joke made her happy\" (OC).</div>"
+        },
+        {
+          "id": "transitive", "concept": "verb", "term": "Transitive & Intransitive Verbs", "lesson": "02", "glossary": true,
+          "short": "Some verbs demand a receiver; some are complete alone.",
+          "detail": "A <strong>transitive</strong> verb passes its action to a direct object — the sentence feels unfinished without one (<em>She grabbed —?</em>). An <strong>intransitive</strong> verb is complete by itself (<em>He slept.</em>).<br><br>Many verbs go both ways depending on use: \"She sings\" (intransitive) / \"She sings jazz\" (transitive).<br><br><div class=\"tip\"><div class=\"tip-label\">Why Writers Care</div>Knowing what a verb demands tells you what the sentence still owes the reader. \"The committee considered\" owes us <em>what</em> they considered; \"The engine died\" owes nothing.</div>"
+        }
+      ]
+    },
+    {
+      "id": "pos",
+      "cards": [
+        {
+          "id": "noun", "concept": "noun", "term": "Noun", "lesson": "03", "glossary": true,
+          "short": "Names a person, place, thing, or idea.",
+          "detail": "Nouns do the heavy lifting of naming. Every sentence needs at least one — usually as the subject.<br><br><strong>Proper</strong>: specific name (<em>Yukon, Tuckahoe, Dickinson</em>).<br><strong>Common</strong>: general category (<em>trail, man, house</em>).<br><strong>Concrete</strong>: physical, perceivable (<em>pebbles, carriage, dust</em>).<br><strong>Abstract</strong>: ideas, feelings (<em>truth, knowledge, civility, haste</em>).<br><br><div class=\"tip\"><div class=\"tip-label\">Craft Note</div>Strong writers choose <em>specific</em> nouns over generic ones. <em>Sparrow</em> beats <em>bird</em>; <em>pall</em> beats <em>cloud</em>. Notice how Hemingway chooses <em>channels</em> over <em>streams</em>, and how London reaches for <em>pall</em> — a funeral cloth — instead of <em>gloominess</em>. Specificity is credibility.</div>"
+        },
+        {
+          "id": "pronoun", "concept": "pronoun", "term": "Pronoun", "lesson": "03", "glossary": true,
+          "short": "Stands in for a noun so we aren't endlessly repeating it.",
+          "detail": "Pronouns keep language efficient — and they carry enormous weight in literary prose.<br><br><strong>Personal</strong>: I, you, he, she, it, we, they (+ me, him, her, us, them)<br><strong>Possessive</strong>: my, your, his, her, its, our, their, theirs<br><strong>Reflexive</strong>: myself, yourself, herself, ourselves…<br><strong>Relative</strong>: who, whom, whose, which, that<br><strong>Demonstrative</strong>: this, that, these, those<br><strong>Indefinite</strong>: anyone, everyone, nobody, some, all, each<br><br><div class=\"tip\"><div class=\"tip-label\">Craft Note</div>Pronoun choice signals perspective and intimacy. Hemingway's <em>we lived</em> submerges the individual into a group. Dickinson's <em>He</em> for Death turns an abstraction into a person. Douglass opens his book with <em>I</em> — the grammar of personhood itself. Pronouns are never neutral.</div>"
+        },
+        {
+          "id": "verb", "concept": "verb", "term": "Verb", "lesson": "03", "glossary": true,
+          "short": "Shows action or state of being — the engine of every sentence.",
+          "detail": "Every sentence needs a verb. It tells us what the subject <em>does</em> or <em>is</em>.<br><br><strong>Action</strong>: went, turned, raised, powdered, stopped<br><strong>Linking</strong>: be, seem, become — connect subject to description<br><strong>Helping / auxiliary</strong>: have, be, do, will — combine with a main verb<br><strong>Modal</strong>: must, may, can, could, would — add necessity, possibility, permission<br><br><div class=\"tip\"><div class=\"tip-label\">Craft Note</div>Compare the verbs across the passages: Hemingway's troops <em>went</em> (not marched, advanced); London's day <em>broke</em> (not dawned); Austen's man <em>must be</em> in want (not probably is). Plain verbs feel inevitable; heightened verbs feel stylized. Neither is wrong — but the choice is always meaningful.</div>"
+        },
+        {
+          "id": "adjective", "concept": "adjective", "term": "Adjective", "lesson": "03", "glossary": true,
+          "short": "Describes or modifies a noun or pronoun. Includes the articles a, an, the.",
+          "detail": "Adjectives answer: <em>which? what kind? how many? whose?</em><br><br><strong>Descriptive</strong>: cold, grey, dry, white, late, rightful<br><strong>Articles</strong> — the most common adjectives of all: <em>a, an, the</em>. <em>The</em> (definite) points to a specific, known noun: <em>the man, the trail</em>. <em>A / an</em> (indefinite) means any member of a class: <em>a truth, a house, a wife</em> — use <em>an</em> before vowel <em>sounds</em> (<em>an hour</em>).<br><strong>Numerical</strong>: nine, twelve, three<br><strong>Demonstrative</strong>: that year, such a man, this truth<br><strong>Participial</strong>: verb-forms doing adjective work — <em>acknowledged, surrounding, little-travelled</em><br><br><div class=\"tip\"><div class=\"tip-label\">Craft Note</div>London repeats <em>cold</em> and <em>grey</em> four times in one sentence — insistence as style. And the tiny articles carry real weight: Austen writes <em>a</em> truth, not <em>the</em> truth — one letter of irony. London writes <em>the</em> man, not <em>a</em> man — the definite article makes him archetypal. When you write <em>a</em> or <em>the</em>, ask which you mean, and why.</div>"
+        },
+        {
+          "id": "adverb", "concept": "adverb", "term": "Adverb", "lesson": "03", "glossary": true,
+          "short": "Modifies a verb, adjective, or another adverb.",
+          "detail": "Adverbs answer: <em>when? where? how? to what extent?</em><br><br>• Modifying a verb: <em>stopped <strong>kindly</strong></em>, <em>drove <strong>slowly</strong></em><br>• Modifying an adjective: <em><strong>exceedingly</strong> cold</em><br>• Modifying another adverb: <em>almost <strong>never</strong></em><br><br><div class=\"tip\"><div class=\"tip-label\">Craft Note</div>Hemingway uses almost no adverbs — <em>swiftly</em> appears once and stops you because it's so rare. London uses <em>exceedingly</em> with deliberate pomposity. Dickinson's <em>kindly</em> makes Death civil. An adverb is a writer leaning in to adjust your reading — notice when they bother.</div>"
+        },
+        {
+          "id": "preposition", "concept": "preposition", "term": "Preposition", "lesson": "03", "glossary": true,
+          "short": "Shows a relationship — usually of space, time, or direction.",
+          "detail": "A preposition connects a noun or pronoun to the rest of the sentence.<br><br><strong>Common prepositions:</strong> in, on, at, by, with, of, for, to, from, about, across, down, near, over, through, like<br><br>A preposition always has an <strong>object</strong>. Together they form a <strong>prepositional phrase</strong>:<br><em>across the river</em> · <em>in the late summer</em> · <em>for Death</em><br><br><div class=\"tip\"><div class=\"tip-label\">Craft Note</div>Hemingway opens his novel inside a prepositional phrase (<em>In the late summer of that year</em>) — <em>where</em> before <em>who</em>. Douglass stacks five place phrases in his first sentence, building a geographic case for his own existence. Prepositions aren't decoration; they're architecture.</div>"
+        },
+        {
+          "id": "conjunction", "concept": "conjunction", "term": "Conjunction", "lesson": "03", "glossary": true,
+          "short": "Joins words, phrases, or clauses together.",
+          "detail": "<strong>Coordinating</strong> (FANBOYS): <em>for, and, nor, but, or, yet, so</em> — join equal elements.<br><strong>Subordinating</strong>: <em>because, when, although, if, since, while, until, after, before, though</em> — introduce dependent clauses.<br><strong>Correlative</strong>: <em>either/or, neither/nor, not only/but also</em><br><br><div class=\"tip\"><div class=\"tip-label\">Craft Note</div>Dickinson opens an entire poem with <em>Because</em> — a subordinating conjunction that promises an explanation before delivering anything. Hemingway chains clauses with <em>and… and… and</em>, refusing to rank his facts. The conjunction you choose carries a whole stance toward the reader.</div>"
+        },
+        {
+          "id": "interjection", "concept": "interjection", "term": "Interjection", "lesson": "03", "glossary": true,
+          "short": "Expresses sudden emotion. Grammatically separate.",
+          "detail": "Interjections are outbursts — they carry emotion but don't connect to the grammar of the sentence around them.<br><br><strong>Examples:</strong> <em>Oh! Wow! Alas. Hey. Ouch. Well. Hmm.</em><br><br>They're usually set off by commas or exclamation points:<br><em><strong>Oh,</strong> I forgot my keys.</em> · <em><strong>Alas!</strong> The season is ended.</em><br><br><div class=\"tip\"><div class=\"tip-label\">Craft Note</div>None of the literary passages here use interjections — which tells you something. Interjections belong to dialogue, informal prose, and heightened emotion. Their absence from formal literary prose is itself a stylistic choice; the register an interjection invokes is everything.</div>"
+        }
+      ]
+    },
+    {
+      "id": "glossary-only",
+      "cards": [
+        {
+          "id": "article", "concept": "adjective", "term": "Article (a, an, the)", "lesson": "03", "glossary": true,
+          "short": "The three most common adjectives: a, an, the.",
+          "detail": "Articles are classified as adjectives — the most frequent ones in English. <em>The</em> (definite) points to a specific, known noun; <em>a / an</em> (indefinite) means any member of a class. Use <em>a</em> before consonant sounds and <em>an</em> before vowel sounds (<em>an hour</em> — the <em>h</em> is silent). See the full Adjective card in the Word Toolbox."
+        },
+        {
+          "id": "modifier", "concept": "modifier", "term": "Modifier", "lesson": "02", "glossary": true,
+          "short": "Adjectives, adverbs, and phrases that add optional detail.",
+          "detail": "Modifiers answer: <em>when? where? how? why? which one? how many?</em><br><br><strong>Adjectives</strong> modify nouns: \"the <em>red</em> car.\"<br><strong>Adverbs</strong> modify verbs, adjectives, or adverbs: \"ran <em>quickly</em>.\"<br><strong>Phrases</strong>: \"the house <em>on the hill</em>.\"<br><br><div class=\"tip\"><div class=\"tip-label\">Quick Test</div>Remove the modifier. Still grammatical? Then it was a modifier. \"She ran quickly.\" → \"She ran.\" ✓</div>"
+        },
+        {
+          "id": "expletive", "concept": "adverb", "term": "Expletive (there / it)", "lesson": "03", "glossary": true,
+          "short": "A structural word that holds the subject slot so the real subject can come later.",
+          "detail": "In \"<em>There</em> were pebbles and boulders\" and \"<em>It</em> is a truth universally acknowledged,\" the words <em>there</em> and <em>it</em> refer to nothing — they hold the subject seat so the true subject can arrive after the verb. Writers use the move to control where emphasis lands."
+        }
+      ]
+    },
+    {
+      "id": "phrases",
+      "cards": [
+        {
+          "id": "phrase", "concept": "phrase", "term": "Phrase", "lesson": "04", "glossary": true,
+          "short": "A word group that works as a unit — with NO subject-verb pair.",
+          "detail": "A phrase is any cluster of words acting together as a single grammatical unit, but lacking the subject + verb pair that would make it a clause.<br><br><strong>Every phrase has a \"head word\"</strong> that determines its type:<br>• preposition → prepositional phrase<br>• participle → participial phrase<br>• gerund → gerund phrase<br>• infinitive marker <em>to</em> + verb → infinitive phrase<br>• noun renaming a neighbor → appositive phrase<br><br><div class=\"tip\"><div class=\"tip-label\">Quick Test</div>Look for a subject and a finite verb (one that shows tense). If either is missing, you have a phrase — not a clause.</div>"
+        },
+        {
+          "id": "prep-phrase", "concept": "phrase", "term": "Prepositional Phrase", "lesson": "04", "glossary": true,
+          "short": "Preposition + object (a noun). Acts as an adjective or adverb.",
+          "detail": "<strong>Structure:</strong> preposition + (optional modifiers) + noun/pronoun object.<br><br><div class=\"mini-ex\"><span class=\"hl\">in the morning</span> · <span class=\"hl\">across the dusty field</span> · <span class=\"hl\">without him</span></div><strong>As an adjective</strong> — modifies a noun:<br><div class=\"mini-ex\">The girl <span class=\"hl\">with the red hat</span> waved. <small>(which girl?)</small></div><strong>As an adverb</strong> — modifies a verb, adjective, or adverb:<br><div class=\"mini-ex\">She ran <span class=\"hl\">into the hallway</span>. <small>(ran where?)</small></div><div class=\"tip\"><div class=\"tip-label\">Heads Up</div>Prepositional phrases can stack: \"the man <em>in the house</em> <em>on the corner</em> <em>of Main Street</em>.\" Each one modifies the noun before it — Douglass stacks five in a single sentence to pin down his birthplace.</div>"
+        },
+        {
+          "id": "appositive", "concept": "phrase", "term": "Appositive Phrase", "lesson": "04", "glossary": true,
+          "short": "A noun phrase that renames another noun.",
+          "detail": "An appositive sits right next to a noun and provides another name for it — more identification, a title, a definition.<br><br><strong>Non-essential (use commas):</strong> the info is extra; the sentence works without it.<br><div class=\"mini-ex\">Mr. Ellis, <span class=\"hl\">our principal</span>, gave a speech.</div><strong>Essential (no commas):</strong> the info is needed to identify which one.<br><div class=\"mini-ex\">The poet <span class=\"hl\">Robert Frost</span> wrote about New England. <small>(which poet?)</small></div><div class=\"tip\"><div class=\"tip-label\">Comma Choice</div>Ask: if I removed the appositive, would it still be clear who or what is meant? Clear → commas (the phrase is a bonus). Not clear → no commas (the phrase is doing identification work).</div>"
+        },
+        {
+          "id": "absolute", "concept": "phrase", "term": "Absolute Phrase", "lesson": "04", "glossary": true,
+          "short": "Noun + participle. Modifies the whole sentence.",
+          "detail": "An absolute phrase is a mini-description — a noun with a participle attached — that hovers over the whole sentence.<br><br><div class=\"mini-ex\"><span class=\"hl\">Hands trembling</span>, she opened the letter.</div><div class=\"mini-ex\">The game over, the players shook hands. <small>(noun + understood participle <em>being</em>)</small></div><strong>Why use them?</strong> Absolutes let you add a detail shot to a whole scene without starting a new clause — a favorite of narrative writers.<br><br><div class=\"tip\"><div class=\"tip-label\">Spot the Difference</div>Absolute: <em>The sun having set, we lit the fire.</em> (has its own noun, <em>sun</em>)<br>Participial: <em>Having set, the sun painted the sky red.</em> (describes the sentence's subject)</div>"
+        },
+        {
+          "id": "head-word", "concept": "phrase", "term": "Head Word", "lesson": "04", "glossary": true,
+          "short": "Every phrase takes its name from the word that drives it.",
+          "detail": "To classify any phrase, find its <strong>head word</strong> — the word that drives the whole group.<br><br>• Starts with a preposition → <strong>prepositional</strong><br>• Starts with a participle (verb form describing a noun) → <strong>participial</strong><br>• Starts with a gerund (-ing form acting as a noun) → <strong>gerund</strong><br>• Starts with <em>to</em> + verb → <strong>infinitive</strong><br>• A noun renaming another noun → <strong>appositive</strong><br>• Noun + participle, modifying the whole sentence → <strong>absolute</strong><br><br><div class=\"tip\"><div class=\"tip-label\">Double Check</div>After you spot the head word, ask: \"What job is the whole phrase doing?\" That's its <em>function</em> (noun, adjective, adverb). Every phrase has both a type AND a function.</div>"
+        }
+      ]
+    },
+    {
+      "id": "verbals",
+      "cards": [
+        {
+          "id": "verbal", "concept": "verb", "term": "Verbal", "lesson": "05", "glossary": true,
+          "short": "A verb form doing another part of speech's job.",
+          "detail": "A verbal is a word <em>made from a verb</em> that doesn't function as the sentence's verb. Instead it serves as a noun, adjective, or adverb — packing verb energy into another slot.<br><br><strong>The three types:</strong><br>• <em>Participles</em> → act as adjectives<br>• <em>Gerunds</em> → act as nouns<br>• <em>Infinitives</em> → act as nouns, adjectives, or adverbs<br><br><div class=\"tip\"><div class=\"tip-label\">Why They Matter</div><em>The crying baby</em> has more force than <em>the sad baby</em> — the verbal keeps its motion. Verbals are how writers compress action into description, which is why this lesson is called Compressing with Verbals.</div>"
+        },
+        {
+          "id": "participle", "concept": "participle", "term": "Participle", "lesson": "05", "glossary": true,
+          "short": "A verb form acting as an adjective.",
+          "detail": "A participle modifies a noun or pronoun — it does an adjective's job. There are two kinds:<br><br><strong>Present participle</strong> — always ends in <em>-ing</em>:<br><div class=\"mini-ex\">the <span class=\"hl-gold\">crying</span> child · the <span class=\"hl-gold\">roaring</span> fire</div><strong>Past participle</strong> — usually ends in <em>-d</em> or <em>-ed</em>, but is often irregular (<em>broken, sung, written, seen, torn, gone</em>):<br><div class=\"mini-ex\">the <span class=\"hl-gold\">shattered</span> window · a <span class=\"hl-gold\">worn</span> shoe · a <span class=\"hl-gold\">broken</span> promise</div><div class=\"tip\"><div class=\"tip-label\">Participle vs. Main Verb</div>\"The <em>crying</em> baby\" — participle (adjective job).<br>\"The baby <em>is crying</em>\" — main verb (present progressive).<br>A helping verb next to the form usually means it's the sentence's verb; standing alone next to a noun, it's a participle.</div>"
+        },
+        {
+          "id": "gerund", "concept": "gerund", "term": "Gerund", "lesson": "05", "glossary": true,
+          "short": "An -ing verb form acting as a noun.",
+          "detail": "A gerund looks exactly like a present participle — same <em>-ing</em> form — but it does a noun's work: naming an activity.<br><br><strong>As subject:</strong><br><div class=\"mini-ex\"><span class=\"hl-blue\">Swimming</span> is great exercise.</div><strong>As direct object:</strong><br><div class=\"mini-ex\">She loves <span class=\"hl-blue\">painting</span>.</div><strong>As predicate nominative:</strong><br><div class=\"mini-ex\">His passion is <span class=\"hl-blue\">teaching</span>.</div><strong>As object of a preposition:</strong><br><div class=\"mini-ex\">…excusing the act to himself by <span class=\"hl-blue\">looking</span> at his watch. <small>— London</small></div><div class=\"tip\"><div class=\"tip-label\">Gerund vs. Participle</div>Ask: is the -ing word NAMING something (gerund) or DESCRIBING a noun (participle)?<br>\"<em>Running</em> is fun\" → names it → gerund.<br>\"The <em>running</em> water\" → describes water → participle.</div>"
+        },
+        {
+          "id": "infinitive", "concept": "infinitive", "term": "Infinitive", "lesson": "05", "glossary": true,
+          "short": "'To' + base verb. Acts as noun, adjective, or adverb.",
+          "detail": "The most versatile verbal: <em>to</em> + the base form of a verb.<br><br><strong>As a noun:</strong><br><div class=\"mini-ex\"><span class=\"hl-teal\">To forgive</span> is human. <small>(subject)</small></div><div class=\"mini-ex\">She wants <span class=\"hl-teal\">to leave</span>. <small>(direct object)</small></div><strong>As an adjective</strong> (modifies a noun):<br><div class=\"mini-ex\">a reason <span class=\"hl-teal\">to celebrate</span> · homework <span class=\"hl-teal\">to finish</span></div><strong>As an adverb</strong> (usually purpose):<br><div class=\"mini-ex\">She trained hard <span class=\"hl-teal\">to win</span>. <small>(why did she train?)</small></div><div class=\"tip\"><div class=\"tip-label\">Don't Confuse</div>\"to + noun\" is a PREPOSITIONAL phrase (<em>to the store</em>).<br>\"to + verb\" is an infinitive (<em>to study</em>).<br>The word after <em>to</em> tells you which.</div>"
+        },
+        {
+          "id": "participial-phrase", "concept": "participle", "term": "Participial Phrase", "lesson": "05", "glossary": true,
+          "short": "A participle plus its objects and modifiers.",
+          "detail": "When a participle brings along other words, you have a participial phrase. The whole phrase acts as an adjective.<br><br><div class=\"mini-ex\"><span class=\"hl-gold\">Frozen solid from the overnight storm</span>, the pond glittered.</div><div class=\"mini-ex\">…he paused for breath at the top, <span class=\"hl-gold\">excusing the act to himself</span>… <small>— London</small></div><div class=\"tip\"><div class=\"tip-label\">Keep It Attached</div>A participial phrase at the start of a sentence describes the subject that follows — so make sure they match. \"Running down the street, my hat flew off\" accidentally puts the hat in sneakers; \"Running down the street, I lost my hat\" says what happened. Readers will follow the grammar, not your intention.</div>"
+        },
+        {
+          "id": "gerund-phrase", "concept": "gerund", "term": "Gerund Phrase", "lesson": "05", "glossary": true,
+          "short": "A gerund plus its objects and modifiers.",
+          "detail": "A gerund phrase behaves like a single noun — you can swap in \"it\" to confirm.<br><br><div class=\"mini-ex\"><span class=\"hl-blue\">Eating leafy greens daily</span> improves digestion. <small>(subject)</small></div><div class=\"mini-ex\">We celebrated by <span class=\"hl-blue\">ordering pizza</span>. <small>(object of preposition)</small></div><div class=\"tip\"><div class=\"tip-label\">A Register Choice</div>Before a gerund, formal written English prefers the possessive: \"I appreciate <em>your</em> helping me\" (like \"I appreciate <em>your</em> help\"). In conversation, \"I appreciate <em>you</em> helping me\" is everywhere. Match the formality of the occasion — that's a choice, not a trap.</div>"
+        },
+        {
+          "id": "infinitive-phrase", "concept": "infinitive", "term": "Infinitive Phrase", "lesson": "05", "glossary": true,
+          "short": "An infinitive plus its objects and modifiers.",
+          "detail": "Like the infinitive alone, an infinitive phrase can function as noun, adjective, or adverb — determined by its job.<br><br><div class=\"mini-ex\"><span class=\"hl-teal\">To become a doctor</span> requires years of study. <small>(noun — subject)</small></div><div class=\"mini-ex\">He bought a book <span class=\"hl-teal\">to read on the plane</span>. <small>(adjective — modifies book)</small></div><div class=\"mini-ex\">She whispered <span class=\"hl-teal\">to avoid waking the baby</span>. <small>(adverb — modifies whispered)</small></div><div class=\"tip\"><div class=\"tip-label\">Split Infinitives</div>\"To boldly go where no one has gone before\" — the adverb sits inside the infinitive. Once considered taboo, now fine. Clarity beats rules; split it if it reads better.</div>"
+        },
+        {
+          "id": "job-not-form", "concept": "verb", "term": "Job, Not Form (the key test)", "lesson": "05", "glossary": true,
+          "short": "Form can fool you. Function is the only reliable test.",
+          "detail": "Because verbals share their forms with main verbs, you can't identify them by spelling alone. Always ask: <strong>what job is this word doing in its sentence?</strong><br><br><strong>Three checks:</strong><br>1. <em>Is there a helping verb nearby?</em> (<em>is, was, has been, will be…</em>) → probably part of the main verb.<br>2. <em>What question does the word answer?</em> Which / what kind → adjective (participle). What / it → noun (gerund, or infinitive-as-noun). When / why / how → adverb (infinitive).<br>3. <em>What's the sentence's main verb?</em> Find that first; everything else must be doing another job.<br><br><div class=\"tip\"><div class=\"tip-label\">The Payoff</div>Once you can spot verbals reliably, whole sentences open up — you'll see writers compress a paragraph of action into one participial phrase. Grammar becomes craft.</div>"
+        }
+      ]
+    },
+    {
+      "id": "clauses",
+      "cards": [
+        {
+          "id": "clause", "concept": "clause", "term": "Clause", "lesson": "06", "glossary": true,
+          "short": "A word group WITH a subject + verb pair.",
+          "detail": "A clause contains both a <strong>subject</strong> and a <strong>finite verb</strong> (a verb that takes a tense, like <em>runs, ran, is running</em>).<br><br>Every clause falls into one of two groups:<br>• <strong>Independent</strong> — can stand alone as a sentence.<br>• <strong>Dependent</strong> — cannot stand alone; it attaches to an independent clause.<br><br><div class=\"tip\"><div class=\"tip-label\">The S+V Test</div>Point to the subject. Point to the verb. Both there? It's a clause, not a phrase. That single test decides everything.</div>"
+        },
+        {
+          "id": "independent-clause", "concept": "clause", "term": "Independent Clause", "lesson": "06", "glossary": true,
+          "short": "S + V + complete thought. Stands on its own.",
+          "detail": "An independent clause has everything a sentence needs: subject, verb, complete thought.<br><br><div class=\"mini-ex\"><span class=\"hl-indigo\">The storm passed.</span></div><div class=\"mini-ex\"><span class=\"hl-indigo\">My brother makes the best pancakes.</span></div>Every sentence contains <em>at least one</em>. Compound and compound-complex sentences contain two or more.<br><br><div class=\"tip\"><div class=\"tip-label\">Joining Independent Clauses</div>Three standard welds:<br>1. Comma + FANBOYS (<em>for, and, nor, but, or, yet, so</em>)<br>2. A semicolon<br>3. A semicolon + conjunctive adverb (<em>however, therefore</em>)<br>A comma alone (a <em>comma splice</em>) reads to most audiences as two sentences leaning on a hinge that isn't there — save it for deliberate, informal effect.</div>"
+        },
+        {
+          "id": "dependent-clause", "concept": "clause", "term": "Dependent (Subordinate) Clause", "lesson": "06", "glossary": true,
+          "short": "Has S+V, but starts with a subordinator — can't stand alone.",
+          "detail": "A dependent clause has a subject and verb, but one word at the front makes it lean on the rest of the sentence:<br><br>• <strong>Subordinating conjunctions</strong>: because, when, although, if, since, while, until, after, before, though, unless, so that…<br>• <strong>Relative pronouns</strong>: who, whom, whose, which, that<br>• <strong>Interrogative / \"wh-\" words</strong>: what, whatever, whoever, how, why, whether<br><br><div class=\"mini-ex\"><span class=\"hl-indigo\">Because I was late</span>, I missed the bus.</div>Alone, \"Because I was late\" is a promise with no payoff — the reader waits for the rest.<br><br><div class=\"tip\"><div class=\"tip-label\">Three Jobs</div>Every dependent clause acts as a noun, an adjective, or an adverb. That job determines its type.</div>"
+        },
+        {
+          "id": "noun-clause", "concept": "clause", "term": "Noun Clause", "lesson": "06", "glossary": true,
+          "short": "A dependent clause acting as a noun.",
+          "detail": "A noun clause fills a noun slot — anywhere a single noun could sit.<br><br><strong>Common starters:</strong> <em>that, what, whatever, who, whoever, whether, if, why, how, when, where</em><br><br><strong>As subject:</strong><br><div class=\"mini-ex\"><span class=\"hl-blue\">That she won</span> shocked no one.</div><strong>As direct object:</strong><br><div class=\"mini-ex\">I know <span class=\"hl-blue\">what you did last summer</span>.</div><strong>As predicate nominative:</strong><br><div class=\"mini-ex\">The problem is <span class=\"hl-blue\">that we're out of time</span>.</div><strong>As object of preposition:</strong><br><div class=\"mini-ex\">Give the prize to <span class=\"hl-blue\">whoever finishes first</span>.</div><div class=\"tip\"><div class=\"tip-label\">The \"It\" Test</div>Replace the whole clause with \"it.\" If the sentence still works, it's a noun clause.</div>"
+        },
+        {
+          "id": "adjective-clause", "concept": "clause", "term": "Adjective (Relative) Clause", "lesson": "06", "glossary": true,
+          "short": "A dependent clause acting as an adjective — modifies a noun.",
+          "detail": "Also called a <em>relative clause</em>. It sits right after the noun it describes and usually starts with a relative pronoun: <em>who, whom, whose, which, that</em>.<br><br><div class=\"mini-ex\">The scientist <span class=\"hl-gold\">who discovered penicillin</span> was Alexander Fleming.</div><strong>Restrictive (essential, no commas):</strong> identifies which one.<br><div class=\"mini-ex\">Students <span class=\"hl-gold\">who study daily</span> succeed.</div><strong>Non-restrictive (extra info, commas):</strong> adds detail to an already-identified noun.<br><div class=\"mini-ex\">My sister, <span class=\"hl-gold\">who lives in Boston</span>, is visiting.</div><div class=\"tip\"><div class=\"tip-label\">That vs. Which</div>Standard American usage: <em>that</em> for restrictive clauses (no commas), <em>which</em> for non-restrictive (with commas). <em>Who/whom</em> works for both; the comma choice still signals essential vs. extra.</div>"
+        },
+        {
+          "id": "adverb-clause", "concept": "clause", "term": "Adverb Clause", "lesson": "06", "glossary": true,
+          "short": "A dependent clause acting as an adverb — modifies a verb, adjective, or adverb.",
+          "detail": "An adverb clause starts with a <strong>subordinating conjunction</strong> and answers an adverb question: <em>when? where? why? how? under what condition?</em><br><br><strong>By meaning:</strong><br>• <em>Time</em>: when, before, after, until, since, while, as<br>• <em>Cause</em>: because, since, as<br>• <em>Purpose</em>: so that, in order that<br>• <em>Condition</em>: if, unless, provided that<br>• <em>Concession</em>: although, though, even though, while<br>• <em>Comparison</em>: than, as…as<br><br><div class=\"mini-ex\"><span class=\"hl-teal\">When the movie ended</span>, we left. <small>(time)</small></div><div class=\"mini-ex\">He succeeded <span class=\"hl-teal\">because he worked hard</span>. <small>(reason)</small></div><div class=\"tip\"><div class=\"tip-label\">Comma Pattern</div>Adverb clause first → comma after it. Adverb clause last → usually no comma. <em>When he called, I answered.</em> / <em>I answered when he called.</em></div>"
+        },
+        {
+          "id": "simple-sentence", "concept": "clause", "term": "Simple Sentence", "lesson": "06", "glossary": true,
+          "short": "One independent clause.",
+          "detail": "A simple sentence contains exactly <strong>one independent clause</strong> and no dependent clauses. It may still have phrases and multiple subjects or verbs.<br><br><div class=\"mini-ex\">Birds fly.</div><div class=\"mini-ex\">The old oak tree in our yard fell during the storm. <small>(still simple — one S+V)</small></div><div class=\"mini-ex\">Maya and Jonas studied and aced the exam. <small>(compound subject + compound verb, still ONE clause)</small></div><div class=\"tip\"><div class=\"tip-label\">Easy to Misread</div>Length doesn't matter. A sentence with twelve prepositional phrases can still be \"simple\" if it has one S+V pair and no dependent clauses.</div>"
+        },
+        {
+          "id": "compound-sentence", "concept": "clause", "term": "Compound Sentence", "lesson": "06", "glossary": true,
+          "short": "Two or more independent clauses joined together.",
+          "detail": "A compound sentence joins <strong>two (or more) independent clauses</strong> as equals. Three standard joins:<br><br><strong>1. Comma + FANBOYS:</strong><br><div class=\"mini-ex\">I wanted to go<strong>,</strong> but I was too tired.</div><strong>2. Semicolon</strong> (clauses closely related):<br><div class=\"mini-ex\">The rain stopped<strong>;</strong> we went outside.</div><strong>3. Semicolon + conjunctive adverb:</strong><br><div class=\"mini-ex\">She studied hard<strong>;</strong> however, the test covered other units.</div><div class=\"tip\"><div class=\"tip-label\">What Coordination Says</div>Joining with <em>and</em> or <em>but</em> presents two ideas as equal partners. If one idea should lean on the other, subordinate instead — that's a complex sentence.</div>"
+        },
+        {
+          "id": "complex-sentence", "concept": "clause", "term": "Complex Sentence", "lesson": "06", "glossary": true,
+          "short": "One independent + one or more dependent clauses.",
+          "detail": "A complex sentence has exactly <strong>one independent clause</strong> and <strong>at least one dependent clause</strong>.<br><br><div class=\"mini-ex\"><span class=\"hl-indigo\">When the alarm rang</span>, I woke up.</div><div class=\"mini-ex\">The book <span class=\"hl-indigo\">that I'm reading</span> is fascinating.</div><div class=\"tip\"><div class=\"tip-label\">Why Subordinate?</div>Complex sentences show the <em>relationship</em> between ideas — cause (because), time (when), contrast (although), condition (if) — and they decide which idea is the headline and which is background. Same facts, different emphasis: that's the writer's call.</div>"
+        },
+        {
+          "id": "compound-complex", "concept": "clause", "term": "Compound-Complex Sentence", "lesson": "06", "glossary": true,
+          "short": "At least two independents AND at least one dependent.",
+          "detail": "The heavyweight: at least <strong>two independent clauses</strong> AND at least <strong>one dependent clause</strong>.<br><br><div class=\"mini-ex\"><span class=\"hl-indigo\">Although it was cold</span>, we went outside, and we built a snowman.</div><em>Dependent:</em> Although it was cold<br><em>Independent 1:</em> we went outside<br><em>Independent 2:</em> we built a snowman<br><br><div class=\"tip\"><div class=\"tip-label\">Variety Is the Point</div>Good writing mixes all four sentence types. Too many simple sentences feel choppy; too many compound-complex feel bloated. Rhythm comes from variation — that's Lesson 07.</div>"
+        }
+      ]
+    },
+    {
+      "id": "craft",
+      "cards": [
+        {
+          "id": "openers", "concept": "modifier", "term": "Sentence Openers", "lesson": "07", "glossary": true,
+          "short": "Where a sentence starts controls what a reader expects.",
+          "detail": "Most English sentences open with the subject — which is exactly why an occasional different opener wakes the reader up.<br><br><strong>Prepositional phrase:</strong> <em>In the late summer of that year, we lived…</em><br><strong>Participial phrase:</strong> <em>Exhausted from the climb, the hikers rested.</em><br><strong>Adverb clause:</strong> <em>Because I could not stop for Death, He kindly stopped for me.</em><br><strong>Adverb:</strong> <em>Slowly, the carriage rolled on.</em><br><br><div class=\"tip\"><div class=\"tip-label\">The Ratio</div>Openers are seasoning. If every sentence opens with a flourish, the flourish disappears. Vary a few sentences per paragraph and let the rest run subject-first.</div>"
+        },
+        {
+          "id": "rhythm", "concept": "modifier", "term": "Sentence Rhythm & Length", "lesson": "07", "glossary": true,
+          "short": "Long sentences build; short sentences land.",
+          "detail": "Readers hear prose. A string of same-length sentences drones; variation makes music.<br><br>London writes a long, winding sentence about the trail and the timberland — then: <em>It was nine o'clock.</em> Four words. The short sentence lands like a stamp because the long one came first.<br><br><div class=\"tip\"><div class=\"tip-label\">Revision Move</div>Read your paragraph aloud. If every sentence takes the same breath, combine two of them (Lessons 04–06 give you the tools) and cut one down to under six words.</div>"
+        },
+        {
+          "id": "emphasis", "concept": "modifier", "term": "Emphasis & End Weight", "lesson": "07", "glossary": true,
+          "short": "The end of a sentence is its loudest position.",
+          "detail": "Readers remember best what comes last. Austen builds an entire philosophical windup just to land on <em>a wife</em>; Douglass ends his paragraph on <em>ignorant</em>.<br><br><strong>Moves that control emphasis:</strong><br>• Delay the subject with an expletive (<em>It is a truth…</em>)<br>• Subordinate the background so the headline stands alone (Lesson 06)<br>• Reorder: \"She won the championship after years of setbacks\" vs. \"After years of setbacks, she won the championship.\"<br><br><div class=\"tip\"><div class=\"tip-label\">Ask of Every Draft Sentence</div>What word does this sentence end on? Is that the word you want ringing in the reader's ear?</div>"
+        }
+      ]
+    }
+  ]
+}
