@@ -1,0 +1,2749 @@
+{
+ "items": [
+  {
+   "id": "idn-01-001",
+   "lesson": "01",
+   "concepts": [
+    "subject"
+   ],
+   "difficulty": 1,
+   "kind": "identify",
+   "instruction": "Click the complete subject — the someone or something this sentence is about.",
+   "sentence": [
+    "The",
+    "goalie",
+    "dove",
+    "toward",
+    "the",
+    "far",
+    "post",
+    "."
+   ],
+   "answer": [
+    0,
+    1
+   ],
+   "feedback": "The complete subject is <em>The goalie</em> — ask <em>who dove?</em> Everything else (<em>dove toward the far post</em>) is the predicate, the part that tells what the subject did. If you picked <em>post</em>, notice it comes after the verb: it's part of the doing, not the doer."
+  },
+  {
+   "id": "idn-01-002",
+   "lesson": "01",
+   "concepts": [
+    "subject"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click the simple subject — the one word the whole sentence hangs on.",
+   "sentence": [
+    "The",
+    "rusty",
+    "gate",
+    "at",
+    "the",
+    "end",
+    "of",
+    "the",
+    "garden",
+    "screeched",
+    "."
+   ],
+   "answer": [
+    2
+   ],
+   "feedback": "The simple subject is <em>gate</em> — the sentence is about the gate, and <em>screeched</em> is what it did. <em>Garden</em> tempts because it's also a noun, but it lives inside the phrase <em>of the garden</em>, which just tells us where the gate is. The subject is never inside a prepositional phrase."
+  },
+  {
+   "id": "idn-01-003",
+   "lesson": "01",
+   "concepts": [
+    "verb"
+   ],
+   "difficulty": 1,
+   "kind": "identify",
+   "instruction": "Click the verb — the doing or being of this sentence.",
+   "sentence": [
+    "The",
+    "crowd",
+    "roared",
+    "after",
+    "the",
+    "buzzer",
+    "."
+   ],
+   "answer": [
+    2
+   ],
+   "feedback": "<em>Roared</em> is the verb: it's what the crowd did. <em>Buzzer</em> is a noun inside <em>after the buzzer</em> (when it happened), and <em>crowd</em> is the subject doing the roaring."
+  },
+  {
+   "id": "idn-01-004",
+   "lesson": "01",
+   "concepts": [
+    "verb"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Two kernels share this sentence. Click both verbs.",
+   "sentence": [
+    "The",
+    "lights",
+    "dimmed*,",
+    "and",
+    "the",
+    "theater",
+    "hushed*."
+   ],
+   "answer": [
+    2,
+    6
+   ],
+   "feedback": "Two subject–verb kernels joined by <em>and</em>: <em>lights dimmed</em> + <em>theater hushed</em>. Each kernel brings its own verb. If you only caught one, you found one kernel and missed its twin."
+  },
+  {
+   "id": "mc-01-001",
+   "lesson": "01",
+   "concepts": [
+    "sentence"
+   ],
+   "difficulty": 1,
+   "kind": "mc",
+   "prompt": "Which of these is a complete sentence — a finished move?",
+   "choices": [
+    "Because the power went out.",
+    "The girl in the red jacket by the door.",
+    "Ice melts.",
+    "Running down the hallway after the bell."
+   ],
+   "answer": 2,
+   "feedback": "<em>Ice melts</em> has both halves of the kernel: a subject (<em>ice</em>) and a verb (<em>melts</em>) — two words, complete move. The others are pieces: <em>Because the power went out</em> promises a result that never comes; <em>The girl in the red jacket by the door</em> is all subject and no doing; <em>Running down the hallway</em> is all motion with no one moving."
+  },
+  {
+   "id": "mc-01-002",
+   "lesson": "01",
+   "concepts": [
+    "fragment"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "What is this fragment missing? <em>“The oldest house on our street.”</em>",
+   "choices": [
+    "A subject — we don't know who or what",
+    "A verb — the house never does or is anything",
+    "Nothing; it's a complete sentence",
+    "An adjective"
+   ],
+   "answer": 1,
+   "feedback": "We have a rich subject — <em>the oldest house on our street</em> — but it never does or is anything. The move is unfinished until a verb arrives: <em>The oldest house on our street <strong>survived the fire</strong>.</em> A long, detailed fragment still isn't a sentence; length isn't what completes the move."
+  },
+  {
+   "id": "exp-01-001",
+   "lesson": "01",
+   "concepts": [
+    "fragment"
+   ],
+   "difficulty": 1,
+   "kind": "expand",
+   "kernel": "Because the bus was late.",
+   "question": "This move is unfinished — the <em>because</em> promises a result. Finish it: what happened because the bus was late?",
+   "models": [
+    {
+     "sentence": "Because the bus was late, <span class='mv mv-indigo'>I sprinted the last three blocks to school</span>.",
+     "move": "Add the main kernel",
+     "note": "The fragment becomes the setup; the new kernel (<em>I sprinted</em>) delivers the payoff the <em>because</em> promised."
+    },
+    {
+     "sentence": "<span class='mv mv-indigo'>We missed the first quarter</span> because the bus was late.",
+     "move": "Attach it to a kernel",
+     "note": "Same fix, flipped order — the fragment attaches to the end of a complete kernel. No comma needed in this order."
+    }
+   ]
+  },
+  {
+   "id": "exp-01-002",
+   "lesson": "01",
+   "concepts": [
+    "fragment"
+   ],
+   "difficulty": 1,
+   "kind": "expand",
+   "kernel": "The whole team, even the seniors.",
+   "question": "A someone with no doing. Give this subject something to do or be.",
+   "models": [
+    {
+     "sentence": "The whole team, even the seniors, <span class='mv mv-blue'>stayed late to run drills</span>.",
+     "move": "Add the verb",
+     "note": "<em>Stayed</em> completes the kernel — the subject finally acts."
+    },
+    {
+     "sentence": "The whole team, even the seniors, <span class='mv mv-blue'>was nervous</span>.",
+     "move": "Add a being verb",
+     "note": "Doing isn't the only option: a linking verb (<em>was</em>) plus a description also finishes the move."
+    }
+   ]
+  },
+  {
+   "id": "exp-01-003",
+   "lesson": "01",
+   "concepts": [
+    "fragment"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "Whispering behind the curtain before the show.",
+   "question": "All motion, no mover. Who was whispering? Build the sentence.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-blue'>The stagehands</span> <span class='mv mv-indigo'>were whispering</span> behind the curtain before the show.",
+     "move": "Supply subject + finish the verb",
+     "note": "<em>Whispering</em> alone can't carry a sentence — it needs a subject and a helping verb (<em>were</em>) to become the sentence's main verb."
+    },
+    {
+     "sentence": "<span class='mv mv-blue'>Two actors</span> <span class='mv mv-indigo'>huddled</span>, whispering behind the curtain before the show.",
+     "move": "Keep it as a describer",
+     "note": "Or keep <em>whispering</em> as a describing phrase and give the sentence a new kernel: <em>actors huddled</em>. Both fixes work; they make different sentences."
+    }
+   ]
+  },
+  {
+   "id": "exp-01-004",
+   "lesson": "01",
+   "concepts": [
+    "fragment"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "After the longest winter anyone could remember.",
+   "question": "A when with no what. Finish the move.",
+   "models": [
+    {
+     "sentence": "After the longest winter anyone could remember, <span class='mv mv-indigo'>the lilacs finally bloomed</span>.",
+     "move": "Add the main kernel",
+     "note": "The opener sets the time; the kernel (<em>lilacs bloomed</em>) is the sentence's actual news."
+    },
+    {
+     "sentence": "<span class='mv mv-indigo'>School felt different</span> after the longest winter anyone could remember.",
+     "move": "Attach to a kernel",
+     "note": "The same time-phrase can trail a kernel instead of leading it — where you put it changes what the reader hears first."
+    }
+   ]
+  },
+  {
+   "id": "exp-01-005",
+   "lesson": "01",
+   "concepts": [
+    "sentence"
+   ],
+   "difficulty": 1,
+   "kind": "expand",
+   "kernel": "The dog barked.",
+   "question": "A complete kernel — now grow it. Add detail that answers WHERE without breaking the kernel.",
+   "models": [
+    {
+     "sentence": "The dog barked <span class='mv mv-teal'>at the mail truck</span>.",
+     "move": "Add a where-phrase",
+     "note": "The kernel <em>dog barked</em> survives untouched; the phrase aims the barking at something."
+    },
+    {
+     "sentence": "<span class='mv mv-teal'>From the upstairs window,</span> the dog barked.",
+     "move": "Lead with the where",
+     "note": "Same detail, moved up front — notice how the sentence now opens on the scene instead of the dog."
+    }
+   ]
+  },
+  {
+   "id": "exp-01-006",
+   "lesson": "01",
+   "concepts": [
+    "sentence"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "The engine died.",
+   "question": "Grow this kernel with detail that answers WHEN.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>Halfway up the mountain,</span> the engine died.",
+     "move": "Lead with the when/where",
+     "note": "Three words of kernel, five words of dread. The detail does the storytelling; the kernel stays two words."
+    },
+    {
+     "sentence": "The engine died <span class='mv mv-teal'>just as the light turned green</span>.",
+     "move": "Trail with the when",
+     "note": "Trailing the when-detail lands the sentence on the traffic light — the worst possible moment, saved for last."
+    }
+   ]
+  },
+  {
+   "id": "imi-01-001",
+   "lesson": "01",
+   "concepts": [
+    "sentence"
+   ],
+   "difficulty": 2,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "Day had broken cold and grey, exceedingly cold and grey…",
+    "source": "Jack London, “To Build a Fire”"
+   },
+   "frame": "<strong>Subject + verb + description, description</strong> — then repeat the description with an intensifier: <em>___ had ___ ___ and ___, exceedingly ___ and ___.</em>",
+   "models": [
+    {
+     "sentence": "Night had fallen thick and silent, unbearably thick and silent.",
+     "move": "Kernel + doubled description",
+     "note": "London's move: a bare kernel (<em>Day had broken</em>), two describing words, then the same two words again, harder. The repetition is the style."
+    },
+    {
+     "sentence": "Rain had come sudden and cold, impossibly sudden and cold.",
+     "move": "Kernel + doubled description",
+     "note": "Your sentence should feel like a drumbeat: kernel, pair, same pair intensified."
+    }
+   ],
+   "prompt": "Write your own sentence that copies London's move — a short kernel, then a doubled, intensified description. New topic, same skeleton."
+  },
+  {
+   "id": "mc-01-003",
+   "lesson": "01",
+   "concepts": [
+    "fragment"
+   ],
+   "difficulty": 3,
+   "kind": "mc",
+   "prompt": "A writer ends a tense scene with this deliberate fragment: <em>“Not tonight.”</em> What is the fragment doing that a full sentence wouldn't?",
+   "choices": [
+    "Nothing — it's simply an error",
+    "It lands like a slammed door: the missing kernel makes the refusal feel absolute",
+    "It confuses the reader about who is speaking",
+    "It makes the scene longer"
+   ],
+   "answer": 1,
+   "feedback": "Writers break the kernel rule on purpose. <em>Not tonight.</em> refuses to explain itself — no subject, no verb, no negotiation. The power comes from knowing the rule and withholding it. The skill isn't avoiding fragments; it's choosing them."
+  },
+  {
+   "id": "exp-01-007",
+   "lesson": "01",
+   "concepts": [
+    "sentence"
+   ],
+   "difficulty": 3,
+   "kind": "expand",
+   "kernel": "The hallway emptied.",
+   "question": "Grow the kernel twice: add one detail about WHICH hallway and one about WHEN. Keep the kernel intact.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>By the time the second bell rang,</span> the <span class='mv mv-gold'>third-floor</span> hallway emptied.",
+     "move": "Which + when",
+     "note": "Two additions, two questions answered — and the kernel <em>hallway emptied</em> is still the spine."
+    },
+    {
+     "sentence": "The <span class='mv mv-gold'>long tiled</span> hallway emptied <span class='mv mv-teal'>within seconds</span>.",
+     "move": "Which + when",
+     "note": "Check your version: cross out your additions. Does a complete kernel remain? Then you expanded; you didn't break."
+    }
+   ]
+  },
+  {
+   "id": "rec-02-001",
+   "lesson": "02",
+   "concepts": [
+    "recall"
+   ],
+   "difficulty": 1,
+   "kind": "recall",
+   "prompt": "In your own words: what two things does every sentence need, and what do we call a group of words missing one of them?",
+   "model": "Every sentence needs a <strong>subject</strong> (someone or something) and a <strong>verb</strong> (doing or being) — together, a complete thought. A word group missing one of those pieces is a <strong>fragment</strong>: an unfinished move a reader is left waiting on."
+  },
+  {
+   "id": "idn-02-001",
+   "lesson": "02",
+   "concepts": [
+    "do"
+   ],
+   "difficulty": 1,
+   "kind": "identify",
+   "instruction": "Click the direct object — the receiver of the action.",
+   "sentence": [
+    "The",
+    "striker",
+    "blasted",
+    "the",
+    "ball",
+    "over",
+    "the",
+    "wall",
+    "."
+   ],
+   "answer": [
+    4
+   ],
+   "feedback": "<em>Blasted what?</em> → the ball. That's the direct object. <em>Wall</em> tempts because it's also a noun, but it sits inside <em>over the wall</em> — a phrase telling where, not receiving the action. Passive test: <em>The ball was blasted</em> ✓."
+  },
+  {
+   "id": "idn-02-002",
+   "lesson": "02",
+   "concepts": [
+    "io"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click the indirect object — the one the direct object goes to.",
+   "sentence": [
+    "My",
+    "aunt",
+    "mailed",
+    "me",
+    "a",
+    "package",
+    "from",
+    "Manila",
+    "."
+   ],
+   "answer": [
+    3
+   ],
+   "feedback": "<em>Mailed to whom?</em> → me. The IO sits between the verb and the DO (<em>a package</em>). Rephrase test: <em>mailed a package <u>to me</u></em> ✓. If you picked <em>package</em>, that's the direct object — the thing mailed, not the receiver."
+  },
+  {
+   "id": "idn-02-003",
+   "lesson": "02",
+   "concepts": [
+    "pa"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click the predicate adjective — the description the linking verb delivers.",
+   "sentence": [
+    "After",
+    "the",
+    "third",
+    "rehearsal",
+    ",",
+    "the",
+    "cast",
+    "finally",
+    "sounded",
+    "confident*."
+   ],
+   "answer": [
+    9
+   ],
+   "feedback": "<em>Sounded</em> is a linking verb here — the cast wasn't making a 'confident' noise at something; the word <em>confident</em> describes the cast. Cast = confident. Substitute test: <em>the cast finally <u>was</u> confident</em> ✓."
+  },
+  {
+   "id": "cls-02-001",
+   "lesson": "02",
+   "concepts": [
+    "pn"
+   ],
+   "difficulty": 2,
+   "kind": "classify",
+   "sentence": "Ms. Ortega is the coach of the debate team.",
+   "target": "coach",
+   "prompt": "What job is 'coach' doing in this sentence?",
+   "choices": [
+    "Direct object — it receives the action",
+    "Predicate nominative — it renames the subject",
+    "Indirect object",
+    "Subject"
+   ],
+   "answer": 1,
+   "feedback": "<em>Is</em> is a linking verb, so nothing is acted on — <em>coach</em> renames Ms. Ortega. Ms. Ortega = coach. The direct-object reading tempts because <em>coach</em> follows the verb, exactly where DOs sit; but DOs follow <em>action</em> verbs. Compare: <em>Ms. Ortega hired the coach</em> — there, hired is an action and Ms. Ortega ≠ coach."
+  },
+  {
+   "id": "cls-02-002",
+   "lesson": "02",
+   "concepts": [
+    "oc"
+   ],
+   "difficulty": 3,
+   "kind": "classify",
+   "sentence": "The judges named our robot the tournament champion.",
+   "target": "champion",
+   "prompt": "What job is 'champion' doing?",
+   "choices": [
+    "Predicate nominative",
+    "Direct object",
+    "Object complement — it renames the direct object",
+    "Appositive"
+   ],
+   "answer": 2,
+   "feedback": "<em>Named</em> is an action verb; its direct object is <em>robot</em>. <em>Champion</em> completes the naming by renaming the DO: robot = champion. Predicate nominative tempts because champion renames something — but PNs rename the <em>subject</em> across a <em>linking</em> verb, and this verb is action."
+  },
+  {
+   "id": "mc-02-001",
+   "lesson": "02",
+   "concepts": [
+    "verb-main"
+   ],
+   "difficulty": 1,
+   "kind": "mc",
+   "prompt": "Which sentence uses a linking verb?",
+   "choices": [
+    "The chef tasted the sauce.",
+    "The sauce tasted salty.",
+    "The chef stirred the sauce.",
+    "The chef dropped the spoon."
+   ],
+   "answer": 1,
+   "feedback": "<em>The sauce tasted salty</em> links the subject to a description: sauce = salty (<em>the sauce IS salty</em> ✓). In <em>The chef tasted the sauce</em>, tasting is an action the chef performs on a DO — <em>the chef IS the sauce</em> ✗. Same verb, two jobs; the sentence decides."
+  },
+  {
+   "id": "mc-02-002",
+   "lesson": "02",
+   "concepts": [
+    "do"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Why does this sentence feel unfinished? <em>“The committee considered.”</em>",
+   "choices": [
+    "It's missing a subject",
+    "'Considered' is transitive here — it demands a direct object the sentence never delivers",
+    "It needs an adverb",
+    "It's actually complete"
+   ],
+   "answer": 1,
+   "feedback": "Some verbs are complete alone (<em>He slept</em>); others hand off their action and feel broken without a receiver. <em>Considered</em> owes us a <em>what</em>: <em>The committee considered the proposal.</em> Knowing what a verb demands tells you what your sentence still owes the reader."
+  },
+  {
+   "id": "mc-02-003",
+   "lesson": "02",
+   "concepts": [
+    "verb-main"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Both versions are grammatical. Which verb hits harder, and why?",
+   "choices": [
+    "Version A — 'went quickly' is more precise",
+    "Version B — 'bolted' packs the speed inside the verb instead of hanging it on with an adverb",
+    "They're identical in effect",
+    "Version A — adverbs always strengthen writing"
+   ],
+   "answer": 1,
+   "feedback": "<em>Bolted</em> does the work of <em>went quickly</em> in one word — and adds panic that <em>quickly</em> doesn't have. This is a choice, not a rule: sometimes plain <em>went</em> is right (Hemingway chose it for troops on a road). But know what each choice buys you.",
+   "stimulus": "<span class='kernel-line'>A: The deer went quickly across the road.</span><span class='kernel-line'>B: The deer bolted across the road.</span>"
+  },
+  {
+   "id": "mc-02-004",
+   "lesson": "02",
+   "concepts": [
+    "verb-main"
+   ],
+   "difficulty": 3,
+   "kind": "mc",
+   "prompt": "Which version treats the fog as the star of the sentence — and what makes the difference?",
+   "choices": [
+    "A — 'was' keeps attention on the fog itself",
+    "B — 'swallowed' gives the fog an action and a victim",
+    "They emphasize the fog equally",
+    "B — because it is longer"
+   ],
+   "answer": 1,
+   "feedback": "In A, the fog just <em>is</em> — a linking verb parks it in place and describes it. In B, the fog <em>does</em> — it swallows the stadium. Action verbs hand the subject agency; linking verbs hand it qualities. Neither is wrong: a describing sentence might want A. The move is choosing on purpose.",
+   "stimulus": "<span class='kernel-line'>A: The fog was thick around the stadium.</span><span class='kernel-line'>B: The fog swallowed the stadium.</span>"
+  },
+  {
+   "id": "exp-02-001",
+   "lesson": "02",
+   "concepts": [
+    "do"
+   ],
+   "difficulty": 1,
+   "kind": "expand",
+   "kernel": "The kicker missed.",
+   "question": "This verb is aching for a receiver. Complete the kernel: missed WHAT?",
+   "models": [
+    {
+     "sentence": "The kicker missed <span class='mv mv-blue'>the extra point</span>.",
+     "move": "Add the direct object",
+     "note": "<em>Missed what?</em> → the extra point. The verb's demand is satisfied."
+    },
+    {
+     "sentence": "The kicker missed <span class='mv mv-blue'>the team bus</span>.",
+     "move": "Add the direct object",
+     "note": "A different DO makes a different story — the object you choose is a plot decision, not just grammar."
+    }
+   ]
+  },
+  {
+   "id": "exp-02-002",
+   "lesson": "02",
+   "concepts": [
+    "io"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "Dad handed the keys.",
+   "question": "Handed feels incomplete — handing goes TO someone. Add the receiver (indirect object).",
+   "models": [
+    {
+     "sentence": "Dad handed <span class='mv mv-blue'>my sister</span> the keys.",
+     "move": "Insert the indirect object",
+     "note": "<em>Handed to whom?</em> → my sister. The IO slides between verb and DO — no preposition needed."
+    },
+    {
+     "sentence": "Dad handed the keys <span class='mv mv-teal'>to the valet</span>.",
+     "move": "Or use a to-phrase",
+     "note": "The other route: keep the DO next to the verb and deliver the receiver in a prepositional phrase. Same facts, different rhythm."
+    }
+   ]
+  },
+  {
+   "id": "exp-02-003",
+   "lesson": "02",
+   "concepts": [
+    "pa"
+   ],
+   "difficulty": 1,
+   "kind": "expand",
+   "kernel": "The gym smelled",
+   "question": "A linking verb mid-promise. Deliver the description: smelled HOW?",
+   "models": [
+    {
+     "sentence": "The gym smelled <span class='mv mv-gold'>like old sneakers and floor wax</span>.",
+     "move": "Complete with description",
+     "note": "The linking verb hands its subject a quality. Gym = that smell (unfortunately)."
+    },
+    {
+     "sentence": "The gym smelled <span class='mv mv-gold'>strangely sweet</span> <span class='mv mv-teal'>on tournament mornings</span>.",
+     "move": "Describe, then situate",
+     "note": "Predicate adjective first, optional when-detail after — the kernel's promise gets kept, then decorated."
+    }
+   ]
+  },
+  {
+   "id": "exp-02-004",
+   "lesson": "02",
+   "concepts": [
+    "oc"
+   ],
+   "difficulty": 3,
+   "kind": "expand",
+   "kernel": "The long rehearsals made the cast",
+   "question": "Made the cast... WHAT? Complete the direct object with an object complement.",
+   "models": [
+    {
+     "sentence": "The long rehearsals made the cast <span class='mv mv-gold'>ruthless about wasted time</span>.",
+     "move": "Adjective as object complement",
+     "note": "<em>Made</em> + DO + a completer describing the DO: cast = ruthless. The OC finishes what <em>made</em> started."
+    },
+    {
+     "sentence": "The long rehearsals made the cast <span class='mv mv-gold'>a family</span>.",
+     "move": "Noun as object complement",
+     "note": "The completer can be a noun instead: cast = a family. Same slot, different material — and a very different story."
+    }
+   ]
+  },
+  {
+   "id": "cmb-02-001",
+   "lesson": "02",
+   "concepts": [
+    "pn"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "Maya is our team captain.",
+    "Maya is the loudest voice in the hallway."
+   ],
+   "models": [
+    {
+     "sentence": "Maya is <span class='mv mv-gold'>our team captain</span> and <span class='mv mv-gold'>the loudest voice in the hallway</span>.",
+     "move": "Double predicate nominative",
+     "note": "One linking verb can deliver two renamings — the pair says more together than either sentence alone."
+    },
+    {
+     "sentence": "Our team captain, Maya is also the loudest voice in the hallway.",
+     "move": "Re-rank the facts",
+     "note": "Or demote one renaming to an opener and let the other keep the verb. Which fact do you want to feel like news?"
+    }
+   ]
+  },
+  {
+   "id": "imi-02-001",
+   "lesson": "02",
+   "concepts": [
+    "oc"
+   ],
+   "difficulty": 3,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "…it is the wish of most masters within my knowledge to keep their slaves thus ignorant.",
+    "source": "Frederick Douglass, Narrative"
+   },
+   "frame": "<strong>keep/make/leave + direct object + object complement:</strong> <em>___ keeps ___ ___.</em> End the sentence on the complement — make the last word carry the weight.",
+   "models": [
+    {
+     "sentence": "The curfew keeps the whole neighborhood quiet.",
+     "move": "Verb + DO + object complement",
+     "note": "Douglass ends on <em>ignorant</em> so the word can't be ignored. Your imitation should end on its complement too — the completer is the point."
+    },
+    {
+     "sentence": "One bad referee call left the crowd furious.",
+     "move": "Verb + DO + object complement",
+     "note": "<em>Left</em> works like <em>keep</em>: the object (<em>crowd</em>) gets a state (<em>furious</em>) — and the sentence lands on it."
+    }
+   ]
+  },
+  {
+   "id": "idn-02-004",
+   "lesson": "02",
+   "concepts": [
+    "subject"
+   ],
+   "difficulty": 3,
+   "kind": "identify",
+   "instruction": "Inverted sentence: click the simple subject — it's not where you expect.",
+   "sentence": [
+    "Out",
+    "of",
+    "the",
+    "fog",
+    "glided",
+    "three",
+    "silent",
+    "canoes*."
+   ],
+   "answer": [
+    7
+   ],
+   "feedback": "Flip it: <em>Three silent canoes glided out of the fog.</em> The subject is <em>canoes</em> — ask <em>what glided?</em> Writers invert kernels to save the subject for last; <em>fog</em> tempts because it comes first, but it's the object of <em>of</em>, and a subject never lives inside a prepositional phrase."
+  },
+  {
+   "id": "rec-03-001",
+   "lesson": "03",
+   "concepts": [
+    "recall"
+   ],
+   "difficulty": 1,
+   "kind": "recall",
+   "prompt": "From memory: what decides a word's part of speech — its spelling, its dictionary entry, or something else?",
+   "model": "Its <strong>job in the sentence</strong>. The same word can be a noun in one sentence and a verb in the next (<em>a run</em> / <em>I run</em>). Spelling and dictionary lists only tell you what jobs a word <em>usually</em> takes — the sentence decides what it's doing right now."
+  },
+  {
+   "id": "cls-03-001",
+   "lesson": "03",
+   "concepts": [
+    "noun",
+    "verb"
+   ],
+   "difficulty": 2,
+   "kind": "classify",
+   "sentence": "She scored a run in the final inning.",
+   "target": "run",
+   "prompt": "What part of speech is 'run' in this sentence?",
+   "choices": [
+    "Noun",
+    "Verb",
+    "Adjective",
+    "Adverb"
+   ],
+   "answer": 0,
+   "feedback": "Here <em>run</em> names a thing — a score in baseball — so it's a noun (<em>a</em> run, an article in front, like any noun). The same word is a verb in <em>I run every morning</em>. Form doesn't determine part of speech; the job does."
+  },
+  {
+   "id": "cls-03-002",
+   "lesson": "03",
+   "concepts": [
+    "noun"
+   ],
+   "difficulty": 3,
+   "kind": "classify",
+   "sentence": "Reading is her favorite escape.",
+   "target": "Reading",
+   "prompt": "What part of speech is 'Reading' here?",
+   "choices": [
+    "Noun (gerund)",
+    "Verb",
+    "Adjective (participle)"
+   ],
+   "answer": 0,
+   "feedback": "<em>Reading</em> names an activity and is the subject of <em>is</em> — a noun job, so this -ing form is a gerund. Verb tempts because of the -ing, but there's no helping verb (<em>she is reading</em> would be the verb use); adjective would need a noun to describe (<em>the reading lamp</em>)."
+  },
+  {
+   "id": "idn-03-001",
+   "lesson": "03",
+   "concepts": [
+    "pronoun"
+   ],
+   "difficulty": 1,
+   "kind": "identify",
+   "instruction": "Click every pronoun.",
+   "sentence": [
+    "She",
+    "gave",
+    "him",
+    "her",
+    "old",
+    "notebook",
+    "."
+   ],
+   "answer": [
+    0,
+    2,
+    3
+   ],
+   "feedback": "<em>She</em> (subject pronoun), <em>him</em> (object pronoun), <em>her</em> (possessive pronoun) — three stand-ins that spare us repeating names. <em>Notebook</em> is the noun they orbit."
+  },
+  {
+   "id": "cls-03-003",
+   "lesson": "03",
+   "concepts": [
+    "pronoun",
+    "adjective"
+   ],
+   "difficulty": 3,
+   "kind": "classify",
+   "sentence": "Her coat was hanging by the door.",
+   "target": "Her",
+   "prompt": "What is 'Her' doing in this sentence?",
+   "choices": [
+    "Possessive pronoun, modifying 'coat'",
+    "Personal object pronoun",
+    "Noun",
+    "Adverb"
+   ],
+   "answer": 0,
+   "feedback": "<em>Her</em> shows possession and points at the coat's owner — a possessive pronoun doing modifying work. (Some grammars call this a 'possessive adjective'; this site follows the Holt classification, which files <em>my, your, her, its, our, their</em> under pronouns.) Either name, the job is the same: it tells whose coat."
+  },
+  {
+   "id": "idn-03-003",
+   "lesson": "03",
+   "concepts": [
+    "verb"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click the whole verb phrase — helping verbs included.",
+   "sentence": [
+    "She",
+    "has",
+    "been",
+    "studying",
+    "all",
+    "night",
+    "."
+   ],
+   "answer": [
+    1,
+    2,
+    3
+   ],
+   "feedback": "<em>Has been studying</em> is one three-word verb: two helpers (<em>has, been</em>) plus the main verb (<em>studying</em>). If you clicked only <em>studying</em>, you found the engine but left the transmission — helpers carry the tense."
+  },
+  {
+   "id": "cls-03-005",
+   "lesson": "03",
+   "concepts": [
+    "verb"
+   ],
+   "difficulty": 3,
+   "kind": "classify",
+   "sentence": "You must finish your homework before dinner.",
+   "target": "must",
+   "prompt": "What kind of verb is 'must'?",
+   "choices": [
+    "Main verb",
+    "Modal helping verb",
+    "Linking verb"
+   ],
+   "answer": 1,
+   "feedback": "<em>Must</em> is a modal — it adds necessity to the main verb <em>finish</em>. Modals (must, may, can, could, will, would, should, might) never work alone; they always team with a base verb. Austen's whole joke in her famous opening rides on this word: <em>must be in want of a wife</em>."
+  },
+  {
+   "id": "cls-03-006",
+   "lesson": "03",
+   "concepts": [
+    "adjective",
+    "noun"
+   ],
+   "difficulty": 2,
+   "kind": "classify",
+   "sentence": "She picked up the glass vase carefully.",
+   "target": "glass",
+   "prompt": "What part of speech is 'glass' in this sentence?",
+   "choices": [
+    "Noun",
+    "Adjective",
+    "Verb"
+   ],
+   "answer": 1,
+   "feedback": "<em>Glass</em> answers <em>what kind of vase?</em> — an adjective's question. Nouns moonlight as adjectives constantly (<em>glass vase, Yukon trail, spruce timberland</em>). Noun tempts because glass usually is one: <em>She drank from the glass.</em> The job in this sentence decides."
+  },
+  {
+   "id": "idn-03-004",
+   "lesson": "03",
+   "concepts": [
+    "adjective"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click every adjective — including the articles.",
+   "sentence": [
+    "An",
+    "old",
+    "man",
+    "gave",
+    "the",
+    "children",
+    "a",
+    "small",
+    "gift",
+    "."
+   ],
+   "answer": [
+    0,
+    1,
+    4,
+    6,
+    7
+   ],
+   "feedback": "Five adjectives: the articles <em>an, the, a</em> (the most common adjectives in English) plus <em>old</em> and <em>small</em>. Articles count: <em>an</em> before a vowel sound, <em>a</em> before a consonant sound, <em>the</em> when both writer and reader know which one."
+  },
+  {
+   "id": "mc-03-001",
+   "lesson": "03",
+   "concepts": [
+    "adjective"
+   ],
+   "difficulty": 3,
+   "kind": "mc",
+   "prompt": "What's the difference in meaning? <em>“I'd like a coffee”</em> vs. <em>“I'd like the coffee.”</em>",
+   "choices": [
+    "No difference",
+    "'A coffee' = any one; 'the coffee' = a specific one we both know about",
+    "'The coffee' is more polite",
+    "'A coffee' is nonstandard"
+   ],
+   "answer": 1,
+   "feedback": "The tiny article carries the meaning. <em>A</em> coffee orders one from the world's supply; <em>the</em> coffee points at one already on the table between us. Austen hangs her whole opening irony on this choice: <em>a</em> truth universally acknowledged — one of many, not <em>the</em> truth."
+  },
+  {
+   "id": "idn-03-005",
+   "lesson": "03",
+   "concepts": [
+    "adverb"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click every adverb. Not all of them end in -ly.",
+   "sentence": [
+    "He",
+    "rarely",
+    "arrives",
+    "here",
+    "early*."
+   ],
+   "answer": [
+    1,
+    3,
+    4
+   ],
+   "feedback": "<em>Rarely</em> (how often), <em>here</em> (where), <em>early</em> (when) — all modifying <em>arrives</em>. The -ly ending is a hint, not a rule: none of these three end in -ly, and some -ly words (<em>friendly, lovely</em>) are adjectives."
+  },
+  {
+   "id": "idn-03-006",
+   "lesson": "03",
+   "concepts": [
+    "preposition"
+   ],
+   "difficulty": 3,
+   "kind": "identify",
+   "instruction": "Click only the preposition — don't be fooled by the infinitive.",
+   "sentence": [
+    "She",
+    "went",
+    "to",
+    "the",
+    "park",
+    "to",
+    "meet",
+    "her",
+    "friends",
+    "."
+   ],
+   "answer": [
+    2
+   ],
+   "feedback": "Only the first <em>to</em> is a preposition (<em>to what?</em> → the park). The second <em>to</em> is the infinitive marker in <em>to meet</em> — <em>to</em> + verb. The rule: <em>to</em> + noun = preposition; <em>to</em> + verb = infinitive."
+  },
+  {
+   "id": "cls-03-009",
+   "lesson": "03",
+   "concepts": [
+    "conjunction",
+    "preposition"
+   ],
+   "difficulty": 3,
+   "kind": "classify",
+   "sentence": "Wait here until I return.",
+   "target": "until",
+   "prompt": "What part of speech is 'until' here?",
+   "choices": [
+    "Preposition",
+    "Subordinating conjunction",
+    "Adverb"
+   ],
+   "answer": 1,
+   "feedback": "<em>Until</em> introduces a clause with its own subject and verb (<em>I return</em>) — that's a subordinating conjunction. Preposition tempts because <em>until</em> often is one: <em>Wait until noon</em> (object: noon). What follows the word decides its job."
+  },
+  {
+   "id": "idn-03-007",
+   "lesson": "03",
+   "concepts": [
+    "conjunction"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click both conjunctions — they're doing different jobs.",
+   "sentence": [
+    "Although",
+    "it",
+    "was",
+    "cold",
+    ",",
+    "we",
+    "went",
+    "outside",
+    "and",
+    "built",
+    "a",
+    "snowman",
+    "."
+   ],
+   "answer": [
+    0,
+    8
+   ],
+   "feedback": "<em>Although</em> is subordinating — it bends its clause into a dependent one. <em>And</em> is coordinating — it joins <em>went</em> and <em>built</em> as equals. Same part of speech, two different kinds of joining."
+  },
+  {
+   "id": "cls-03-010",
+   "lesson": "03",
+   "concepts": [
+    "interjection",
+    "adverb"
+   ],
+   "difficulty": 2,
+   "kind": "classify",
+   "sentence": "Well, that was unexpected.",
+   "target": "Well",
+   "prompt": "What part of speech is 'Well' in this sentence?",
+   "choices": [
+    "Interjection",
+    "Adverb",
+    "Adjective"
+   ],
+   "answer": 0,
+   "feedback": "Set off by a comma and grammatically detached, <em>Well</em> is an interjection — a spoken hesitation. Adverb tempts because <em>well</em> usually is one (<em>she sings well</em>). Delete test: remove it and the sentence's grammar is untouched — that detachability is the interjection's signature."
+  },
+  {
+   "id": "mc-03-002",
+   "lesson": "03",
+   "concepts": [
+    "interjection"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Which sentence would you be least likely to find in a lab report — and why?",
+   "choices": [
+    "The trial was repeated three times.",
+    "Whoa, the results were wild!",
+    "The effect was statistically significant.",
+    "Further study is needed."
+   ],
+   "answer": 1,
+   "feedback": "<em>Whoa</em> is an interjection, and interjections carry the register of speech — enthusiasm, hesitation, surprise. They're not wrong; they're informal. A lab report keeps emotional distance, so its grammar goes interjection-free. Register is a choice you make with parts of speech."
+  },
+  {
+   "id": "imi-03-001",
+   "lesson": "03",
+   "concepts": [
+    "noun"
+   ],
+   "difficulty": 2,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "In the bed of the river there were pebbles and boulders, dry and white in the sun…",
+    "source": "Ernest Hemingway, A Farewell to Arms"
+   },
+   "frame": "<strong>There were + concrete nouns + trailing adjectives:</strong> <em>In ___ there were ___ and ___, ___ and ___ in the ___.</em>",
+   "models": [
+    {
+     "sentence": "In the back of the closet there were cleats and shin guards, cracked and gray with mud.",
+     "move": "Concrete nouns, trailing description",
+     "note": "Hemingway names exact things (<em>pebbles, boulders</em>) and lets two plain adjectives trail after. Choose nouns a camera could see."
+    },
+    {
+     "sentence": "On the workbench there were jars and hinges, rusted and delicate under the dust.",
+     "move": "Concrete nouns, trailing description",
+     "note": "The move: real objects first, texture after. No emotions named — the objects carry them."
+    }
+   ]
+  },
+  {
+   "id": "exp-03-001",
+   "lesson": "03",
+   "concepts": [
+    "verb"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "The librarian looked at us.",
+   "question": "Swap the plain verb for one that carries a mood — then decide what your swap changed.",
+   "models": [
+    {
+     "sentence": "The librarian <span class='mv mv-teal'>glared</span> at us.",
+     "move": "Precise verb",
+     "note": "<em>Glared</em> = looked + anger. One word now does two jobs."
+    },
+    {
+     "sentence": "The librarian <span class='mv mv-teal'>peered</span> at us.",
+     "move": "Precise verb",
+     "note": "<em>Peered</em> = looked + effort/curiosity. Different verb, different librarian. (And sometimes plain <em>looked</em> is the right call — Hemingway would keep it. The point is choosing, not always upgrading.)"
+    }
+   ]
+  },
+  {
+   "id": "exp-03-002",
+   "lesson": "03",
+   "concepts": [
+    "noun"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "A bird sat on the wire.",
+   "question": "Trade the generic noun for a specific one. What does the trade buy?",
+   "models": [
+    {
+     "sentence": "A <span class='mv mv-blue'>crow</span> sat on the wire.",
+     "move": "Specific noun",
+     "note": "<em>Crow</em> brings color, sound, and omen along for free. Specificity is credibility — the reader trusts a writer who saw a crow, not 'a bird.'"
+    },
+    {
+     "sentence": "A <span class='mv mv-blue'>mourning dove</span> sat on the wire.",
+     "move": "Specific noun",
+     "note": "Swap in a different species and the sentence changes temperature entirely. The noun is doing the describing — no adjective needed."
+    }
+   ]
+  },
+  {
+   "id": "imi-03-002",
+   "lesson": "03",
+   "concepts": [
+    "adjective"
+   ],
+   "difficulty": 3,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "It was a clear day, and yet there seemed an intangible pall over the face of things…",
+    "source": "Jack London, “To Build a Fire”"
+   },
+   "frame": "<strong>Plain fact + and yet + felt contradiction:</strong> <em>It was a ___ ___, and yet ___.</em>",
+   "models": [
+    {
+     "sentence": "It was an ordinary Tuesday, and yet every locker slam sounded like a warning.",
+     "move": "Fact, then felt contradiction",
+     "note": "London states a measurable fact, then lets <em>and yet</em> open the door to what can't be measured. Your second half should contradict the mood of your first."
+    },
+    {
+     "sentence": "It was a small mistake, and yet the whole room went quiet.",
+     "move": "Fact, then felt contradiction",
+     "note": "The move lives in the hinge <em>and yet</em> — two coordinating words stacked so the sentence can turn against itself."
+    }
+   ]
+  },
+  {
+   "id": "rec-04-001",
+   "lesson": "04",
+   "concepts": [
+    "recall"
+   ],
+   "difficulty": 1,
+   "kind": "recall",
+   "prompt": "From memory: what's the difference between a sentence's kernel and its modifiers? How do you find the kernel?",
+   "model": "The <strong>kernel</strong> is the subject + verb (plus whatever the verb demands) — the part that can't be removed. <strong>Modifiers</strong> are the optional add-ons answering <em>which, what kind, when, where, why, how</em>. To find the kernel, cross out everything removable: what's left standing is the kernel."
+  },
+  {
+   "id": "idn-04-001",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 1,
+   "kind": "identify",
+   "instruction": "Click every word of the prepositional phrase that tells WHERE.",
+   "sentence": [
+    "The",
+    "cat",
+    "slept",
+    "under",
+    "the",
+    "porch",
+    "all",
+    "afternoon",
+    "."
+   ],
+   "answer": [
+    3,
+    4,
+    5
+   ],
+   "feedback": "<em>Under the porch</em> — preposition (<em>under</em>) + object (<em>porch</em>) with its article. It answers <em>where did the cat sleep?</em> <em>All afternoon</em> answers <em>when</em>, and it does that without a preposition — a noun phrase acting like an adverb."
+  },
+  {
+   "id": "idn-04-002",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click every word of the appositive phrase.",
+   "sentence": [
+    "Mr",
+    ".",
+    "Okafor",
+    ",",
+    "our",
+    "bus",
+    "driver*,",
+    "waved",
+    "from",
+    "the",
+    "window",
+    "."
+   ],
+   "answer": [
+    4,
+    5,
+    6
+   ],
+   "feedback": "<em>Our bus driver</em> renames <em>Mr. Okafor</em> — a noun phrase in apposition, set off by commas because it's bonus identification. If you included <em>Mr. Okafor</em> itself, that's the noun being renamed, not the renamer."
+  },
+  {
+   "id": "cls-04-001",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "classify",
+   "sentence": "The girl with the green backpack waved.",
+   "target": "with",
+   "prompt": "The phrase starting at 'with' is doing what job?",
+   "choices": [
+    "Adverb — it tells how she waved",
+    "Adjective — it tells which girl",
+    "Direct object",
+    "Subject"
+   ],
+   "answer": 1,
+   "feedback": "<em>With the green backpack</em> answers <em>which girl?</em> — adjective work, and it sits right beside the noun it modifies. Adverb tempts because prepositional phrases often do adverb work (<em>waved with enthusiasm</em> would tell how). Ask what the phrase answers, not what it looks like."
+  },
+  {
+   "id": "mc-04-001",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Both sentences contain the same kernel. What did the added phrase do in version B?",
+   "choices": [
+    "Changed the kernel",
+    "Answered 'when' and moved the reader into the scene before the action",
+    "Made the sentence compound",
+    "Added a second verb"
+   ],
+   "answer": 1,
+   "feedback": "The kernel <em>we lived</em> survives untouched; <em>In the late summer of that year</em> answers <em>when</em> and — because it comes first — sets the scene before anyone appears. That's Hemingway's actual opening move in <em>A Farewell to Arms</em>: where and when before who.",
+   "stimulus": "<span class='kernel-line'>A: We lived in a house.</span><span class='kernel-line'>B: In the late summer of that year we lived in a house.</span>"
+  },
+  {
+   "id": "mc-04-002",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 3,
+   "kind": "mc",
+   "prompt": "A classmate writes: <em>“My cousin, a semi-pro gamer, taught me everything.”</em> What is the appositive buying that a second sentence wouldn't?",
+   "choices": [
+    "Nothing — it should be two sentences",
+    "Compression: the credential arrives mid-sentence, without stopping the story to explain",
+    "It fixes a comma splice",
+    "It makes the cousin the subject"
+   ],
+   "answer": 1,
+   "feedback": "<em>A semi-pro gamer</em> delivers a whole second sentence's worth of information (<em>My cousin is a semi-pro gamer</em>) in four words, without surrendering the sentence's momentum. That's the appositive's trade: information smuggled in, story uninterrupted."
+  },
+  {
+   "id": "exp-04-001",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 1,
+   "kind": "expand",
+   "kernel": "The sirens started.",
+   "question": "WHEN? Add a phrase that answers when — try it at the front.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>Just after midnight,</span> the sirens started.",
+     "move": "Prepositional phrase (when)",
+     "note": "The when-phrase leads, so the reader is standing in the dark before the sound begins. Kernel untouched: <em>sirens started</em>."
+    },
+    {
+     "sentence": "The sirens started <span class='mv mv-teal'>during the second act</span>.",
+     "move": "Prepositional phrase (when)",
+     "note": "Trailing position works too — now the sentence lands on the interruption. Same fact, different emphasis."
+    }
+   ]
+  },
+  {
+   "id": "exp-04-002",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 1,
+   "kind": "expand",
+   "kernel": "My grandmother kept a garden.",
+   "question": "WHERE? Add a phrase that answers where.",
+   "models": [
+    {
+     "sentence": "My grandmother kept a garden <span class='mv mv-teal'>behind the laundromat</span>.",
+     "move": "Prepositional phrase (where)",
+     "note": "One phrase and the garden becomes specific, surprising, real. Where-phrases carry setting on their backs."
+    },
+    {
+     "sentence": "<span class='mv mv-teal'>On the roof of her building,</span> my grandmother kept a garden.",
+     "move": "Prepositional phrase (where)",
+     "note": "Fronting the where makes the location the story's first surprise."
+    }
+   ]
+  },
+  {
+   "id": "exp-04-003",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "The quarterback fumbled.",
+   "question": "WHICH ONE / WHAT KIND? Add an appositive after the subject that tells us who this quarterback is.",
+   "models": [
+    {
+     "sentence": "The quarterback, <span class='mv mv-gold'>a transfer with everything to prove</span>, fumbled.",
+     "move": "Appositive",
+     "note": "The appositive plants the stakes inside the sentence — now the fumble hurts. Commas fence off the bonus information."
+    },
+    {
+     "sentence": "The quarterback, <span class='mv mv-gold'>our only healthy senior</span>, fumbled.",
+     "move": "Appositive",
+     "note": "A different appositive, a different disaster. The renaming you choose decides what the fumble means."
+    }
+   ]
+  },
+  {
+   "id": "exp-04-004",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "Douglass could name the place.",
+   "question": "Imitate Douglass's mapping move: stack two or three place-phrases that zero in — region, then town, then spot.",
+   "models": [
+    {
+     "sentence": "Douglass could name the place — <span class='mv mv-teal'>in Talbot county</span>, <span class='mv mv-teal'>near Hillsborough</span>, <span class='mv mv-teal'>about twelve miles from Easton</span>.",
+     "move": "Stacked prepositional phrases",
+     "note": "Douglass stacks five place-phrases in his first sentence, building a geographic case for his own existence. Each phrase tightens the circle."
+    },
+    {
+     "sentence": "We found the den <span class='mv mv-teal'>past the creek</span>, <span class='mv mv-teal'>under the fallen oak</span>, <span class='mv mv-teal'>at the edge of the Hendersons' field</span>.",
+     "move": "Stacked prepositional phrases",
+     "note": "Stacked where-phrases read like a treasure map: each one hands the reader the next landmark."
+    }
+   ]
+  },
+  {
+   "id": "exp-04-005",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "The library stayed open.",
+   "question": "WHY does it matter, or WHEN? Add two different phrases and compare what each does.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>During finals week,</span> the library stayed open <span class='mv mv-teal'>until midnight</span>.",
+     "move": "Two when-phrases",
+     "note": "Two time-phrases bracket the kernel — the sentence now carries a schedule and a reason to care."
+    },
+    {
+     "sentence": "The library stayed open <span class='mv mv-teal'>for the students with nowhere else to study</span>.",
+     "move": "For-phrase (why/for whom)",
+     "note": "A for-phrase answers <em>for whose sake?</em> — quiet motive smuggled in through a modifier."
+    }
+   ]
+  },
+  {
+   "id": "exp-04-006",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 3,
+   "kind": "expand",
+   "kernel": "The photograph survived.",
+   "question": "Build the sentence in Douglass's spirit: make the surviving photograph precisely located and precisely described — kernel plus at least three expansion phrases.",
+   "models": [
+    {
+     "sentence": "The photograph — <span class='mv mv-gold'>a creased square of my grandfather at nineteen</span> — survived <span class='mv mv-teal'>in a cigar box</span> <span class='mv mv-teal'>under the stairs</span> <span class='mv mv-teal'>through three moves and a flood</span>.",
+     "move": "Appositive + stacked phrases",
+     "note": "Appositive for what it is; three phrases for where and through what. The kernel is still two words: <em>photograph survived</em>."
+    },
+    {
+     "sentence": "<span class='mv mv-teal'>In the back of the yearbook,</span> <span class='mv mv-teal'>between the ads and the autographs,</span> the photograph survived <span class='mv mv-teal'>for forty years</span>.",
+     "move": "Stacked phrases",
+     "note": "Cross out every phrase and the kernel stands. That's the test of a clean expansion — remove the additions and no grammar breaks."
+    }
+   ]
+  },
+  {
+   "id": "cmb-04-001",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "Ms. Rivera coaches the robotics team.",
+    "Ms. Rivera is my homeroom teacher."
+   ],
+   "models": [
+    {
+     "sentence": "Ms. Rivera, <span class='mv mv-gold'>my homeroom teacher</span>, coaches the robotics team.",
+     "move": "Appositive",
+     "note": "The second sentence collapses into a renaming phrase — two facts, one sentence, no connector needed."
+    },
+    {
+     "sentence": "<span class='mv mv-gold'>My homeroom teacher,</span> Ms. Rivera coaches the robotics team.",
+     "move": "Appositive (fronted)",
+     "note": "The renaming can lead. Notice the different feel: the role first, the name as reveal."
+    }
+   ]
+  },
+  {
+   "id": "cmb-04-002",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 3,
+   "kind": "combine",
+   "kernels": [
+    "The old ferry crosses the strait.",
+    "It crosses twice a day.",
+    "It carries mail and propane."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>Twice a day,</span> the old ferry crosses the strait <span class='mv mv-teal'>with its load of mail and propane</span>.",
+     "move": "Phrases fore and aft",
+     "note": "Three flat sentences become one: a when-phrase up front, a with-phrase trailing. The kernel <em>ferry crosses strait</em> never flinches."
+    },
+    {
+     "sentence": "The old ferry crosses the strait twice a day, <span class='mv mv-teal'>carrying mail and propane</span>.",
+     "move": "Phrase + preview of Lesson 05",
+     "note": "The third sentence can also fold in as an -ing phrase — a compression move you'll practice next lesson."
+    }
+   ]
+  },
+  {
+   "id": "imi-04-001",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "In the late summer of that year we lived in a house in a village that looked across the river and the plain to the mountains.",
+    "source": "Ernest Hemingway, A Farewell to Arms"
+   },
+   "frame": "<strong>Open inside a when-phrase, then widen the lens:</strong> <em>In ___ we ___ in a ___ in a ___ that ___.</em>",
+   "models": [
+    {
+     "sentence": "In the first week of June we camped in a cabin on a ridge that looked down over the highway and the river to the lights of town.",
+     "move": "When-phrase opener + widening lens",
+     "note": "Hemingway starts in time, lands in a house, then lets the sentence walk to the horizon. Let your phrases carry the camera."
+    },
+    {
+     "sentence": "In the last days of summer we worked in a kitchen in a diner that faced the interstate and the flat brown fields beyond it.",
+     "move": "When-phrase opener + widening lens",
+     "note": "Where and when before who — the opener move you can steal for any narrative opening."
+    }
+   ]
+  },
+  {
+   "id": "idn-04-003",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 3,
+   "kind": "identify",
+   "instruction": "Click every word of BOTH prepositional phrases.",
+   "sentence": [
+    "The",
+    "mural",
+    "on",
+    "the",
+    "gym",
+    "wall",
+    "faded",
+    "after",
+    "twenty",
+    "years*."
+   ],
+   "answer": [
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9
+   ],
+   "feedback": "Two phrases, two jobs: <em>on the gym wall</em> tells <em>which mural</em> (adjective work, hugging its noun); <em>after twenty years</em> tells <em>when it faded</em> (adverb work, serving the verb). Same structure — preposition + object — different questions answered."
+  },
+  {
+   "id": "rec-05-001",
+   "lesson": "05",
+   "concepts": [
+    "recall"
+   ],
+   "difficulty": 1,
+   "kind": "recall",
+   "prompt": "From memory: what makes a group of words a phrase rather than a clause — and what test tells you?",
+   "model": "A <strong>phrase</strong> has no subject–verb pair; a <strong>clause</strong> has both. The test: point to the subject, point to the finite verb (one that shows tense). Find both → clause. Missing either → phrase."
+  },
+  {
+   "id": "cls-05-001",
+   "lesson": "05",
+   "concepts": [
+    "gerund",
+    "participle"
+   ],
+   "difficulty": 2,
+   "kind": "classify",
+   "sentence": "Swimming laps builds endurance.",
+   "target": "Swimming",
+   "prompt": "What is 'Swimming' doing in this sentence?",
+   "choices": [
+    "Gerund — naming the activity that is the subject",
+    "Participle — describing a noun",
+    "Main verb"
+   ],
+   "answer": 0,
+   "feedback": "<em>Swimming laps</em> is the subject of <em>builds</em> — the -ing form names an activity, a noun's job, so it's a gerund. Main verb tempts (it's an action word!), but the sentence's finite verb is <em>builds</em>. Substitute test: <em>It builds endurance</em> ✓."
+  },
+  {
+   "id": "cls-05-002",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 2,
+   "kind": "classify",
+   "sentence": "The swimming instructor blew her whistle.",
+   "target": "swimming",
+   "prompt": "Same word, new sentence. What is 'swimming' doing here?",
+   "choices": [
+    "Gerund — naming an activity",
+    "Participle — telling what kind of instructor",
+    "Main verb"
+   ],
+   "answer": 1,
+   "feedback": "Here <em>swimming</em> describes <em>instructor</em> — what kind? The swimming kind. That's adjective work: a participle. Compare <em>Swimming laps builds endurance</em> (gerund, noun job). Identical form, opposite job — only the sentence can tell you which."
+  },
+  {
+   "id": "cls-05-003",
+   "lesson": "05",
+   "concepts": [
+    "participle",
+    "verb"
+   ],
+   "difficulty": 3,
+   "kind": "classify",
+   "sentence": "The volunteers are painting the mural this weekend.",
+   "target": "painting",
+   "prompt": "What is 'painting' in this sentence?",
+   "choices": [
+    "Participle acting as an adjective",
+    "Part of the main verb 'are painting'",
+    "Gerund acting as a noun"
+   ],
+   "answer": 1,
+   "feedback": "The helping verb <em>are</em> is the giveaway: <em>are painting</em> is the sentence's main verb (present progressive). A helping verb next to an -ing form almost always means you're looking at the verb itself, not a verbal in disguise."
+  },
+  {
+   "id": "idn-05-001",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click every word of the participial phrase.",
+   "sentence": [
+    "Exhausted",
+    "from",
+    "the",
+    "double",
+    "shift*,",
+    "my",
+    "mother",
+    "still",
+    "checked",
+    "my",
+    "homework",
+    "."
+   ],
+   "answer": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "feedback": "<em>Exhausted from the double shift</em> — a past participle towing a prepositional phrase. The whole thing describes <em>my mother</em>, and because it opens the sentence, it takes a comma and must point at the subject that follows. It does: she's the exhausted one."
+  },
+  {
+   "id": "idn-05-002",
+   "lesson": "05",
+   "concepts": [
+    "gerund"
+   ],
+   "difficulty": 3,
+   "kind": "identify",
+   "instruction": "Click every word of the gerund phrase.",
+   "sentence": [
+    "The",
+    "coach",
+    "recommends",
+    "stretching",
+    "before",
+    "practice*."
+   ],
+   "answer": [
+    3,
+    4,
+    5
+   ],
+   "feedback": "<em>Stretching before practice</em> — recommends <em>what?</em> The gerund phrase is the direct object, an entire activity packed into a noun slot. If you left off <em>before practice</em>, note that the modifier belongs to the gerund: it's part of what's being recommended."
+  },
+  {
+   "id": "mc-05-001",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Which combination folds sentence 2 into a participial phrase?",
+   "choices": [
+    "The dog barked at the mail carrier, and the dog strained at its leash.",
+    "Straining at its leash, the dog barked at the mail carrier.",
+    "The dog barked at the mail carrier because it strained at its leash.",
+    "The dog barked at the mail carrier. It strained at its leash."
+   ],
+   "answer": 1,
+   "feedback": "<em>Straining at its leash</em> compresses a whole clause into an -ing phrase and pins it to <em>the dog</em>. Option A coordinates (two full clauses, no compression); C invents a cause the facts didn't claim; D declines to combine at all. Only B performs the verbal move.",
+   "stimulus": "<span class='kernel-line'>1: The dog barked at the mail carrier.</span><span class='kernel-line'>2: The dog strained at its leash.</span>"
+  },
+  {
+   "id": "mc-05-002",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 3,
+   "kind": "mc",
+   "prompt": "One of these revisions has a dangling opener — its -ing phrase grabs the wrong actor. Which one, and who ends up running?",
+   "choices": [
+    "Racing for the bus, Marcus dropped his phone.",
+    "Racing for the bus, Marcus's phone slipped from his hand.",
+    "Marcus, racing for the bus, dropped his phone.",
+    "Marcus dropped his phone as he raced for the bus."
+   ],
+   "answer": 1,
+   "feedback": "In B the opener attaches to the nearest subject — <em>Marcus's phone</em> — so the grammar claims the phone was racing for the bus. Readers follow the grammar, not your intention. A, C, and D all keep Marcus attached to his own running. The fix is placement, not deletion."
+  },
+  {
+   "id": "cmb-05-001",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 1,
+   "kind": "combine",
+   "kernels": [
+    "The fans stormed the court.",
+    "The fans screamed the fight song."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-gold'>Screaming the fight song,</span> the fans stormed the court.",
+     "move": "Participial phrase (fronted)",
+     "note": "Sentence 2 compresses into an -ing phrase; both actions now share one sentence, one subject, simultaneous motion."
+    },
+    {
+     "sentence": "The fans stormed the court, <span class='mv mv-gold'>screaming the fight song</span>.",
+     "move": "Participial phrase (trailing)",
+     "note": "Trailing position keeps the storming first and lets the sound chase it. Fronted or trailing is a rhythm choice — try both aloud."
+    }
+   ]
+  },
+  {
+   "id": "cmb-05-002",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "The old map was folded into eighths.",
+    "The old map still showed the fire roads."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-gold'>Folded into eighths,</span> the old map still showed the fire roads.",
+     "move": "Past participial phrase",
+     "note": "The first sentence shrinks to a two-word-plus participle opener. Past participles (<em>folded, worn, broken</em>) compress states just as -ing forms compress actions."
+    },
+    {
+     "sentence": "The old map, <span class='mv mv-gold'>folded into eighths</span>, still showed the fire roads.",
+     "move": "Participial phrase (tucked)",
+     "note": "Tucked mid-sentence between commas, the phrase reads like a quick close-up before the sentence moves on."
+    }
+   ]
+  },
+  {
+   "id": "cmb-05-003",
+   "lesson": "05",
+   "concepts": [
+    "gerund"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "She memorized all fifty lines.",
+    "That was her proudest moment of the semester."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-blue'>Memorizing all fifty lines</span> was her proudest moment of the semester.",
+     "move": "Gerund phrase as subject",
+     "note": "The whole first sentence becomes a named activity sitting in the subject slot. That's the gerund move: turn an event into a thing you can talk about."
+    },
+    {
+     "sentence": "Her proudest moment of the semester was <span class='mv mv-blue'>memorizing all fifty lines</span>.",
+     "move": "Gerund phrase as complement",
+     "note": "Flip it and the gerund lands the sentence. End position = spotlight position."
+    }
+   ]
+  },
+  {
+   "id": "cmb-05-004",
+   "lesson": "05",
+   "concepts": [
+    "infinitive"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "The team practiced at dawn.",
+    "The team wanted a spot in the finals."
+   ],
+   "models": [
+    {
+     "sentence": "The team practiced at dawn <span class='mv mv-teal'>to earn a spot in the finals</span>.",
+     "move": "Infinitive phrase (purpose)",
+     "note": "<em>Wanted</em> disappears into <em>to earn</em> — the infinitive answers <em>why practice?</em> in four words. Purpose is the infinitive's signature job."
+    },
+    {
+     "sentence": "<span class='mv mv-teal'>To earn a spot in the finals,</span> the team practiced at dawn.",
+     "move": "Infinitive phrase (fronted)",
+     "note": "Fronting the purpose makes the goal the sentence's first thought — motivation before action."
+    }
+   ]
+  },
+  {
+   "id": "cmb-05-005",
+   "lesson": "05",
+   "concepts": [
+    "participle",
+    "gerund"
+   ],
+   "difficulty": 3,
+   "kind": "combine",
+   "kernels": [
+    "The photographer crouched by the fence.",
+    "The photographer waited for the eclipse.",
+    "Waiting was the hardest part."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-gold'>Crouched by the fence,</span> the photographer waited for the eclipse; <span class='mv mv-blue'>the waiting</span> was the hardest part.",
+     "move": "Participle + gerund",
+     "note": "Two compressions in one: a past-participial opener (posture) and a gerund (<em>the waiting</em>) that turns the action into a thing that can be hard."
+    },
+    {
+     "sentence": "The photographer crouched by the fence, <span class='mv mv-gold'>waiting for the eclipse</span> — and <span class='mv mv-blue'>waiting</span> was the hardest part.",
+     "move": "Trailing participle + gerund echo",
+     "note": "The same -ing word works twice: first as a participle describing the photographer, then as a gerund naming the ordeal. Same form, two jobs, on purpose."
+    }
+   ]
+  },
+  {
+   "id": "cmb-05-006",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 3,
+   "kind": "combine",
+   "kernels": [
+    "The substitute mispronounced every name.",
+    "The substitute apologized each time.",
+    "The class warmed to her anyway."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-gold'>Mispronouncing every name and apologizing each time,</span> the substitute won the class over anyway.",
+     "move": "Compound participial phrase",
+     "note": "Two actions compress into one double-barreled opener. Note what compression cost: the plodding <em>The substitute… The substitute…</em> repetition is gone."
+    },
+    {
+     "sentence": "The substitute mispronounced every name, <span class='mv mv-gold'>apologizing each time</span>, and the class warmed to her anyway.",
+     "move": "Tucked participle",
+     "note": "A middle route: keep two clauses but fold the apology into a participial aside. Three sentences' worth of story, one sentence of space."
+    }
+   ]
+  },
+  {
+   "id": "imi-05-001",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 2,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "It was a steep bank, and he paused for breath at the top, excusing the act to himself by looking at his watch.",
+    "source": "Jack London, “To Build a Fire”"
+   },
+   "frame": "<strong>Action, then a trailing participial phrase that reveals motive:</strong> <em>___ paused ___, ___-ing ___.</em>",
+   "models": [
+    {
+     "sentence": "She closed the textbook halfway through the chapter, telling herself the review sheet would cover the rest.",
+     "move": "Trailing participle (self-excuse)",
+     "note": "London's phrase catches his character lying to himself — the participial trailer is where the psychology hides. Put your character's excuse in the -ing phrase."
+    },
+    {
+     "sentence": "He took the long way past the gym, pretending he wanted the exercise.",
+     "move": "Trailing participle (self-excuse)",
+     "note": "Main clause = what they did. Participial trailer = the story they told themselves about it."
+    }
+   ]
+  },
+  {
+   "id": "imi-05-002",
+   "lesson": "05",
+   "concepts": [
+    "gerund"
+   ],
+   "difficulty": 3,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "…and it is the wish of most masters within my knowledge to keep their slaves thus ignorant.",
+    "source": "Frederick Douglass, Narrative"
+   },
+   "frame": "<strong>Anticipatory it + delayed infinitive subject:</strong> <em>It is the ___ of ___ to ___.</em>",
+   "models": [
+    {
+     "sentence": "It is the habit of every coach I've played for to praise the pass before the goal.",
+     "move": "Delayed infinitive",
+     "note": "Douglass parks <em>it</em> up front so the infinitive phrase — the real subject — can land at the end, where the reader can't miss it."
+    },
+    {
+     "sentence": "It is the policy of this cafeteria to run out of the good pizza first.",
+     "move": "Delayed infinitive",
+     "note": "The frame sounds formal, even legal — which is why it's also perfect for deadpan humor. Register is transferable."
+    }
+   ]
+  },
+  {
+   "id": "rec-06-001",
+   "lesson": "06",
+   "concepts": [
+    "recall"
+   ],
+   "difficulty": 1,
+   "kind": "recall",
+   "prompt": "From memory: name the three verbal types and the job each one does in a sentence.",
+   "model": "<strong>Participles</strong> act as adjectives (<em>the shattered vase</em>); <strong>gerunds</strong> act as nouns (<em>Swimming is exercise</em>); <strong>infinitives</strong> (<em>to</em> + verb) act as nouns, adjectives, or adverbs (<em>to win — why he trained</em>). All three are verb forms doing another part of speech's job."
+  },
+  {
+   "id": "idn-06-001",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click every word of the dependent clause.",
+   "sentence": [
+    "Because",
+    "the",
+    "gym",
+    "flooded*,",
+    "practice",
+    "moved",
+    "to",
+    "the",
+    "parking",
+    "lot",
+    "."
+   ],
+   "answer": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "feedback": "<em>Because the gym flooded</em> has a subject (<em>gym</em>) and verb (<em>flooded</em>) — a full clause — but <em>because</em> bends it into a dependent one: it can't stand alone. The independent clause (<em>practice moved…</em>) carries the sentence."
+  },
+  {
+   "id": "idn-06-002",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 3,
+   "kind": "identify",
+   "instruction": "Click every word of the adjective (relative) clause.",
+   "sentence": [
+    "The",
+    "shortcut",
+    "that",
+    "we",
+    "found",
+    "last",
+    "fall",
+    "is",
+    "fenced",
+    "off",
+    "now",
+    "."
+   ],
+   "answer": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "feedback": "<em>That we found last fall</em> — relative pronoun <em>that</em> + subject <em>we</em> + verb <em>found</em> — tells us <em>which shortcut</em>. Adjective clauses hug the noun they modify. <em>Is fenced</em> belongs to the main clause, not the relative one."
+  },
+  {
+   "id": "cls-06-001",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 2,
+   "kind": "classify",
+   "sentence": "I know when the bus arrives.",
+   "target": "when",
+   "prompt": "The clause 'when the bus arrives' is doing what job?",
+   "choices": [
+    "Adverb clause — telling when I know",
+    "Noun clause — the thing I know",
+    "Adjective clause — describing the bus"
+   ],
+   "answer": 1,
+   "feedback": "<em>Know what?</em> → when the bus arrives. The whole clause fills the direct-object slot: noun work. Adverb tempts because <em>when</em> usually flags time — but replace the clause with <em>it</em> (<em>I know it</em> ✓) and the noun job shows itself. The same word opens all three clause types; only the clause's job tells you which."
+  },
+  {
+   "id": "cls-06-002",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 3,
+   "kind": "classify",
+   "sentence": "Call me when you land.",
+   "target": "when",
+   "prompt": "Same starter word, new sentence. What is 'when you land' doing here?",
+   "choices": [
+    "Noun clause — the thing to call",
+    "Adverb clause — telling when to call",
+    "Adjective clause"
+   ],
+   "answer": 1,
+   "feedback": "Now the clause answers <em>call when?</em> — it modifies the verb <em>call</em>. Adverb work. Compare <em>I know when the bus arrives</em>, where the same starter built a noun clause. This pair is the whole lesson: the word doesn't decide; the job does."
+  },
+  {
+   "id": "mc-06-001",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Which join is standard for two independent clauses?",
+   "choices": [
+    "The tide came in, the sandbar vanished.",
+    "The tide came in, and the sandbar vanished.",
+    "The tide came in and, the sandbar vanished.",
+    "The tide came in the sandbar vanished."
+   ],
+   "answer": 1,
+   "feedback": "Two independent clauses take a comma <em>plus</em> a coordinating conjunction: <em>, and</em>. Option A is a comma splice — a hinge with no pin, which most readers hear as two sentences leaning on each other. (Writers do splice deliberately in informal prose — <em>I came, I saw</em> — but that's a chosen effect, and this sentence isn't choosing it.)"
+  },
+  {
+   "id": "mc-06-002",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 3,
+   "kind": "mc",
+   "prompt": "Same facts, two versions. Which statement about them is true?",
+   "choices": [
+    "They mean exactly the same thing",
+    "A headlines the win; B headlines the injury — subordination decides which fact is background",
+    "B is grammatically wrong",
+    "A is a compound sentence"
+   ],
+   "answer": 1,
+   "feedback": "Both are complex sentences built from the same two clauses. In A, <em>she won the race</em> holds the main clause — the injury is context. In B, the win is demoted into the <em>although</em> clause and the sentence is about pain. Subordination is an emphasis dial, not just a comma rule.",
+   "stimulus": "<span class='kernel-line'>A: Although her ankle throbbed, she won the race.</span><span class='kernel-line'>B: Although she won the race, her ankle throbbed.</span>"
+  },
+  {
+   "id": "cmb-06-001",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 1,
+   "kind": "combine",
+   "kernels": [
+    "The lights went out.",
+    "The generator kicked on."
+   ],
+   "models": [
+    {
+     "sentence": "The lights went out, <span class='mv mv-indigo'>and the generator kicked on</span>.",
+     "move": "Coordination (equal partners)",
+     "note": "<em>And</em> presents the two events as equals — a plain sequence. Calm, factual."
+    },
+    {
+     "sentence": "<span class='mv mv-indigo'>When the lights went out,</span> the generator kicked on.",
+     "move": "Subordination (when)",
+     "note": "<em>When</em> demotes the outage to a timestamp; the sentence becomes about the generator's response."
+    },
+    {
+     "sentence": "The lights went out<span class='mv mv-indigo'>; the generator kicked on</span>.",
+     "move": "Semicolon",
+     "note": "The semicolon joins without commentary — it just says these two belong together. Fastest join in the toolbox."
+    }
+   ]
+  },
+  {
+   "id": "cmb-06-002",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "Nina practiced every free throw drill.",
+    "Nina still rode the bench."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-indigo'>Although Nina practiced every free throw drill,</span> she still rode the bench.",
+     "move": "Subordination (concession)",
+     "note": "<em>Although</em> tells the reader up front: expect the second clause to defy the first. The disappointment is the headline."
+    },
+    {
+     "sentence": "Nina practiced every free throw drill, <span class='mv mv-indigo'>yet she still rode the bench</span>.",
+     "move": "Coordination (yet)",
+     "note": "<em>Yet</em> keeps the clauses equal but adds the turn. Slightly flatter than <em>although</em> — both facts share the stage."
+    },
+    {
+     "sentence": "Nina rode the bench all season, <span class='mv mv-indigo'>even though she practiced every drill</span>.",
+     "move": "Subordination (trailing)",
+     "note": "Lead with the injustice, trail the effort. Three joins, three different feelings about the same season."
+    }
+   ]
+  },
+  {
+   "id": "cmb-06-003",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "My brother saves everything.",
+    "His closet is an archaeology site."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-indigo'>Because my brother saves everything,</span> his closet is an archaeology site.",
+     "move": "Subordination (cause)",
+     "note": "<em>Because</em> makes the logic explicit: hoarding → ruins. The funny image gets the main clause, where it belongs."
+    },
+    {
+     "sentence": "My brother saves everything, <span class='mv mv-indigo'>so his closet is an archaeology site</span>.",
+     "move": "Coordination (so)",
+     "note": "<em>So</em> draws the same arrow of cause with lighter, more spoken pressure."
+    },
+    {
+     "sentence": "My brother, <span class='mv mv-gold'>who saves everything</span>, has a closet like an archaeology site.",
+     "move": "Relative clause",
+     "note": "Or tuck the habit into a <em>who</em>-clause and let one sentence carry both the person and the punchline."
+    }
+   ]
+  },
+  {
+   "id": "cmb-06-004",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 3,
+   "kind": "combine",
+   "kernels": [
+    "The storm knocked out the scoreboard.",
+    "The referees kept score on paper.",
+    "Nobody trusted the final total."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-indigo'>After the storm knocked out the scoreboard,</span> the referees kept score on paper, <span class='mv mv-indigo'>and nobody trusted the final total</span>.",
+     "move": "Compound-complex",
+     "note": "Three clauses, ranked: the storm becomes background (<em>after</em>), the improvisation and the doubt share the main stage as equals."
+    },
+    {
+     "sentence": "The storm knocked out the scoreboard<span class='mv mv-indigo'>; the referees kept score on paper; nobody trusted the final total</span>.",
+     "move": "Semicolon chain",
+     "note": "Three flat clauses in a row — the deadpan version. The missing connectors are the joke: disaster, workaround, chaos, next."
+    },
+    {
+     "sentence": "<span class='mv mv-indigo'>Because the referees kept score on paper after the storm killed the scoreboard,</span> nobody trusted the final total.",
+     "move": "Deep subordination",
+     "note": "Everything folds into one long cause; the distrust stands alone as the sentence's only headline. Feel how much editorializing the structure alone does."
+    }
+   ]
+  },
+  {
+   "id": "cmb-06-005",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 3,
+   "kind": "combine",
+   "kernels": [
+    "The train was crowded.",
+    "I gave up my seat.",
+    "An older man had been standing for three stops."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-indigo'>Although the train was crowded,</span> I gave up my seat to an older man <span class='mv mv-gold'>who had been standing for three stops</span>.",
+     "move": "Subordination + relative clause",
+     "note": "Concession opener, relative clause tucked against its noun — three sentences become one considered act."
+    },
+    {
+     "sentence": "The train was crowded, <span class='mv mv-indigo'>but when I noticed the older man who had been standing for three stops,</span> I gave up my seat.",
+     "move": "Layered joins",
+     "note": "Coordination, subordination, and a relative clause in a single sentence — the full toolbox. Check that yours still reads aloud in one breath."
+    }
+   ]
+  },
+  {
+   "id": "imi-06-001",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 2,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "Because I could not stop for Death, He kindly stopped for me;",
+    "source": "Emily Dickinson, “Because I could not stop for Death” (1890 text)"
+   },
+   "frame": "<strong>Open with the because-clause, deliver the reversal in the main clause:</strong> <em>Because ___ could not ___, ___ ___ for ___.</em>",
+   "models": [
+    {
+     "sentence": "Because I would not ask for help, help stopped waiting to be asked.",
+     "move": "Because-opener + reversal",
+     "note": "Dickinson opens on the excuse and lands on the astonishing response. Your main clause should reverse or answer the dependent one."
+    },
+    {
+     "sentence": "Because we never called the number, the number one day called us.",
+     "move": "Because-opener + reversal",
+     "note": "The frame runs on delay: the reader holds the <em>because</em> in mind, waiting for the payoff clause."
+    }
+   ]
+  },
+  {
+   "id": "rev-06-001",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 2,
+   "kind": "revise",
+   "passage": "The bell rang. The hallway filled. Lockers slammed. Everyone talked at once. Nobody heard the announcement.",
+   "prompt": "Five kernels, zero joins. Rewrite as two sentences: choose which facts ride together and which one deserves to stand alone.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-indigo'>When the bell rang,</span> the hallway filled, lockers slammed, and everyone talked at once. Nobody heard the announcement.",
+     "move": "Subordinate + coordinate, isolate the payoff",
+     "note": "The chaos gets braided into one long sentence; the consequence stands alone, short and audible — the exact thing the hallway wasn't."
+    },
+    {
+     "sentence": "The bell rang, and the hallway filled with slamming lockers and shouting. <span class='mv mv-indigo'>Because of the noise,</span> nobody heard the announcement.",
+     "move": "Coordinate, then explain",
+     "note": "A different ranking: sound first, causation second. Both revisions beat five flat kernels — what they choose differently is emphasis."
+    }
+   ]
+  },
+  {
+   "id": "rec-07-001",
+   "lesson": "07",
+   "concepts": [
+    "recall"
+   ],
+   "difficulty": 1,
+   "kind": "recall",
+   "prompt": "From memory: what's the difference between joining two clauses with 'and' and joining them with 'because' or 'although'?",
+   "model": "<em>And</em> (coordination) presents the clauses as <strong>equal partners</strong> — a flat sequence. <em>Because / although / when</em> (subordination) <strong>ranks</strong> them: one clause becomes background, the other becomes the headline. Same facts, different emphasis — that ranking is a writer's choice."
+  },
+  {
+   "id": "mc-07-001",
+   "lesson": "07",
+   "concepts": [
+    "rhythm"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Read both versions aloud. What makes B land harder?",
+   "choices": [
+    "B uses fancier vocabulary",
+    "B varies sentence length — the long build makes the four-word sentence hit like a stamp",
+    "A is grammatically incorrect",
+    "B has more sentences"
+   ],
+   "answer": 1,
+   "feedback": "Same information. B rides a long sentence to a hard stop: <em>It was nine o'clock.</em> After a winding sentence, a short one lands with disproportionate force — that's London's actual rhythm in “To Build a Fire.” Rhythm isn't decoration; it's emphasis management.",
+   "stimulus": "<span class='kernel-line'>A: The man turned off the trail. It was cold. He checked his watch. It was nine o'clock. He kept going.</span><span class='kernel-line'>B: The man turned aside from the main trail and climbed the high bank where a faint track led east through the timber. It was nine o'clock.</span>"
+  },
+  {
+   "id": "mc-07-002",
+   "lesson": "07",
+   "concepts": [
+    "openers"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Every sentence in this draft opens with the subject: <em>“We packed the van. We drove all night. We reached the dunes at sunrise.”</em> Which revision fixes the drone while keeping all three facts?",
+   "choices": [
+    "We packed the van and we drove all night and we reached the dunes at sunrise.",
+    "After packing the van, we drove all night and reached the dunes at sunrise.",
+    "We packed. We drove. We reached.",
+    "The van was packed by us, driven all night, and the dunes were reached."
+   ],
+   "answer": 1,
+   "feedback": "B breaks the subject-first drone with a phrase opener, then lets one subject carry two coordinated verbs. A swaps choppiness for a run-on chant; C amputates the detail instead of arranging it; D goes passive and loses the travelers entirely. Openers are the cheapest variety tool you own."
+  },
+  {
+   "id": "mc-07-003",
+   "lesson": "07",
+   "concepts": [
+    "emphasis"
+   ],
+   "difficulty": 3,
+   "kind": "mc",
+   "prompt": "A college essay needs its last word to ring. Which ending lands its weight where it belongs?",
+   "choices": [
+    "I learned resilience from that season, in my opinion.",
+    "That season, more than anything else it gave me, taught me resilience.",
+    "Resilience was taught to me by that season, mostly.",
+    "That season taught me resilience and other things too."
+   ],
+   "answer": 1,
+   "feedback": "B saves <em>resilience</em> for the final beat and clears the throat-clearing out of its way. A and C bury the key word under qualifiers; D dilutes it with an afterthought. End weight is real: readers remember what a sentence ends on."
+  },
+  {
+   "id": "cmb-07-001",
+   "lesson": "07",
+   "concepts": [
+    "rhythm"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "The kayak flipped.",
+    "The cooler sank.",
+    "Our phones were in the cooler."
+   ],
+   "models": [
+    {
+     "sentence": "The kayak flipped, <span class='mv mv-indigo'>and the cooler — <span class='mv mv-gold'>our phones inside</span> — went down</span>.",
+     "move": "Coordinate + tucked detail",
+     "note": "Two joins and an em-dash aside; the disaster unspools in one breath, the way it happened."
+    },
+    {
+     "sentence": "The kayak flipped. The cooler sank <span class='mv mv-teal'>with our phones in it</span>.",
+     "move": "Short + medium",
+     "note": "Sometimes the craft move is NOT combining everything: the abrupt first sentence is the capsize. Then the consequences arrive."
+    }
+   ]
+  },
+  {
+   "id": "cmb-07-002",
+   "lesson": "07",
+   "concepts": [
+    "openers"
+   ],
+   "difficulty": 3,
+   "kind": "combine",
+   "kernels": [
+    "The librarian unlocked the doors at seven.",
+    "She did this every morning.",
+    "She did it for forty-one years."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>Every morning for forty-one years,</span> the librarian unlocked the doors at seven.",
+     "move": "Stacked when-openers",
+     "note": "Two time facts fuse into one opener, and the routine becomes monumental before the librarian even appears."
+    },
+    {
+     "sentence": "The librarian unlocked the doors at seven — <span class='mv mv-teal'>every morning</span>, <span class='mv mv-teal'>for forty-one years</span>.",
+     "move": "Trailing beats",
+     "note": "Or land the sentence on the numbers, delivered as two afterbeats. Openers set scenes; trailers ring."
+    }
+   ]
+  },
+  {
+   "id": "rev-07-001",
+   "lesson": "07",
+   "concepts": [
+    "rhythm"
+   ],
+   "difficulty": 2,
+   "kind": "revise",
+   "passage": "The fire alarm went off. It was during first period. It was a drill. Nobody knew that. We lined up outside. It was raining. Everyone was soaked. Class was ruined.",
+   "prompt": "Eight kernels of drone. Rewrite in three or four sentences using at least two different moves from Lessons 04–06 — and keep one sentence short on purpose.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>During first period,</span> the fire alarm went off. <span class='mv mv-indigo'>Because nobody knew it was a drill,</span> we lined up outside <span class='mv mv-teal'>in the rain</span>, <span class='mv mv-gold'>getting soaked</span>. Class was ruined.",
+     "move": "Phrase opener + subordination + participle + short closer",
+     "note": "Four moves visible: a when-opener, a because-clause, a trailing participle, and a three-word verdict saved for last."
+    },
+    {
+     "sentence": "The fire alarm went off during first period — <span class='mv mv-gold'>a drill, though nobody knew it</span>. <span class='mv mv-gold'>Soaked and lined up in the rain,</span> we watched class dissolve. ",
+     "move": "Appositive + participial opener",
+     "note": "A different mix: an appositive aside carries the irony; a participial opener carries the misery. Compare with your version — did each of your sentences start differently?"
+    }
+   ]
+  },
+  {
+   "id": "rev-07-002",
+   "lesson": "07",
+   "concepts": [
+    "rhythm"
+   ],
+   "difficulty": 3,
+   "kind": "revise",
+   "passage": "My grandfather has a workshop. It is in the garage. It is full of tools. The tools are old. He knows where every tool is. He never labels anything.",
+   "prompt": "Six kernels about one man. Rewrite in two or three sentences that sound like they admire him.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>In the garage,</span> my grandfather keeps a workshop full of old tools — <span class='mv mv-gold'>none of them labeled</span>, <span class='mv mv-gold'>all of them findable in the dark</span>. He never has to look.",
+     "move": "Phrases + parallel trailers + short closer",
+     "note": "The parallel trailers (<em>none of them… all of them…</em>) turn clutter into mastery, and the four-word closer is the admiration."
+    },
+    {
+     "sentence": "My grandfather's workshop fills the garage with old tools, <span class='mv mv-indigo'>and though he labels nothing,</span> he knows where every one of them lives.",
+     "move": "Coordination + concession",
+     "note": "One sentence, three facts, one quiet boast. <em>Though he labels nothing</em> does the admiring by conceding the mess first."
+    }
+   ]
+  },
+  {
+   "id": "rev-07-003",
+   "lesson": "07",
+   "concepts": [
+    "emphasis"
+   ],
+   "difficulty": 3,
+   "kind": "revise",
+   "passage": "The tryouts were hard. I was nervous. I had practiced all summer. I made the team. My brother did not make the team. Dinner that night was quiet.",
+   "prompt": "This story has a gut-punch buried in it. Rewrite in three sentences, and build the whole rhythm to make the last sentence land.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-indigo'>Because I had practiced all summer,</span> the hard tryouts scared me less than they should have — and I made the team. My brother didn't. <span class='mv mv-teal'>That night,</span> dinner was quiet.",
+     "move": "Subordinate the backstory, isolate the blow",
+     "note": "The two-word sentence <em>My brother didn't.</em> is the punch — everything before it exists to set the reader's guard down."
+    },
+    {
+     "sentence": "I had practiced all summer, <span class='mv mv-indigo'>so when the hard tryouts ended,</span> my name was on the list and my brother's wasn't. Dinner that night was quiet.",
+     "move": "One long build + short after",
+     "note": "The long sentence carries triumph and disaster in one breath; the flat closer refuses to explain the silence. Restraint is a rhythm move too."
+    }
+   ]
+  },
+  {
+   "id": "rev-07-004",
+   "lesson": "07",
+   "concepts": [
+    "openers"
+   ],
+   "difficulty": 2,
+   "kind": "revise",
+   "passage": "The market opens at six. Vendors set up their stalls. The fish sellers shout prices. The bakers argue with the coffee cart man. Tourists arrive around nine. The real customers come earlier.",
+   "prompt": "A scene stuck in subject-verb, subject-verb. Rewrite in three or four sentences — vary at least two openers, and decide which fact deserves the final position.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>At six,</span> the market opens: vendors set up <span class='mv mv-indigo'>while the fish sellers shout prices</span> and the bakers argue with the coffee cart man. <span class='mv mv-teal'>Around nine,</span> the tourists arrive. The real customers come earlier.",
+     "move": "Time openers + coordinated bustle + end weight",
+     "note": "Two time-openers organize the chaos, and the insider fact — <em>the real customers come earlier</em> — takes the final slot, where it reads like a secret."
+    },
+    {
+     "sentence": "<span class='mv mv-gold'>Shouting prices and arguing with the coffee cart man,</span> the vendors have the market to themselves at six. Tourists arrive around nine, <span class='mv mv-indigo'>long after the real customers have come and gone</span>.",
+     "move": "Participial opener + subordinate closer",
+     "note": "A different arrangement, same secret at the end. Whatever you wrote, check your final words — that's the sentence's loudest seat."
+    }
+   ]
+  },
+  {
+   "id": "imi-07-001",
+   "lesson": "07",
+   "concepts": [
+    "rhythm"
+   ],
+   "difficulty": 3,
+   "kind": "imitate",
+   "mentor": {
+    "sentence": "There was no sun nor hint of sun, though there was not a cloud in the sky.",
+    "source": "Jack London, “To Build a Fire”"
+   },
+   "frame": "<strong>Absence stated twice, then the paradox conceded:</strong> <em>There was no ___ nor ___ of ___, though ___.</em>",
+   "models": [
+    {
+     "sentence": "There was no signal nor flicker of signal, though the tower blinked red above the trees.",
+     "move": "Doubled absence + concession",
+     "note": "London removes the sun twice (<em>no sun nor hint of sun</em>), then hands you the cloudless sky that should have contained it. Build your paradox the same way: absence, deeper absence, contradicting fact."
+    },
+    {
+     "sentence": "There was no anger nor trace of anger in her voice, though every word arrived pre-sharpened.",
+     "move": "Doubled absence + concession",
+     "note": "The frame works on people as well as weather — deny the quality twice, then concede the evidence that contradicts the denial."
+    }
+   ]
+  },
+  {
+   "id": "idn-07-001",
+   "lesson": "07",
+   "concepts": [
+    "openers"
+   ],
+   "difficulty": 2,
+   "kind": "identify",
+   "instruction": "Click the words of the opener — everything before the sentence's subject.",
+   "sentence": [
+    "Exhausted",
+    "and",
+    "elated*,",
+    "the",
+    "cast",
+    "took",
+    "a",
+    "final",
+    "bow",
+    "."
+   ],
+   "answer": [
+    0,
+    1,
+    2
+   ],
+   "feedback": "<em>Exhausted and elated</em> — a doubled participial opener — sets the emotional weather before the subject walks on. Openers are position, not part of speech: anything before the subject that frames what follows."
+  },
+  {
+   "id": "mc-07-004",
+   "lesson": "07",
+   "concepts": [
+    "rhythm"
+   ],
+   "difficulty": 2,
+   "kind": "mc",
+   "prompt": "Which principle best explains why writers vary sentence structure?",
+   "choices": [
+    "Long sentences are more intelligent",
+    "Variety prevents any single rhythm from numbing the reader — and makes chosen moments stand out",
+    "Short sentences are always stronger",
+    "Teachers require it"
+   ],
+   "answer": 1,
+   "feedback": "Monotony — all short, all long, all subject-first — flattens everything to the same volume. Variation restores contrast, and contrast is how emphasis works: the short sentence stings <em>because</em> a long one preceded it. Craft is the management of attention."
+  },
+  {
+   "id": "exp-01-008",
+   "lesson": "01",
+   "concepts": [
+    "fragment"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "Which nobody expected.",
+   "question": "A which-piece with nothing to lean on. Attach it or rebuild it into a complete sentence.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-indigo'>The understudy got a standing ovation</span>, which nobody expected.",
+     "move": "Attach to a kernel",
+     "note": "The fragment was an escaped tail — it belongs to a sentence. Reattached, it comments on the whole surprise."
+    },
+    {
+     "sentence": "<span class='mv mv-indigo'>Nobody expected it.</span>",
+     "move": "Rebuild as a kernel",
+     "note": "Or promote the idea to its own kernel: subject <em>Nobody</em>, verb <em>expected</em>. Shorter, blunter, complete."
+    }
+   ]
+  },
+  {
+   "id": "exp-02-005",
+   "lesson": "02",
+   "concepts": [
+    "do",
+    "io"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "The judges awarded",
+   "question": "A hungry verb: awarding needs a receiver AND a thing. Complete the kernel both ways.",
+   "models": [
+    {
+     "sentence": "The judges awarded <span class='mv mv-blue'>our school</span> <span class='mv mv-blue'>first prize</span>.",
+     "move": "IO + DO",
+     "note": "<em>Awarded to whom?</em> → our school (indirect object). <em>Awarded what?</em> → first prize (direct object). Both demands met, no preposition needed."
+    },
+    {
+     "sentence": "The judges awarded <span class='mv mv-blue'>first prize</span> <span class='mv mv-teal'>to the team from Lowell</span>.",
+     "move": "DO + to-phrase",
+     "note": "Same facts through the other door: DO first, receiver delivered by <em>to</em>. Choose by rhythm — which word do you want last?"
+    }
+   ]
+  },
+  {
+   "id": "rev-04-001",
+   "lesson": "04",
+   "concepts": [
+    "phrase"
+   ],
+   "difficulty": 2,
+   "kind": "revise",
+   "passage": "A woman sold bread. People lined up. The bread sold out.",
+   "prompt": "True, but skeletal — no when, no where, no which. Rewrite the three kernels with expansion phrases that answer at least where, when, and what kind.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>Every Saturday,</span> a woman <span class='mv mv-gold'>with a folding table</span> sold <span class='mv mv-gold'>sourdough</span> bread <span class='mv mv-teal'>outside the hardware store</span>. <span class='mv mv-teal'>By eight,</span> people lined up <span class='mv mv-teal'>around the corner</span>; <span class='mv mv-teal'>by nine,</span> the bread sold out.",
+     "move": "Expansion phrases throughout",
+     "note": "The kernels are unchanged — <em>woman sold, people lined up, bread sold out</em> — but the phrases hang a whole neighborhood on them."
+    },
+    {
+     "sentence": "A woman sold bread <span class='mv mv-teal'>from her porch</span> <span class='mv mv-teal'>on winter mornings</span>, and people lined up <span class='mv mv-teal'>in the dark</span> until it sold out.",
+     "move": "Phrases + one join",
+     "note": "Fewer phrases, one coordination — a quieter revision. Compare: which version's details did more work?"
+    }
+   ]
+  },
+  {
+   "id": "cmb-05-007",
+   "lesson": "05",
+   "concepts": [
+    "participle"
+   ],
+   "difficulty": 2,
+   "kind": "combine",
+   "kernels": [
+    "The tourists stopped on the bridge.",
+    "The tourists photographed everything twice."
+   ],
+   "models": [
+    {
+     "sentence": "The tourists stopped on the bridge, <span class='mv mv-gold'>photographing everything twice</span>.",
+     "move": "Trailing participial phrase",
+     "note": "The second clause compresses to an -ing phrase riding the first — one subject, two actions, half the words."
+    },
+    {
+     "sentence": "<span class='mv mv-gold'>Stopping on the bridge,</span> the tourists photographed everything twice.",
+     "move": "Fronted participial phrase",
+     "note": "Compress the other sentence instead. Each choice picks a different main event — the compression decides what the sentence is 'about.'"
+    }
+   ]
+  },
+  {
+   "id": "rev-05-001",
+   "lesson": "05",
+   "concepts": [
+    "participle",
+    "gerund"
+   ],
+   "difficulty": 3,
+   "kind": "revise",
+   "passage": "The chef tasted the soup. She frowned. She added salt. She tasted it again. Tasting was her whole method.",
+   "prompt": "Five kernels about one ritual. Rewrite in two sentences using at least one participial phrase and one gerund.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-gold'>Tasting the soup and frowning,</span> the chef added salt, then tasted again. <span class='mv mv-blue'>Tasting</span> was her whole method.",
+     "move": "Participial opener + gerund subject",
+     "note": "The ritual compresses into a doubled participle; the gerund then names the ritual and makes a claim about it. Action becomes a thing you can discuss — the verbal move in miniature."
+    },
+    {
+     "sentence": "The chef tasted the soup, <span class='mv mv-gold'>frowning as she added salt</span>, and tasted it again — <span class='mv mv-blue'>tasting</span>, in the end, was her whole method.",
+     "move": "Tucked participle + gerund",
+     "note": "Same compressions, one flowing sentence. Check your version: does an -ing word describe somewhere and name somewhere else?"
+    }
+   ]
+  },
+  {
+   "id": "exp-06-001",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "The shortcut saves ten minutes.",
+   "question": "WHICH shortcut? Add a relative clause (who/that/which) that identifies it.",
+   "models": [
+    {
+     "sentence": "The shortcut <span class='mv mv-gold'>that cuts behind the loading dock</span> saves ten minutes.",
+     "move": "Relative clause (essential)",
+     "note": "<em>That</em>-clause, no commas — the clause is doing identification work: it tells which shortcut we mean."
+    },
+    {
+     "sentence": "The shortcut, <span class='mv mv-gold'>which the seniors guard like a secret</span>, saves ten minutes.",
+     "move": "Relative clause (extra)",
+     "note": "<em>Which</em>-clause with commas — the shortcut is already identified; the clause adds gossip. Commas mark the difference between identifying and embellishing."
+    }
+   ]
+  },
+  {
+   "id": "cmb-06-006",
+   "lesson": "06",
+   "concepts": [
+    "clause"
+   ],
+   "difficulty": 3,
+   "kind": "combine",
+   "kernels": [
+    "The witness changed her story.",
+    "The jury noticed."
+   ],
+   "models": [
+    {
+     "sentence": "<span class='mv mv-indigo'>When the witness changed her story,</span> the jury noticed.",
+     "move": "Subordination (time)",
+     "note": "The change becomes a trigger; the noticing becomes the event. Courtroom-cold."
+    },
+    {
+     "sentence": "The witness changed her story, <span class='mv mv-indigo'>and the jury noticed</span>.",
+     "move": "Coordination",
+     "note": "Flat sequence, equal weight — the reader draws the arrow between the facts."
+    },
+    {
+     "sentence": "The jury noticed <span class='mv mv-indigo'>that the witness had changed her story</span>.",
+     "move": "Noun clause",
+     "note": "Or fold the first sentence into a noun clause: the whole event becomes the <em>thing noticed</em>. Three structures, three distances from the drama."
+    }
+   ]
+  },
+  {
+   "id": "cmb-07-003",
+   "lesson": "07",
+   "concepts": [
+    "emphasis"
+   ],
+   "difficulty": 3,
+   "kind": "combine",
+   "kernels": [
+    "The scholarship letter arrived.",
+    "It arrived on a Tuesday.",
+    "Tuesdays were laundry days."
+   ],
+   "models": [
+    {
+     "sentence": "The scholarship letter arrived <span class='mv mv-teal'>on a Tuesday</span> — <span class='mv mv-gold'>laundry day</span>.",
+     "move": "Compression + deadpan trailer",
+     "note": "Momentous news, mundane setting: the em-dash appositive lets the ordinary detail deflate and humanize the big one."
+    },
+    {
+     "sentence": "<span class='mv mv-teal'>On a Tuesday,</span> <span class='mv mv-gold'>with the laundry half-sorted,</span> the scholarship letter arrived.",
+     "move": "Stacked openers + end weight",
+     "note": "Openers delay the news so <em>arrived</em> can land last. Same facts; now the sentence holds its breath."
+    }
+   ]
+  },
+  {
+   "id": "exp-07-001",
+   "lesson": "07",
+   "concepts": [
+    "openers"
+   ],
+   "difficulty": 2,
+   "kind": "expand",
+   "kernel": "The valedictorian tore up her speech.",
+   "question": "Give this sentence three different openers — a when-phrase, a participial phrase, and a one-word adverb — and hear how each changes it.",
+   "models": [
+    {
+     "sentence": "<span class='mv mv-teal'>Two minutes before the ceremony,</span> the valedictorian tore up her speech.",
+     "move": "When-phrase opener",
+     "note": "The countdown opener manufactures suspense the bare kernel didn't have."
+    },
+    {
+     "sentence": "<span class='mv mv-gold'>Shaking her head slowly,</span> the valedictorian tore up her speech.",
+     "move": "Participial opener",
+     "note": "The gesture arrives first, so the tearing reads as a decision, not an accident."
+    },
+    {
+     "sentence": "<span class='mv mv-teal'>Calmly,</span> the valedictorian tore up her speech.",
+     "move": "One-word adverb opener",
+     "note": "A single adverb reframes everything — <em>calmly</em> makes it terrifying. Openers are cheap; their effects aren't."
+    }
+   ]
+  }
+ ]
+}

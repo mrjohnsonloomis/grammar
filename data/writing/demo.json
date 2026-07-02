@@ -1,0 +1,19 @@
+{
+  "groups": [
+    {
+      "id": "writing-demo",
+      "cards": [
+        {
+          "id": "paragraph-kernel", "concept": "clause", "term": "The Paragraph Kernel", "lesson": "07", "glossary": false,
+          "short": "A claim plus its support — the paragraph's version of subject + verb.",
+          "detail": "Just as every sentence grows from a kernel of subject + verb, every paragraph grows from a kernel of <strong>claim + support</strong>. The future writing section will build paragraphs the way this site builds sentences: notice real paragraphs, name the moves, build your own, apply them in revision.<br><br><div class=\"tip\"><div class=\"tip-label\">Proof of Architecture</div>This card is served by <code>/data/writing/demo.json</code> and rendered by the same cards component the sentence lessons use — no component changes were needed to add a new section.</div>"
+        },
+        {
+          "id": "coming-soon", "concept": "modifier", "term": "What's Coming", "lesson": "07", "glossary": false,
+          "short": "Paragraphs and longer forms: analytical, creative, personal.",
+          "detail": "Planned lessons follow the same Notice → Name → Build → Apply arc at paragraph scale: paragraph unity as a craft choice, transitions as joining moves (the paragraph-level cousins of Lesson 06), and revision studios for analytical, creative, and personal writing. Content will live in <code>/data/writing/</code> and reuse the shared components untouched."
+        }
+      ]
+    }
+  ]
+}

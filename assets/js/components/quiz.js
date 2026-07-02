@@ -178,9 +178,10 @@
               else if (was && !is) cls += ' wrong-picked';
               else if (!was && is) cls += ' missed';
             }
-            if (isPunct || a) return '<span class="' + cls + '">' + esc(w) + '</span>';
-            return '<button type="button" class="' + cls + '" data-i="' + i + '" aria-pressed="false">' + esc(w) + '</button>';
-          }).join(' ') + '</div>' +
+            var sp = (i > 0 && !isPunct) ? ' ' : '';
+            if (isPunct || a) return sp + '<span class="' + cls + '">' + esc(w) + '</span>';
+            return sp + '<button type="button" class="' + cls + '" data-i="' + i + '" aria-pressed="false">' + esc(w) + '</button>';
+          }).join('') + '</div>' +
           (!a ? '<button type="button" class="practice-check-btn">Check Answer</button>' : '');
         if (!a) {
           var sel = new Set();
