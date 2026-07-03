@@ -57,7 +57,7 @@
       $('display').innerHTML = step.words.map(function (w, i) {
         return '<button type="button" class="word-chunk" data-role="' + w.role + '" data-i="' + i + '"' +
           ' style="animation-delay:' + (i * 0.06) + 's" aria-label="' + esc(w.text) + ' — ' + esc(w.tag) + '">' +
-          '<span class="role-tag">' + esc(w.tag) + '</span>' + esc(w.text) + '</button>';
+          '<span class="chunk-w">' + esc(w.text) + '</span><span class="role-tag">' + esc(w.tag) + '</span></button>';
       }).join('');
       $('narrative').innerHTML = step.narrative;
       $('display').querySelectorAll('button').forEach(function (b) {

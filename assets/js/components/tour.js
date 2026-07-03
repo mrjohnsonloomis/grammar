@@ -17,12 +17,13 @@
       if (c.func) attrs += ' data-func="' + c.func + '"';
       if (c.role) attrs += ' data-role="' + c.role + '"';
       if (c.id) attrs += ' data-id="' + c.id + '"';
-      var tag = c.tag ? '<span class="role-tag">' + esc(c.tag) + '</span>' : '';
+      var inner = '<span class="chunk-w">' + esc(c.text) + '</span>' +
+                  (c.tag ? '<span class="role-tag">' + esc(c.tag) + '</span>' : '');
       var style = ' style="animation-delay:' + (i * 0.06) + 's"';
       if (c.clickable) {
-        return '<button type="button" class="word-chunk"' + attrs + style + ' aria-label="' + esc(c.text) + ' — show explanation">' + tag + esc(c.text) + '</button>';
+        return '<button type="button" class="word-chunk"' + attrs + style + ' aria-label="' + esc(c.text) + ' — show explanation">' + inner + '</button>';
       }
-      return '<div class="word-chunk"' + attrs + style + '>' + tag + esc(c.text) + '</div>';
+      return '<div class="word-chunk"' + attrs + style + '>' + inner + '</div>';
     }).join(' ');
   }
 

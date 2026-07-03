@@ -1,4 +1,6 @@
-/* cards.js — expandable reference cards (the "Name" layer) and the glossary.
+/* cards.js — the lexicon (the "Name" layer) and the glossary.
+   Reference terms render as a term rail + one reading pane (a book spread),
+   not a grid of boxes. On phones the rail becomes a scrollable chip row.
    Mounts:
      <div data-component="cards" data-group="pos"></div>
      <div data-component="cards" data-group="demo" data-file="writing/demo"></div>
@@ -17,7 +19,6 @@
         var group = data.groups.find(function (g) { return g.id === groupId; });
         if (!group) throw new Error('Unknown card group: ' + groupId);
         render(el, group.cards);
-        openFromHash(el);
       }).catch(function (err) { GX.fail(el, err); });
     },
 
@@ -34,43 +35,70 @@
   };
 
   function render(el, cards) {
-    el.innerHTML = '<div class="concepts-grid">' + cards.map(function (c) {
-      return '<div class="concept-card" data-concept="' + esc(c.concept) + '" id="card-' + esc(c.id) + '">' +
-        '<button type="button" class="concept-card-toggle" aria-expanded="false" aria-controls="card-' + esc(c.id) + '-detail">' +
-        '  <span class="expand-icon" aria-hidden="true">+</span>' +
-        '  <h3>' + esc(c.term) + '</h3>' +
-        '  <div class="short-def">' + esc(c.short) + '</div>' +
-        '</button>' +
-        '<div class="concept-detail" id="card-' + esc(c.id) + '-detail"><div class="concept-detail-inner">' + c.detail + '</div></div>' +
-        '</div>';
-    }).join('') + '</div>';
+    var uid = 'lx' + Math.random().toString(36).slice(2, 7);
+    var selected = 0;
 
-    el.querySelectorAll('.concept-card-toggle').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var card = btn.closest('.concept-card');
-        var wasOpen = card.classList.contains('open');
-        el.querySelectorAll('.concept-card').forEach(function (c) {
-          c.classList.remove('open');
-          c.querySelector('.concept-card-toggle').setAttribute('aria-expanded', 'false');
-        });
-        if (!wasOpen) {
-          card.classList.add('open');
-          btn.setAttribute('aria-expanded', 'true');
-        }
+    /* deep link: #card-<id> selects that term */
+    var h = window.location.hash;
+    if (h && h.indexOf('#card-') === 0) {
+      var want = h.slice(6);
+      var idx = cards.findIndex(function (c) { return c.id === want; });
+      if (idx >= 0) selected = idx;
+    }
+
+    el.innerHTML =
+      '<div class="lexicon">' +
+      '  <div class="lex-rail" role="group" aria-label="Terms">' +
+           cards.map(function (c, i) {
+             return '<button type="button" class="lex-term" id="card-' + esc(c.id) + '" data-concept="' + esc(c.concept) + '" data-i="' + i + '" aria-pressed="false">' +
+               '<span class="lex-dot" aria-hidden="true"></span>' + esc(c.term) + '</button>';
+           }).join('') +
+      '  </div>' +
+      '  <div class="lex-pane" id="' + uid + '-pane" aria-live="polite"></div>' +
+      '</div>';
+
+    var terms = el.querySelectorAll('.lex-term');
+    var pane = el.querySelector('#' + uid + '-pane');
+
+    function select(i, focusPane) {
+      selected = i;
+      terms.forEach(function (t, ti) { t.setAttribute('aria-pressed', String(ti === i)); });
+      var c = cards[i];
+      pane.innerHTML =
+        '<div class="lex-entry-head">' +
+        '  <span class="lex-entry-term">' + esc(c.term) + '</span>' +
+        '  <span class="chip" data-concept="' + esc(c.concept) + '">' + esc(conceptLabel(c.concept)) + '</span>' +
+        '</div>' +
+        '<div class="lex-entry-short">' + esc(c.short) + '</div>' +
+        '<div class="lex-entry-body">' + c.detail + '</div>';
+      if (focusPane) pane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    terms.forEach(function (t) {
+      t.addEventListener('click', function () {
+        select(parseInt(t.getAttribute('data-i'), 10), window.innerWidth <= 700);
       });
     });
+
+    select(selected, false);
+    if (h && h.indexOf('#card-') === 0 && el.querySelector(h.replace(/[^#\w-]/g, ''))) {
+      setTimeout(function () {
+        el.querySelector(h.replace(/[^#\w-]/g, '')).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 120);
+    }
   }
 
-  /* Deep links: visiting page.html#card-gerund opens and scrolls to that card. */
-  function openFromHash(el) {
-    var h = window.location.hash;
-    if (!h || h.indexOf('#card-') !== 0) return;
-    var card = el.querySelector(h.replace(/[^#\w-]/g, ''));
-    if (!card) return;
-    card.classList.add('open');
-    var btn = card.querySelector('.concept-card-toggle');
-    if (btn) btn.setAttribute('aria-expanded', 'true');
-    setTimeout(function () { card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
+  function conceptLabel(c) {
+    var jobs = {
+      noun: 'names', pronoun: 'names', gerund: 'names',
+      subject: 'names', do: 'names', io: 'names', pn: 'names',
+      verb: 'acts', adjective: 'describes', participle: 'describes',
+      pa: 'describes', oc: 'describes', complement: 'completes',
+      adverb: 'situates', infinitive: 'flexible', modifier: 'situates',
+      preposition: 'connects', conjunction: 'connects', interjection: 'stands apart',
+      phrase: 'structure', clause: 'structure', sentence: 'structure', fragment: 'structure'
+    };
+    return jobs[c] || c;
   }
 
   function renderGlossary(el, cards) {

@@ -33,7 +33,7 @@
     var uid = 'hl' + Math.random().toString(36).slice(2, 7);
 
     el.innerHTML =
-      '<div class="panel-card">' +
+      '<div class="hl-filter">' +
       '  <div class="panel-label">Highlight a part of speech</div>' +
       '  <div class="pill-row" role="group" aria-label="Highlight a part of speech" style="margin-top:10px;">' +
       '    <button type="button" class="pill-btn active" data-concept="all" aria-pressed="true"><span class="dot" aria-hidden="true"></span>Show All</button>' +
@@ -43,12 +43,16 @@
       '  </div>' +
       '  <div class="filter-hint" id="' + uid + '-hint">Pick a category to light up its words — then click any word to see the job it’s doing and why the author chose it.</div>' +
       '</div>' +
-      '<div class="panel-card">' +
-      '  <div class="pill-row" id="' + uid + '-switch" role="group" aria-label="Choose a passage"></div>' +
-      '  <div class="passage-top"><div class="passage-title" id="' + uid + '-title"></div><div class="passage-meta" id="' + uid + '-meta"></div></div>' +
-      '  <div class="passage-text" id="' + uid + '-text"></div>' +
-      '  <div class="callout" id="' + uid + '-callout" aria-live="polite"></div>' +
-      '  <div class="passage-attribution" id="' + uid + '-attr"></div>' +
+      '<div class="pill-row" id="' + uid + '-switch" role="group" aria-label="Choose a passage"></div>' +
+      '<div class="hl-study">' +
+      '  <div class="hl-passage-col">' +
+      '    <div class="passage-top"><div class="passage-title" id="' + uid + '-title"></div><div class="passage-meta" id="' + uid + '-meta"></div></div>' +
+      '    <div class="passage-text" id="' + uid + '-text"></div>' +
+      '    <div class="passage-attribution" id="' + uid + '-attr"></div>' +
+      '  </div>' +
+      '  <aside class="hl-margin">' +
+      '    <div class="callout" id="' + uid + '-callout" aria-live="polite"></div>' +
+      '  </aside>' +
       '</div>';
 
     var $ = function (suffix) { return el.querySelector('#' + uid + '-' + suffix); };

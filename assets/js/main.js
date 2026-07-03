@@ -76,6 +76,88 @@
     });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountAll);
-  else mountAll();
+  /* ---- arc wayfinding: build a sticky Notice/Name/Build/Apply nav from the
+     page's arc-label markers (plus the Check Yourself section) ---- */
+  function buildArcNav() {
+    var slot = document.getElementById('arcNavSlot');
+    if (!slot) return;
+    var marks = [];
+    document.querySelectorAll('.arc-label').forEach(function (el, i) {
+      var id = 'arc-' + el.textContent.trim().toLowerCase().replace(/[^a-z]+/g, '-');
+      if (!el.id) el.id = id + (document.getElementById(id) ? '-' + i : '');
+      marks.push({ id: el.id, label: el.textContent.trim() });
+    });
+    document.querySelectorAll('.section-title').forEach(function (el) {
+      if (/^check yourself$/i.test(el.textContent.trim()) && marks.length) {
+        if (!el.id) el.id = 'arc-check';
+        marks.push({ id: el.id, label: 'Check' });
+      }
+    });
+    if (marks.length < 2) return;
+    var lesson = slot.getAttribute('data-lesson');
+    slot.innerHTML = '<nav class="arc-nav" aria-label="Lesson sections"><div class="arc-nav-inner">' +
+      marks.map(function (m) {
+        return '<a href="#' + m.id + '">' + GX.util.esc(m.label) + '</a>';
+      }).join('') +
+      (lesson ? '<span class="arc-lesson">Lesson ' + GX.util.esc(lesson) + '</span>' : '') +
+      '</div></nav>';
+
+    var links = slot.querySelectorAll('a');
+    if ('IntersectionObserver' in window) {
+      var current = null;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) current = e.target.id;
+        });
+        if (current) {
+          links.forEach(function (a) {
+            a.classList.toggle('current', a.getAttribute('href') === '#' + current);
+          });
+        }
+      }, { rootMargin: '-10% 0px -70% 0px' });
+      marks.forEach(function (m) {
+        var el = document.getElementById(m.id);
+        if (el) io.observe(el);
+      });
+    }
+  }
+
+  /* ---- term look-up in the side rail (loads cards.json on first focus) ---- */
+  function initSearch() {
+    var input = document.getElementById('railSearch');
+    var out = document.getElementById('railResults');
+    if (!input || !out) return;
+    var terms = null;
+    function ensure() {
+      if (terms) return Promise.resolve(terms);
+      return GX.data.load('cards').then(function (data) {
+        terms = [];
+        data.groups.forEach(function (g) {
+          g.cards.forEach(function (c) {
+            if (c.glossary) terms.push({ term: c.term, short: c.short, id: c.id, lesson: c.lesson });
+          });
+        });
+        return terms;
+      });
+    }
+    input.addEventListener('focus', function () { ensure(); });
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      if (q.length < 2) { out.innerHTML = ''; return; }
+      ensure().then(function (ts) {
+        var hits = ts.filter(function (t) {
+          return t.term.toLowerCase().indexOf(q) >= 0 || t.short.toLowerCase().indexOf(q) >= 0;
+        }).slice(0, 7);
+        out.innerHTML = hits.length
+          ? hits.map(function (t) {
+              return '<a href="' + GX.lessonUrl(t.lesson) + '#card-' + t.id + '"><b>' + GX.util.esc(t.term) + '</b> <small>· Lesson ' + t.lesson + '</small></a>';
+            }).join('')
+          : '<span class="none">No term matches “' + GX.util.esc(input.value.trim()) + '” — try the glossary.</span>';
+      });
+    });
+  }
+
+  function boot() { mountAll(); buildArcNav(); initSearch(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
 })();

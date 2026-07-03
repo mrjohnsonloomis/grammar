@@ -7,113 +7,122 @@ description: "Interactive sentence-building lessons for 9th-grade writers: kerne
 ---
 
 <style>
-  .lesson-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 24px; }
-  .lesson-card {
-    background: var(--card); border: 1.5px solid var(--border); border-radius: 16px;
-    padding: 26px 26px 24px; transition: all 0.25s ease; position: relative; overflow: hidden;
-    text-decoration: none; color: inherit; display: block;
+  /* the table of contents — an editorial list, not a card grid */
+  .toc { border-top: 2px solid var(--rule); }
+  .toc-row {
+    display: grid; grid-template-columns: 58px minmax(0, 1.15fr) minmax(0, 1.6fr) 24px;
+    gap: 20px; align-items: baseline; padding: 20px 4px;
+    border-bottom: 1px solid var(--line); text-decoration: none; color: inherit;
   }
-  .lesson-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--stripe, var(--border)); }
-  .lesson-card:hover, .lesson-card:focus-visible { transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow); }
-  .lesson-num { font-family: var(--serif); font-style: italic; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; }
-  .lesson-card h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
-  .lesson-card .lesson-desc { font-size: 0.92rem; color: var(--bodytext); line-height: 1.55; margin-bottom: 14px; }
-  .lesson-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .lesson-tag {
-    font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
-    padding: 3px 9px; border-radius: 10px; background: var(--bg); color: var(--dimtext); border: 1px solid var(--border);
+  .toc-row:hover, .toc-row:focus-visible { background: var(--panel); }
+  .toc-row:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+  .toc-num { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--muted-decor); font-variant-numeric: tabular-nums; }
+  .toc-row:hover .toc-num { color: var(--act); }
+  .toc-title { font-family: var(--serif); font-size: 1.22rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
+  .toc-title small { display: block; font-family: var(--sans); font-size: 0.68rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
+  .toc-desc { font-size: 0.88rem; color: var(--bodytext); line-height: 1.6; }
+  .toc-arrow { color: var(--muted-decor); font-size: 1.1rem; transition: transform 0.15s; }
+  .toc-row:hover .toc-arrow { color: var(--act); transform: translateX(4px); }
+  @media (max-width: 680px) {
+    .toc-row { grid-template-columns: 34px 1fr; }
+    .toc-num { font-size: 1.05rem; }
+    .toc-desc { grid-column: 2; }
+    .toc-arrow { display: none; }
   }
-  .lesson-arrow { position: absolute; top: 22px; right: 22px; font-size: 1.2rem; color: var(--muted-decor); transition: transform 0.2s; }
-  .lesson-card:hover .lesson-arrow { transform: translateX(4px); color: var(--accent); }
-  .map-wrap { background: var(--card); border: 1.5px solid var(--border); border-radius: 16px; padding: 30px 28px 24px; box-shadow: 0 2px 16px var(--shadow); margin: 40px 0; }
-  .map-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
-  .map-sub { font-size: 0.88rem; color: var(--dimtext); margin-bottom: 22px; }
-  .sentence-map { width: 100%; max-width: 780px; margin: 0 auto; display: block; height: auto; }
+
+  /* the map */
+  .map-wrap { margin: 52px 0; }
+  .sentence-map { width: 100%; max-width: 780px; margin: 14px auto 0; display: block; height: auto; }
   .sentence-map text { font-family: var(--sans); text-anchor: middle; dominant-baseline: middle; }
   .sentence-map .n-title { font-weight: 700; font-size: 15px; }
   .sentence-map .n-sub { font-size: 10.5px; fill: var(--dimtext); }
-  .sentence-map .m-line { stroke: #C9C3BA; stroke-width: 1.6; fill: none; }
-  .sentence-map a:hover rect, .sentence-map a:focus rect { stroke-width: 3; }
+  .sentence-map .m-line { stroke: var(--muted-decor); stroke-width: 1.4; fill: none; }
+  .sentence-map a:hover rect, .sentence-map a:focus rect { stroke-width: 3.5; }
   .map-scroll { overflow-x: auto; }
   @media (max-width: 640px) { .sentence-map { min-width: 620px; } }
+
+  /* five-job key */
+  .jobkey { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 14px 0 6px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .jobkey span { font-size: 0.7rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dimtext); display: inline-flex; align-items: center; gap: 6px; }
+  .jobkey i { width: 14px; height: 4px; border-radius: 2px; font-style: normal; }
+
   .sources { font-size: 0.86rem; color: var(--bodytext); }
   .sources li { margin-bottom: 8px; margin-left: 1.2em; }
-  .footer-note { text-align: center; font-size: 0.82rem; color: var(--muted); font-style: italic; font-family: var(--serif); margin-top: 30px; }
+  .footer-note { text-align: center; font-size: 0.82rem; color: var(--muted); font-style: italic; font-family: var(--serif); margin-top: 40px; }
 </style>
 
 <div class="section-title">The Lessons</div>
 <div class="section-sub">In order, each lesson builds on the last — but every page also stands alone as a reference. Each follows the same arc: <strong>Notice</strong> real sentences, <strong>Name</strong> the moves, <strong>Build</strong> your own, <strong>Apply</strong> it to writing.</div>
 
-<div class="lesson-grid">
-  <a class="lesson-card" style="--stripe: var(--accent);" href="lessons/01-sentence-kernel.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Lesson 01</div>
-    <h3>The Sentence Kernel</h3>
-    <div class="lesson-desc">Every sentence is someone or something doing or being something. Build two-word kernels, finish fragments, and grow a kernel without breaking it.</div>
-    <div class="lesson-tags"><span class="lesson-tag">Subject</span><span class="lesson-tag">Verb</span><span class="lesson-tag">Fragment</span></div>
-  </a>
-  <a class="lesson-card" style="--stripe: var(--green);" href="lessons/02-what-verbs-demand.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Lesson 02</div>
-    <h3>What Verbs Demand</h3>
-    <div class="lesson-desc">Some verbs need receivers; some link to descriptions. Objects, complements, and the demands each verb makes on your sentence.</div>
-    <div class="lesson-tags"><span class="lesson-tag">Objects</span><span class="lesson-tag">Complements</span><span class="lesson-tag">Linking</span></div>
-  </a>
-  <a class="lesson-card" style="--stripe: var(--blue);" href="lessons/03-word-toolbox.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Lesson 03</div>
-    <h3>The Word Toolbox</h3>
-    <div class="lesson-desc">The eight parts of speech, taught through the slots you know — and five literary passages to highlight, click, and read like a writer. The site's standing reference.</div>
-    <div class="lesson-tags"><span class="lesson-tag">8 Parts of Speech</span><span class="lesson-tag">Austen</span><span class="lesson-tag">Douglass</span></div>
-  </a>
-  <a class="lesson-card" style="--stripe: var(--rose);" href="lessons/04-expanding-the-kernel.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Lesson 04</div>
-    <h3>Expanding the Kernel</h3>
-    <div class="lesson-desc">Phrases are bolt-on word groups that answer which, what kind, when, where, and why. The core exercise: take a kernel and grow it on purpose.</div>
-    <div class="lesson-tags"><span class="lesson-tag">Prepositional</span><span class="lesson-tag">Appositive</span><span class="lesson-tag">Expansion</span></div>
-  </a>
-  <a class="lesson-card" style="--stripe: var(--gold);" href="lessons/05-compressing-with-verbals.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Lesson 05</div>
-    <h3>Compressing with Verbals</h3>
-    <div class="lesson-desc">Participles, gerunds, and infinitives pack a second action into phrase-sized space. Core exercise: combine flat sentences into one compressed sentence.</div>
-    <div class="lesson-tags"><span class="lesson-tag">Participle</span><span class="lesson-tag">Gerund</span><span class="lesson-tag">Infinitive</span></div>
-  </a>
-  <a class="lesson-card" style="--stripe: var(--indigo);" href="lessons/06-joining-ideas.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Lesson 06</div>
-    <h3>Joining Ideas: Clauses</h3>
-    <div class="lesson-desc">Coordination, subordination, relative clauses — joining whole ideas and choosing which one gets the headline. Same facts, different emphasis.</div>
-    <div class="lesson-tags"><span class="lesson-tag">Clauses</span><span class="lesson-tag">Combining</span><span class="lesson-tag">Emphasis</span></div>
-  </a>
-  <a class="lesson-card" style="--stripe: var(--ink);" href="lessons/07-sentence-craft.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Lesson 07 · Capstone</div>
-    <h3>Sentence Craft</h3>
-    <div class="lesson-desc">Variety, openers, rhythm, end weight. Revise deliberately choppy passages using every move from the sequence — the on-ramp to paragraph-level writing.</div>
-    <div class="lesson-tags"><span class="lesson-tag">Rhythm</span><span class="lesson-tag">Openers</span><span class="lesson-tag">Revision</span></div>
-  </a>
-  <a class="lesson-card" style="--stripe: var(--purple);" href="practice.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Anytime</div>
-    <h3>Practice</h3>
-    <div class="lesson-desc">Mixed review (recommended) interleaves every lesson; focus mode drills one. Identification questions get instant feedback; building exercises reveal annotated models.</div>
-    <div class="lesson-tags"><span class="lesson-tag">Mixed Review</span><span class="lesson-tag">Combine</span><span class="lesson-tag">Expand</span></div>
-  </a>
-  <a class="lesson-card" style="--stripe: var(--teal);" href="glossary.html">
-    <span class="lesson-arrow" aria-hidden="true">&rarr;</span>
-    <div class="lesson-num">Reference</div>
-    <h3>Glossary</h3>
-    <div class="lesson-desc">Every term on the site, A to Z, each linking to its full card in its home lesson. Use the site as a lookup reference, not just a sequence.</div>
-    <div class="lesson-tags"><span class="lesson-tag">A–Z</span><span class="lesson-tag">All Terms</span></div>
-  </a>
+<div class="jobkey" aria-label="The five-job color key">
+  <span><i style="background:var(--name)"></i>Names — who? what?</span>
+  <span><i style="background:var(--act)"></i>Acts — does? is?</span>
+  <span><i style="background:var(--desc)"></i>Describes — which? what kind?</span>
+  <span><i style="background:var(--sit)"></i>Situates — when? where? why?</span>
+  <span><i style="background:var(--con)"></i>Connects — joined how?</span>
 </div>
+
+<nav class="toc" aria-label="Lessons">
+  <a class="toc-row" href="lessons/01-sentence-kernel.html">
+    <span class="toc-num">01</span>
+    <span class="toc-title">The Sentence Kernel<small>subject · verb · fragment</small></span>
+    <span class="toc-desc">Every sentence is someone or something doing or being something. Build two-word kernels, finish fragments, and grow a kernel without breaking it.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="lessons/02-what-verbs-demand.html">
+    <span class="toc-num">02</span>
+    <span class="toc-title">What Verbs Demand<small>objects · complements · linking</small></span>
+    <span class="toc-desc">Some verbs need receivers; some link to descriptions. Objects, complements, and the demands each verb makes on your sentence.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="lessons/03-word-toolbox.html">
+    <span class="toc-num">03</span>
+    <span class="toc-title">The Word Toolbox<small>8 parts of speech · Austen · Douglass</small></span>
+    <span class="toc-desc">The eight parts of speech, taught through the slots you know — and five literary passages to highlight, click, and read like a writer. The site's standing reference.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="lessons/04-expanding-the-kernel.html">
+    <span class="toc-num">04</span>
+    <span class="toc-title">Expanding the Kernel<small>prepositional · appositive · expansion</small></span>
+    <span class="toc-desc">Phrases are bolt-on word groups that answer which, what kind, when, where, and why. The core exercise: take a kernel and grow it on purpose.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="lessons/05-compressing-with-verbals.html">
+    <span class="toc-num">05</span>
+    <span class="toc-title">Compressing with Verbals<small>participle · gerund · infinitive</small></span>
+    <span class="toc-desc">Participles, gerunds, and infinitives pack a second action into phrase-sized space. Core exercise: combine flat sentences into one compressed sentence.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="lessons/06-joining-ideas.html">
+    <span class="toc-num">06</span>
+    <span class="toc-title">Joining Ideas: Clauses<small>coordination · subordination · emphasis</small></span>
+    <span class="toc-desc">Coordination, subordination, relative clauses — joining whole ideas and choosing which one gets the headline. Same facts, different emphasis.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="lessons/07-sentence-craft.html">
+    <span class="toc-num">07</span>
+    <span class="toc-title">Sentence Craft<small>capstone · rhythm · openers · revision</small></span>
+    <span class="toc-desc">Variety, openers, rhythm, end weight. Revise deliberately choppy passages using every move from the sequence — the on-ramp to paragraph-level writing.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="practice.html">
+    <span class="toc-num">&middot;</span>
+    <span class="toc-title">Practice<small>mixed review · combine · expand</small></span>
+    <span class="toc-desc">Mixed review (recommended) interleaves every lesson; focus mode drills one. Identification gets instant feedback; building exercises reveal annotated models.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="glossary.html">
+    <span class="toc-num">&middot;</span>
+    <span class="toc-title">Glossary<small>every term · A–Z</small></span>
+    <span class="toc-desc">Every term on the site, A to Z, each linking to its full entry in its home lesson. Use the site as a lookup reference, not just a sequence.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+</nav>
 
 <!-- CONCEPT MAP: construction-first -->
 <div class="map-wrap">
-  <div class="map-title">How the Moves Stack</div>
-  <div class="map-sub">Reading the map top-down: start with a kernel, expand it, compress into it, join kernels together, then conduct the whole thing. The Word Toolbox sits underneath as the reference layer for every stage. Click any node to jump to its lesson.</div>
+  <div class="section-title">How the Moves Stack</div>
+  <div class="section-sub">Top-down: start with a kernel, expand it, compress into it, join kernels together, then conduct the whole thing. The Word Toolbox sits underneath as the reference layer for every stage. Structure is drawn the way it is everywhere on this site: thin line = phrase, heavy line = independent clause, dashed = dependent. Click any node to jump to its lesson.</div>
 
   <div class="map-scroll">
   <svg class="sentence-map" viewBox="0 0 780 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mapTitle mapDesc">
@@ -134,49 +143,49 @@ description: "Interactive sentence-building lessons for 9th-grade writers: kerne
 
     <!-- LAYER 1: the kernel -->
     <a href="lessons/01-sentence-kernel.html">
-      <rect x="140" y="60" width="220" height="60" rx="10" fill="var(--accent-light)" stroke="var(--accent)" stroke-width="2"/>
-      <text class="n-title" x="250" y="83" fill="var(--accent)">01 · The Kernel</text>
+      <rect x="140" y="60" width="220" height="60" rx="6" fill="var(--act-t)" stroke="var(--act)" stroke-width="2"/>
+      <text class="n-title" x="250" y="83" fill="var(--act)">01 · The Kernel</text>
       <text class="n-sub" x="250" y="103">subject + verb — the complete move</text>
     </a>
     <a href="lessons/02-what-verbs-demand.html">
-      <rect x="420" y="60" width="220" height="60" rx="10" fill="var(--green-light)" stroke="var(--green)" stroke-width="2"/>
-      <text class="n-title" x="530" y="83" fill="var(--green)">02 · Verb Demands</text>
+      <rect x="420" y="60" width="220" height="60" rx="6" fill="var(--name-t)" stroke="var(--name)" stroke-width="2"/>
+      <text class="n-title" x="530" y="83" fill="var(--name)">02 · Verb Demands</text>
       <text class="n-sub" x="530" y="103">objects &amp; complements finish the verb</text>
     </a>
 
-    <!-- LAYER 2: expansions -->
+    <!-- LAYER 2: expansions (phrases: thin structure line) -->
     <a href="lessons/04-expanding-the-kernel.html">
-      <rect x="90" y="184" width="270" height="68" rx="10" fill="var(--rose-light)" stroke="var(--rose)" stroke-width="2"/>
-      <text class="n-title" x="225" y="207" fill="var(--rose)">04 · Expand with Phrases</text>
+      <rect x="90" y="184" width="270" height="68" rx="6" fill="var(--structure-t)" stroke="var(--structure)" stroke-width="1.5"/>
+      <text class="n-title" x="225" y="207" fill="var(--structure)">04 · Expand with Phrases</text>
       <text class="n-sub" x="225" y="226">prepositional · appositive · absolute</text>
       <text class="n-sub" x="225" y="240">answer which · when · where · why</text>
     </a>
     <a href="lessons/05-compressing-with-verbals.html">
-      <rect x="420" y="184" width="270" height="68" rx="10" fill="var(--gold-light)" stroke="var(--gold)" stroke-width="2"/>
-      <text class="n-title" x="555" y="207" fill="var(--gold)">05 · Compress with Verbals</text>
-      <text class="n-sub" x="555" y="226">participle (adj) · gerund (noun) · infinitive</text>
+      <rect x="420" y="184" width="270" height="68" rx="6" fill="var(--desc-t)" stroke="var(--desc)" stroke-width="2"/>
+      <text class="n-title" x="555" y="207" fill="var(--desc)">05 · Compress with Verbals</text>
+      <text class="n-sub" x="555" y="226">participle (describes) · gerund (names)</text>
       <text class="n-sub" x="555" y="240">pack action into phrase-sized space</text>
     </a>
 
-    <!-- LAYER 3: combinations -->
+    <!-- LAYER 3: combinations (clauses: heavy structure line) -->
     <a href="lessons/06-joining-ideas.html">
-      <rect x="215" y="296" width="350" height="68" rx="10" fill="var(--indigo-light)" stroke="var(--indigo)" stroke-width="2"/>
-      <text class="n-title" x="390" y="319" fill="var(--indigo)">06 · Join Ideas with Clauses</text>
+      <rect x="215" y="296" width="350" height="68" rx="6" fill="var(--structure-t)" stroke="var(--structure)" stroke-width="3"/>
+      <text class="n-title" x="390" y="319" fill="var(--structure)">06 · Join Ideas with Clauses</text>
       <text class="n-sub" x="390" y="338">coordinate (equal) · subordinate (ranked) · relative</text>
       <text class="n-sub" x="390" y="352">simple · compound · complex · compound-complex</text>
     </a>
 
     <!-- LAYER 4: craft -->
     <a href="lessons/07-sentence-craft.html">
-      <rect x="255" y="396" width="270" height="52" rx="10" fill="#F5F2ED" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="255" y="396" width="270" height="52" rx="6" fill="#F6F6F4" stroke="var(--ink)" stroke-width="2"/>
       <text class="n-title" x="390" y="416" fill="var(--ink)">07 · Sentence Craft</text>
       <text class="n-sub" x="390" y="434">variety · openers · rhythm · emphasis</text>
     </a>
 
     <!-- FOUNDATION: the word toolbox -->
     <a href="lessons/03-word-toolbox.html">
-      <rect x="60" y="470" width="660" height="58" rx="10" fill="var(--blue-light)" stroke="var(--blue)" stroke-width="2"/>
-      <text class="n-title" x="390" y="491" fill="var(--blue)">03 · The Word Toolbox — the reference layer</text>
+      <rect x="60" y="470" width="660" height="58" rx="6" fill="var(--name-t)" stroke="var(--name)" stroke-width="2"/>
+      <text class="n-title" x="390" y="491" fill="var(--name)">03 · The Word Toolbox — the reference layer</text>
       <text class="n-sub" x="390" y="511">eight parts of speech · a word's part of speech = its job in the sentence</text>
     </a>
   </svg>
