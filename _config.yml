@@ -1,0 +1,13 @@
+title: Sentence Explorer
+description: Interactive lessons in building sentences, for 9th-grade writers.
+markdown: kramdown
+
+# Plain data/asset dirs are copied through as-is; nothing here needs plugins.
+exclude:
+  - AUDIT.md
+  - SCHEMA.md
+  - CONTRIBUTING.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

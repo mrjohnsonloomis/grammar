@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if page.title %}{{ page.title }} — {% endif %}Sentence Explorer</title>
+{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%E2%9C%8E%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ page.root | default: '.' }}/assets/css/tokens.css">
+<link rel="stylesheet" href="{{ page.root | default: '.' }}/assets/css/components.css">
+</head>
+<body>
+<script>window.GX_ROOT = "{{ page.root | default: '.' }}";</script>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="topnav" aria-label="Site">
+  <a class="nav-home" href="{{ page.root | default: '.' }}/index.html">Sentence Explorer</a>
+  <div class="nav-links">
+    <a href="{{ page.root | default: '.' }}/lessons/01-sentence-kernel.html" {% if page.nav == '01' %}class="current" aria-current="page"{% endif %}>01 Kernel</a>
+    <a href="{{ page.root | default: '.' }}/lessons/02-what-verbs-demand.html" {% if page.nav == '02' %}class="current" aria-current="page"{% endif %}>02 Verbs</a>
+    <a href="{{ page.root | default: '.' }}/lessons/03-word-toolbox.html" {% if page.nav == '03' %}class="current" aria-current="page"{% endif %}>03 Toolbox</a>
+    <a href="{{ page.root | default: '.' }}/lessons/04-expanding-the-kernel.html" {% if page.nav == '04' %}class="current" aria-current="page"{% endif %}>04 Phrases</a>
+    <a href="{{ page.root | default: '.' }}/lessons/05-compressing-with-verbals.html" {% if page.nav == '05' %}class="current" aria-current="page"{% endif %}>05 Verbals</a>
+    <a href="{{ page.root | default: '.' }}/lessons/06-joining-ideas.html" {% if page.nav == '06' %}class="current" aria-current="page"{% endif %}>06 Clauses</a>
+    <a href="{{ page.root | default: '.' }}/lessons/07-sentence-craft.html" {% if page.nav == '07' %}class="current" aria-current="page"{% endif %}>07 Craft</a>
+    <a href="{{ page.root | default: '.' }}/practice.html" {% if page.nav == 'practice' %}class="current" aria-current="page"{% endif %}>Practice</a>
+    <a href="{{ page.root | default: '.' }}/glossary.html" {% if page.nav == 'glossary' %}class="current" aria-current="page"{% endif %}>Glossary</a>
+  </div>
+</nav>
+
+{% unless page.hide_header %}
+<header class="header">
+  {% if page.lesson_num %}<div class="lesson-eyebrow">Lesson {{ page.lesson_num }}</div>{% endif %}
+  <h1>{{ page.title }}</h1>
+  {% if page.tagline %}<p>{{ page.tagline }}</p>{% endif %}
+</header>
+{% endunless %}
+
+<main id="main" class="container">
+{{ content }}
+
+{% if page.next_url %}
+<a class="next-cta" href="{{ page.root | default: '.' }}/{{ page.next_url }}">
+  <div class="next-cta-text">
+    <h4>Up Next: {{ page.next_title }}</h4>
+    <p>{{ page.next_desc }}</p>
+  </div>
+  <div class="next-cta-arrow" aria-hidden="true">&rarr;</div>
+</a>
+{% endif %}
+</main>
+
+<footer class="site-footer">
+  <p>Sentence Explorer &middot; built for writers, not proofreaders. <a href="{{ page.root | default: '.' }}/glossary.html">Glossary</a> &middot; <a href="{{ page.root | default: '.' }}/index.html#sources">Sources</a></p>
+</footer>
+
+<script src="{{ page.root | default: '.' }}/assets/js/components/highlighter.js"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/tour.js"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/cards.js"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/sentence-builder.js"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/combiner.js"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/quiz.js"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/main.js"></script>
+</body>
+</html>

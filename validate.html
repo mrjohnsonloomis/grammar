@@ -1,0 +1,180 @@
+---
+layout: default
+title: Data Validator
+tagline: "Loads every JSON bank and checks it against SCHEMA.md. Run this page after any content change — everything should be green."
+---
+
+<div id="report" class="validator-report">Running checks…</div>
+
+<script>
+/* Component scripts load at the end of <body>, so wait for them. */
+window.addEventListener('DOMContentLoaded', function () {
+  var out = [];
+  var failures = 0;
+  function ok(msg) { out.push('<div class="validator-ok">✓ ' + msg + '</div>'); }
+  function fail(msg) { failures++; out.push('<div class="validator-fail">✗ ' + msg + '</div>'); }
+  function check(cond, good, bad) { if (cond) ok(good); else fail(bad); }
+
+  var POS = ['noun','pronoun','verb','adjective','adverb','preposition','conjunction','interjection'];
+  var CONCEPTS = POS.concat(['subject','do','io','pn','pa','oc','modifier','complement','participle','gerund','infinitive','phrase','clause','sentence','fragment','verb-main','recall','openers','rhythm','emphasis']);
+  var KINDS = ['identify','classify','mc','combine','expand','imitate','revise','recall'];
+  var LESSONS = ['01','02','03','04','05','06','07'];
+
+  Promise.all([
+    GX.data.load('passages'), GX.data.load('cards'), GX.data.load('tours'),
+    GX.data.load('items'), GX.data.load('writing/demo')
+  ]).then(function (res) {
+    var passages = res[0], cards = res[1], tours = res[2], items = res[3], demo = res[4];
+
+    /* ---- passages ---- */
+    var pids = {};
+    passages.passages.forEach(function (p) {
+      check(!pids[p.id], 'passage id unique: ' + p.id, 'DUPLICATE passage id: ' + p.id);
+      pids[p.id] = true;
+      check(!!p.attribution, p.id + ': has MLA attribution', p.id + ': MISSING attribution');
+      check(!!p.title && !!p.meta && Array.isArray(p.tokens), p.id + ': shape ok', p.id + ': missing title/meta/tokens');
+      var badTags = [];
+      p.tokens.forEach(function (t, i) {
+        if (t.br || t.punct) return;
+        if (!t.t) badTags.push('token ' + i + ' has no text');
+        else if (!t.tag) badTags.push('"' + t.t + '" untagged');
+        else if (POS.indexOf(t.tag) < 0) badTags.push('"' + t.t + '" has unknown tag "' + t.tag + '"');
+      });
+      check(badTags.length === 0, p.id + ': all ' + p.tokens.length + ' tokens use the eight POS tags',
+            p.id + ': bad tokens — ' + badTags.join('; '));
+    });
+
+    /* ---- cards ---- */
+    var cardIds = {};
+    var groupIds = {};
+    cards.groups.forEach(function (g) {
+      check(!groupIds[g.id], 'card group id unique: ' + g.id, 'DUPLICATE group id: ' + g.id);
+      groupIds[g.id] = true;
+      g.cards.forEach(function (c) {
+        check(!cardIds[c.id], 'card id unique: ' + c.id, 'DUPLICATE card id: ' + c.id);
+        cardIds[c.id] = true;
+        check(!!c.term && !!c.short && !!c.detail && !!c.concept,
+              'card ' + c.id + ': shape ok', 'card ' + c.id + ': missing term/short/detail/concept');
+        check(LESSONS.indexOf(c.lesson) >= 0, 'card ' + c.id + ': lesson ' + c.lesson, 'card ' + c.id + ': unknown lesson "' + c.lesson + '"');
+      });
+    });
+
+    /* ---- tours ---- */
+    var tourIds = {};
+    (tours.builders || []).concat(tours.tours || []).forEach(function (t) {
+      check(!tourIds[t.id], 'tour/builder id unique: ' + t.id, 'DUPLICATE tour id: ' + t.id);
+      tourIds[t.id] = true;
+      var problems = [];
+      t.sets.forEach(function (s, si) {
+        s.steps.forEach(function (step, sti) {
+          var where = t.id + ' set ' + si + ' step ' + sti;
+          if (!step.label) problems.push(where + ': no label');
+          var pieces = step.words || step.chunks || [];
+          if (!pieces.length) problems.push(where + ': no words/chunks');
+          if (step.explanations) {
+            Object.keys(step.explanations).forEach(function (k) {
+              var found = pieces.some(function (p) { return p.role === k || p.id === k; });
+              if (!found) problems.push(where + ': explanation "' + k + '" matches no chunk');
+            });
+          }
+          pieces.forEach(function (c) {
+            if (c.clickable && (!step.explanations || !step.explanations[c.id])) {
+              problems.push(where + ': clickable chunk "' + c.id + '" has no explanation');
+            }
+          });
+        });
+      });
+      check(problems.length === 0, t.id + ': all steps/explanations consistent', problems.join('; '));
+    });
+    (tours.compares || []).forEach(function (c) {
+      check(!!(c.a && c.b && c.test && c.label), 'compare ' + c.id + ': shape ok', 'compare ' + c.id + ': missing a/b/test/label');
+    });
+
+    /* ---- items ---- */
+    var itemIds = {};
+    var kindCount = {};
+    items.items.forEach(function (it) {
+      var id = it.id || '(missing id)';
+      if (itemIds[id]) fail('DUPLICATE item id: ' + id);
+      itemIds[id] = true;
+      kindCount[it.kind] = (kindCount[it.kind] || 0) + 1;
+      var errs = [];
+      if (KINDS.indexOf(it.kind) < 0) errs.push('unknown kind "' + it.kind + '"');
+      if (LESSONS.indexOf(it.lesson) < 0) errs.push('unknown lesson "' + it.lesson + '"');
+      if (!Array.isArray(it.concepts) || !it.concepts.length) errs.push('no concepts');
+      else it.concepts.forEach(function (c) { if (CONCEPTS.indexOf(c) < 0) errs.push('unknown concept "' + c + '"'); });
+      if ([1,2,3].indexOf(it.difficulty) < 0) errs.push('difficulty must be 1-3');
+      if (it.kind === 'identify') {
+        if (!it.instruction || !Array.isArray(it.sentence) || !Array.isArray(it.answer)) errs.push('identify shape');
+        else {
+          it.answer.forEach(function (a) {
+            if (a < 0 || a >= it.sentence.length) errs.push('answer index ' + a + ' out of range');
+            else if (/^[.,;:!?'"()\-—…]+$/.test(it.sentence[a])) errs.push('answer index ' + a + ' is punctuation');
+          });
+        }
+        if (!it.feedback) errs.push('no feedback');
+      } else if (it.kind === 'classify') {
+        if (!it.sentence || !it.target || !it.prompt || !Array.isArray(it.choices)) errs.push('classify shape');
+        else {
+          var re = new RegExp('\\b' + it.target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'g');
+          var n = (it.sentence.match(re) || []).length;
+          if (n !== 1) errs.push('target "' + it.target + '" occurs ' + n + ' times (must be exactly 1)');
+          if (!(it.answer >= 0 && it.answer < it.choices.length)) errs.push('answer out of range');
+        }
+        if (!it.feedback) errs.push('no feedback');
+      } else if (it.kind === 'mc') {
+        if (!it.prompt || !Array.isArray(it.choices)) errs.push('mc shape');
+        else if (!(it.answer >= 0 && it.answer < it.choices.length)) errs.push('answer out of range');
+        if (!it.feedback) errs.push('no feedback');
+      } else if (it.kind === 'recall') {
+        if (!it.prompt || !it.model) errs.push('recall needs prompt + model');
+      } else {
+        if (!Array.isArray(it.models) || !it.models.length) errs.push('construction item needs models');
+        if (it.kind === 'combine' && (!Array.isArray(it.kernels) || it.kernels.length < 2)) errs.push('combine needs 2+ kernels');
+        if (it.kind === 'expand' && (!it.kernel || !it.question)) errs.push('expand needs kernel + question');
+        if (it.kind === 'imitate' && (!it.mentor || !it.mentor.sentence || !it.frame)) errs.push('imitate needs mentor + frame');
+        if (it.kind === 'revise' && (!it.passage || !it.prompt)) errs.push('revise needs passage + prompt');
+      }
+      if (errs.length) fail('item ' + id + ': ' + errs.join('; '));
+    });
+    ok('items: ' + items.items.length + ' checked, all ids unique' + (failures ? ' (see failures above)' : ''));
+    var ident = (kindCount.identify||0) + (kindCount.classify||0) + (kindCount.mc||0);
+    var constr = (kindCount.combine||0) + (kindCount.expand||0) + (kindCount.imitate||0) + (kindCount.revise||0);
+    check(constr > ident, 'construction items (' + constr + ') outnumber identification items (' + ident + ')',
+          'construction items (' + constr + ') do NOT outnumber identification (' + ident + ')');
+    LESSONS.forEach(function (l) {
+      var n = items.items.filter(function (it) { return it.lesson === l; }).length;
+      check(n >= 15 && n <= 25, 'lesson ' + l + ': ' + n + ' items (target 15-20)', 'lesson ' + l + ': ' + n + ' items — outside 15-25');
+    });
+
+    /* ---- page mounts reference real ids (checked against this build's known mounts) ---- */
+    var constructIds = Object.keys(itemIds);
+    ['exp-01-001','exp-01-003','exp-01-006','imi-01-001','rec-02-001','exp-02-002','exp-02-004','imi-02-001',
+     'rec-03-001','exp-03-001','exp-03-002','imi-03-001','imi-03-002','rec-04-001','exp-04-001','exp-04-003',
+     'exp-04-004','cmb-04-001','imi-04-001','rev-04-001','rec-05-001','cmb-05-001','cmb-05-003','cmb-05-004',
+     'imi-05-001','rev-05-001','rec-06-001','cmb-06-001','cmb-06-002','cmb-06-004','imi-06-001','rev-06-001',
+     'rec-07-001','exp-07-001','cmb-07-002','rev-07-001','rev-07-003','rev-07-004'
+    ].forEach(function (id) {
+      if (constructIds.indexOf(id) < 0) fail('lesson page mounts item "' + id + '" which does not exist');
+    });
+    ok('all lesson-page item mounts resolve');
+
+    /* ---- writing demo ---- */
+    check(!!(demo.groups && demo.groups.length && demo.groups[0].cards.length),
+          'writing/demo.json: loads and has a card group', 'writing/demo.json: bad shape');
+
+    render();
+  }).catch(function (err) {
+    fail('LOAD ERROR: ' + (err && err.message ? err.message : err));
+    render();
+  });
+
+  function render() {
+    var el = document.getElementById('report');
+    var head = failures === 0
+      ? '<div class="validator-ok" style="font-weight:700;">ALL CHECKS PASSED</div>'
+      : '<div class="validator-fail">' + failures + ' CHECK(S) FAILED</div>';
+    el.innerHTML = head + out.join('');
+  }
+});
+</script>

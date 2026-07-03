@@ -1,0 +1,81 @@
+/* ==========================================================================
+   tokens.css — the single source of truth for color, spacing, and type.
+   --------------------------------------------------------------------------
+   TAG-COLOR LEGEND (sitewide — a concept keeps its color everywhere):
+
+     Parts of speech (Lesson 03 is canonical):
+       noun         --blue      pronoun      --indigo
+       verb         --accent    adjective    --gold   (articles live here)
+       adverb       --teal      preposition  --purple
+       conjunction  --rose      interjection --brown
+
+     Sentence jobs (Lessons 01-02):
+       subject      --blue      verb / predicate  --accent
+       direct obj   --green     indirect obj      --purple
+       complements (PN, PA, obj. comp.)           --gold
+       modifier     --teal
+
+     Verbals wear the color of the JOB they do (Lesson 05):
+       participle (adjective job)  --gold
+       gerund (noun job)           --blue
+       infinitive (flexible)       --teal
+
+     Structure (Lessons 04 & 06) is marked by BORDER STYLE, never color
+     alone: phrases take a solid --rose outline, clauses a solid --indigo
+     outline, dependent clauses a *dashed* --indigo outline.
+
+   Color is never the only signal: highlights also bold the word, callouts
+   and chips carry text labels, and structures differ by border style.
+   All *-on-white colors below meet WCAG AA (>= 4.5:1) for white text.
+   ========================================================================== */
+
+:root {
+  /* surfaces + text */
+  --bg: #FAF7F2;
+  --card: #FFFFFF;
+  --panel: #FDFCFA;
+  --panel-alt: #F5F2ED;
+  --border: #E5DED4;
+  --shadow: rgba(42, 36, 32, 0.08);
+  --ink: #2A2420;
+  --bodytext: #5A534B;
+  --dimtext: #7A7168;
+  --muted: #6E665E;        /* smallest text-bearing gray (AA on white) */
+  --muted-decor: #9A9189;  /* decorative only — never for text */
+
+  /* concept colors (see legend above) */
+  --blue: #2B6B8A;      --blue-light: #D6EAF2;
+  --indigo: #3F4B9A;    --indigo-light: #DDE0F2;
+  --accent: #C44B2B;    --accent-light: #F4DDD6;
+  --gold: #8A6508;      --gold-light: #F5ECD0;
+  --teal: #227565;      --teal-light: #D0F0EA;
+  --purple: #6B4C8A;    --purple-light: #E8DDF2;
+  --rose: #B84A6E;      --rose-light: #F5DDE4;
+  --brown: #8B5A3C;     --brown-light: #EADBCC;
+  --green: #3A7D44;     --green-light: #D9EDDC;
+
+  /* feedback */
+  --ok: #3A7D44;        --ok-light: #D9EDDC;
+  --no: #C44B2B;        --no-light: #F4DDD6;
+
+  /* type */
+  --serif: 'Crimson Pro', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+
+  /* spacing scale */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 22px; --sp-6: 28px; --sp-7: 40px; --sp-8: 56px;
+
+  /* radii */
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-pill: 20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+}
