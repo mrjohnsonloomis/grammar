@@ -67,17 +67,30 @@ Then update: the previous lesson's `next_*`, the index lesson grid and concept
 map, `GX.LESSON_URLS`/`GX.LESSON_TITLES` in `assets/js/main.js`, and the
 lesson list in `validate.html`/`quiz.js` if the lesson count changes.
 
-## The tag-color legend
+## The five-job color system
 
-Defined once in `tokens.css` (see its header comment): noun=blue,
-pronoun=indigo, verb=accent, adjective=gold, adverb=teal, preposition=purple,
-conjunction=rose, interjection=brown; sentence jobs subject=blue, verb=accent,
-DO=green, IO=purple, complements=gold, modifier=teal; verbals wear the color
-of the job they do; structure is border style, never color alone (phrase =
-solid rose outline, independent clause = solid indigo, dependent = **dashed**
-indigo). Never rely on color alone: pair with labels, underlines, or border
-styles. New colors must hit WCAG AA (≥4.5:1) for white text — check before
-adding.
+Defined once in `tokens.css` (see its header comment). Color answers **"what
+job is this doing?"** — never "what is this word called?":
+
+- **Names** (`--name`, blue) — nouns, pronouns, gerunds, noun clauses, and
+  every noun seat (subject, DO, IO, predicate nominative)
+- **Acts** (`--act`, red) — verbs and verb phrases
+- **Describes** (`--desc`, ochre) — adjectives, articles, participles,
+  appositives, adjective clauses, predicate adjectives, object complements
+- **Situates** (`--sit`, green-teal) — adverbs, adverbial phrases/clauses,
+  modifiers, infinitives
+- **Connects** (`--con`, plum) — conjunctions, prepositions (as heads),
+  relative pronouns
+
+Within a family, **labels distinguish seats** (subject vs. direct object are
+both Names-blue; the tag says which). **Structure is line style, never hue**:
+phrase = thin solid bracket, independent clause = heavy solid, dependent =
+dashed — all in graphite (`--structure`). Interjections wear neutral gray
+(`--apart`). Old token names (`--blue`, `--gold`, `--rose`…) are aliased to
+the job system in tokens.css so legacy markup keeps working; new code should
+use job tokens. Never rely on color alone; every colored mark pairs with a
+label or line style. New colors must hit WCAG AA (≥4.5:1) for white text.
+The site is deliberately light-only (projectors and school Chromebooks).
 
 ## QA checklist (run before merging)
 

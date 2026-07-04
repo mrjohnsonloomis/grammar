@@ -144,7 +144,7 @@
           stim = '<div class="practice-stimulus">' + p.stimulus + '</div>';
         }
         body.innerHTML = stim +
-          '<div class="practice-prompt">' + esc(p.prompt) + '</div>' +
+          '<div class="practice-prompt">' + p.prompt + '</div>' +
           '<div class="practice-choices">' + p.choices.map(function (c, i) {
             var cls = 'practice-choice';
             if (a) {
@@ -167,7 +167,7 @@
         var selected = a ? new Set(a.userAnswer) : new Set();
         var correct = new Set(p.answer);
         body.innerHTML =
-          '<div class="practice-prompt">' + esc(p.instruction) + '</div>' +
+          '<div class="practice-prompt">' + p.instruction + '</div>' +
           '<div class="practice-identify-sentence">' + p.sentence.map(function (w, i) {
             var isPunct = /^[.,;:!?'"()\-—…]+$/.test(w);
             var cls = 'practice-word' + (isPunct ? ' punct' : '');

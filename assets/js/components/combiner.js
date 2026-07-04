@@ -48,7 +48,7 @@
         }).join('') + '</div>';
       } else if (item.kind === 'expand') {
         html += '<div class="construct-kernels"><div class="construct-kernel">' + esc(item.kernel) + '</div></div>' +
-          '<div class="construct-question">' + esc(item.question) + '</div>';
+          '<div class="construct-question">' + item.question + '</div>';
       } else if (item.kind === 'imitate') {
         html += '<div class="practice-stimulus">' + item.mentor.sentence +
           (item.mentor.source ? ' <small style="font-family:var(--sans);font-size:0.76rem;color:var(--muted);">— ' + esc(item.mentor.source) + '</small>' : '') +
@@ -57,7 +57,9 @@
         html += '<div class="practice-stimulus">' + item.passage + '</div>';
       }
 
-      html += '<div class="practice-prompt">' + esc(item.prompt || DEFAULT_PROMPT[item.kind] || '') + '</div>' +
+      /* expand items carry their instruction in `question`; don't repeat a generic prompt */
+      var promptText = item.prompt || (item.kind === 'expand' ? '' : DEFAULT_PROMPT[item.kind] || '');
+      html += (promptText ? '<div class="practice-prompt">' + promptText + '</div>' : '') +
         '<div class="construct-worknote">Optional scratchpad — nothing you type is saved or sent anywhere.</div>' +
         '<textarea class="construct-scratch" aria-label="Scratchpad (optional, never saved)"></textarea>' +
         '<button type="button" class="reveal-btn" id="' + uid + '-reveal">Reveal the model' + (item.models && item.models.length > 1 ? 's' : '') + '</button>' +
