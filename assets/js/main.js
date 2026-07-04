@@ -43,6 +43,8 @@
     load: function (name) {
       var path = name.indexOf('/') >= 0 ? GX.ROOT + '/data/' + name + '.json'
                                         : GX.ROOT + '/data/sentences/' + name + '.json';
+      /* per-deploy cache-bust, matching the layout's asset stamping */
+      if (window.GX_V) path += '?v=' + window.GX_V;
       if (!cache[path]) {
         cache[path] = fetch(path).then(function (r) {
           if (!r.ok) throw new Error('Failed to load ' + path + ' (' + r.status + ')');

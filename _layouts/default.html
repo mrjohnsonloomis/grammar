@@ -7,11 +7,14 @@
 {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%E2%9C%8E%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,600&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ page.root | default: '.' }}/assets/css/tokens.css">
-<link rel="stylesheet" href="{{ page.root | default: '.' }}/assets/css/components.css">
+{%- comment -%} Cache-bust every asset per deploy: Pages caches for 10 min, so
+without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- endcomment -%}
+{%- assign v = site.github.build_revision | default: 'dev' | slice: 0, 12 -%}
+<link rel="stylesheet" href="{{ page.root | default: '.' }}/assets/css/tokens.css?v={{ v }}">
+<link rel="stylesheet" href="{{ page.root | default: '.' }}/assets/css/components.css?v={{ v }}">
 </head>
 <body>
-<script>window.GX_ROOT = "{{ page.root | default: '.' }}";</script>
+<script>window.GX_ROOT = "{{ page.root | default: '.' }}"; window.GX_V = "{{ v }}";</script>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="topbar">
@@ -91,12 +94,12 @@
 </footer>
 </div>
 
-<script src="{{ page.root | default: '.' }}/assets/js/components/highlighter.js"></script>
-<script src="{{ page.root | default: '.' }}/assets/js/components/tour.js"></script>
-<script src="{{ page.root | default: '.' }}/assets/js/components/cards.js"></script>
-<script src="{{ page.root | default: '.' }}/assets/js/components/sentence-builder.js"></script>
-<script src="{{ page.root | default: '.' }}/assets/js/components/combiner.js"></script>
-<script src="{{ page.root | default: '.' }}/assets/js/components/quiz.js"></script>
-<script src="{{ page.root | default: '.' }}/assets/js/main.js"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/highlighter.js?v={{ v }}"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/tour.js?v={{ v }}"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/cards.js?v={{ v }}"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/sentence-builder.js?v={{ v }}"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/combiner.js?v={{ v }}"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/quiz.js?v={{ v }}"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/main.js?v={{ v }}"></script>
 </body>
 </html>
