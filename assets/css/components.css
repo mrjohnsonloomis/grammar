@@ -669,3 +669,91 @@ mark.practice-target { background: var(--desc-t); color: var(--ink); padding: 1p
   .arc-nav { padding: 8px 18px; }
   .arc-nav-inner { gap: 14px; }
 }
+
+/* ==========================================================================
+   Web-native features: structure brackets, stage slider, studio, term peek
+   ========================================================================== */
+
+/* ---- structure brackets in passages (toggle adds .structured) ----
+   line style carries the meaning: thin = phrase · heavy = independent ·
+   dashed = dependent. Nested spans sit closer to the text than their parent. */
+.passage-text .sspan { border-bottom: 0 solid transparent; }
+.passage-text.structured { line-height: 2.6; }
+.passage-text.structured .sspan {
+  padding-bottom: 7px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  border-bottom: 2.5px solid var(--structure);
+}
+.passage-text.structured .sspan[data-structure="phrase"] { border-bottom-width: 1.5px; padding-bottom: 7px; }
+.passage-text.structured .sspan[data-structure="clause"] { border-bottom-style: dashed; border-bottom-width: 2px; }
+.passage-text.structured .sspan .sspan { padding-bottom: 2px; }
+.passage-text.structured .sspan:hover { background: var(--structure-t); }
+
+/* ---- stage slider (kernel x-ray / revision scrubber) ---- */
+.stages-rail { margin: 6px 0 18px; }
+.stages-rail input[type="range"] {
+  width: 100%; accent-color: var(--act); height: 22px; cursor: pointer;
+}
+.stages-rail input[type="range"]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.stages-stops { display: flex; justify-content: space-between; gap: 6px; margin-top: 2px; flex-wrap: wrap; }
+.stages-stop {
+  font: inherit; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted); background: none; border: none;
+  cursor: pointer; padding: 3px 2px; border-bottom: 2px solid transparent;
+}
+.stages-stop:hover { color: var(--ink); }
+.stages-stop:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.stages-stop.on { color: var(--act); border-bottom-color: var(--act); }
+.stages-text {
+  font-family: var(--serif); font-size: 1.24rem; line-height: 1.95; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: 18px 22px; min-height: 96px;
+}
+.stages-text .mv { padding: 1px 3px 2px; border-radius: 2px; font-weight: 500; }
+.stages-text .mv-gold { background: var(--desc-t); box-shadow: 0 2px 0 var(--desc); }
+.stages-text .mv-blue { background: var(--name-t); box-shadow: 0 2px 0 var(--name); }
+.stages-text .mv-teal { background: var(--sit-t); box-shadow: 0 2px 0 var(--sit); }
+.stages-text .mv-indigo { background: var(--structure-t); box-shadow: 0 2px 0 var(--structure); }
+.stages-text .mv-act, .construct-model-sentence .mv-act { background: var(--act-t); box-shadow: 0 2px 0 var(--act); }
+.stages-note { font-size: 0.86rem; color: var(--bodytext); line-height: 1.62; margin-top: 12px; max-width: 64ch; min-height: 3em; }
+.stages-note em, .stages-note strong { color: var(--ink); }
+
+/* ---- annotation studio ---- */
+.studio-text { font-size: 1.24rem; }
+.st-w {
+  font: inherit; font-family: var(--serif); background: none; border: none;
+  color: var(--ink); cursor: pointer; padding: 2px 4px 4px; border-radius: 2px;
+  border-bottom: 2.5px solid transparent; transition: background 0.12s;
+}
+.st-w:hover { background: var(--panel); }
+.st-w:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.st-w.pending { outline: 2px dashed var(--structure); outline-offset: 1px; }
+.st-w[data-j="name"] { background: var(--name-t); border-bottom-color: var(--name); }
+.st-w[data-j="act"] { background: var(--act-t); border-bottom-color: var(--act); }
+.st-w[data-j="desc"] { background: var(--desc-t); border-bottom-color: var(--desc); }
+.st-w[data-j="sit"] { background: var(--sit-t); border-bottom-color: var(--sit); }
+.st-w[data-j="con"] { background: var(--con-t); border-bottom-color: var(--con); }
+
+/* ---- term peek popover ---- */
+.term-peek {
+  position: fixed; z-index: 60; max-width: 300px;
+  background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--name);
+  border-radius: 0 var(--r-md) var(--r-md) 0; box-shadow: 0 10px 28px var(--shadow);
+  padding: 12px 16px; font-size: 0.82rem; line-height: 1.55; color: var(--bodytext);
+  opacity: 0; pointer-events: none; transform: translateY(-4px);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.term-peek.show { opacity: 1; pointer-events: auto; transform: none; }
+.term-peek-term { display: block; font-family: var(--serif); font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 2px; }
+.term-peek-short { display: block; }
+.term-peek-go { display: block; margin-top: 6px; font-size: 0.7rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* ---- print (the studio's export path; also cleans up any printed page) ---- */
+@media print {
+  .siderail, .topbar, .arc-nav, .site-footer, .skip-link, .next-cta,
+  .studio-entry, #studioTools, .filter-hint, #studioPrint, #studioReset { display: none !important; }
+  .page { margin-left: 0; }
+  body { background: #fff; }
+  .studio-text, .passage-text { font-size: 13pt; line-height: 2.6; }
+  .st-w, .token { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

@@ -1,0 +1,23 @@
+---
+layout: default
+nav: "studio"
+title: Annotation Studio
+tagline: "Turn the site's color system on your own writing. Paste a draft, mark each word's job, bracket your phrases and clauses — then print it or read it like an editor. Nothing you type is ever saved."
+description: "Mark up your own draft with the five-job colors and structure brackets. In-browser only; nothing is stored."
+---
+
+<p class="prose">Everything on this site annotates <em>other people's</em> sentences. This page turns the tools on yours. Mark who's naming, who's acting, what's describing — then look at the colors: Is every sentence opening in the same place? Is anything <a class="term" href="lessons/04-expanding-the-kernel.html#card-phrase">situating</a> your kernels, or are they bare? Do your <a class="term" href="lessons/06-joining-ideas.html#card-dependent-clause">dependent clauses</a> put the background where you meant it?</p>
+
+<div data-component="studio"></div>
+
+<div class="legend" style="margin-top:26px;" aria-label="The five-job color key">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--name)"></div>Names — who? what?</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--act)"></div>Acts — does? is?</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--desc)"></div>Describes — which? what kind?</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--sit)"></div>Situates — when? where? why?</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--con)"></div>Connects — joined how?</div>
+  <div class="legend-divider"></div>
+  <div class="legend-item"><div class="legend-border" style="border-color:var(--structure)"></div>Phrase</div>
+  <div class="legend-item"><div class="legend-border" style="border-color:var(--structure); border-width:3px;"></div>Independent</div>
+  <div class="legend-item"><div class="legend-border dashed" style="border-color:var(--structure)"></div>Dependent</div>
+</div>

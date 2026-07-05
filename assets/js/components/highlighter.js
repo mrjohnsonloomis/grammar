@@ -29,7 +29,7 @@
 
   function init(el, passages) {
     var esc = GX.util.esc;
-    var state = { passage: 0, filter: 'all', selected: null };
+    var state = { passage: 0, filter: 'all', selected: null, structured: false };
     var uid = 'hl' + Math.random().toString(36).slice(2, 7);
 
     el.innerHTML =
@@ -42,6 +42,10 @@
            }).join('') +
       '  </div>' +
       '  <div class="filter-hint" id="' + uid + '-hint">Pick a category to light up its words — then click any word to see the job it’s doing and why the author chose it.</div>' +
+      '  <div class="pill-row" style="margin-top:12px;">' +
+      '    <button type="button" class="pill-btn" id="' + uid + '-struct" aria-pressed="false"><span class="dot" aria-hidden="true" style="background:var(--structure)"></span>Show structure brackets</button>' +
+      '    <span class="filter-hint" style="margin:4px 0 0 4px;" id="' + uid + '-structhint"></span>' +
+      '  </div>' +
       '</div>' +
       '<div class="pill-row" id="' + uid + '-switch" role="group" aria-label="Choose a passage"></div>' +
       '<div class="hl-study">' +
@@ -79,23 +83,34 @@
       $('meta').textContent = p.meta;
       $('attr').innerHTML = p.attribution ? 'Source: ' + p.attribution : '';
 
+      /* structure spans (SCHEMA.md): sorted (from asc, to desc), proper trees */
+      var opensAt = {}, closesAt = {};
+      (p.spans || []).forEach(function (s) {
+        (opensAt[s.from] = opensAt[s.from] || []).push(s);
+        (closesAt[s.to] = closesAt[s.to] || []).push(s);
+      });
+
       var html = '';
       p.tokens.forEach(function (tok, i) {
         if (tok.br) { html += '<span class="line-break" aria-hidden="true"></span>'; return; }
         var prev = p.tokens[i - 1];
         var needSpace = i > 0 && !tok.punct && !tok.glue && !(prev && prev.br);
         if (needSpace) html += ' ';
-        if (tok.punct || !tok.tag) { html += '<span class="token punct">' + esc(tok.t) + '</span>'; return; }
-        var clickable = tok.craft || tok.role;
-        if (clickable) {
+        (opensAt[i] || []).forEach(function (s) {
+          html += '<span class="sspan" data-structure="' + s.structure + '" title="' + esc(s.label) + '">';
+        });
+        if (tok.punct || !tok.tag) {
+          html += '<span class="token punct">' + esc(tok.t) + '</span>';
+        } else if (tok.craft || tok.role) {
           html += '<button type="button" class="token word" data-idx="' + i + '" data-concept="' + tok.tag + '" aria-label="' + esc(tok.t) + ' — show explanation">' + esc(tok.t) + '</button>';
         } else {
           html += '<span class="token word" data-idx="' + i + '" data-concept="' + tok.tag + '">' + esc(tok.t) + '</span>';
         }
+        (closesAt[i] || []).forEach(function () { html += '</span>'; });
       });
 
       var textEl = $('text');
-      textEl.className = 'passage-text' + (p.type === 'poetic' ? ' poetry' : '');
+      textEl.className = 'passage-text' + (p.type === 'poetic' ? ' poetry' : '') + (state.structured ? ' structured' : '');
       textEl.innerHTML = html;
       textEl.querySelectorAll('button.token').forEach(function (b) {
         b.addEventListener('click', function () { selectToken(parseInt(b.getAttribute('data-idx'), 10)); });
@@ -155,6 +170,18 @@
       c.classList.remove('visible');
       c.innerHTML = '<div class="callout-prompt">Pick a part of speech above, then click any word to see what it’s doing.</div>';
     }
+
+    /* structure-bracket toggle: line style carries the meaning, sitewide */
+    var structBtn = $('struct');
+    structBtn.addEventListener('click', function () {
+      state.structured = !state.structured;
+      structBtn.classList.toggle('active', state.structured);
+      structBtn.setAttribute('aria-pressed', String(state.structured));
+      $('text').classList.toggle('structured', state.structured);
+      $('structhint').textContent = state.structured
+        ? 'Brackets: thin = phrase · heavy = independent clause · dashed = dependent. Hover a bracket for its name.'
+        : '';
+    });
 
     filterBtns.forEach(function (b) {
       b.addEventListener('click', function () {

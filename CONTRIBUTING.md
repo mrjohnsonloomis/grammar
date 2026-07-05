@@ -58,7 +58,13 @@ are reveal-and-compare, so write them as things worth comparing against.
 The generator script pattern in git history (`build_items.py`) shows how
 identify answer-indices were computed rather than hand-counted.
 
-**A tour/builder/compare** → `data/sentences/tours.json` (shapes in SCHEMA.md).
+**A tour/builder/compare/stages interactive** → `data/sentences/tours.json`
+(shapes in SCHEMA.md; `stages` powers the x-ray/revision sliders).
+
+**Structure spans on a passage** → `spans` in passages.json; compute indices
+with a matcher script (`add_spans.py` in git history), never by hand. The
+Annotation Studio (`/studio.html`) needs no content — it runs entirely on
+student input and never stores it.
 
 **A lesson page** → copy an existing `lessons/*.html`; set front matter
 (`root: ".."`, `nav`, `lesson_num`, `title`, `tagline`, `next_*`); follow the

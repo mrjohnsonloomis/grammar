@@ -146,6 +146,65 @@
     }).join('');
   }
 
+  /* ---------- stages: the kernel x-ray / revision scrubber ----------
+     <div data-component="stages" data-stages="london-xray" data-label="X-ray"></div>
+     Drag the slider (or click the stops) to move through authored stages of a
+     sentence being built up or a passage being revised. */
+  GX.Stages = {
+    mount: function (el) {
+      var id = el.getAttribute('data-stages');
+      GX.data.load('tours').then(function (data) {
+        var set = (data.stages || []).find(function (s) { return s.id === id; });
+        if (!set) throw new Error('Unknown stages id: ' + id);
+        initStages(el, set);
+      }).catch(function (err) { GX.fail(el, err); });
+    }
+  };
+
+  function initStages(el, set) {
+    var uid = 'st' + Math.random().toString(36).slice(2, 7);
+    var label = el.getAttribute('data-label') || 'X-ray';
+    var n = set.stages.length;
+    var idx = 0;
+
+    el.innerHTML =
+      '<div class="panel-card stages">' +
+      '  <div class="panel-top-bar"><div class="panel-label">' + esc(label) + '</div>' +
+      '    <span class="practice-kind-tag">drag the slider</span></div>' +
+      (set.intro ? '<div class="section-sub" style="margin-bottom:14px;">' + set.intro + '</div>' : '') +
+      '  <div class="stages-rail">' +
+      '    <input type="range" id="' + uid + '-r" min="0" max="' + (n - 1) + '" step="1" value="0"' +
+      '      aria-label="Stage" aria-valuetext="' + esc(set.stages[0].label) + '">' +
+      '    <div class="stages-stops" id="' + uid + '-stops">' +
+             set.stages.map(function (s, i) {
+               return '<button type="button" class="stages-stop' + (i === 0 ? ' on' : '') + '" data-i="' + i + '">' + esc(s.label) + '</button>';
+             }).join('') +
+      '    </div>' +
+      '  </div>' +
+      '  <div class="stages-text" id="' + uid + '-text" aria-live="polite"></div>' +
+      '  <div class="stages-note" id="' + uid + '-note"></div>' +
+      '</div>';
+
+    var range = el.querySelector('#' + uid + '-r');
+    var stops = el.querySelectorAll('.stages-stop');
+
+    function show(i) {
+      idx = i;
+      var s = set.stages[i];
+      range.value = String(i);
+      range.setAttribute('aria-valuetext', s.label);
+      stops.forEach(function (b, bi) { b.classList.toggle('on', bi === i); });
+      el.querySelector('#' + uid + '-text').innerHTML = s.text;
+      el.querySelector('#' + uid + '-note').innerHTML = s.note || '';
+    }
+
+    range.addEventListener('input', function () { show(parseInt(range.value, 10)); });
+    stops.forEach(function (b) {
+      b.addEventListener('click', function () { show(parseInt(b.getAttribute('data-i'), 10)); });
+    });
+    show(0);
+  }
+
   function initCompare(el, items) {
     var uid = 'c' + Math.random().toString(36).slice(2, 7);
     var state = { idx: 0 };
