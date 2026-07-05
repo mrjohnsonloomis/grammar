@@ -31,6 +31,7 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
         <a href="{{ page.root | default: '.' }}/lessons/06-joining-ideas.html" {% if page.nav == '06' %}class="current" aria-current="page"{% endif %}><span class="n">06</span>Joining Ideas</a>
         <a href="{{ page.root | default: '.' }}/lessons/07-sentence-craft.html" {% if page.nav == '07' %}class="current" aria-current="page"{% endif %}><span class="n">07</span>Sentence Craft</a>
         <a href="{{ page.root | default: '.' }}/practice.html" {% if page.nav == 'practice' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Practice</a>
+        <a href="{{ page.root | default: '.' }}/studio.html" {% if page.nav == 'studio' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Annotation Studio</a>
         <a href="{{ page.root | default: '.' }}/glossary.html" {% if page.nav == 'glossary' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Glossary</a>
       </nav>
     </details>
@@ -59,6 +60,7 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
     <div class="rail-group-label">Anytime</div>
     <div class="rail-lessons">
       <a href="{{ page.root | default: '.' }}/practice.html" {% if page.nav == 'practice' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Practice</a>
+      <a href="{{ page.root | default: '.' }}/studio.html" {% if page.nav == 'studio' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Annotation Studio</a>
       <a href="{{ page.root | default: '.' }}/glossary.html" {% if page.nav == 'glossary' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Glossary</a>
     </div>
   </div>
@@ -99,6 +101,7 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
 <script src="{{ page.root | default: '.' }}/assets/js/components/cards.js?v={{ v }}"></script>
 <script src="{{ page.root | default: '.' }}/assets/js/components/sentence-builder.js?v={{ v }}"></script>
 <script src="{{ page.root | default: '.' }}/assets/js/components/combiner.js?v={{ v }}"></script>
+<script src="{{ page.root | default: '.' }}/assets/js/components/studio.js?v={{ v }}"></script>
 <script src="{{ page.root | default: '.' }}/assets/js/components/quiz.js?v={{ v }}"></script>
 <script src="{{ page.root | default: '.' }}/assets/js/main.js?v={{ v }}"></script>
 </body>

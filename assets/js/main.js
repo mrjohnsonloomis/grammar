@@ -72,6 +72,8 @@
         else if (kind === 'glossary' && GX.Cards) GX.Cards.mountGlossary(el);
         else if (kind === 'construct' && GX.Construct) GX.Construct.mount(el);
         else if (kind === 'recall' && GX.Recall) GX.Recall.mount(el);
+        else if (kind === 'stages' && GX.Stages) GX.Stages.mount(el);
+        else if (kind === 'studio' && GX.Studio) GX.Studio.mount(el);
         else if (kind === 'quiz' && GX.Quiz) GX.Quiz.mount(el);
         else if (kind === 'practice-app' && GX.Quiz) GX.Quiz.mountApp(el);
       } catch (err) { GX.fail(el, err); }
@@ -159,7 +161,68 @@
     });
   }
 
-  function boot() { mountAll(); buildArcNav(); initSearch(); }
+  /* ---- term peek: hovering/focusing any term link previews its card in
+     place (hover-capable devices only; taps still navigate) ---- */
+  function initTermPeek() {
+    if (!window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+    var pop = null;
+    var hideTimer = null;
+
+    function ensurePop() {
+      if (pop) return pop;
+      pop = document.createElement('div');
+      pop.className = 'term-peek';
+      pop.setAttribute('role', 'status');
+      pop.addEventListener('mouseenter', function () { clearTimeout(hideTimer); });
+      pop.addEventListener('mouseleave', scheduleHide);
+      document.body.appendChild(pop);
+      return pop;
+    }
+    function scheduleHide() {
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(function () { if (pop) pop.classList.remove('show'); }, 220);
+    }
+    function show(link) {
+      var m = (link.getAttribute('href') || '').match(/#card-([\w-]+)/);
+      if (!m) return;
+      GX.data.load('cards').then(function (data) {
+        var card = null;
+        data.groups.some(function (g) {
+          card = g.cards.find(function (c) { return c.id === m[1]; });
+          return !!card;
+        });
+        if (!card) return;
+        var el = ensurePop();
+        clearTimeout(hideTimer);
+        el.innerHTML =
+          '<span class="term-peek-term">' + GX.util.esc(card.term) + '</span>' +
+          '<span class="term-peek-short">' + GX.util.esc(card.short) + '</span>' +
+          '<span class="term-peek-go">Click through for the full entry →</span>';
+        var r = link.getBoundingClientRect();
+        el.style.left = Math.max(10, Math.min(r.left, window.innerWidth - 320)) + 'px';
+        el.style.top = (r.bottom + 8) + 'px';
+        el.classList.add('show');
+      }).catch(function () {});
+    }
+
+    document.addEventListener('mouseover', function (e) {
+      var link = e.target.closest && e.target.closest('a.term[href*="#card-"], .prose a[href*="#card-"]');
+      if (link) show(link);
+    });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest && e.target.closest('a[href*="#card-"]')) scheduleHide();
+    });
+    document.addEventListener('focusin', function (e) {
+      var link = e.target.closest && e.target.closest('a.term[href*="#card-"]');
+      if (link) show(link); else scheduleHide();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && pop) pop.classList.remove('show');
+    });
+    window.addEventListener('scroll', function () { if (pop) pop.classList.remove('show'); }, { passive: true });
+  }
+
+  function boot() { mountAll(); buildArcNav(); initSearch(); initTermPeek(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();

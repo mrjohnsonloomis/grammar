@@ -79,6 +79,21 @@ subordinating correlative`; adverbs: `negation intensifier relative`.
 Every quoted passage must be public-domain, quoted exactly from a reliable
 edition, and carry an MLA-style `attribution`.
 
+**Structure spans** (optional per passage) power the "Show structure
+brackets" toggle:
+
+```jsonc
+"spans": [
+  { "from": 12, "to": 25,            // 0-based token indices, inclusive
+    "structure": "clause",           // "phrase" | "clause" | "clause-ind"
+    "label": "adverb clause (when)" }// hover tooltip
+]
+```
+
+Spans must form a proper tree (nested or disjoint, never crossing), at most
+two levels deep. Compute indices with a matcher script (see git history:
+`add_spans.py`) — never count by hand.
+
 ---
 
 ## /data/sentences/cards.json
@@ -164,6 +179,21 @@ Step-based interactives. Three top-level collections:
 Chunk fields: `role` (sentence job), `verbal`, `structure` (`phrase` |
 `clause` | `clause-ind`), `func` (`adj adv subject do pn appos modifier
 independent`) — all optional; they drive fills/outlines per the legend.
+
+A fourth collection, `stages`, powers the slider interactives (kernel x-ray,
+revision scrubber; mounted as `data-component="stages"`):
+
+```jsonc
+"stages": [
+  { "id": "london-xray",
+    "intro": "HTML shown above the slider",
+    "stages": [
+      { "label": "Kernel",                     // slider stop label
+        "text": "Day had broken <span class='mv mv-gold'>cold</span>.", // HTML; mark
+        "note": "HTML teaching note for this stage" }                   // additions with mv-*
+    ] }
+]
+```
 
 ---
 

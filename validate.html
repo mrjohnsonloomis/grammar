@@ -42,6 +42,27 @@ window.addEventListener('DOMContentLoaded', function () {
       });
       check(badTags.length === 0, p.id + ': all ' + p.tokens.length + ' tokens use the eight POS tags',
             p.id + ': bad tokens — ' + badTags.join('; '));
+
+      /* structure spans: valid indices, known structures, proper tree, depth <= 2 */
+      var spanErrs = [];
+      var spans = p.spans || [];
+      spans.forEach(function (s, si) {
+        if (!(s.from >= 0 && s.to < p.tokens.length && s.from <= s.to)) spanErrs.push('span ' + si + ' index out of range');
+        if (['phrase', 'clause', 'clause-ind'].indexOf(s.structure) < 0) spanErrs.push('span ' + si + ' unknown structure "' + s.structure + '"');
+        if (!s.label) spanErrs.push('span ' + si + ' has no label');
+        var depth = 0;
+        spans.forEach(function (b) {
+          if (b === s) return;
+          var disjoint = b.to < s.from || s.to < b.from;
+          var contains = b.from <= s.from && s.to <= b.to;
+          var inside = s.from <= b.from && b.to <= s.to;
+          if (!disjoint && !contains && !inside) spanErrs.push('span "' + s.label + '" crosses "' + b.label + '"');
+          if (contains) depth++;
+        });
+        if (depth > 1) spanErrs.push('span "' + s.label + '" nested deeper than 2');
+      });
+      check(spanErrs.length === 0, p.id + ': ' + spans.length + ' structure spans valid',
+            p.id + ': span errors — ' + spanErrs.join('; '));
     });
 
     /* ---- cards ---- */
@@ -88,6 +109,14 @@ window.addEventListener('DOMContentLoaded', function () {
     });
     (tours.compares || []).forEach(function (c) {
       check(!!(c.a && c.b && c.test && c.label), 'compare ' + c.id + ': shape ok', 'compare ' + c.id + ': missing a/b/test/label');
+    });
+    (tours.stages || []).forEach(function (s) {
+      check(!tourIds[s.id], 'stages id unique: ' + s.id, 'DUPLICATE stages id: ' + s.id);
+      tourIds[s.id] = true;
+      var ok2 = Array.isArray(s.stages) && s.stages.length >= 2 &&
+        s.stages.every(function (st) { return st.label && st.text && st.note; });
+      check(ok2, 'stages ' + s.id + ': ' + s.stages.length + ' stages, all complete',
+            'stages ' + s.id + ': every stage needs label + text + note (min 2 stages)');
     });
 
     /* ---- items ---- */
