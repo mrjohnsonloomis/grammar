@@ -1,4 +1,11 @@
-# CONTRIBUTING.md — how to add to Sentence Explorer
+# CONTRIBUTING.md — how to add to The Writer's Workbench
+
+**The Writer's Workbench** is an umbrella with two benches: **Part I —
+Sentences** (the seven lessons, `/lessons/*` + `/data/sentences/*`) and
+**Part II — Writing** (paragraphs and whole pieces, `/writing/*` +
+`/data/writing/*`, in progress). Both parts share the layout, components,
+color system, and philosophy below; Part II content should reuse the Part I
+components untouched — if it can't, fix the component, don't fork it.
 
 ## The guiding philosophy (read before writing any content)
 
