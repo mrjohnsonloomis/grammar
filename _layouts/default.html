@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% if page.title %}{{ page.title }} — {% endif %}Sentence Explorer</title>
+<title>{% if page.title and page.title != site.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
 {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%E2%9C%8E%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,600&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
 
 <header class="topbar">
   <div class="topbar-row">
-    <a class="brand" href="{{ page.root | default: '.' }}/index.html">Sentence Explorer</a>
+    <a class="brand" href="{{ page.root | default: '.' }}/index.html">The Writer’s Workbench</a>
     <details>
       <summary>Menu</summary>
       <nav class="menu-panel" aria-label="Site">
@@ -33,19 +33,20 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
         <a href="{{ page.root | default: '.' }}/practice.html" {% if page.nav == 'practice' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Practice</a>
         <a href="{{ page.root | default: '.' }}/studio.html" {% if page.nav == 'studio' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Annotation Studio</a>
         <a href="{{ page.root | default: '.' }}/glossary.html" {% if page.nav == 'glossary' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Glossary</a>
+        <a href="{{ page.root | default: '.' }}/writing/index.html" {% if page.nav == 'writing' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Writing (coming soon)</a>
       </nav>
     </details>
   </div>
 </header>
 
 <nav class="siderail" aria-label="Site">
-  <a class="rail-brand" href="{{ page.root | default: '.' }}/index.html">Sentence&nbsp;Explorer</a>
+  <a class="rail-brand" href="{{ page.root | default: '.' }}/index.html">The Writer’s<br>Workbench</a>
   <div class="rail-search">
     <input type="search" id="railSearch" placeholder="Look up a term…" aria-label="Look up a grammar term" autocomplete="off">
     <div class="rail-results" id="railResults" aria-live="polite"></div>
   </div>
   <div>
-    <div class="rail-group-label">The Lessons</div>
+    <div class="rail-group-label">Part I · Sentences</div>
     <div class="rail-lessons">
       <a href="{{ page.root | default: '.' }}/lessons/01-sentence-kernel.html" {% if page.nav == '01' %}class="current" aria-current="page"{% endif %}><span class="n">01</span>The Sentence Kernel</a>
       <a href="{{ page.root | default: '.' }}/lessons/02-what-verbs-demand.html" {% if page.nav == '02' %}class="current" aria-current="page"{% endif %}><span class="n">02</span>What Verbs Demand</a>
@@ -62,6 +63,12 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
       <a href="{{ page.root | default: '.' }}/practice.html" {% if page.nav == 'practice' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Practice</a>
       <a href="{{ page.root | default: '.' }}/studio.html" {% if page.nav == 'studio' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Annotation Studio</a>
       <a href="{{ page.root | default: '.' }}/glossary.html" {% if page.nav == 'glossary' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Glossary</a>
+    </div>
+  </div>
+  <div>
+    <div class="rail-group-label">Part II · Writing</div>
+    <div class="rail-lessons">
+      <a href="{{ page.root | default: '.' }}/writing/index.html" {% if page.nav == 'writing' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Coming soon</a>
     </div>
   </div>
 </nav>
@@ -92,7 +99,7 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
 </main>
 
 <footer class="site-footer">
-  <p>Sentence Explorer &middot; built for writers, not proofreaders. <a href="{{ page.root | default: '.' }}/glossary.html">Glossary</a> &middot; <a href="{{ page.root | default: '.' }}/index.html#sources">Sources</a></p>
+  <p>The Writer’s Workbench &middot; built for writers, not proofreaders. <a href="{{ page.root | default: '.' }}/glossary.html">Glossary</a> &middot; <a href="{{ page.root | default: '.' }}/index.html#sources">Sources</a></p>
 </footer>
 </div>
 

@@ -1,4 +1,4 @@
-# SCHEMA.md — data contracts for Sentence Explorer
+# SCHEMA.md — data contracts for The Writer's Workbench
 
 All lesson content lives in JSON under `/data/`. Pages are thin: front matter +
 intro prose + component mounts that load content by id. This document is the
