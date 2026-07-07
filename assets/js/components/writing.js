@@ -48,7 +48,14 @@
       '  </div>' +
       '  <button type="button" class="reveal-btn ghost" id="' + uid + '-reveal" style="margin-top:16px;">Reveal a worked model</button>' +
       '  <div id="' + uid + '-model" aria-live="polite"></div>' +
-      '  <div class="construct-privacy">Your overview and inventory live only on this screen. Do the real thing in your notebook — this is just a place to feel the shape of the move.</div>' +
+      '  <div class="oi-export">' +
+      '    <span class="oi-export-label">Nothing here is saved. To keep your notes, export a copy:</span>' +
+      '    <span class="oi-export-btns">' +
+      '      <button type="button" class="pill-btn" id="' + uid + '-word">Download (.doc)</button>' +
+      '      <button type="button" class="pill-btn" id="' + uid + '-pdf">Print / Save PDF</button>' +
+      '    </span>' +
+      '  </div>' +
+      '  <div class="construct-privacy">Your overview and inventory live only on this screen — close the tab and they’re gone. Export if you want to keep them, and do the real, deeper work in your notebook.</div>' +
       '</div>';
 
     var $ = function (s) { return el.querySelector('#' + uid + '-' + s); };
@@ -85,6 +92,20 @@
         '</div>';
       this.style.display = 'none';
     });
+
+    function exportBody() {
+      var ov = $('ov').value.trim();
+      var h = '<h1>Overview &amp; Inventory</h1>';
+      if (model.about) h += '<p class="muted">' + esc(model.about) + '</p>';
+      h += '<h2>Overview</h2><p>' + (ov ? esc(ov) : '<em>(not written yet)</em>') + '</p>';
+      h += '<h2>Inventory — what I notice</h2>';
+      h += inv.length
+        ? '<ul>' + inv.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>'
+        : '<p><em>(nothing noticed yet)</em></p>';
+      return h;
+    }
+    $('word').addEventListener('click', function () { GX.exportDoc('overview-inventory.doc', 'Overview & Inventory', exportBody()); });
+    $('pdf').addEventListener('click', function () { GX.exportPrint('Overview & Inventory', exportBody()); });
 
     renderList();
   }
@@ -155,5 +176,187 @@
   function fmt(s) {
     var m = Math.floor(s / 60), r = s % 60;
     return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  /* ================= Export helpers (never persisted; user-initiated) =========
+     Two library-free paths, both offline-safe:
+       exportDoc  — a Word-openable .doc (HTML with the msword MIME type)
+       exportPrint — a clean print window the browser can "Save as PDF"      */
+  GX.exportDoc = function (filename, title, bodyHtml) {
+    var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+      'xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
+      '<head><meta charset="utf-8"><title>' + esc(title) + '</title></head><body>' + bodyHtml + '</body></html>';
+    var blob = new Blob(['﻿', html], { type: 'application/msword' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+  };
+  GX.exportPrint = function (title, bodyHtml) {
+    var w = window.open('', '_blank');
+    if (!w) { alert('Your browser blocked the print window. Allow pop-ups for this page, or use the Word download instead.'); return; }
+    w.document.write('<html><head><meta charset="utf-8"><title>' + esc(title) + '</title>' +
+      '<style>body{font-family:Georgia,\'Times New Roman\',serif;line-height:1.65;max-width:40em;' +
+      'margin:2.5em auto;padding:0 1.2em;color:#141414;}h1{font-size:1.4em;margin:0 0 .2em;}' +
+      'h2{font-size:1.05em;margin:1.5em 0 .3em;}ul{padding-left:1.2em;}li{margin-bottom:.35em;}' +
+      'p{margin:.3em 0;}.muted{color:#666;font-size:.9em;font-style:italic;margin-top:0;}</style>' +
+      '</head><body>' + bodyHtml + '</body></html>');
+    w.document.close(); w.focus();
+    setTimeout(function () { w.print(); }, 350);
+  };
+
+  /* ================= Kernel → paragraph (drag & drop) =========================
+     Shows a paragraph GROWING from one noticing (the "kernel"): kernel → claim →
+     proof. The proof is assembled by dragging each piece of reasoning to the
+     quote it explains. Quick-hitting example, not a drafting space; nothing saved.
+     Click-to-place is the primary interaction (keyboard + touch friendly);
+     native drag is layered on for mouse users. */
+  GX.Kernel = {
+    mount: function (el) {
+      var id = el.getAttribute('data-model') || el.getAttribute('data-kernel');
+      GX.data.load(el.getAttribute('data-file') || 'writing/tours').then(function (data) {
+        var model = (data.kernels || []).find(function (m) { return m.id === id; });
+        if (!model) throw new Error('Unknown kernel model: ' + id);
+        initKernel(el, model);
+      }).catch(function (err) { GX.fail(el, err); });
+    }
+  };
+
+  function initKernel(el, model) {
+    var uid = 'k' + Math.random().toString(36).slice(2, 7);
+    var pairs = model.pairs || [];
+    var n = pairs.length;
+    var placed = pairs.map(function () { return null; });   // slot index -> reason index
+    var order = GX.util.shuffle(pairs.map(function (_, i) { return i; }));  // tray display order
+    var selected = null;                                     // picked-up reason index (click mode)
+    var solved = false;
+
+    el.innerHTML =
+      '<div class="panel-card kernelpad">' +
+      '  <div class="panel-top-bar"><div class="panel-label">From a kernel to a paragraph</div>' +
+      '    <span class="practice-kind-tag">drag &amp; drop · nothing saved</span></div>' +
+      '  <div class="kernel-stage">' +
+      '    <div class="kernel-tag kernel-tag-seed">The kernel — what you noticed first</div>' +
+      '    <div class="kernel-seed">' + model.kernel + '</div>' +
+      (model.kernelNote ? '    <div class="kernel-note">' + model.kernelNote + '</div>' : '') +
+      '  </div>' +
+      '  <div class="kernel-grow" aria-hidden="true"><span>ask “so what?” →</span></div>' +
+      '  <div class="kernel-stage">' +
+      '    <div class="kernel-tag kernel-tag-claim">The argument — your topic sentence</div>' +
+      '    <div class="kernel-claim">' + model.claim + '</div>' +
+      (model.claimNote ? '    <div class="kernel-note">' + model.claimNote + '</div>' : '') +
+      '  </div>' +
+      '  <div class="kernel-grow" aria-hidden="true"><span>now prove it ↓</span></div>' +
+      '  <div class="kernel-stage">' +
+      '    <div class="kernel-tag kernel-tag-proof">The proof — pair each quote with its reasoning</div>' +
+      (model.assembleNote ? '    <div class="kernel-note">' + model.assembleNote + '</div>' : '') +
+      '    <div class="kernel-slots" id="' + uid + '-slots"></div>' +
+      '    <div class="kernel-tray-label" id="' + uid + '-traylabel">Reasoning — drag (or tap, then tap a quote) each to the quote it explains:</div>' +
+      '    <div class="kernel-tray" id="' + uid + '-tray"></div>' +
+      '  </div>' +
+      '  <div id="' + uid + '-done" aria-live="polite"></div>' +
+      '</div>';
+
+    var slotsEl = el.querySelector('#' + uid + '-slots');
+    var trayEl = el.querySelector('#' + uid + '-tray');
+    var doneEl = el.querySelector('#' + uid + '-done');
+
+    function place(qi, ri) {
+      if (solved) return;
+      placed.forEach(function (v, s) { if (v === ri) placed[s] = null; });  // pull chip from any prior slot
+      placed[qi] = ri;
+      selected = null;
+      render();
+      checkSolved();
+    }
+    function pickUp(ri) {
+      if (solved) return;
+      selected = (selected === ri) ? null : ri;
+      // if the chip was sitting in a slot, lift it back out when picked up
+      placed.forEach(function (v, s) { if (v === ri && selected === ri) placed[s] = null; });
+      render();
+    }
+    function checkSolved() {
+      if (placed.every(function (v, i) { return v === i; })) {
+        solved = true;
+        render();
+        reveal();
+      }
+    }
+
+    function render() {
+      slotsEl.innerHTML = pairs.map(function (p, qi) {
+        var ri = placed[qi];
+        var state = ri == null ? 'empty' : (ri === qi ? 'correct' : 'wrong');
+        var drop = ri == null
+          ? '<span class="kernel-drop-hint">drop reasoning here</span>'
+          : '<button type="button" class="kernel-chip in-slot ' + state + '" data-ri="' + ri + '"' +
+            (solved ? ' disabled' : '') + '>' + pairs[ri].reason +
+            (state === 'correct' ? '<span class="kernel-mark">✓</span>' : '<span class="kernel-mark">↺</span>') +
+            '</button>';
+        return '<div class="kernel-slot ' + state + '">' +
+          '<div class="kernel-evi"><span class="kernel-evi-tag">evidence</span>' +
+          '<span class="kernel-quote">&ldquo;' + p.quote + '&rdquo;</span></div>' +
+          '<div class="kernel-drop ' + state + '" data-qi="' + qi + '" role="button" tabindex="0" ' +
+          'aria-label="Drop reasoning for quote ' + (qi + 1) + '">' + drop + '</div>' +
+          '</div>';
+      }).join('');
+
+      var trayChips = order.filter(function (ri) { return placed.indexOf(ri) < 0; });
+      trayEl.innerHTML = trayChips.length
+        ? trayChips.map(function (ri) {
+            return '<button type="button" class="kernel-chip' + (selected === ri ? ' is-selected' : '') +
+              '" data-ri="' + ri + '" draggable="true">' + pairs[ri].reason + '</button>';
+          }).join('')
+        : '<span class="kernel-tray-empty">All reasoning placed. Check the ✓ marks — every quote should be green.</span>';
+
+      bind();
+    }
+
+    function bind() {
+      // tray chips + in-slot chips: click to pick up / lift out
+      el.querySelectorAll('.kernel-chip').forEach(function (chip) {
+        var ri = parseInt(chip.getAttribute('data-ri'), 10);
+        chip.addEventListener('click', function () { pickUp(ri); });
+        chip.addEventListener('dragstart', function (e) {
+          e.dataTransfer.setData('text/plain', String(ri));
+          e.dataTransfer.effectAllowed = 'move';
+          chip.classList.add('dragging');
+        });
+        chip.addEventListener('dragend', function () { chip.classList.remove('dragging'); });
+      });
+      // drop zones: click to place selected, or accept a drag
+      el.querySelectorAll('.kernel-drop').forEach(function (zone) {
+        var qi = parseInt(zone.getAttribute('data-qi'), 10);
+        zone.addEventListener('click', function () { if (selected != null) place(qi, selected); });
+        zone.addEventListener('keydown', function (e) {
+          if ((e.key === 'Enter' || e.key === ' ') && selected != null) { e.preventDefault(); place(qi, selected); }
+        });
+        zone.addEventListener('dragover', function (e) { e.preventDefault(); zone.classList.add('over'); });
+        zone.addEventListener('dragleave', function () { zone.classList.remove('over'); });
+        zone.addEventListener('drop', function (e) {
+          e.preventDefault(); zone.classList.remove('over');
+          var ri = parseInt(e.dataTransfer.getData('text/plain'), 10);
+          if (!isNaN(ri)) place(qi, ri);
+        });
+      });
+    }
+
+    function reveal() {
+      el.querySelector('#' + uid + '-traylabel').textContent = 'Every quote is paired with the reasoning that proves it. Here’s the whole paragraph:';
+      doneEl.innerHTML =
+        '<div class="kernel-solved">' +
+        '  <div class="kernel-tag kernel-tag-done">The finished paragraph — grown from one noticing</div>' +
+        '  <div class="annot-para">' + model.paragraph + '</div>' +
+        '  <div class="annot-key">' +
+        '    <span><i style="background:var(--name)"></i>claim</span>' +
+        '    <span><i style="background:var(--desc)"></i>evidence</span>' +
+        '    <span><i style="background:var(--sit)"></i>reasoning</span></div>' +
+        (model.note ? '  <div class="kernel-note">' + model.note + '</div>' : '') +
+        '</div>';
+    }
+
+    render();
   }
 })();

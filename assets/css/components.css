@@ -44,6 +44,8 @@
 .rail-lessons a .n { font-family: var(--serif); font-style: italic; font-size: 0.74rem; color: var(--muted); min-width: 17px; }
 .rail-lessons a:hover { color: var(--ink); border-left-color: var(--muted-decor); }
 .rail-lessons a.current { color: var(--ink); font-weight: 650; border-left-color: var(--act); }
+.rail-lessons a.sub { padding-left: 24px; font-size: 0.82rem; }
+.rail-lessons a.sub .n { font-style: normal; }
 .rail-lessons a:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 
 /* term look-up */
@@ -836,3 +838,125 @@ mark.practice-target { background: var(--desc-t); color: var(--ink); padding: 1p
 .lex-term[data-concept="w-argue"] { --lex-c: var(--name); }
 .lex-term[data-concept="w-story"] { --lex-c: var(--desc); }
 .lex-term[data-concept="w-reader"] { --lex-c: var(--con); }
+
+/* ---- table of contents — an editorial list, not a card grid (used on the
+   home page, the Writing landing, and the analytical-paragraph subpage links) ---- */
+.toc { border-top: 2px solid var(--rule); }
+.toc-row {
+  display: grid; grid-template-columns: 58px minmax(0, 1.15fr) minmax(0, 1.6fr) 24px;
+  gap: 20px; align-items: baseline; padding: 20px 4px;
+  border-bottom: 1px solid var(--line); text-decoration: none; color: inherit;
+}
+.toc-row.toc-sub { padding-left: 26px; }
+.toc-row.toc-sub .toc-num { font-style: normal; font-size: 1rem; }
+.toc-row.toc-sub .toc-title { font-size: 1.04rem; }
+.toc-row:hover, .toc-row:focus-visible { background: var(--panel); }
+.toc-row:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+.toc-num { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--muted-decor); font-variant-numeric: tabular-nums; }
+.toc-row:hover .toc-num { color: var(--act); }
+.toc-title { font-family: var(--serif); font-size: 1.22rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
+.toc-title small { display: block; font-family: var(--sans); font-size: 0.68rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
+.toc-desc { font-size: 0.88rem; color: var(--bodytext); line-height: 1.6; }
+.toc-arrow { color: var(--muted-decor); font-size: 1.1rem; transition: transform 0.15s; }
+.toc-row:hover .toc-arrow { color: var(--act); transform: translateX(4px); }
+@media (max-width: 680px) {
+  .toc-row { grid-template-columns: 34px 1fr; }
+  .toc-num { font-size: 1.05rem; }
+  .toc-desc { grid-column: 2; }
+  .toc-arrow { display: none; }
+}
+
+/* ---- O&I pad export row ---- */
+.oi-export {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line);
+}
+.oi-export-label { font-size: 0.82rem; color: var(--muted); font-style: italic; flex: 1 1 220px; }
+.oi-export-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ==========================================================================
+   Kernel → paragraph (drag & drop): a paragraph grows from one noticing.
+   ========================================================================== */
+.kernelpad .kernel-stage { margin: 0; }
+.kernel-tag {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 8px; display: inline-block;
+}
+.kernel-tag-seed { color: var(--sit); }
+.kernel-tag-claim { color: var(--name); }
+.kernel-tag-proof, .kernel-tag-done { color: var(--desc); }
+.kernel-seed {
+  font-family: var(--serif); font-size: 1.14rem; line-height: 1.7; color: var(--ink);
+  background: var(--sit-t); border-left: 3px solid var(--sit);
+  border-radius: 0 var(--r-md) var(--r-md) 0; padding: 14px 18px;
+}
+.kernel-claim {
+  font-family: var(--serif); font-size: 1.16rem; line-height: 1.7; color: var(--ink);
+  background: var(--name-t); border-left: 3px solid var(--name);
+  border-radius: 0 var(--r-md) var(--r-md) 0; padding: 14px 18px;
+}
+.kernel-note { font-size: 0.86rem; color: var(--muted); line-height: 1.6; margin-top: 8px; max-width: 64ch; }
+.kernel-note a { color: var(--con); }
+.kernel-grow {
+  display: flex; justify-content: center; margin: 4px 0; position: relative;
+}
+.kernel-grow::before {
+  content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 1px;
+  background: repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px);
+}
+.kernel-grow span {
+  position: relative; background: var(--paper); padding: 2px 12px;
+  font-size: 0.68rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted-decor);
+}
+/* proof: quote slots + reasoning tray */
+.kernel-slots { display: flex; flex-direction: column; gap: 12px; margin: 14px 0 18px; }
+.kernel-slot {
+  display: grid; grid-template-columns: 1fr; gap: 8px;
+  border: 1px solid var(--line); border-radius: var(--r-md); padding: 12px 14px; background: var(--paper);
+}
+@media (min-width: 620px) { .kernel-slot { grid-template-columns: 1fr 1fr; align-items: center; } }
+.kernel-slot.correct { border-color: var(--sit); background: var(--sit-t); }
+.kernel-evi { display: flex; flex-direction: column; gap: 3px; }
+.kernel-evi-tag {
+  font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--desc);
+}
+.kernel-quote {
+  font-family: var(--serif); font-size: 1.06rem; color: var(--ink);
+  background: var(--desc-t); box-shadow: 0 2px 0 var(--desc); border-radius: 2px;
+  padding: 1px 4px 2px; align-self: flex-start;
+}
+.kernel-drop {
+  min-height: 46px; display: flex; align-items: center; justify-content: center;
+  border: 1.5px dashed var(--line); border-radius: var(--r-md); padding: 4px; transition: border-color 0.15s, background 0.15s;
+}
+.kernel-drop.empty { cursor: pointer; }
+.kernel-drop.empty:hover, .kernel-drop.over, .kernel-drop.empty:focus-visible {
+  border-color: var(--name); background: var(--name-t); outline: none;
+}
+.kernel-drop-hint { font-size: 0.78rem; color: var(--muted-decor); font-style: italic; }
+.kernel-drop.correct, .kernel-drop.wrong { border-style: solid; }
+.kernel-drop.correct { border-color: var(--sit); }
+.kernel-drop.wrong { border-color: var(--desc); }
+/* reasoning chips */
+.kernel-tray-label { font-size: 0.82rem; color: var(--bodytext); margin-bottom: 8px; }
+.kernel-tray { display: flex; flex-wrap: wrap; gap: 8px; min-height: 8px; }
+.kernel-tray-empty { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+.kernel-chip {
+  font: inherit; font-size: 0.92rem; line-height: 1.4; text-align: left;
+  font-family: var(--sans); color: var(--ink); background: var(--panel);
+  border: 1px solid var(--line); border-radius: var(--r-md); padding: 8px 12px;
+  cursor: grab; transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.kernel-chip:hover, .kernel-chip:focus-visible { border-color: var(--ink); outline: none; }
+.kernel-chip:focus-visible { box-shadow: 0 0 0 2px var(--ink); }
+.kernel-chip.is-selected { border-color: var(--name); background: var(--name-t); box-shadow: 0 0 0 2px var(--name); }
+.kernel-chip.dragging { opacity: 0.5; }
+.kernel-chip.in-slot { width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.kernel-chip.in-slot.correct { border-color: var(--sit); background: var(--sit-t); }
+.kernel-chip.in-slot.wrong { border-color: var(--desc); background: var(--desc-t); }
+.kernel-chip.in-slot[disabled] { cursor: default; opacity: 1; }
+.kernel-mark { font-weight: 700; flex: none; }
+.kernel-chip.correct .kernel-mark { color: var(--sit); }
+.kernel-chip.wrong .kernel-mark { color: var(--desc); }
+.kernel-solved { margin-top: 20px; padding-top: 16px; border-top: 2px solid var(--rule); animation: fadeSlideIn 0.3s ease both; }

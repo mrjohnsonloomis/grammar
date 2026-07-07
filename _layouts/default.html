@@ -34,6 +34,8 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
         <a href="{{ page.root | default: '.' }}/writing/free-writing.html" {% if page.nav == 'w-free' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Free Writing</a>
         <a href="{{ page.root | default: '.' }}/writing/overview-inventory.html" {% if page.nav == 'w-oi' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Overview &amp; Inventory</a>
         <a href="{{ page.root | default: '.' }}/writing/analytical-paragraph.html" {% if page.nav == 'w-para' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>The Analytical Paragraph</a>
+        <a href="{{ page.root | default: '.' }}/writing/topic-sentences.html" {% if page.nav == 'w-topic' %}class="current" aria-current="page"{% endif %}><span class="n">›</span>Writing a Topic Sentence</a>
+        <a href="{{ page.root | default: '.' }}/writing/quotation.html" {% if page.nav == 'w-quote' %}class="current" aria-current="page"{% endif %}><span class="n">›</span>Quoting a Text, Simply</a>
         <a href="{{ page.root | default: '.' }}/writing/narrative-memoir.html" {% if page.nav == 'w-memoir' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Narrative Memoir</a>
         <a href="{{ page.root | default: '.' }}/writing/audience.html" {% if page.nav == 'w-audience' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Audience</a>
         <a href="{{ page.root | default: '.' }}/writing/feedback.html" {% if page.nav == 'w-feedback' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Working with Feedback</a>
@@ -70,6 +72,8 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
       <a href="{{ page.root | default: '.' }}/writing/free-writing.html" {% if page.nav == 'w-free' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Free Writing</a>
       <a href="{{ page.root | default: '.' }}/writing/overview-inventory.html" {% if page.nav == 'w-oi' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Overview &amp; Inventory</a>
       <a href="{{ page.root | default: '.' }}/writing/analytical-paragraph.html" {% if page.nav == 'w-para' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>The Analytical Paragraph</a>
+      <a class="sub{% if page.nav == 'w-topic' %} current{% endif %}" href="{{ page.root | default: '.' }}/writing/topic-sentences.html" {% if page.nav == 'w-topic' %}aria-current="page"{% endif %}><span class="n">›</span>Topic Sentences</a>
+      <a class="sub{% if page.nav == 'w-quote' %} current{% endif %}" href="{{ page.root | default: '.' }}/writing/quotation.html" {% if page.nav == 'w-quote' %}aria-current="page"{% endif %}><span class="n">›</span>Quoting a Text</a>
       <a href="{{ page.root | default: '.' }}/writing/narrative-memoir.html" {% if page.nav == 'w-memoir' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Narrative Memoir</a>
       <a href="{{ page.root | default: '.' }}/writing/audience.html" {% if page.nav == 'w-audience' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Audience</a>
       <a href="{{ page.root | default: '.' }}/writing/feedback.html" {% if page.nav == 'w-feedback' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Working with Feedback</a>

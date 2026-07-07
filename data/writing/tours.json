@@ -20,34 +20,38 @@
       "a": { "label": "Telling", "sentence": ["Mr. Alvarez was ", {"m": "a really kind teacher"}, "."], "why": "We're told to admire him without being given a single reason to. The praise slides right off." },
       "b": { "label": "Showing", "sentence": ["Mr. Alvarez ", {"m": "kept granola bars"}, " in his bottom drawer for the kids who ", {"m": "came in without breakfast"}, ", and he never made it a thing."] , "why": "One concrete habit — granola bars, never made a thing — and we conclude <em>kind</em> on our own, and believe it. Character is shown in what people <em>do</em>." },
       "test": "<strong>The move for people:</strong> don't tell us what someone <em>is</em> (kind, funny, strict). Show us one thing they <em>did</em>, and let the reader name the quality. The reader's own conclusion sticks; yours washes off."
+    },
+    {
+      "id": "claim-fact",
+      "label": "fact vs. claim",
+      "a": { "label": "Just a fact", "sentence": ["The poem ", {"m": "has eight lines and one rhyme scheme"}, "."], "why": "True — and that’s the problem. Nobody could disagree, so there’s nothing to prove. A fact isn’t a topic sentence; it’s raw material you might use <em>as</em> evidence later." },
+      "b": { "label": "A claim", "sentence": ["The poem’s ", {"m": "tight, quick form"}, " makes its shortness ", {"m": "feel like the fleeting beauty"}, " it describes."], "why": "Debatable — a reader could push back and say the form does something else. That disagreement is exactly what gives the paragraph a job: prove it. <em>That’s</em> a topic sentence." },
+      "test": "<strong>The test:</strong> could a smart classmate reasonably disagree? If no, it’s a fact — save it for evidence. If yes, you’ve got a claim worth a whole paragraph."
+    },
+    {
+      "id": "quote-dropped",
+      "label": "dropped vs. woven",
+      "a": { "label": "Dropped in", "sentence": ["Frost describes the leaves. ", {"m": "“Nature’s first green is gold.”"}, " This shows beauty."], "why": "The quote is dumped between two sentences with nothing holding it — a “hit-and-run” quote. The reader has to guess why it’s there and do the connecting you skipped." },
+      "b": { "label": "Woven in", "sentence": ["Frost calls the new leaves ", {"m": "“gold,”"}, " comparing them to something precious."], "why": "The quote is folded into your own sentence with a signal word (<em>calls</em>) and immediately followed by reasoning. It reads as one smooth thought — and it actually does analytical work." },
+      "test": "<strong>The move:</strong> never let a quotation stand as its own sentence. <em>Introduce</em> it (a signal phrase), then <em>explain</em> it (reasoning). Quote sandwiched, never quote stranded."
     }
   ],
-  "stages": [
+  "kernels": [
     {
       "id": "frost-paragraph",
-      "intro": "Watch an analytical paragraph get built the way the writing happens: the argument first (the topic sentence), then evidence, then — the part people skip — the reasoning that connects each piece of evidence back to the claim. This is the model from class, on Frost’s “Nothing Gold Can Stay.”",
-      "stages": [
-        {
-          "label": "Topic sentence",
-          "text": "<span class='mv mv-blue'>Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.</span>",
-          "note": "Start with the argument. This one sentence is a <em>debatable claim</em> — someone could read the poem differently — so the rest of the paragraph has to earn it. Everything that follows serves this sentence."
-        },
-        {
-          "label": "+ evidence",
-          "text": "<span class='mv mv-blue'>Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.</span> He starts with “<span class='mv mv-gold'>Nature’s first green is gold</span>,”",
-          "note": "The first evidence: an exact quotation from the text. On its own, a quote just sits there — it doesn’t prove anything yet. It needs the next move."
-        },
-        {
-          "label": "+ reasoning",
-          "text": "<span class='mv mv-blue'>Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.</span> He starts with “<span class='mv mv-gold'>Nature’s first green is gold</span>,” <span class='mv mv-teal'>comparing new spring leaves to something precious.</span>",
-          "note": "Here’s the part writers skip: the <strong>reasoning</strong>. It explains <em>how</em> the evidence supports the claim — why “green is gold” shows beauty. Evidence + reasoning together = one link in the argument. Notice the pattern: quote, then <em>so what?</em>"
-        },
-        {
-          "label": "Full paragraph",
-          "text": "<span class='mv mv-blue'>Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.</span> He starts with “<span class='mv mv-gold'>Nature’s first green is gold</span>,” <span class='mv mv-teal'>comparing new spring leaves to something precious.</span> Then “<span class='mv mv-gold'>leaf subsides to leaf</span>,” <span class='mv mv-teal'>showing how quickly that early beauty fades.</span> The allusion “<span class='mv mv-gold'>Eden sank to grief</span>” <span class='mv mv-teal'>suggests that even perfect moments end.</span> By finishing with “<span class='mv mv-gold'>Nothing gold can stay</span>,” Frost makes his point clear: <span class='mv mv-teal'>because golden moments fade, we should value them right away.</span>",
-          "note": "Three more evidence-and-reasoning links, each one quote (gold) plus its <em>so what</em> (teal), all serving the blue claim — then a short wrap-up. That’s the whole shape: one idea, developed with woven evidence and reasoning. Note the careful verbs: “<em>suggests</em>,” “<em>showing</em>” — analytical writing hedges honestly rather than overclaiming."
-        }
-      ]
+      "kernel": "Everything in this poem is <em>turning into</em> something else — green becomes gold, leaf becomes flower becomes leaf, dawn goes down to day, Eden sinks to grief.",
+      "kernelNote": "This isn’t an argument yet. It’s one <strong>noticing</strong>, lifted straight off the inventory you’d build on the <a class=\"term\" href=\"overview-inventory.html\">Overview &amp; Inventory</a> page. It’s the seed. Watch the whole paragraph grow out of it — you don’t start with a thesis, you start here.",
+      "claim": "Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.",
+      "claimNote": "Ask the kernel <em>“so what?”</em> and it becomes a <strong>claim</strong> — a debatable one, so it needs proof. This is the topic sentence. Notice it grew <em>from</em> the noticing; it wasn’t decided first and stapled on.",
+      "pairs": [
+        { "quote": "Nature’s first green is gold", "reason": "comparing new spring leaves to something precious" },
+        { "quote": "leaf subsides to leaf", "reason": "showing how quickly that early beauty fades" },
+        { "quote": "Eden sank to grief", "reason": "suggesting that even perfect moments end" },
+        { "quote": "Nothing gold can stay", "reason": "stating the rule plainly — because golden moments fade, we should value them now" }
+      ],
+      "assembleNote": "Each quote is <strong>evidence</strong> — but a quote alone just sits there and proves nothing. Drag each piece of <strong>reasoning</strong> to the quote it explains. That reasoning — the <em>so what?</em> — is the part writers skip, and it’s the part that turns a quotation into proof.",
+      "paragraph": "<span class='a-topic'>Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.</span> He starts with “<span class='a-evi'>Nature’s first green is gold</span>,” <span class='a-reason'>comparing new spring leaves to something precious.</span> Then “<span class='a-evi'>leaf subsides to leaf</span>,” <span class='a-reason'>showing how quickly that early beauty fades.</span> The allusion “<span class='a-evi'>Eden sank to grief</span>” <span class='a-reason'>suggests that even perfect moments end.</span> By finishing with “<span class='a-evi'>Nothing gold can stay</span>,” Frost makes his point clear: <span class='a-reason'>because golden moments fade, we should value them right away.</span>",
+      "note": "The whole paragraph traces back to one noticing. That’s the method: notice first, ask <em>so what?</em> to get a claim, then prove it by pairing each piece of evidence with the reasoning that connects it. Notice the careful verbs — “<em>suggests</em>,” “<em>showing</em>” — analytical writing hedges honestly instead of overclaiming."
     }
   ],
   "oimodels": [

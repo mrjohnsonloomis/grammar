@@ -212,6 +212,12 @@ window.addEventListener('DOMContentLoaded', function () {
       var okS = Array.isArray(s.stages) && s.stages.length >= 2 && s.stages.every(function (st) { return st.label && st.text && st.note; });
       check(okS, 'writing stages ' + s.id + ': ' + s.stages.length + ' stages ok', 'writing stages ' + s.id + ': incomplete');
     });
+    (wTours.kernels || []).forEach(function (k) {
+      var okK = k.id && k.kernel && k.claim && Array.isArray(k.pairs) && k.pairs.length >= 2 &&
+        k.pairs.every(function (pr) { return pr.quote && pr.reason; }) && k.paragraph;
+      check(okK, 'writing kernel ' + k.id + ': kernel + claim + ' + (k.pairs || []).length + ' pairs + paragraph',
+            'writing kernel ' + k.id + ': needs kernel, claim, 2+ {quote,reason} pairs, and paragraph');
+    });
     (wTours.oimodels || []).forEach(function (m) {
       var okM = m.id && m.overview && Array.isArray(m.inventory) && m.inventory.length;
       check(okM, 'O&I model ' + m.id + ': has overview + inventory', 'O&I model ' + m.id + ': missing overview/inventory');
@@ -232,10 +238,10 @@ window.addEventListener('DOMContentLoaded', function () {
     ['free-modalities','oi-method','paragraph-terms','memoir-moves','feedback-protocol'].forEach(function (g) {
       if (!wCards.groups.some(function (x) { return x.id === g; })) fail('writing page mounts card group "' + g + '" which does not exist');
     });
-    ['tell-show-nervous','tell-show-messy','tell-show-kind'].forEach(function (id) {
+    ['tell-show-nervous','tell-show-messy','tell-show-kind','claim-fact','quote-dropped'].forEach(function (id) {
       if (!(wTours.compares || []).some(function (c) { return c.id === id; })) fail('writing page mounts compare "' + id + '" which does not exist');
     });
-    if (!(wTours.stages || []).some(function (s) { return s.id === 'frost-paragraph'; })) fail('missing stages "frost-paragraph"');
+    if (!(wTours.kernels || []).some(function (k) { return k.id === 'frost-paragraph'; })) fail('missing kernel "frost-paragraph"');
     if (!(wTours.oimodels || []).some(function (m) { return m.id === 'frost'; })) fail('missing O&I model "frost"');
     ['wtg-para-001','wtg-showtell-001','wtg-showtell-002'].forEach(function (id) {
       if (!wItemIds[id]) fail('writing page mounts item "' + id + '" which does not exist');

@@ -7,29 +7,6 @@ description: "An interactive workbench for 9th-grade writers: sentences taught a
 ---
 
 <style>
-  /* the table of contents — an editorial list, not a card grid */
-  .toc { border-top: 2px solid var(--rule); }
-  .toc-row {
-    display: grid; grid-template-columns: 58px minmax(0, 1.15fr) minmax(0, 1.6fr) 24px;
-    gap: 20px; align-items: baseline; padding: 20px 4px;
-    border-bottom: 1px solid var(--line); text-decoration: none; color: inherit;
-  }
-  .toc-row:hover, .toc-row:focus-visible { background: var(--panel); }
-  .toc-row:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
-  .toc-num { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--muted-decor); font-variant-numeric: tabular-nums; }
-  .toc-row:hover .toc-num { color: var(--act); }
-  .toc-title { font-family: var(--serif); font-size: 1.22rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
-  .toc-title small { display: block; font-family: var(--sans); font-size: 0.68rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
-  .toc-desc { font-size: 0.88rem; color: var(--bodytext); line-height: 1.6; }
-  .toc-arrow { color: var(--muted-decor); font-size: 1.1rem; transition: transform 0.15s; }
-  .toc-row:hover .toc-arrow { color: var(--act); transform: translateX(4px); }
-  @media (max-width: 680px) {
-    .toc-row { grid-template-columns: 34px 1fr; }
-    .toc-num { font-size: 1.05rem; }
-    .toc-desc { grid-column: 2; }
-    .toc-arrow { display: none; }
-  }
-
   /* the map */
   .map-wrap { margin: 52px 0; }
   .sentence-map { width: 100%; max-width: 780px; margin: 14px auto 0; display: block; height: auto; }
@@ -227,8 +204,20 @@ description: "An interactive workbench for 9th-grade writers: sentences taught a
   </a>
   <a class="toc-row" href="writing/analytical-paragraph.html">
     <span class="toc-num">✎</span>
-    <span class="toc-title">The Analytical Paragraph<small>evidence-first · argument · topic sentence</small></span>
-    <span class="toc-desc">The paragraph as a container for one idea. Start from evidence you noticed, shape it into an argument (the topic sentence), then build the body. With a model.</span>
+    <span class="toc-title">The Analytical Paragraph<small>evidence-first · argument · a paragraph kernel</small></span>
+    <span class="toc-desc">The paragraph as a container for one idea, grown from a single noticing. A drag-and-drop model on Frost, plus close-up pages on its two big pieces:</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row toc-sub" href="writing/topic-sentences.html">
+    <span class="toc-num">›</span>
+    <span class="toc-title">Writing a Topic Sentence<small>the claim</small></span>
+    <span class="toc-desc">Turn a noticing into a debatable claim — and tell a claim from a mere fact.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row toc-sub" href="writing/quotation.html">
+    <span class="toc-num">›</span>
+    <span class="toc-title">Quoting a Text, Simply<small>the evidence</small></span>
+    <span class="toc-desc">Fold a quotation into your own sentence — signal phrase, punctuation, and all.</span>
     <span class="toc-arrow" aria-hidden="true">&rarr;</span>
   </a>
   <a class="toc-row" href="writing/narrative-memoir.html">

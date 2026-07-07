@@ -158,3 +158,31 @@ history preserve it.
 - *due to* (London) — tagged adjective + preposition per traditional analysis.
 - Dickinson 1890 vs. manuscript text — 1890 chosen for unambiguous public
   domain status; the differences are taught rather than hidden.
+
+## 9. Writing strand — reader questions + kernel rework (this pass)
+
+- **Audience page — "Writing for the Reader" questions.** Rhiannon
+  Richardson's four reader-questions (*Who is it for? · Why does this
+  matter? · Did you go deeper? · Do people get it?*) are quoted verbatim
+  from her Good Story Company post and cited to her by name, linked to
+  `goodstorycompany.com/blog/writing-for-the-reader`. Earlier build could not
+  fetch the post (host blocks automated requests); text supplied by the
+  teacher and reproduced exactly, not paraphrased. Her "racial slur at a
+  cousin's birthday" example is kept in her words, framed explicitly as her
+  illustration of going deeper.
+- **Analytical paragraph — slider replaced.** The old `stages` "build the
+  paragraph" slider implied a fixed chronology and skipped noticing. Replaced
+  with a `kernel` component: the paragraph visibly *grows from one noticing*
+  (kernel → claim → proof), and the proof is assembled by drag-and-drop
+  (pair each quote with its reasoning). Same Frost model text, same
+  claim/evidence/reasoning; only the interaction and framing changed.
+- **Kernel as a cross-strand idea.** Framed once for sentences (Lesson 01:
+  subject + verb) and now for paragraphs (a noticing). Lesson 01 and the
+  paragraph page link to each other; no new claims of fact introduced.
+- **New subpages** `topic-sentences.html`, `quotation.html` — mechanics only
+  (claim vs. fact; signal phrase, three integration methods, comma/period
+  inside quotes = American usage). No quotations beyond the existing Frost
+  lines.
+- **O&I pad export.** Added user-initiated `.doc` / print-PDF export of what
+  the student typed; still nothing is persisted — the export is generated
+  on the fly and the "nothing is saved" notice is made more prominent.

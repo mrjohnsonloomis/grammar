@@ -252,7 +252,7 @@ data with `data-file`:
 ```html
 <div data-component="cards"    data-group="oi-method"    data-file="writing/cards"></div>
 <div data-component="compare"  data-compare="tell-show-nervous" data-file="writing/tours"></div>
-<div data-component="stages"   data-stages="frost-paragraph"    data-file="writing/tours"></div>
+<div data-component="kernel"   data-model="frost-paragraph"     data-file="writing/tours"></div>
 <div data-component="construct" data-items="wtg-para-001"        data-file="writing/items"></div>
 ```
 
@@ -260,26 +260,45 @@ data with `data-file`:
   cards, but `concept` uses writing ids (`w-think w-notice w-argue w-story
   w-reader`) which render a colored lexicon dot and **no job-chip** (chips are
   grammar-only). Writing cards don't appear in the grammar glossary.
-- `data/writing/tours.json` — `compares`, `stages` (both as in the sentences
-  file), plus `oimodels` for the O&I pad.
+- `data/writing/tours.json` — `compares` (as in the sentences file), a
+  `kernels` collection for the kernel→paragraph component, plus `oimodels`
+  for the O&I pad. (The grammar `stages` slider is not used in Writing.)
 - `data/writing/items.json` — construction items (`combine expand imitate
   revise`), same shape as the grammar bank; `module` replaces `lesson`.
 
-Two Writing-only components:
+Three Writing-only components:
 
 - **`oipad`** (`assets/js/components/writing.js`) — `<div
-  data-component="oipad" data-file="writing/tours" data-model="frost">`. Reads
-  an entry from `oimodels`:
+  data-component="oipad" data-file="writing/tours" data-model="frost">`. An
+  Overview & Inventory workspace (in-memory) with **export** buttons
+  (`GX.exportDoc` → a Word-openable `.doc`; `GX.exportPrint` → a print/PDF
+  window). Nothing is saved; export is the only way to keep a copy. Reads an
+  entry from `oimodels`:
   ```jsonc
   { "id": "frost", "about": "…", "text": "poem\nwith\nlines", "source": "MLA…",
     "overview": "one-sentence model", "inventory": ["noticing", …],
     "overview2": "synthesized second pass", "note": "…" }
   ```
+- **`kernel`** — `<div data-component="kernel" data-model="frost-paragraph"
+  data-file="writing/tours">`. Shows an analytical paragraph *growing from one
+  noticing* (kernel → claim → proof); the proof is assembled by dragging each
+  reasoning chip onto the quote it explains (click-to-place fallback for
+  touch/keyboard). Quick example, not a drafting space. Reads a `kernels`
+  entry:
+  ```jsonc
+  { "id": "frost-paragraph",
+    "kernel": "one noticing (HTML)", "kernelNote": "HTML",
+    "claim": "the topic sentence (HTML)", "claimNote": "HTML",
+    "pairs": [ { "quote": "exact words", "reason": "the so-what" }, … ],
+    "assembleNote": "HTML", "paragraph": "full HTML, .a-topic/.a-evi/.a-reason",
+    "note": "HTML closing note" }
+  ```
 - **`freewrite`** — `<div data-component="freewrite" data-minutes="5"
   data-prompt="…">`. No data; a timed, never-saved pad.
 
-Both are in-memory only; nothing typed is stored (the "private writing"
-ethos). `data/writing/demo.json` remains as a minimal architecture proof.
+All three are in-memory only; nothing typed is stored (the "private writing"
+ethos) — export downloads are user-initiated and generated on the fly.
+`data/writing/demo.json` remains as a minimal architecture proof.
 
 ## Adding a lesson (checklist)
 
