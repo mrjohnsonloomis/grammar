@@ -64,10 +64,13 @@
       selected = i;
       terms.forEach(function (t, ti) { t.setAttribute('aria-pressed', String(ti === i)); });
       var c = cards[i];
+      /* the job-chip is grammar-only; writing cards (concept "w-*") show none */
+      var chip = conceptLabel(c.concept)
+        ? '<span class="chip" data-concept="' + esc(c.concept) + '">' + esc(conceptLabel(c.concept)) + '</span>'
+        : '';
       pane.innerHTML =
         '<div class="lex-entry-head">' +
-        '  <span class="lex-entry-term">' + esc(c.term) + '</span>' +
-        '  <span class="chip" data-concept="' + esc(c.concept) + '">' + esc(conceptLabel(c.concept)) + '</span>' +
+        '  <span class="lex-entry-term">' + esc(c.term) + '</span>' + chip +
         '</div>' +
         '<div class="lex-entry-short">' + esc(c.short) + '</div>' +
         '<div class="lex-entry-body">' + c.detail + '</div>';
@@ -98,7 +101,9 @@
       preposition: 'connects', conjunction: 'connects', interjection: 'stands apart',
       phrase: 'structure', clause: 'structure', sentence: 'structure', fragment: 'structure'
     };
-    return jobs[c] || c;
+    /* grammar concepts return a job word; writing concepts ("w-*") return ''
+       so no chip renders. */
+    return jobs[c] || '';
   }
 
   function renderGlossary(el, cards) {

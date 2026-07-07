@@ -30,6 +30,11 @@
   font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
 }
+.rail-group-sub {
+  display: block; font-weight: 500; letter-spacing: 0.02em;
+  text-transform: none; font-size: 0.66rem; color: var(--muted-decor); margin-top: 2px;
+  font-family: var(--serif); font-style: italic;
+}
 .rail-lessons { display: flex; flex-direction: column; }
 .rail-lessons a {
   display: flex; gap: 9px; align-items: baseline;
@@ -757,3 +762,77 @@ mark.practice-target { background: var(--desc-t); color: var(--ink); padding: 1p
   .studio-text, .passage-text { font-size: 13pt; line-height: 2.6; }
   .st-w, .token { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* ==========================================================================
+   Writing strand components: O&I pad, free-write pad, annotated model
+   ========================================================================== */
+
+/* ---- Overview & Inventory pad ---- */
+.oi-text {
+  font-family: var(--serif); font-size: 1.16rem; line-height: 1.85; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: 16px 20px; margin-bottom: 6px; white-space: pre-line;
+}
+.oi-panes { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 6px; }
+@media (max-width: 680px) { .oi-panes { grid-template-columns: 1fr; gap: 16px; } }
+.oi-pane-label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.oi-pane-label span { display: block; font-weight: 400; font-size: 0.76rem; color: var(--muted); font-style: italic; margin-top: 2px; }
+.oi-inv-list { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+.oi-inv-empty { font-size: 0.82rem; color: var(--muted-decor); font-style: italic; padding: 6px 0; }
+.oi-inv-item { display: flex; align-items: flex-start; gap: 8px; font-family: var(--serif); font-size: 1.02rem; color: var(--ink); padding: 5px 0 5px 12px; border-left: 2px solid var(--sit); }
+.oi-inv-item span { flex: 1; }
+.oi-inv-x { font: inherit; background: none; border: none; color: var(--muted-decor); cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 0 4px; }
+.oi-inv-x:hover { color: var(--no); }
+.oi-inv-add { display: flex; gap: 8px; }
+.oi-inv-add input { flex: 1; font: inherit; font-size: 0.92rem; padding: 8px 12px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--paper); }
+.oi-inv-add input:focus { outline: 2px solid var(--ink); outline-offset: 1px; }
+
+.oi-model { border-top: 2px solid var(--rule); margin-top: 18px; padding-top: 12px; animation: fadeSlideIn 0.3s ease both; }
+.oi-model-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sit); margin-bottom: 10px; }
+.oi-model-ov { font-size: 0.92rem; color: var(--bodytext); line-height: 1.65; margin-bottom: 10px; max-width: 66ch; }
+.oi-model-ov strong { color: var(--ink); }
+.oi-model-h { font-size: 0.88rem; color: var(--bodytext); margin-bottom: 4px; }
+.oi-model-inv { margin: 0 0 12px 1.1em; font-size: 0.9rem; color: var(--bodytext); line-height: 1.6; }
+.oi-model-inv li { margin-bottom: 4px; }
+.oi-model-inv em { color: var(--ink); }
+.oi-model-note { font-size: 0.85rem; color: var(--muted); font-style: italic; max-width: 64ch; }
+
+/* ---- free-write pad ---- */
+.fw-meta { display: flex; gap: 14px; align-items: baseline; font-variant-numeric: tabular-nums; }
+.fw-clock { font-family: var(--mono); font-size: 1rem; font-weight: 700; color: var(--act); }
+.fw-count { font-size: 0.74rem; color: var(--muted); }
+.fw-prompt { font-family: var(--serif); font-size: 1.08rem; color: var(--ink); border-left: 2px solid var(--sit); padding: 4px 0 4px 14px; margin-bottom: 12px; }
+.fw-ta { min-height: 160px; font-size: 1.1rem; line-height: 1.8; }
+.fw-nudge { font-size: 0.82rem; color: var(--act); font-style: italic; margin-top: 8px; animation: fadeSlideIn 0.3s ease both; }
+.fw-controls { display: flex; gap: 10px; }
+
+/* ---- annotated model paragraph (analytical paragraph page) ---- */
+.annot-para {
+  font-family: var(--serif); font-size: 1.16rem; line-height: 2; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: 20px 24px; margin: 8px 0 6px;
+}
+.annot-para .a-topic { background: var(--name-t); box-shadow: 0 2px 0 var(--name); padding: 1px 3px 2px; border-radius: 2px; }
+.annot-para .a-evi { background: var(--desc-t); box-shadow: 0 2px 0 var(--desc); padding: 1px 3px 2px; border-radius: 2px; }
+.annot-para .a-reason { background: var(--sit-t); box-shadow: 0 2px 0 var(--sit); padding: 1px 3px 2px; border-radius: 2px; }
+.annot-key { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 12px 0 4px; font-size: 0.72rem; font-weight: 650; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dimtext); }
+.annot-key span { display: inline-flex; align-items: center; gap: 6px; }
+.annot-key i { width: 14px; height: 10px; border-radius: 2px; }
+
+/* ---- protocol / numbered steps (feedback, O&I stages) ---- */
+.steps-list { counter-reset: step; margin: 8px 0 18px; }
+.steps-list .step-row { display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.steps-list .step-row::before { counter-increment: step; content: counter(step); font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--act); }
+.steps-list .step-row h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 3px; }
+.steps-list .step-row p { font-size: 0.88rem; color: var(--bodytext); line-height: 1.6; max-width: 62ch; margin: 0; }
+
+/* ---- pull quote (teacher voice / core principle) ---- */
+.pull { font-family: var(--serif); font-size: 1.35rem; line-height: 1.4; font-weight: 600; color: var(--ink); border-left: 3px solid var(--act); padding: 4px 0 4px 20px; margin: 26px 0; max-width: 60ch; text-wrap: balance; }
+.pull.b { border-left-color: var(--name); }
+
+/* writing-strand lexicon dot colors (decorative; no job-chip on these cards) */
+.lex-term[data-concept="w-think"] { --lex-c: var(--act); }
+.lex-term[data-concept="w-notice"] { --lex-c: var(--sit); }
+.lex-term[data-concept="w-argue"] { --lex-c: var(--name); }
+.lex-term[data-concept="w-story"] { --lex-c: var(--desc); }
+.lex-term[data-concept="w-reader"] { --lex-c: var(--con); }

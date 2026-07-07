@@ -20,7 +20,7 @@
   GX.Construct = {
     mount: function (el) {
       var ids = (el.getAttribute('data-items') || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-      GX.data.load('items').then(function (data) {
+      GX.data.load(el.getAttribute('data-file') || 'items').then(function (data) {
         var items = ids.map(function (id) {
           var it = data.items.find(function (x) { return x.id === id; });
           if (!it) throw new Error('Unknown item id: ' + id);
@@ -105,7 +105,7 @@
   GX.Recall = {
     mount: function (el) {
       var id = el.getAttribute('data-item');
-      GX.data.load('items').then(function (data) {
+      GX.data.load(el.getAttribute('data-file') || 'items').then(function (data) {
         var item = data.items.find(function (x) { return x.id === id; });
         if (!item) throw new Error('Unknown recall item: ' + id);
         var uid = 'r' + Math.random().toString(36).slice(2, 7);

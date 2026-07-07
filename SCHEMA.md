@@ -244,10 +244,42 @@ passage token `tag` is one of the eight POS ids.
 
 ---
 
-## /data/writing/demo.json
+## /data/writing/* — the Writing strand
 
-Same shapes as above (the writing section reuses components untouched). The
-stub ships one `cards` group as proof.
+The Writing strand reuses the same components by pointing them at writing
+data with `data-file`:
+
+```html
+<div data-component="cards"    data-group="oi-method"    data-file="writing/cards"></div>
+<div data-component="compare"  data-compare="tell-show-nervous" data-file="writing/tours"></div>
+<div data-component="stages"   data-stages="frost-paragraph"    data-file="writing/tours"></div>
+<div data-component="construct" data-items="wtg-para-001"        data-file="writing/items"></div>
+```
+
+- `data/writing/cards.json` — `{ groups: [...] }`, same shape as the grammar
+  cards, but `concept` uses writing ids (`w-think w-notice w-argue w-story
+  w-reader`) which render a colored lexicon dot and **no job-chip** (chips are
+  grammar-only). Writing cards don't appear in the grammar glossary.
+- `data/writing/tours.json` — `compares`, `stages` (both as in the sentences
+  file), plus `oimodels` for the O&I pad.
+- `data/writing/items.json` — construction items (`combine expand imitate
+  revise`), same shape as the grammar bank; `module` replaces `lesson`.
+
+Two Writing-only components:
+
+- **`oipad`** (`assets/js/components/writing.js`) — `<div
+  data-component="oipad" data-file="writing/tours" data-model="frost">`. Reads
+  an entry from `oimodels`:
+  ```jsonc
+  { "id": "frost", "about": "…", "text": "poem\nwith\nlines", "source": "MLA…",
+    "overview": "one-sentence model", "inventory": ["noticing", …],
+    "overview2": "synthesized second pass", "note": "…" }
+  ```
+- **`freewrite`** — `<div data-component="freewrite" data-minutes="5"
+  data-prompt="…">`. No data; a timed, never-saved pad.
+
+Both are in-memory only; nothing typed is stored (the "private writing"
+ethos). `data/writing/demo.json` remains as a minimal architecture proof.
 
 ## Adding a lesson (checklist)
 

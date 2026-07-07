@@ -22,9 +22,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
   Promise.all([
     GX.data.load('passages'), GX.data.load('cards'), GX.data.load('tours'),
-    GX.data.load('items'), GX.data.load('writing/demo')
+    GX.data.load('items'), GX.data.load('writing/demo'),
+    GX.data.load('writing/cards'), GX.data.load('writing/tours'), GX.data.load('writing/items')
   ]).then(function (res) {
     var passages = res[0], cards = res[1], tours = res[2], items = res[3], demo = res[4];
+    var wCards = res[5], wTours = res[6], wItems = res[7];
 
     /* ---- passages ---- */
     var pids = {};
@@ -191,6 +193,54 @@ window.addEventListener('DOMContentLoaded', function () {
     /* ---- writing demo ---- */
     check(!!(demo.groups && demo.groups.length && demo.groups[0].cards.length),
           'writing/demo.json: loads and has a card group', 'writing/demo.json: bad shape');
+
+    /* ===== WRITING STRAND ===== */
+    var wCardIds = {};
+    wCards.groups.forEach(function (g) {
+      g.cards.forEach(function (c) {
+        if (wCardIds[c.id]) fail('DUPLICATE writing card id: ' + c.id);
+        wCardIds[c.id] = true;
+        if (!(c.term && c.short && c.detail && c.concept)) fail('writing card ' + c.id + ': missing term/short/detail/concept');
+      });
+    });
+    ok('writing/cards.json: ' + Object.keys(wCardIds).length + ' cards, ids unique');
+
+    (wTours.compares || []).forEach(function (c) {
+      check(!!(c.a && c.b && c.test && c.label), 'writing compare ' + c.id + ': shape ok', 'writing compare ' + c.id + ': missing a/b/test/label');
+    });
+    (wTours.stages || []).forEach(function (s) {
+      var okS = Array.isArray(s.stages) && s.stages.length >= 2 && s.stages.every(function (st) { return st.label && st.text && st.note; });
+      check(okS, 'writing stages ' + s.id + ': ' + s.stages.length + ' stages ok', 'writing stages ' + s.id + ': incomplete');
+    });
+    (wTours.oimodels || []).forEach(function (m) {
+      var okM = m.id && m.overview && Array.isArray(m.inventory) && m.inventory.length;
+      check(okM, 'O&I model ' + m.id + ': has overview + inventory', 'O&I model ' + m.id + ': missing overview/inventory');
+    });
+
+    var wItemIds = {};
+    wItems.items.forEach(function (it) {
+      if (wItemIds[it.id]) fail('DUPLICATE writing item id: ' + it.id);
+      wItemIds[it.id] = true;
+      if (['combine','expand','imitate','revise'].indexOf(it.kind) < 0) fail('writing item ' + it.id + ': unknown kind "' + it.kind + '"');
+      if (!Array.isArray(it.models) || !it.models.length) fail('writing item ' + it.id + ': needs models');
+      if (it.kind === 'imitate' && !(it.mentor && it.mentor.sentence && it.frame)) fail('writing item ' + it.id + ': imitate needs mentor + frame');
+      if (it.kind === 'revise' && !(it.passage && it.prompt)) fail('writing item ' + it.id + ': revise needs passage + prompt');
+    });
+    ok('writing/items.json: ' + Object.keys(wItemIds).length + ' items, ids unique');
+
+    /* writing-page mounts resolve */
+    ['free-modalities','oi-method','paragraph-terms','memoir-moves','feedback-protocol'].forEach(function (g) {
+      if (!wCards.groups.some(function (x) { return x.id === g; })) fail('writing page mounts card group "' + g + '" which does not exist');
+    });
+    ['tell-show-nervous','tell-show-messy','tell-show-kind'].forEach(function (id) {
+      if (!(wTours.compares || []).some(function (c) { return c.id === id; })) fail('writing page mounts compare "' + id + '" which does not exist');
+    });
+    if (!(wTours.stages || []).some(function (s) { return s.id === 'frost-paragraph'; })) fail('missing stages "frost-paragraph"');
+    if (!(wTours.oimodels || []).some(function (m) { return m.id === 'frost'; })) fail('missing O&I model "frost"');
+    ['wtg-para-001','wtg-showtell-001','wtg-showtell-002'].forEach(function (id) {
+      if (!wItemIds[id]) fail('writing page mounts item "' + id + '" which does not exist');
+    });
+    ok('all writing-page mounts resolve');
 
     render();
   }).catch(function (err) {

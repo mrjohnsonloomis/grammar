@@ -74,6 +74,8 @@
         else if (kind === 'recall' && GX.Recall) GX.Recall.mount(el);
         else if (kind === 'stages' && GX.Stages) GX.Stages.mount(el);
         else if (kind === 'studio' && GX.Studio) GX.Studio.mount(el);
+        else if (kind === 'oipad' && GX.OIPad) GX.OIPad.mount(el);
+        else if (kind === 'freewrite' && GX.FreeWrite) GX.FreeWrite.mount(el);
         else if (kind === 'quiz' && GX.Quiz) GX.Quiz.mount(el);
         else if (kind === 'practice-app' && GX.Quiz) GX.Quiz.mountApp(el);
       } catch (err) { GX.fail(el, err); }

@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "id": "free-modalities",
+      "cards": [
+        {
+          "id": "private-writing", "concept": "w-think", "term": "Private Writing",
+          "short": "Yours alone. Nobody reads it; you never have to share it.",
+          "detail": "Not “Dear diary” private — private in that you write what you want, nobody looks, and you don’t share any of it. Empty your thoughts onto the page. We’ll mostly do this at the <strong>start of class</strong> to set aside whatever’s on your mind so you can think.<br><br><div class=\"tip\"><div class=\"tip-label\">The point</div>Some thinking only happens with a pen in your hand. Private writing gives that thinking somewhere to go, with zero stakes.</div>"
+        },
+        {
+          "id": "focused-free-writing", "concept": "w-think", "term": "Focused Free Writing",
+          "short": "A prompt to respond to — free, but with a direction.",
+          "detail": "I (or a classmate) give you a prompt, and you respond. It’s <em>free</em> in that you take it wherever you want; it’s <em>focused</em> in that you start from some guidance. This is where a lot of our thinking-on-paper happens before we shape anything.<br><br><div class=\"tip\"><div class=\"tip-label\">The rule</div>Keep the pen moving. Even when you drift from the prompt, keep going — the drift is often where the good stuff is.</div>"
+        },
+        {
+          "id": "process-writing", "concept": "w-think", "term": "Process / Metacognitive Writing",
+          "short": "Writing about your own thinking — debriefing.",
+          "detail": "Thinking <em>about</em> your thinking. I might ask how that last activity went, or what part of today confused you. It feels odd at first, but noticing how you think makes you better at it.<br><br><div class=\"tip\"><div class=\"tip-label\">Why bother</div>You’ll build a written record of what you were thinking <em>when</em> you thought it. That record makes the high-stakes writing — essays — much easier later. I promise.</div>"
+        }
+      ]
+    },
+    {
+      "id": "oi-method",
+      "cards": [
+        {
+          "id": "overview", "concept": "w-notice", "term": "The Overview",
+          "short": "A one-sentence description of the whole text.",
+          "detail": "When you look at a painting, you step back until it comes into focus. The overview is that step back: squint, take in the whole, and give a general impression. If you can give the <em>feeling</em> of a piece — or tell its story — you can write an overview.<br><br>You don’t have to figure out what it <em>means</em>. You simply describe what’s there.<br><br><div class=\"tip\"><div class=\"tip-label\">Keep it quick</div>No need to be complete or profound. One sentence, general impression. You’ll come back and sharpen it later.</div>"
+        },
+        {
+          "id": "inventory", "concept": "w-notice", "term": "The Inventory",
+          "short": "A messy list of thoughts about the text.",
+          "detail": "The opposite move: get up close and examine. Jot down first thoughts, keep the pen moving, and feel free to write questions and vent frustrations as you go. Your list may seem incoherent — don’t worry.<br><br><div class=\"mini-ex\">She’s wearing mismatched clothes.<br>Her body faces the camera, but her eyes dart back at her friends.<br>Are they fooling around in a schoolyard?</div><div class=\"tip\"><div class=\"tip-label\">Trust it</div>What you notice will have significance — almost always. You’ll have time to return to your first thoughts and keep thinking.</div>"
+        },
+        {
+          "id": "oi-two-stages", "concept": "w-notice", "term": "The Two Stages",
+          "short": "First notice; then extend the noticing into inference.",
+          "detail": "<strong>Stage 1</strong> is raw: a quick overview, and an inventory of whatever you notice — observations and questions, no pressure.<br><br><strong>Stage 2</strong> extends your thinking. You revisit an observation and ask, <em>so what?</em> — making an inference. Or you take a conclusion you already jumped to and backtrack to find the detail that led you there. The goal of Stage 2 is to state <em>how a particular observation leads you to a particular idea.</em><br><br><div class=\"tip\"><div class=\"tip-label\">Order is yours</div>Some people inventory before they overview. Experiment — see which gets your thinking moving.</div>"
+        }
+      ]
+    },
+    {
+      "id": "paragraph-terms",
+      "cards": [
+        {
+          "id": "argument", "concept": "w-argue", "term": "Argument",
+          "short": "A debatable claim about a text, backed by evidence and reasoning.",
+          "detail": "A literary argument is a <strong>debatable claim about how a text works or what it means</strong>, backed up with <strong>evidence from the text</strong> and <strong>clear reasoning</strong> that explains the connection.<br><br>“Debatable” is the key word. <em>“The poem has four stanzas”</em> isn’t an argument — nobody disagrees. <em>“The poem argues that beautiful things are temporary”</em> is: someone could read it differently, so you have to make the case.<br><br><div class=\"tip\"><div class=\"tip-label\">The three parts</div>Claim (what you think) · Evidence (what in the text shows it) · Reasoning (why the evidence proves the claim). Missing any one, and it isn’t yet an argument.</div>"
+        },
+        {
+          "id": "paragraph", "concept": "w-argue", "term": "Paragraph",
+          "short": "A group of sentences developing one clear main idea.",
+          "detail": "A paragraph is a group of sentences that work together to develop <strong>one clear main idea</strong>. It starts on a new line (usually indented), often begins with a <em>topic sentence</em>, adds supporting details, and may end with a brief wrap-up.<br><br><div class=\"tip\"><div class=\"tip-label\">One idea</div>“One clear main idea” is the whole job. The moment a paragraph is trying to do two things, it usually wants to be two paragraphs.</div>"
+        },
+        {
+          "id": "topic-sentence", "concept": "w-argue", "term": "Topic Sentence",
+          "short": "The single sentence that encapsulates the paragraph's one idea.",
+          "detail": "A topic sentence is a single sentence that <strong>encapsulates that one clear idea</strong> — the paragraph’s argument, stated up front so the reader knows where you’re taking them.<br><br>In an analytical paragraph, your topic sentence <em>is</em> your claim.<br><div class=\"mini-ex\">Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.</div><div class=\"tip\"><div class=\"tip-label\">Where it comes from</div>You don’t start here. The topic sentence is what your <em>noticing</em> becomes once you ask, “so what does all this add up to?”</div>"
+        },
+        {
+          "id": "evidence-reasoning", "concept": "w-argue", "term": "Evidence &amp; Reasoning",
+          "short": "The quotation, plus the sentence that explains why it proves your claim.",
+          "detail": "Evidence is the quoted or specific detail from the text. Reasoning is the part students most often skip: the sentence that <strong>explains the connection</strong> between that evidence and your claim.<br><br><div class=\"mini-ex\">Then “<span class=\"hl-gold\">leaf subsides to leaf</span>,” <span class=\"hl-teal\">showing how quickly that early beauty fades.</span></div>Evidence in gold; reasoning in teal. The reasoning is doing the real work — it turns a quotation into proof.<br><br><div class=\"tip\"><div class=\"tip-label\">The test</div>After every quote, ask yourself: <em>so what? how does this show my claim?</em> Your answer is the reasoning. If you can’t answer, the evidence may not fit the claim.</div>"
+        }
+      ]
+    },
+    {
+      "id": "memoir-moves",
+      "cards": [
+        {
+          "id": "think-small", "concept": "w-story", "term": "Think Small",
+          "short": "A narrative moment, not a whole story. One or two paragraphs.",
+          "detail": "We’re usually working in <strong>one or two paragraphs</strong> — so this is a narrative <em>moment</em>, not a full life story. A single scene, closely observed, is worth more than a summary of a whole year.<br><br><div class=\"tip\"><div class=\"tip-label\">Zoom in</div>Pick the smallest true thing that still matters: the ten seconds before, the one object, the exact sentence someone said. Small and specific beats big and general.</div>"
+        },
+        {
+          "id": "storytelling", "concept": "w-story", "term": "Storytelling, Not Describing",
+          "short": "Something happens and changes — not a static picture.",
+          "detail": "Describing paints a picture that just sits there. Storytelling moves: something happens, and by the end something is different — even if the change is only in how you understand the moment.<br><br><div class=\"tip\"><div class=\"tip-label\">The difference</div>Description: <em>“The kitchen was warm and smelled like bread.”</em> Story: <em>“I came in cold and angry, and the smell of bread caught me before I could keep being angry.”</em> The second one goes somewhere.</div>"
+        },
+        {
+          "id": "show-dont-tell", "concept": "w-story", "term": "Show, Don't Tell",
+          "short": "Give the reader the evidence; let them feel the conclusion.",
+          "detail": "“Telling” hands the reader your conclusion (<em>she was nervous</em>). “Showing” gives them what you saw and lets them arrive at it themselves (<em>she kept re-reading the same line, and her pen had chewed-through teeth marks</em>).<br><br>Showing trusts the reader. It’s also just more vivid — the reader gets to <em>notice</em>, the way you did.<br><br><div class=\"tip\"><div class=\"tip-label\">Not a total ban</div>You can’t show everything — some telling moves the story along. But when a moment matters, show it. Save telling for the connective tissue.</div>"
+        }
+      ]
+    },
+    {
+      "id": "feedback-protocol",
+      "cards": [
+        {
+          "id": "feedback-philosophy", "concept": "w-reader", "term": "How Feedback Works Here",
+          "short": "A couple of big things, a few margin notes, a rubric — never an ocean of marks.",
+          "detail": "My feedback tries to do two things. First, to tell you I <strong>read your work</strong> — that I value the time, thought, effort, and vulnerability in it, and that your writing is part of a human-scaled conversation, not a form being processed.<br><br>Second, to give you <strong>one or two big things</strong> to focus on for next time (or if you revise), plus a handful of marginal comments and a rubric. That’s it. I won’t bury you in marks — research is clear that overloaded feedback doesn’t get used.<br><br><div class=\"tip\"><div class=\"tip-label\">If it’s not clear</div>Let’s have a writing conference. A five-minute conversation beats a page of comments neither of us enjoys.</div>"
+        },
+        {
+          "id": "peer-writer", "concept": "w-reader", "term": "Peer Review — Your Job as the Writer",
+          "short": "Come prepared, and ask for exactly the feedback you want.",
+          "detail": "For longer pieces we’ll do brief, focused peer sessions. They only work if you <strong>come prepared</strong> — with the excerpt you want eyes on.<br><br>Then <strong>ask specifically</strong> where you want feedback: “Does the second sentence land?” “Can you tell what I’m arguing?” Your classmate is a reader — someone who can see what you can’t see yourself. Their reaction is one honest data point, not a verdict.<br><br><div class=\"tip\"><div class=\"tip-label\">Prepare an excerpt</div>Don’t hand over the whole draft and say “thoughts?” Choose the part you’re unsure about and the question you actually want answered.</div>"
+        },
+        {
+          "id": "peer-reader", "concept": "w-reader", "term": "Peer Review — Your Job as the Reader",
+          "short": "Be the reader you'd want: rooted, generous, and honest.",
+          "detail": "Be the reader you wish your classmate to be. <strong>Root your observations</strong> in the assignment and what we’ve talked about — not in vague taste. <strong>Be generous, but honest.</strong><br><br>Not sharing something you notice that could help does your classmate a disservice. You can be <em>kind and honest at the same time</em> — those aren’t in tension. Point to what’s working as specifically as what isn’t.<br><br><div class=\"tip\"><div class=\"tip-label\">The move</div>“Here’s what I noticed as a reader: I got a little lost right here, because…” — a reader reporting an experience, not a judge issuing a grade.</div>"
+        }
+      ]
+    }
+  ]
+}

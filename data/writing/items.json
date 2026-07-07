@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "id": "wtg-para-001",
+      "module": "analytical-paragraph",
+      "kind": "imitate",
+      "mentor": {
+        "sentence": "Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last. He starts with “Nature’s first green is gold,” comparing new spring leaves to something precious. Then “leaf subsides to leaf,” showing how quickly that early beauty fades. By finishing with “Nothing gold can stay,” Frost makes his point clear.",
+        "source": "the class model"
+      },
+      "frame": "<strong>[Author]’s [title]</strong> argues that <strong>[your debatable claim]</strong>. [Evidence 1 — a short quote], [reasoning: what it shows]. [Evidence 2], [reasoning]. [Optional wrap-up: because ___, ___.]",
+      "prompt": "Write one analytical paragraph about a short text you’re reading in class. Lead with your argument (the topic sentence). Then give two or three pieces of evidence, and — the part people skip — follow each with the reasoning that connects it back to your claim.",
+      "models": [
+        {
+          "sentence": "Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last. He starts with “<span class='mv mv-gold'>Nature’s first green is gold</span>,” <span class='mv mv-teal'>comparing new leaves to something precious</span>. Then “<span class='mv mv-gold'>leaf subsides to leaf</span>,” <span class='mv mv-teal'>showing how fast that beauty fades</span>. By ending on “<span class='mv mv-gold'>Nothing gold can stay</span>,” <span class='mv mv-teal'>Frost turns the observation into advice: value it now</span>.",
+          "move": "The class model — claim, then evidence + reasoning",
+          "note": "Check yours against the <em>shape</em>, not the words: does a claim come first? Does every quote have a sentence of reasoning after it? Is it about <em>one</em> idea?"
+        },
+        {
+          "sentence": "A different reader could argue the poem is really about <span class='mv mv-blue'>the loss of innocence, not just fading beauty</span>. The allusion “<span class='mv mv-gold'>So Eden sank to grief</span>” <span class='mv mv-teal'>ties the fading leaf to humanity’s first fall, making the poem about growing up and knowing too much</span>, not only about seasons.",
+          "move": "A second, equally valid reading",
+          "note": "This is why the claim has to be <em>debatable</em>: two careful readers can build two different arguments from the same eight lines. Yours is strong when the evidence genuinely supports it — not when it’s the “right answer.”"
+        }
+      ]
+    },
+    {
+      "id": "wtg-showtell-001",
+      "module": "narrative-memoir",
+      "kind": "revise",
+      "passage": "My first day at the new school was terrible. I was really nervous and I felt totally alone. Everyone already had their friends. Lunch was the worst part. It was so awkward and I felt embarrassed the whole time.",
+      "prompt": "This paragraph <em>tells</em> us how it felt — terrible, nervous, alone, awkward, embarrassed — but never shows us anything. Rewrite it (still 1 paragraph) so a reader arrives at those feelings on their own. Cut the feeling-words. Give us what a camera could catch: one specific moment at that lunch.",
+      "models": [
+        {
+          "passage": "I carried my tray past three tables that had a person’s backpack on the empty chair. At the fourth, a girl slid over — then I saw she was making room for someone behind me. I ate standing near the trash cans, holding the tray, timing my bites so it would look like I was almost done and had somewhere to be.",
+          "move": "Shown — one specific moment",
+          "note": "No “nervous,” no “alone,” no “embarrassed” — but you feel all three, harder than the telling version. The backpacks on empty chairs, the girl making room for someone else, eating by the trash cans: these are things a camera could film. That’s the test. Your version won’t match mine — check that you deleted the feeling-words and replaced them with something specific and true."
+        }
+      ]
+    },
+    {
+      "id": "wtg-showtell-002",
+      "module": "narrative-memoir",
+      "kind": "revise",
+      "passage": "My grandfather was a very hardworking man and he loved his garden more than anything. He was also really patient. He taught me a lot.",
+      "prompt": "All telling, no picture — and it could be anyone’s grandfather. Rewrite it (1 short paragraph) so we <em>see</em> his hard work, his love of the garden, or his patience through one specific thing he did. Show us; don’t label him.",
+      "models": [
+        {
+          "passage": "Every morning before it was light, my grandfather was already out among the tomato stakes, tying the vines with strips torn from an old bedsheet because he said the twine cut them. When I tied mine too tight and snapped a stem, he didn’t say anything — he just handed me another strip and waited while I did it again.",
+          "move": "Shown — one habit, one moment",
+          "note": "“Hardworking,” “loved his garden,” “patient” never appear — but the pre-dawn stakes show the work, the torn bedsheet shows the love, and handing you another strip without a word shows the patience. One concrete habit does what three adjectives couldn’t. Show a person through what they <em>do</em>."
+        }
+      ]
+    }
+  ]
+}
