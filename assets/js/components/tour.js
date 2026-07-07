@@ -30,7 +30,7 @@
   GX.Tour = {
     mount: function (el) {
       var id = el.getAttribute('data-tour');
-      GX.data.load('tours').then(function (data) {
+      GX.data.load(el.getAttribute('data-file') || 'tours').then(function (data) {
         var tour = data.tours.find(function (t) { return t.id === id; });
         if (!tour) throw new Error('Unknown tour id: ' + id);
         initTour(el, tour);
@@ -127,7 +127,7 @@
   GX.Compare = {
     mount: function (el) {
       var ids = (el.getAttribute('data-compare') || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-      GX.data.load('tours').then(function (data) {
+      GX.data.load(el.getAttribute('data-file') || 'tours').then(function (data) {
         var items = ids.map(function (id) {
           var c = data.compares.find(function (x) { return x.id === id; });
           if (!c) throw new Error('Unknown compare id: ' + id);
@@ -153,7 +153,7 @@
   GX.Stages = {
     mount: function (el) {
       var id = el.getAttribute('data-stages');
-      GX.data.load('tours').then(function (data) {
+      GX.data.load(el.getAttribute('data-file') || 'tours').then(function (data) {
         var set = (data.stages || []).find(function (s) { return s.id === id; });
         if (!set) throw new Error('Unknown stages id: ' + id);
         initStages(el, set);

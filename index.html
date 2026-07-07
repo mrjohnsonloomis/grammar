@@ -2,34 +2,11 @@
 layout: default
 nav: "home"
 title: "The Writer’s Workbench"
-tagline: "A workbench, not a textbook: a place where writing gets built. Part I covers the sentence — seven lessons from the two-word kernel to full sentence craft, built by combining, expanding, imitating, and revising real sentences. Part II, on whole pieces of writing, is on the bench now."
-description: "An interactive workbench for 9th-grade writers. Part I: building sentences, from kernels to craft. Part II: writing — coming soon."
+tagline: "A workbench, not a textbook — a place where writing gets built. Two strands run side by side: one for sentences (our approach to grammar, taught as construction) and one for writing as a daily practice (free writing, analytical paragraphs, narrative memoir). You work at both from day one."
+description: "An interactive workbench for 9th-grade writers: sentences taught as construction, and writing as a daily practice — free writing, analytical paragraphs, and narrative memoir."
 ---
 
 <style>
-  /* the table of contents — an editorial list, not a card grid */
-  .toc { border-top: 2px solid var(--rule); }
-  .toc-row {
-    display: grid; grid-template-columns: 58px minmax(0, 1.15fr) minmax(0, 1.6fr) 24px;
-    gap: 20px; align-items: baseline; padding: 20px 4px;
-    border-bottom: 1px solid var(--line); text-decoration: none; color: inherit;
-  }
-  .toc-row:hover, .toc-row:focus-visible { background: var(--panel); }
-  .toc-row:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
-  .toc-num { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--muted-decor); font-variant-numeric: tabular-nums; }
-  .toc-row:hover .toc-num { color: var(--act); }
-  .toc-title { font-family: var(--serif); font-size: 1.22rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
-  .toc-title small { display: block; font-family: var(--sans); font-size: 0.68rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
-  .toc-desc { font-size: 0.88rem; color: var(--bodytext); line-height: 1.6; }
-  .toc-arrow { color: var(--muted-decor); font-size: 1.1rem; transition: transform 0.15s; }
-  .toc-row:hover .toc-arrow { color: var(--act); transform: translateX(4px); }
-  @media (max-width: 680px) {
-    .toc-row { grid-template-columns: 34px 1fr; }
-    .toc-num { font-size: 1.05rem; }
-    .toc-desc { grid-column: 2; }
-    .toc-arrow { display: none; }
-  }
-
   /* the map */
   .map-wrap { margin: 52px 0; }
   .sentence-map { width: 100%; max-width: 780px; margin: 14px auto 0; display: block; height: auto; }
@@ -46,20 +23,39 @@ description: "An interactive workbench for 9th-grade writers. Part I: building s
   .jobkey span { font-size: 0.7rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dimtext); display: inline-flex; align-items: center; gap: 6px; }
   .jobkey i { width: 14px; height: 4px; border-radius: 2px; font-style: normal; }
 
-  .part-label {
-    display: inline-block; font-size: 0.66rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.18em; color: var(--act);
-    border-top: 2px solid var(--rule); padding-top: 10px; margin-top: 8px;
-  }
-  .part-label + .section-title { margin-top: 4px; }
+  /* two co-equal strands — no hierarchy */
+  .strand { border-top: 3px solid var(--rule); margin-top: 56px; padding-top: 4px; }
+  .strand-eyebrow { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--act); margin-top: 14px; }
+  .strand-eyebrow.b { color: var(--name); }
+  .strand-eyebrow.c { color: var(--muted); }
+  .strand-eyebrow + .section-title { margin-top: 3px; }
+
+  /* the three principles band */
+  .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0 30px; margin: 8px 0 6px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .principle { padding: 18px 0; }
+  .principle + .principle { border-top: 1px solid var(--line); }
+  @media (min-width: 680px) { .principle + .principle { border-top: none; } }
+  .principle .pn { font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--muted-decor); }
+  .principle .pt { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; line-height: 1.3; margin: 2px 0 6px; }
+  .principle .pd { font-size: 0.85rem; color: var(--bodytext); line-height: 1.55; }
+
   .sources { font-size: 0.86rem; color: var(--bodytext); }
   .sources li { margin-bottom: 8px; margin-left: 1.2em; }
   .footer-note { text-align: center; font-size: 0.82rem; color: var(--muted); font-style: italic; font-family: var(--serif); margin-top: 40px; }
 </style>
 
-<div class="part-label">Part I</div>
+<p class="prose" style="font-size:1rem;max-width:64ch;">This course treats writing three ways at once — as a <strong>form of thinking</strong>, as a <strong>practice</strong> you do daily, and as an <strong>iterative process</strong> for making polished pieces. Two strands run side by side, and you work at both from day one. Neither sits above the other.</p>
+
+<div class="principles" aria-label="How this course thinks about writing">
+  <div class="principle"><div class="pn">i.</div><div class="pt">Writing is a form of thinking</div><div class="pd">Pen on paper does something talking doesn't — it makes connections and ideas you can't reach otherwise. We write a lot, low-stakes, to use it.</div></div>
+  <div class="principle"><div class="pn">ii.</div><div class="pt">Writing is a practice</div><div class="pd">Not a talent you have or don't. Something you do, keep doing, and get better at by doing. The notebook and the daily reps are the point.</div></div>
+  <div class="principle"><div class="pn">iii.</div><div class="pt">Polished writing is iterative</div><div class="pd">Finished pieces aren't written; they're re-written. Noticing, drafting, feedback, revision — the loop is where the quality comes from.</div></div>
+</div>
+
+<div class="strand">
+<div class="strand-eyebrow">One of two strands</div>
 <div class="section-title">Sentences</div>
-<div class="section-sub">Seven lessons, in order — each builds on the last, but every page also stands alone as a reference. Each follows the same arc: <strong>Notice</strong> real sentences, <strong>Name</strong> the moves, <strong>Build</strong> your own, <strong>Apply</strong> it to writing.</div>
+<div class="section-sub">Our approach to <strong>grammar</strong>: sentences are things you build, not specimens you dissect. Seven lessons, each following the arc <strong>Notice</strong> real sentences → <strong>Name</strong> the moves → <strong>Build</strong> your own → <strong>Apply</strong> it. Colors mark what each word's <em>job</em> is.</div>
 
 <div class="jobkey" aria-label="The five-job color key">
   <span><i style="background:var(--name)"></i>Names — who? what?</span>
@@ -112,29 +108,11 @@ description: "An interactive workbench for 9th-grade writers. Part I: building s
     <span class="toc-desc">Variety, openers, rhythm, end weight. Revise deliberately choppy passages using every move from the sequence — the on-ramp to paragraph-level writing.</span>
     <span class="toc-arrow" aria-hidden="true">&rarr;</span>
   </a>
-  <a class="toc-row" href="practice.html">
-    <span class="toc-num">&middot;</span>
-    <span class="toc-title">Practice<small>mixed review · combine · expand</small></span>
-    <span class="toc-desc">Mixed review (recommended) interleaves every lesson; focus mode drills one. Identification gets instant feedback; building exercises reveal annotated models.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="studio.html">
-    <span class="toc-num">&middot;</span>
-    <span class="toc-title">Annotation Studio<small>your draft · your markup · never saved</small></span>
-    <span class="toc-desc">Turn the five-job colors on your own writing: paste a draft, mark each word's job, bracket your phrases and clauses, print the markup. Nothing is stored.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="glossary.html">
-    <span class="toc-num">&middot;</span>
-    <span class="toc-title">Glossary<small>every term · A–Z</small></span>
-    <span class="toc-desc">Every term on the site, A to Z, each linking to its full entry in its home lesson. Use the site as a lookup reference, not just a sequence.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
 </nav>
 
-<!-- CONCEPT MAP: construction-first -->
+<!-- CONCEPT MAP: construction-first (belongs to the Sentences strand) -->
 <div class="map-wrap">
-  <div class="section-title">How the Moves Stack</div>
+  <div class="section-title" style="font-size:1.2rem;">How the sentence moves stack</div>
   <div class="section-sub">Top-down: start with a kernel, expand it, compress into it, join kernels together, then conduct the whole thing. The Word Toolbox sits underneath as the reference layer for every stage. Structure is drawn the way it is everywhere on this site: thin line = phrase, heavy line = independent clause, dashed = dependent. Click any node to jump to its lesson.</div>
 
   <div class="map-scroll">
@@ -205,17 +183,88 @@ description: "An interactive workbench for 9th-grade writers. Part I: building s
   </div>
 </div>
 
-<div class="part-label">Part II</div>
+</div><!-- /sentences strand -->
+
+<div class="strand">
+<div class="strand-eyebrow b">The other strand</div>
 <div class="section-title">Writing</div>
-<div class="section-sub">The second bench: paragraphs and whole pieces — analytical, creative, personal — built with the same arc and the same components as the sentence lessons. Groundwork is laid; content is in progress.</div>
-<nav class="toc" aria-label="Writing section">
-  <a class="toc-row" href="writing/index.html">
-    <span class="toc-num">&middot;</span>
-    <span class="toc-title">Writing — coming soon<small>paragraphs · analytical · creative · personal</small></span>
-    <span class="toc-desc">Where the sentence lessons are headed: the same Notice → Name → Build → Apply arc, one scale up. Lesson 07, Sentence Craft, is the on-ramp.</span>
+<div class="section-sub">Writing as a <strong>practice</strong>: free writing to think on paper, analytical paragraphs that start from what you notice, and short narrative memoir. We work on these alongside the sentence lessons, not after them. <a class="term" href="writing/index.html">Start here</a> for the whole approach.</div>
+<nav class="toc" aria-label="Writing modules">
+  <a class="toc-row" href="writing/free-writing.html">
+    <span class="toc-num">✎</span>
+    <span class="toc-title">Free Writing<small>private · focused · metacognitive</small></span>
+    <span class="toc-desc">Low-stakes writing in your notebook — the engine of the course. Three modalities, the "keep the pen moving" rule, and how bracketing lets you choose what to share.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="writing/overview-inventory.html">
+    <span class="toc-num">✎</span>
+    <span class="toc-title">Overview &amp; Inventory<small>step back · get close · notice</small></span>
+    <span class="toc-desc">The noticing practice at the heart of everything: an overview to take a text in whole, an inventory to get up close. Try it, then compare with a worked model.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="writing/analytical-paragraph.html">
+    <span class="toc-num">✎</span>
+    <span class="toc-title">The Analytical Paragraph<small>evidence-first · argument · a paragraph kernel</small></span>
+    <span class="toc-desc">The paragraph as a container for one idea, grown from a single noticing. A drag-and-drop model on Frost, plus close-up pages on its two big pieces:</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row toc-sub" href="writing/topic-sentences.html">
+    <span class="toc-num">›</span>
+    <span class="toc-title">Writing a Topic Sentence<small>the claim</small></span>
+    <span class="toc-desc">Turn a noticing into a debatable claim — and tell a claim from a mere fact.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row toc-sub" href="writing/quotation.html">
+    <span class="toc-num">›</span>
+    <span class="toc-title">Quoting a Text, Simply<small>the evidence</small></span>
+    <span class="toc-desc">Fold a quotation into your own sentence — signal phrase, punctuation, and all.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="writing/narrative-memoir.html">
+    <span class="toc-num">✎</span>
+    <span class="toc-title">Narrative Memoir<small>think small · show, don't tell</small></span>
+    <span class="toc-desc">A narrative moment, not a whole story — one or two paragraphs. Storytelling over describing, showing over telling, and always: who is this for?</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="writing/audience.html">
+    <span class="toc-num">✎</span>
+    <span class="toc-title">Audience<small>who is this for?</small></span>
+    <span class="toc-desc">Every piece is written for a reader. Who they are changes what you explain, what you assume, and what you leave out — in both analytical and narrative writing.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="writing/feedback.html">
+    <span class="toc-num">✎</span>
+    <span class="toc-title">Working with Feedback<small>conferences · peer review</small></span>
+    <span class="toc-desc">How feedback works here: a couple of big things to focus on, not an ocean of marks. How to run a focused peer review — be the reader you'd want, kind and honest.</span>
     <span class="toc-arrow" aria-hidden="true">&rarr;</span>
   </a>
 </nav>
+</div><!-- /writing strand -->
+
+<div class="strand">
+<div class="strand-eyebrow c">Anytime · tools for both strands</div>
+<div class="section-title">Tools</div>
+<nav class="toc" aria-label="Tools">
+  <a class="toc-row" href="practice.html">
+    <span class="toc-num">&middot;</span>
+    <span class="toc-title">Practice<small>mixed review · combine · expand</small></span>
+    <span class="toc-desc">Grammar practice for the sentence strand. Mixed review interleaves every lesson; focus mode drills one. Building exercises reveal annotated models.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="studio.html">
+    <span class="toc-num">&middot;</span>
+    <span class="toc-title">Annotation Studio<small>your draft · your markup · never saved</small></span>
+    <span class="toc-desc">Bridges both strands: paste your own writing and mark each word's job, or bracket your phrases and clauses. Print the markup. Nothing is stored.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <a class="toc-row" href="glossary.html">
+    <span class="toc-num">&middot;</span>
+    <span class="toc-title">Glossary<small>every term · A–Z</small></span>
+    <span class="toc-desc">Every grammar term on the site, A to Z, each linking to its full entry. Use the site as a lookup reference, not just a sequence.</span>
+    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+</nav>
+</div><!-- /tools strand -->
 
 <div class="section-title" id="sources">Sources &amp; About</div>
 <p class="prose">This site teaches sentences as things students build, not specimens they dissect — sentence combining, expanding, imitating, and revising, with grammar named when a writing move requires it. That design follows the research consensus that construction practice improves writing where identification drills alone do not (Hillocks, 1986; Graham &amp; Perin, <em>Writing Next</em>, 2007), and the sentence-composing tradition of Killgallon, Noden, Anderson, and Strong. Terminology follows the <em>Holt Handbook</em> (Third Course) so what you learn here matches what you'll meet elsewhere.</p>

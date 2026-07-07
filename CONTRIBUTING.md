@@ -1,11 +1,19 @@
 # CONTRIBUTING.md — how to add to The Writer's Workbench
 
-**The Writer's Workbench** is an umbrella with two benches: **Part I —
-Sentences** (the seven lessons, `/lessons/*` + `/data/sentences/*`) and
-**Part II — Writing** (paragraphs and whole pieces, `/writing/*` +
-`/data/writing/*`, in progress). Both parts share the layout, components,
-color system, and philosophy below; Part II content should reuse the Part I
-components untouched — if it can't, fix the component, don't fork it.
+**The Writer's Workbench** runs two **co-equal strands** (no hierarchy —
+students work at both from day one):
+
+- **Sentences** — our approach to *grammar*, taught as construction.
+  `/lessons/*` + `/data/sentences/*`.
+- **Writing** — writing as a *practice*: free writing, analytical paragraphs,
+  narrative memoir, audience, feedback. `/writing/*` + `/data/writing/*`.
+
+Both strands share the layout, components, color system, and philosophy
+below. Writing content reuses the sentence components by pointing them at
+writing data with `data-file` (e.g. `data-file="writing/cards"`) — if a
+component can't be reused, fix the component, don't fork it. The two strands
+share one core idea: **notice first** ("reading like a writer" in grammar =
+Overview &amp; Inventory in writing).
 
 ## The guiding philosophy (read before writing any content)
 

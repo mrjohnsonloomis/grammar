@@ -1,0 +1,76 @@
+{
+  "compares": [
+    {
+      "id": "tell-show-nervous",
+      "label": "nervous",
+      "a": { "label": "Telling", "sentence": [{"m": "She was nervous"}, " before the test."], "why": "It hands us the conclusion — <em>nervous</em> — and asks us to take the writer's word for it. Efficient, but we feel nothing, and we don't get to notice anything ourselves." },
+      "b": { "label": "Showing", "sentence": ["She read the first question ", {"m": "four times"}, ". Her pen had ", {"m": "teeth marks"}, " chewed halfway through."] , "why": "No one says <em>nervous</em> — but we arrive there ourselves, from the re-reading and the chewed pen. We got to be the noticer, the way the writer was." },
+      "test": "<strong>The move:</strong> find the abstract word you were about to use (<em>nervous, sad, excited, angry</em>) and delete it. Then write what you actually <em>saw</em> that made you choose that word. That evidence is the showing."
+    },
+    {
+      "id": "tell-show-messy",
+      "label": "messy room",
+      "a": { "label": "Telling", "sentence": ["His room was ", {"m": "really messy"}, "."], "why": "<em>Messy</em> is a judgment with no picture attached. Every reader imagines a different mess — or none at all." },
+      "b": { "label": "Showing", "sentence": ["Two weeks of ", {"m": "cereal bowls"}, " grew a skin by the bed, and you had to ", {"m": "clear a path"}, " to the window."], "why": "Now the mess is specific and physical. We don't need the word <em>messy</em>; the cereal bowls do the whole job — and they're funnier and truer than the label was." },
+      "test": "<strong>The test:</strong> could a camera film it? <em>Messy</em> can't be filmed. <em>Cereal bowls growing a skin</em> can. Showing is almost always the thing a camera could catch."
+    },
+    {
+      "id": "tell-show-kind",
+      "label": "a kind teacher",
+      "a": { "label": "Telling", "sentence": ["Mr. Alvarez was ", {"m": "a really kind teacher"}, "."], "why": "We're told to admire him without being given a single reason to. The praise slides right off." },
+      "b": { "label": "Showing", "sentence": ["Mr. Alvarez ", {"m": "kept granola bars"}, " in his bottom drawer for the kids who ", {"m": "came in without breakfast"}, ", and he never made it a thing."] , "why": "One concrete habit — granola bars, never made a thing — and we conclude <em>kind</em> on our own, and believe it. Character is shown in what people <em>do</em>." },
+      "test": "<strong>The move for people:</strong> don't tell us what someone <em>is</em> (kind, funny, strict). Show us one thing they <em>did</em>, and let the reader name the quality. The reader's own conclusion sticks; yours washes off."
+    },
+    {
+      "id": "claim-fact",
+      "label": "fact vs. claim",
+      "a": { "label": "Just a fact", "sentence": ["The poem ", {"m": "has eight lines and one rhyme scheme"}, "."], "why": "True — and that’s the problem. Nobody could disagree, so there’s nothing to prove. A fact isn’t a topic sentence; it’s raw material you might use <em>as</em> evidence later." },
+      "b": { "label": "A claim", "sentence": ["The poem’s ", {"m": "tight, quick form"}, " makes its shortness ", {"m": "feel like the fleeting beauty"}, " it describes."], "why": "Debatable — a reader could push back and say the form does something else. That disagreement is exactly what gives the paragraph a job: prove it. <em>That’s</em> a topic sentence." },
+      "test": "<strong>The test:</strong> could a smart classmate reasonably disagree? If no, it’s a fact — save it for evidence. If yes, you’ve got a claim worth a whole paragraph."
+    },
+    {
+      "id": "quote-dropped",
+      "label": "dropped vs. woven",
+      "a": { "label": "Dropped in", "sentence": ["Frost describes the leaves. ", {"m": "“Nature’s first green is gold.”"}, " This shows beauty."], "why": "The quote is dumped between two sentences with nothing holding it — a “hit-and-run” quote. The reader has to guess why it’s there and do the connecting you skipped." },
+      "b": { "label": "Woven in", "sentence": ["Frost calls the new leaves ", {"m": "“gold,”"}, " comparing them to something precious."], "why": "The quote is folded into your own sentence with a signal word (<em>calls</em>) and immediately followed by reasoning. It reads as one smooth thought — and it actually does analytical work." },
+      "test": "<strong>The move:</strong> never let a quotation stand as its own sentence. <em>Introduce</em> it (a signal phrase), then <em>explain</em> it (reasoning). Quote sandwiched, never quote stranded."
+    }
+  ],
+  "kernels": [
+    {
+      "id": "frost-paragraph",
+      "kernel": "Everything in this poem is <em>turning into</em> something else — green becomes gold, leaf becomes flower becomes leaf, dawn goes down to day, Eden sinks to grief.",
+      "kernelNote": "This isn’t an argument yet. It’s one <strong>noticing</strong>, lifted straight off the inventory you’d build on the <a class=\"term\" href=\"overview-inventory.html\">Overview &amp; Inventory</a> page. It’s the seed. Watch the whole paragraph grow out of it — you don’t start with a thesis, you start here.",
+      "claim": "Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.",
+      "claimNote": "Ask the kernel <em>“so what?”</em> and it becomes a <strong>claim</strong> — a debatable one, so it needs proof. This is the topic sentence. Notice it grew <em>from</em> the noticing; it wasn’t decided first and stapled on.",
+      "pairs": [
+        { "quote": "Nature’s first green is gold", "reason": "comparing new spring leaves to something precious" },
+        { "quote": "leaf subsides to leaf", "reason": "showing how quickly that early beauty fades" },
+        { "quote": "Eden sank to grief", "reason": "suggesting that even perfect moments end" },
+        { "quote": "Nothing gold can stay", "reason": "stating the rule plainly — because golden moments fade, we should value them now" }
+      ],
+      "assembleNote": "Each quote is <strong>evidence</strong> — but a quote alone just sits there and proves nothing. Drag each piece of <strong>reasoning</strong> to the quote it explains. That reasoning — the <em>so what?</em> — is the part writers skip, and it’s the part that turns a quotation into proof.",
+      "paragraph": "<span class='a-topic'>Robert Frost’s “Nothing Gold Can Stay” argues that the most beautiful things in life are temporary, so we should notice them while they last.</span> He starts with “<span class='a-evi'>Nature’s first green is gold</span>,” <span class='a-reason'>comparing new spring leaves to something precious.</span> Then “<span class='a-evi'>leaf subsides to leaf</span>,” <span class='a-reason'>showing how quickly that early beauty fades.</span> The allusion “<span class='a-evi'>Eden sank to grief</span>” <span class='a-reason'>suggests that even perfect moments end.</span> By finishing with “<span class='a-evi'>Nothing gold can stay</span>,” Frost makes his point clear: <span class='a-reason'>because golden moments fade, we should value them right away.</span>",
+      "note": "The whole paragraph traces back to one noticing. That’s the method: notice first, ask <em>so what?</em> to get a claim, then prove it by pairing each piece of evidence with the reasoning that connects it. Notice the careful verbs — “<em>suggests</em>,” “<em>showing</em>” — analytical writing hedges honestly instead of overclaiming."
+    }
+  ],
+  "oimodels": [
+    {
+      "id": "frost",
+      "about": "on Frost’s “Nothing Gold Can Stay”",
+      "text": "Nature’s first green is gold,\nHer hardest hue to hold.\nHer early leaf’s a flower;\nBut only so an hour.\nThen leaf subsides to leaf.\nSo Eden sank to grief,\nSo dawn goes down to day.\nNothing gold can stay.",
+      "source": "Frost, Robert. “Nothing Gold Can Stay.” <em>New Hampshire</em>, Henry Holt, 1923. Public domain in the United States. Try your own overview and inventory above before revealing this one — or do the whole thing with a text you’re reading now.",
+      "overview": "A tiny poem that says the first, best moment of anything — a season, a day, a paradise — never lasts.",
+      "inventory": [
+        "“Gold” and “green” both mean the new leaves, but gold sounds precious and green sounds ordinary. Why both?",
+        "Everything in it is <em>turning into</em> something else: green → gold, leaf → flower → leaf, dawn → day, Eden → grief.",
+        "“Her hardest hue to hold” — even nature can’t keep the good color.",
+        "It jumps from a leaf all the way to <em>Eden</em>. That’s a big leap for such a small poem.",
+        "Eight short lines, all rhymed. It’s over almost as fast as the gold it’s describing. (Is that on purpose?)",
+        "The last line is flat and final — “Nothing gold can stay.” No image, just the rule."
+      ],
+      "overview2": "Frost keeps every image in the middle of <em>changing</em>, and even the poem’s shortness enacts its point — it’s gone before you’re ready. By the last line he stops describing and just states the law: the gold moment always passes. The poem doesn’t only observe this; the compression makes you <em>feel</em> the hurry.",
+      "note": "Notice how Stage 2 (the second overview) grew straight out of the inventory — the “everything is turning into something else” noticing became the whole reading. That’s the method: you don’t <em>decide</em> what a text means and then hunt for proof. You notice, and the meaning assembles itself from what you noticed."
+    }
+  ]
+}
