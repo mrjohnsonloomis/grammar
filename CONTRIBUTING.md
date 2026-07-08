@@ -42,11 +42,22 @@ assets/js/main.js             bootstrap: GX namespace, data loader, mount scanne
 assets/js/components/         highlighter, tour(+compare), cards(+glossary),
                               sentence-builder, combiner(construct+recall), quiz
 data/sentences/*.json         ALL lesson content (see SCHEMA.md — the contract)
-data/writing/*.json           the future writing section's content
+data/writing/*.json           the Writing strand's content
 lessons/NN-slug.html          thin pages: front matter + intro prose + mounts
-practice.html glossary.html validate.html writing/index.html
+index.html                    slim hub → links to the two strand landings
+sentences.html                Sentences landing: 7-lesson TOC + concept map
+writing/index.html            Writing landing: the W1–W6 module TOC
+practice.html glossary.html validate.html
 AUDIT.md                      content-accuracy log — append when you change content
 ```
+
+**Page codes (for assigning specific sections).** Sentence lessons use
+`lesson_num` (01–07). Writing pages set a `code:` front-matter field —
+`Writing · W1` … `W6`, with sub-pages lettered (`W3a`, `W5b`) — which renders
+in the header eyebrow. A module that grows past one screen becomes a short
+**hub page** plus focused **sub-pages** (e.g. W3 → W3a Topic Sentences, W3b
+Quoting a Text); the hub links down and the nav rail shows sub-pages indented
+(`.sub`). Keep codes stable — they're how work gets assigned.
 
 Hard constraints: static GitHub Pages site (Jekyll layouts only — **no Node
 build step, no framework**); **no student data persistence** (no localStorage,

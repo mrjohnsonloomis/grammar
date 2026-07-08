@@ -186,3 +186,28 @@ history preserve it.
 - **O&I pad export.** Added user-initiated `.doc` / print-PDF export of what
   the student typed; still nothing is persisted — the export is generated
   on the fly and the "nothing is saved" notice is made more prominent.
+
+## 10. Structure pass — hub home, W-codes, wider measure (this pass)
+
+- **Home slimmed to a hub.** `index.html` no longer carries the full lesson
+  list or the concept map; it's a short overview (three principles + two
+  strand links + tools + sources). The 7-lesson TOC, the five-job color key,
+  and the "How the sentence moves stack" concept map moved to a new
+  **`sentences.html`** landing (parallel to `writing/index.html`). `.toc`,
+  `.jobkey`, and `.sentence-map` styles were promoted from inline to
+  `components.css` so both landings share them.
+- **Assignable naming convention.** Every writing page carries a stable code
+  in its header eyebrow (via a `code:` front-matter field): W1 Free Writing,
+  W2 Overview & Inventory, W3 Analytical Paragraph (W3a Topic Sentences,
+  W3b Quoting a Text), W4 Narrative Memoir, W5 Audience (W5a For Your
+  Analysis, W5b Writing for the Reader), W6 Feedback. Sentence lessons keep
+  01–07. Hub pages link to their sub-pages; the nav shows sub-pages indented.
+- **Audience split** into a hub (W5) plus `audience-analysis.html` (W5a) and
+  `writing-for-the-reader.html` (W5b, which now holds the Richardson
+  questions). Content moved verbatim; no wording changed.
+- **Quote callouts restyled.** The decorative `.pull` pull-quotes on every
+  Writing page became a quiet, document-like `.source-quote` (small italic,
+  thin rule, optional `<cite>`). Words unchanged — only the treatment.
+- **Wider measure.** Content column widened (`.container`/`.header`/arc-nav
+  950→1180px; `.prose` 68→80ch; `.section-sub`/step text likewise) so pages
+  use more of the screen and scroll less. No change to the mobile rules.
