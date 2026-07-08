@@ -104,7 +104,7 @@
 }
 
 /* ---- page header: the lesson line ---- */
-.header { padding: 52px 32px 0; max-width: 950px; margin: 0 auto; }
+.header { padding: 52px 32px 0; max-width: 1180px; margin: 0 auto; }
 .lesson-eyebrow {
   font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
@@ -116,7 +116,7 @@
 }
 .header p {
   font-size: 0.98rem; color: var(--dimtext); margin-top: 12px;
-  max-width: 62ch; line-height: 1.65;
+  max-width: 74ch; line-height: 1.65;
 }
 .header::after { content: ''; display: block; border-bottom: 2px solid var(--rule); margin-top: 26px; }
 
@@ -128,7 +128,7 @@
   padding: 9px 32px; margin: 0 0 4px;
 }
 @media (max-width: 940px) { .arc-nav { top: 49px; } }
-.arc-nav-inner { max-width: 950px; margin: 0 auto; display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.arc-nav-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
 .arc-nav a {
   font-size: 0.68rem; font-weight: 650; letter-spacing: 0.13em; text-transform: uppercase;
   color: var(--muted); text-decoration: none; padding: 2px 0; border-bottom: 2px solid transparent;
@@ -137,7 +137,7 @@
 .arc-nav a.current { color: var(--ink); border-bottom-color: var(--act); }
 .arc-nav .arc-lesson { margin-left: auto; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-decor); }
 
-.container { max-width: 950px; margin: 0 auto; padding: 34px 32px 90px; }
+.container { max-width: 1180px; margin: 0 auto; padding: 34px 32px 90px; }
 @media (max-width: 640px) { .container { padding: 24px 18px 70px; } .header { padding: 34px 18px 0; } }
 
 .site-footer {
@@ -152,7 +152,7 @@
   letter-spacing: -0.01em; margin: 44px 0 6px; text-wrap: balance;
 }
 .section-title:first-child { margin-top: 0; }
-.section-sub { font-size: 0.88rem; color: var(--dimtext); margin-bottom: 20px; max-width: 66ch; }
+.section-sub { font-size: 0.9rem; color: var(--dimtext); margin-bottom: 20px; max-width: 80ch; }
 
 .arc-label {
   display: block; font-size: 0.66rem; font-weight: 700;
@@ -162,7 +162,7 @@
 .arc-label + .section-title { margin-top: 4px; }
 .arc-label:first-child, div[data-component="recall"] + .arc-label { margin-top: 26px; }
 
-.prose { font-size: 0.95rem; color: var(--bodytext); line-height: 1.72; max-width: 68ch; margin-bottom: 15px; }
+.prose { font-size: 0.98rem; color: var(--bodytext); line-height: 1.72; max-width: 80ch; margin-bottom: 15px; }
 .prose strong { color: var(--ink); font-weight: 650; }
 .prose em { color: var(--ink); }
 .prose a, a.term {
@@ -826,11 +826,22 @@ mark.practice-target { background: var(--desc-t); color: var(--ink); padding: 1p
 .steps-list .step-row { display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .steps-list .step-row::before { counter-increment: step; content: counter(step); font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--act); }
 .steps-list .step-row h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 3px; }
-.steps-list .step-row p { font-size: 0.88rem; color: var(--bodytext); line-height: 1.6; max-width: 62ch; margin: 0; }
+.steps-list .step-row p { font-size: 0.9rem; color: var(--bodytext); line-height: 1.6; max-width: 78ch; margin: 0; }
 
 /* ---- pull quote (teacher voice / core principle) ---- */
 .pull { font-family: var(--serif); font-size: 1.35rem; line-height: 1.4; font-weight: 600; color: var(--ink); border-left: 3px solid var(--act); padding: 4px 0 4px 20px; margin: 26px 0; max-width: 60ch; text-wrap: balance; }
 .pull.b { border-left-color: var(--name); }
+
+/* ---- source quote: a quiet, document-like quotation for the Writing pages
+   (replaces the decorative pull-quote; stays close to the source text) ---- */
+.source-quote {
+  font-family: var(--serif); font-size: 1.04rem; font-style: italic; line-height: 1.6;
+  color: var(--ink); border-left: 2px solid var(--line); padding: 2px 0 2px 18px;
+  margin: 20px 0; max-width: 76ch;
+}
+.source-quote p { margin: 0 0 8px; }
+.source-quote p:last-child { margin-bottom: 0; }
+.source-quote cite { display: block; font-style: normal; font-size: 0.8rem; color: var(--muted); margin-top: 8px; }
 
 /* writing-strand lexicon dot colors (decorative; no job-chip on these cards) */
 .lex-term[data-concept="w-think"] { --lex-c: var(--act); }
@@ -865,6 +876,20 @@ mark.practice-target { background: var(--desc-t); color: var(--ink); padding: 1p
   .toc-desc { grid-column: 2; }
   .toc-arrow { display: none; }
 }
+
+/* ---- five-job color key + the sentence concept map (home + Sentences hub) ---- */
+.jobkey { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 14px 0 6px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.jobkey span { font-size: 0.7rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dimtext); display: inline-flex; align-items: center; gap: 6px; }
+.jobkey i { width: 14px; height: 4px; border-radius: 2px; font-style: normal; }
+.map-wrap { margin: 40px 0; }
+.sentence-map { width: 100%; max-width: 780px; margin: 14px auto 0; display: block; height: auto; }
+.sentence-map text { font-family: var(--sans); text-anchor: middle; dominant-baseline: middle; }
+.sentence-map .n-title { font-weight: 700; font-size: 15px; }
+.sentence-map .n-sub { font-size: 10.5px; fill: var(--dimtext); }
+.sentence-map .m-line { stroke: var(--muted-decor); stroke-width: 1.4; fill: none; }
+.sentence-map a:hover rect, .sentence-map a:focus rect { stroke-width: 3.5; }
+.map-scroll { overflow-x: auto; }
+@media (max-width: 640px) { .sentence-map { min-width: 620px; } }
 
 /* ---- O&I pad export row ---- */
 .oi-export {

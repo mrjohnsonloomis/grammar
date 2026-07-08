@@ -7,28 +7,9 @@ description: "An interactive workbench for 9th-grade writers: sentences taught a
 ---
 
 <style>
-  /* the map */
-  .map-wrap { margin: 52px 0; }
-  .sentence-map { width: 100%; max-width: 780px; margin: 14px auto 0; display: block; height: auto; }
-  .sentence-map text { font-family: var(--sans); text-anchor: middle; dominant-baseline: middle; }
-  .sentence-map .n-title { font-weight: 700; font-size: 15px; }
-  .sentence-map .n-sub { font-size: 10.5px; fill: var(--dimtext); }
-  .sentence-map .m-line { stroke: var(--muted-decor); stroke-width: 1.4; fill: none; }
-  .sentence-map a:hover rect, .sentence-map a:focus rect { stroke-width: 3.5; }
-  .map-scroll { overflow-x: auto; }
-  @media (max-width: 640px) { .sentence-map { min-width: 620px; } }
-
-  /* five-job key */
-  .jobkey { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 14px 0 6px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .jobkey span { font-size: 0.7rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dimtext); display: inline-flex; align-items: center; gap: 6px; }
-  .jobkey i { width: 14px; height: 4px; border-radius: 2px; font-style: normal; }
-
   /* two co-equal strands — no hierarchy */
-  .strand { border-top: 3px solid var(--rule); margin-top: 56px; padding-top: 4px; }
-  .strand-eyebrow { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--act); margin-top: 14px; }
-  .strand-eyebrow.b { color: var(--name); }
-  .strand-eyebrow.c { color: var(--muted); }
-  .strand-eyebrow + .section-title { margin-top: 3px; }
+  .strand { border-top: 3px solid var(--rule); margin-top: 52px; padding-top: 4px; }
+  .strand-eyebrow { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); margin-top: 14px; }
 
   /* the three principles band */
   .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0 30px; margin: 8px 0 6px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -44,7 +25,7 @@ description: "An interactive workbench for 9th-grade writers: sentences taught a
   .footer-note { text-align: center; font-size: 0.82rem; color: var(--muted); font-style: italic; font-family: var(--serif); margin-top: 40px; }
 </style>
 
-<p class="prose" style="font-size:1rem;max-width:64ch;">This course treats writing three ways at once — as a <strong>form of thinking</strong>, as a <strong>practice</strong> you do daily, and as an <strong>iterative process</strong> for making polished pieces. Two strands run side by side, and you work at both from day one. Neither sits above the other.</p>
+<p class="prose" style="font-size:1rem;">This course treats writing three ways at once — as a <strong>form of thinking</strong>, as a <strong>practice</strong> you do daily, and as an <strong>iterative process</strong> for making polished pieces. Two strands run side by side, and you work at both from day one. Neither sits above the other.</p>
 
 <div class="principles" aria-label="How this course thinks about writing">
   <div class="principle"><div class="pn">i.</div><div class="pt">Writing is a form of thinking</div><div class="pd">Pen on paper does something talking doesn't — it makes connections and ideas you can't reach otherwise. We write a lot, low-stakes, to use it.</div></div>
@@ -53,196 +34,27 @@ description: "An interactive workbench for 9th-grade writers: sentences taught a
 </div>
 
 <div class="strand">
-<div class="strand-eyebrow">One of two strands</div>
-<div class="section-title">Sentences</div>
-<div class="section-sub">Our approach to <strong>grammar</strong>: sentences are things you build, not specimens you dissect. Seven lessons, each following the arc <strong>Notice</strong> real sentences → <strong>Name</strong> the moves → <strong>Build</strong> your own → <strong>Apply</strong> it. Colors mark what each word's <em>job</em> is.</div>
-
-<div class="jobkey" aria-label="The five-job color key">
-  <span><i style="background:var(--name)"></i>Names — who? what?</span>
-  <span><i style="background:var(--act)"></i>Acts — does? is?</span>
-  <span><i style="background:var(--desc)"></i>Describes — which? what kind?</span>
-  <span><i style="background:var(--sit)"></i>Situates — when? where? why?</span>
-  <span><i style="background:var(--con)"></i>Connects — joined how?</span>
-</div>
-
-<nav class="toc" aria-label="Lessons">
-  <a class="toc-row" href="lessons/01-sentence-kernel.html">
-    <span class="toc-num">01</span>
-    <span class="toc-title">The Sentence Kernel<small>subject · verb · fragment</small></span>
-    <span class="toc-desc">Every sentence is someone or something doing or being something. Build two-word kernels, finish fragments, and grow a kernel without breaking it.</span>
+<div class="strand-eyebrow">The two strands · pick one to see its full path</div>
+<div class="section-title">Start here</div>
+<div class="section-sub">Each strand has its own home page with the whole sequence. They run alongside each other all year — neither comes “first.”</div>
+<nav class="toc" aria-label="The two strands">
+  <a class="toc-row" href="sentences.html">
+    <span class="toc-num">S</span>
+    <span class="toc-title">Sentences<small>grammar as construction · 7 lessons</small></span>
+    <span class="toc-desc">Sentences are things you build, not specimens you dissect. Seven lessons — Notice, Name, Build, Apply — with colors that mark what each word’s job is. Includes the concept map of how the moves stack.</span>
     <span class="toc-arrow" aria-hidden="true">&rarr;</span>
   </a>
-  <a class="toc-row" href="lessons/02-what-verbs-demand.html">
-    <span class="toc-num">02</span>
-    <span class="toc-title">What Verbs Demand<small>objects · complements · linking</small></span>
-    <span class="toc-desc">Some verbs need receivers; some link to descriptions. Objects, complements, and the demands each verb makes on your sentence.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="lessons/03-word-toolbox.html">
-    <span class="toc-num">03</span>
-    <span class="toc-title">The Word Toolbox<small>8 parts of speech · Austen · Douglass</small></span>
-    <span class="toc-desc">The eight parts of speech, taught through the slots you know — and five literary passages to highlight, click, and read like a writer. The site's standing reference.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="lessons/04-expanding-the-kernel.html">
-    <span class="toc-num">04</span>
-    <span class="toc-title">Expanding the Kernel<small>prepositional · appositive · expansion</small></span>
-    <span class="toc-desc">Phrases are bolt-on word groups that answer which, what kind, when, where, and why. The core exercise: take a kernel and grow it on purpose.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="lessons/05-compressing-with-verbals.html">
-    <span class="toc-num">05</span>
-    <span class="toc-title">Compressing with Verbals<small>participle · gerund · infinitive</small></span>
-    <span class="toc-desc">Participles, gerunds, and infinitives pack a second action into phrase-sized space. Core exercise: combine flat sentences into one compressed sentence.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="lessons/06-joining-ideas.html">
-    <span class="toc-num">06</span>
-    <span class="toc-title">Joining Ideas: Clauses<small>coordination · subordination · emphasis</small></span>
-    <span class="toc-desc">Coordination, subordination, relative clauses — joining whole ideas and choosing which one gets the headline. Same facts, different emphasis.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="lessons/07-sentence-craft.html">
-    <span class="toc-num">07</span>
-    <span class="toc-title">Sentence Craft<small>capstone · rhythm · openers · revision</small></span>
-    <span class="toc-desc">Variety, openers, rhythm, end weight. Revise deliberately choppy passages using every move from the sequence — the on-ramp to paragraph-level writing.</span>
+  <a class="toc-row" href="writing/index.html">
+    <span class="toc-num">W</span>
+    <span class="toc-title">Writing<small>the practice · 6 modules</small></span>
+    <span class="toc-desc">Writing as a daily practice: free writing to think on paper, analytical paragraphs grown from what you notice, short narrative memoir, audience, and feedback.</span>
     <span class="toc-arrow" aria-hidden="true">&rarr;</span>
   </a>
 </nav>
-
-<!-- CONCEPT MAP: construction-first (belongs to the Sentences strand) -->
-<div class="map-wrap">
-  <div class="section-title" style="font-size:1.2rem;">How the sentence moves stack</div>
-  <div class="section-sub">Top-down: start with a kernel, expand it, compress into it, join kernels together, then conduct the whole thing. The Word Toolbox sits underneath as the reference layer for every stage. Structure is drawn the way it is everywhere on this site: thin line = phrase, heavy line = independent clause, dashed = dependent. Click any node to jump to its lesson.</div>
-
-  <div class="map-scroll">
-  <svg class="sentence-map" viewBox="0 0 780 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mapTitle mapDesc">
-    <title id="mapTitle">Concept map of the sentence-building sequence</title>
-    <desc id="mapDesc">The kernel (subject plus verb, with what the verb demands) is expanded by phrases and compressed with verbals, then kernels are joined into clauses and sentence types, leading to sentence craft. The word toolbox underlies all layers as a reference.</desc>
-
-    <!-- connectors -->
-    <path class="m-line" d="M 360 92 L 420 92" />
-    <path class="m-line" d="M 390 120 L 390 152" />
-    <path class="m-line" d="M 390 152 C 390 168, 225 168, 225 184" />
-    <path class="m-line" d="M 390 152 C 390 168, 555 168, 555 184" />
-    <path class="m-line" d="M 225 252 C 225 274, 390 274, 390 296" />
-    <path class="m-line" d="M 555 252 C 555 274, 390 274, 390 296" />
-    <path class="m-line" d="M 390 364 L 390 396" />
-    <path class="m-line" d="M 160 470 L 160 448" stroke-dasharray="4 4" opacity="0.6" />
-    <path class="m-line" d="M 390 470 L 390 460" stroke-dasharray="4 4" opacity="0.6" />
-    <path class="m-line" d="M 620 470 L 620 448" stroke-dasharray="4 4" opacity="0.6" />
-
-    <!-- LAYER 1: the kernel -->
-    <a href="lessons/01-sentence-kernel.html">
-      <rect x="140" y="60" width="220" height="60" rx="6" fill="var(--act-t)" stroke="var(--act)" stroke-width="2"/>
-      <text class="n-title" x="250" y="83" fill="var(--act)">01 · The Kernel</text>
-      <text class="n-sub" x="250" y="103">subject + verb — the complete move</text>
-    </a>
-    <a href="lessons/02-what-verbs-demand.html">
-      <rect x="420" y="60" width="220" height="60" rx="6" fill="var(--name-t)" stroke="var(--name)" stroke-width="2"/>
-      <text class="n-title" x="530" y="83" fill="var(--name)">02 · Verb Demands</text>
-      <text class="n-sub" x="530" y="103">objects &amp; complements finish the verb</text>
-    </a>
-
-    <!-- LAYER 2: expansions (phrases: thin structure line) -->
-    <a href="lessons/04-expanding-the-kernel.html">
-      <rect x="90" y="184" width="270" height="68" rx="6" fill="var(--structure-t)" stroke="var(--structure)" stroke-width="1.5"/>
-      <text class="n-title" x="225" y="207" fill="var(--structure)">04 · Expand with Phrases</text>
-      <text class="n-sub" x="225" y="226">prepositional · appositive · absolute</text>
-      <text class="n-sub" x="225" y="240">answer which · when · where · why</text>
-    </a>
-    <a href="lessons/05-compressing-with-verbals.html">
-      <rect x="420" y="184" width="270" height="68" rx="6" fill="var(--desc-t)" stroke="var(--desc)" stroke-width="2"/>
-      <text class="n-title" x="555" y="207" fill="var(--desc)">05 · Compress with Verbals</text>
-      <text class="n-sub" x="555" y="226">participle (describes) · gerund (names)</text>
-      <text class="n-sub" x="555" y="240">pack action into phrase-sized space</text>
-    </a>
-
-    <!-- LAYER 3: combinations (clauses: heavy structure line) -->
-    <a href="lessons/06-joining-ideas.html">
-      <rect x="215" y="296" width="350" height="68" rx="6" fill="var(--structure-t)" stroke="var(--structure)" stroke-width="3"/>
-      <text class="n-title" x="390" y="319" fill="var(--structure)">06 · Join Ideas with Clauses</text>
-      <text class="n-sub" x="390" y="338">coordinate (equal) · subordinate (ranked) · relative</text>
-      <text class="n-sub" x="390" y="352">simple · compound · complex · compound-complex</text>
-    </a>
-
-    <!-- LAYER 4: craft -->
-    <a href="lessons/07-sentence-craft.html">
-      <rect x="255" y="396" width="270" height="52" rx="6" fill="#F6F6F4" stroke="var(--ink)" stroke-width="2"/>
-      <text class="n-title" x="390" y="416" fill="var(--ink)">07 · Sentence Craft</text>
-      <text class="n-sub" x="390" y="434">variety · openers · rhythm · emphasis</text>
-    </a>
-
-    <!-- FOUNDATION: the word toolbox -->
-    <a href="lessons/03-word-toolbox.html">
-      <rect x="60" y="470" width="660" height="58" rx="6" fill="var(--name-t)" stroke="var(--name)" stroke-width="2"/>
-      <text class="n-title" x="390" y="491" fill="var(--name)">03 · The Word Toolbox — the reference layer</text>
-      <text class="n-sub" x="390" y="511">eight parts of speech · a word's part of speech = its job in the sentence</text>
-    </a>
-  </svg>
-  </div>
-</div>
-
-</div><!-- /sentences strand -->
+</div><!-- /strands -->
 
 <div class="strand">
-<div class="strand-eyebrow b">The other strand</div>
-<div class="section-title">Writing</div>
-<div class="section-sub">Writing as a <strong>practice</strong>: free writing to think on paper, analytical paragraphs that start from what you notice, and short narrative memoir. We work on these alongside the sentence lessons, not after them. <a class="term" href="writing/index.html">Start here</a> for the whole approach.</div>
-<nav class="toc" aria-label="Writing modules">
-  <a class="toc-row" href="writing/free-writing.html">
-    <span class="toc-num">✎</span>
-    <span class="toc-title">Free Writing<small>private · focused · metacognitive</small></span>
-    <span class="toc-desc">Low-stakes writing in your notebook — the engine of the course. Three modalities, the "keep the pen moving" rule, and how bracketing lets you choose what to share.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="writing/overview-inventory.html">
-    <span class="toc-num">✎</span>
-    <span class="toc-title">Overview &amp; Inventory<small>step back · get close · notice</small></span>
-    <span class="toc-desc">The noticing practice at the heart of everything: an overview to take a text in whole, an inventory to get up close. Try it, then compare with a worked model.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="writing/analytical-paragraph.html">
-    <span class="toc-num">✎</span>
-    <span class="toc-title">The Analytical Paragraph<small>evidence-first · argument · a paragraph kernel</small></span>
-    <span class="toc-desc">The paragraph as a container for one idea, grown from a single noticing. A drag-and-drop model on Frost, plus close-up pages on its two big pieces:</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row toc-sub" href="writing/topic-sentences.html">
-    <span class="toc-num">›</span>
-    <span class="toc-title">Writing a Topic Sentence<small>the claim</small></span>
-    <span class="toc-desc">Turn a noticing into a debatable claim — and tell a claim from a mere fact.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row toc-sub" href="writing/quotation.html">
-    <span class="toc-num">›</span>
-    <span class="toc-title">Quoting a Text, Simply<small>the evidence</small></span>
-    <span class="toc-desc">Fold a quotation into your own sentence — signal phrase, punctuation, and all.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="writing/narrative-memoir.html">
-    <span class="toc-num">✎</span>
-    <span class="toc-title">Narrative Memoir<small>think small · show, don't tell</small></span>
-    <span class="toc-desc">A narrative moment, not a whole story — one or two paragraphs. Storytelling over describing, showing over telling, and always: who is this for?</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="writing/audience.html">
-    <span class="toc-num">✎</span>
-    <span class="toc-title">Audience<small>who is this for?</small></span>
-    <span class="toc-desc">Every piece is written for a reader. Who they are changes what you explain, what you assume, and what you leave out — in both analytical and narrative writing.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-  <a class="toc-row" href="writing/feedback.html">
-    <span class="toc-num">✎</span>
-    <span class="toc-title">Working with Feedback<small>conferences · peer review</small></span>
-    <span class="toc-desc">How feedback works here: a couple of big things to focus on, not an ocean of marks. How to run a focused peer review — be the reader you'd want, kind and honest.</span>
-    <span class="toc-arrow" aria-hidden="true">&rarr;</span>
-  </a>
-</nav>
-</div><!-- /writing strand -->
-
-<div class="strand">
-<div class="strand-eyebrow c">Anytime · tools for both strands</div>
+<div class="strand-eyebrow">Anytime · tools for both strands</div>
 <div class="section-title">Tools</div>
 <nav class="toc" aria-label="Tools">
   <a class="toc-row" href="practice.html">

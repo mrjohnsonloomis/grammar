@@ -23,6 +23,7 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
     <details>
       <summary>Menu</summary>
       <nav class="menu-panel" aria-label="Site">
+        <a href="{{ page.root | default: '.' }}/sentences.html" {% if page.nav == 'sentences' %}class="current" aria-current="page"{% endif %}><span class="n">✎</span>Sentences — start here</a>
         <a href="{{ page.root | default: '.' }}/lessons/01-sentence-kernel.html" {% if page.nav == '01' %}class="current" aria-current="page"{% endif %}><span class="n">01</span>The Sentence Kernel</a>
         <a href="{{ page.root | default: '.' }}/lessons/02-what-verbs-demand.html" {% if page.nav == '02' %}class="current" aria-current="page"{% endif %}><span class="n">02</span>What Verbs Demand</a>
         <a href="{{ page.root | default: '.' }}/lessons/03-word-toolbox.html" {% if page.nav == '03' %}class="current" aria-current="page"{% endif %}><span class="n">03</span>The Word Toolbox</a>
@@ -38,6 +39,8 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
         <a href="{{ page.root | default: '.' }}/writing/quotation.html" {% if page.nav == 'w-quote' %}class="current" aria-current="page"{% endif %}><span class="n">›</span>Quoting a Text, Simply</a>
         <a href="{{ page.root | default: '.' }}/writing/narrative-memoir.html" {% if page.nav == 'w-memoir' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Narrative Memoir</a>
         <a href="{{ page.root | default: '.' }}/writing/audience.html" {% if page.nav == 'w-audience' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Audience</a>
+        <a href="{{ page.root | default: '.' }}/writing/audience-analysis.html" {% if page.nav == 'w-aud-a' %}class="current" aria-current="page"{% endif %}><span class="n">›</span>Audience for Your Analysis</a>
+        <a href="{{ page.root | default: '.' }}/writing/writing-for-the-reader.html" {% if page.nav == 'w-aud-b' %}class="current" aria-current="page"{% endif %}><span class="n">›</span>Writing for the Reader</a>
         <a href="{{ page.root | default: '.' }}/writing/feedback.html" {% if page.nav == 'w-feedback' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Working with Feedback</a>
         <a href="{{ page.root | default: '.' }}/practice.html" {% if page.nav == 'practice' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Practice</a>
         <a href="{{ page.root | default: '.' }}/studio.html" {% if page.nav == 'studio' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Annotation Studio</a>
@@ -56,6 +59,7 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
   <div>
     <div class="rail-group-label">Sentences <span class="rail-group-sub">grammar as construction</span></div>
     <div class="rail-lessons">
+      <a href="{{ page.root | default: '.' }}/sentences.html" {% if page.nav == 'sentences' %}class="current" aria-current="page"{% endif %}><span class="n">✎</span>Start here</a>
       <a href="{{ page.root | default: '.' }}/lessons/01-sentence-kernel.html" {% if page.nav == '01' %}class="current" aria-current="page"{% endif %}><span class="n">01</span>The Sentence Kernel</a>
       <a href="{{ page.root | default: '.' }}/lessons/02-what-verbs-demand.html" {% if page.nav == '02' %}class="current" aria-current="page"{% endif %}><span class="n">02</span>What Verbs Demand</a>
       <a href="{{ page.root | default: '.' }}/lessons/03-word-toolbox.html" {% if page.nav == '03' %}class="current" aria-current="page"{% endif %}><span class="n">03</span>The Word Toolbox</a>
@@ -76,6 +80,8 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
       <a class="sub{% if page.nav == 'w-quote' %} current{% endif %}" href="{{ page.root | default: '.' }}/writing/quotation.html" {% if page.nav == 'w-quote' %}aria-current="page"{% endif %}><span class="n">›</span>Quoting a Text</a>
       <a href="{{ page.root | default: '.' }}/writing/narrative-memoir.html" {% if page.nav == 'w-memoir' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Narrative Memoir</a>
       <a href="{{ page.root | default: '.' }}/writing/audience.html" {% if page.nav == 'w-audience' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Audience</a>
+      <a class="sub{% if page.nav == 'w-aud-a' %} current{% endif %}" href="{{ page.root | default: '.' }}/writing/audience-analysis.html" {% if page.nav == 'w-aud-a' %}aria-current="page"{% endif %}><span class="n">›</span>For Your Analysis</a>
+      <a class="sub{% if page.nav == 'w-aud-b' %} current{% endif %}" href="{{ page.root | default: '.' }}/writing/writing-for-the-reader.html" {% if page.nav == 'w-aud-b' %}aria-current="page"{% endif %}><span class="n">›</span>Writing for the Reader</a>
       <a href="{{ page.root | default: '.' }}/writing/feedback.html" {% if page.nav == 'w-feedback' %}class="current" aria-current="page"{% endif %}><span class="n">·</span>Working with Feedback</a>
     </div>
   </div>
@@ -92,7 +98,7 @@ without a version stamp a deploy briefly serves new HTML with old CSS/JS. {%- en
 <div class="page">
 {% unless page.hide_header %}
 <header class="header">
-  {% if page.lesson_num %}<div class="lesson-eyebrow">Lesson {{ page.lesson_num }}{% if page.arc %} · {{ page.arc }}{% endif %}</div>{% endif %}
+  {% if page.lesson_num %}<div class="lesson-eyebrow">Lesson {{ page.lesson_num }}{% if page.arc %} · {{ page.arc }}{% endif %}</div>{% elsif page.code %}<div class="lesson-eyebrow">{{ page.code }}</div>{% endif %}
   <h1>{{ page.title }}</h1>
   {% if page.tagline %}<p>{{ page.tagline }}</p>{% endif %}
 </header>
