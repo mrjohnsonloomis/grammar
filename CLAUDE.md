@@ -20,12 +20,14 @@ conversation, and environment gotchas.
 
 ## Structure (as of the last restructure)
 
-Two **co-equal strands** — no hierarchy, students work at both from day one.
+Three **co-equal strands** — no hierarchy, students work at all three from day
+one: **the sentence**, **writing**, and **the notebook**.
 
 ```
-index.html          slim hub: 3 principles → 2 strand links → tools → sources
+index.html          slim hub: 3 principles → 3 strand links → tools → sources
 sentences.html      Sentences landing: 7-lesson TOC + concept map + color key
-writing/index.html  Writing landing: the W1–W6 module TOC
+writing/index.html  Writing landing: the W2–W6 module TOC
+notebook/index.html Notebook landing: the N1–N2 module TOC
 ```
 
 The home page is deliberately **short**. It does not carry lesson lists or the
@@ -36,17 +38,31 @@ concept map — those live on the strand landings. Don't let it grow back.
 
 | Code | Page | Code | Page |
 |---|---|---|---|
-| W1 | `free-writing.html` | W4 | `narrative-memoir.html` |
 | W2 | `overview-inventory.html` | W5 | `audience.html` (hub) |
 | W3 | `analytical-paragraph.html` (hub) | W5a | `audience-analysis.html` |
 | W3a | `topic-sentences.html` | W5b | `writing-for-the-reader.html` |
 | W3b | `quotation.html` | W6 | `feedback.html` |
+| W4 | `narrative-memoir.html` | | |
+
+**Notebook** — `notebook/*`, data in `data/notebook/*.json`:
+
+| Code | Page |
+|---|---|
+| N1 | `free-writing.html` |
+| N2 | `visual-notes.html` (hub) |
+| N2a | `general-graphics.html` |
+| N2b | `specific-exercises.html` |
 
 ### Page codes — the assignment convention
-Every writing page sets `code: "Writing · W3a"` in front matter; the layout
-renders it in the header eyebrow. **Codes must stay stable** — the teacher
-assigns work by them ("do W5b tonight"). Sentence lessons use `lesson_num`
-(01–07) instead.
+Every writing/notebook page sets `code: "Writing · W3a"` / `code: "Notebook ·
+N2a"` in front matter; the layout renders it in the header eyebrow. **Codes
+must stay stable** — the teacher assigns work by them ("do W5b tonight").
+Sentence lessons use `lesson_num` (01–07) instead.
+
+**W1 is retired, not reused.** Free Writing moved from `writing/` to
+`notebook/` and became **N1**; the rest of the Writing codes were deliberately
+*not* renumbered, so old assignments still resolve. `writing/free-writing.html`
+remains as a meta-refresh redirect stub. Don't hand W1 to a new page.
 
 When a module outgrows one screen it becomes a **hub page + focused
 sub-pages** (W3 → W3a/W3b; W5 → W5a/W5b), not a longer page. The hub links
@@ -75,11 +91,19 @@ assignable: give them `id`s so they can be linked directly.
 - **Colors answer "what job is this doing?"** — never "what is this called?"
   Five jobs (name/act/desc/sit/con) defined once in `tokens.css`. Structure is
   line *style*, never hue. Never rely on color alone.
+- **`.vn-figs` / `.vn-fig`** (components.css) is the Notebook strand's figure
+  grid: small hand-sketch SVGs showing the *shape* of a graphic. Graphite only
+  (`.vn-ink`, `.vn-ink-soft`, `.vn-dot`) — these are structures, not word-jobs,
+  so they never borrow the five job colors. `.wide` gives a 2-up layout.
 
 ## Pedagogical spine
 
-- **Notice first.** The shared idea across both strands: "reading like a
+- **Notice first.** The shared idea across the strands: "reading like a
   writer" (grammar) and Overview & Inventory (writing) are the same instinct.
+- **The notebook is where thinking happens, in words or in shapes.** Free
+  writing (N1) and visual notes (N2) are two ways of working the same page, not
+  alternatives. Visual work is *thinking*, never decoration — if the graphic
+  arrives after the thought, it's a diagram of your notes, not a tool.
 - **The kernel, at two scales.** A *sentence* kernel is subject + verb
   (Lesson 01). A *paragraph* kernel is **one noticing** (W3). Both mean: build
   from the seed; don't staple parts together. Lesson 01 and W3 cross-link.
@@ -155,8 +179,14 @@ cd "$SCRATCH/_sitebuild" && nohup python3 -m http.server 8899 &
   **"traveled"**. Left as-is because the cited source (Gutenberg ebook 2429)
   is unreachable from this environment. Needs the teacher's confirmation
   before changing — three tokens plus the card note.
-- Only Audience was split into sub-pages so far. W1/W2/W4/W6 are short enough
-  to stand alone, but split them the same way if they grow.
+- W2/W4/W6 and N1 are short enough to stand alone; split them into hub +
+  sub-pages the same way (W3, W5, N2) if they grow.
+- **A figure from the Visual Notes PDF is missing.** Page 2 of the teacher's
+  source doc says "He includes this picture, too" and embeds an image —
+  presumably a plate from Sibbet's *Visual Meetings*. It isn't reproduced on
+  N2 (couldn't be extracted here, and republishing a copyrighted plate on a
+  public site is the wrong default). The prose reads fine without it; ask the
+  teacher whether they want something in that spot.
 
 ## Working with this teacher
 

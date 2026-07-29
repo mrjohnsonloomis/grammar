@@ -1,19 +1,22 @@
 # CONTRIBUTING.md — how to add to The Writer's Workbench
 
-**The Writer's Workbench** runs two **co-equal strands** (no hierarchy —
-students work at both from day one):
+**The Writer's Workbench** runs three **co-equal strands** (no hierarchy —
+students work at all of them from day one):
 
-- **Sentences** — our approach to *grammar*, taught as construction.
+- **The sentence** — our approach to *grammar*, taught as construction.
   `/lessons/*` + `/data/sentences/*`.
-- **Writing** — writing as a *practice*: free writing, analytical paragraphs,
+- **Writing** — writing as an *iterative process*: analytical paragraphs,
   narrative memoir, audience, feedback. `/writing/*` + `/data/writing/*`.
+- **The notebook** — thinking on the page: free writing and visual notes.
+  `/notebook/*` + `/data/notebook/*`.
 
-Both strands share the layout, components, color system, and philosophy
-below. Writing content reuses the sentence components by pointing them at
-writing data with `data-file` (e.g. `data-file="writing/cards"`) — if a
-component can't be reused, fix the component, don't fork it. The two strands
+All three share the layout, components, color system, and philosophy below.
+The writing and notebook strands reuse the sentence components by pointing
+them at their own data with `data-file` (e.g. `data-file="notebook/cards"`) —
+if a component can't be reused, fix the component, don't fork it. The strands
 share one core idea: **notice first** ("reading like a writer" in grammar =
-Overview &amp; Inventory in writing).
+Overview &amp; Inventory in writing = the inventory-then-cluster move in the
+notebook).
 
 ## The guiding philosophy (read before writing any content)
 
@@ -43,21 +46,26 @@ assets/js/components/         highlighter, tour(+compare), cards(+glossary),
                               sentence-builder, combiner(construct+recall), quiz
 data/sentences/*.json         ALL lesson content (see SCHEMA.md — the contract)
 data/writing/*.json           the Writing strand's content
+data/notebook/*.json          the Notebook strand's content
 lessons/NN-slug.html          thin pages: front matter + intro prose + mounts
-index.html                    slim hub → links to the two strand landings
+index.html                    slim hub → links to the three strand landings
 sentences.html                Sentences landing: 7-lesson TOC + concept map
-writing/index.html            Writing landing: the W1–W6 module TOC
+writing/index.html            Writing landing: the W2–W6 module TOC
+notebook/index.html           Notebook landing: the N1–N2 module TOC
 practice.html glossary.html validate.html
 AUDIT.md                      content-accuracy log — append when you change content
 ```
 
 **Page codes (for assigning specific sections).** Sentence lessons use
-`lesson_num` (01–07). Writing pages set a `code:` front-matter field —
-`Writing · W1` … `W6`, with sub-pages lettered (`W3a`, `W5b`) — which renders
-in the header eyebrow. A module that grows past one screen becomes a short
-**hub page** plus focused **sub-pages** (e.g. W3 → W3a Topic Sentences, W3b
-Quoting a Text); the hub links down and the nav rail shows sub-pages indented
-(`.sub`). Keep codes stable — they're how work gets assigned.
+`lesson_num` (01–07). Writing and notebook pages set a `code:` front-matter
+field — `Writing · W2` … `W6` and `Notebook · N1` … `N2`, with sub-pages
+lettered (`W3a`, `W5b`, `N2a`) — which renders in the header eyebrow. A module
+that grows past one screen becomes a short **hub page** plus focused
+**sub-pages** (e.g. W3 → W3a Topic Sentences, W3b Quoting a Text); the hub
+links down and the nav rail shows sub-pages indented (`.sub`). Keep codes
+stable — they're how work gets assigned. **W1 is retired:** Free Writing moved
+to the Notebook strand as N1 and the other W codes were left alone rather than
+renumbered, so previously assigned codes still resolve. Never reuse W1.
 
 Hard constraints: static GitHub Pages site (Jekyll layouts only — **no Node
 build step, no framework**); **no student data persistence** (no localStorage,
@@ -83,6 +91,19 @@ Construction items need 2–3 annotated `models` with the move named — models
 are reveal-and-compare, so write them as things worth comparing against.
 The generator script pattern in git history (`build_items.py`) shows how
 identify answer-indices were computed rather than hand-counted.
+
+**A notebook card** → `data/notebook/cards.json`, same shape as the writing
+cards. `concept` is one of `n-think n-graphic n-exercise` (dot colors are in
+components.css next to the `w-*` ones). Card ids must not collide with the
+writing bank — the validator checks. Notebook cards don't enter the grammar
+glossary.
+
+**A visual-notes figure** → an inline `<svg>` inside `.vn-figs` / `.vn-fig`
+markup on the page (this is the one place drawings are page-level, not JSON,
+because each figure is one-of-a-kind). Use only `.vn-ink`, `.vn-ink-soft`,
+`.vn-dot`, and `text.vn-label`; always give the `<svg>` `role="img"` and an
+`aria-label` describing what the sketch shows. Never color these with the
+five job colors — they aren't showing word-jobs.
 
 **A tour/builder/compare/stages interactive** → `data/sentences/tours.json`
 (shapes in SCHEMA.md; `stages` powers the x-ray/revision sliders).

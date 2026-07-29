@@ -850,6 +850,37 @@ mark.practice-target { background: var(--desc-t); color: var(--ink); padding: 1p
 .lex-term[data-concept="w-story"] { --lex-c: var(--desc); }
 .lex-term[data-concept="w-reader"] { --lex-c: var(--con); }
 
+/* notebook-strand lexicon dot colors (same convention as the writing strand) */
+.lex-term[data-concept="n-think"] { --lex-c: var(--act); }
+.lex-term[data-concept="n-graphic"] { --lex-c: var(--desc); }
+.lex-term[data-concept="n-exercise"] { --lex-c: var(--sit); }
+
+/* ---- visual-notes figures (Notebook strand, N2a/N2b) — small notebook
+   sketches showing the SHAPE of each graphic. Deliberately graphite-only:
+   these are structures, not word-jobs, so they never borrow the job colors. ---- */
+.vn-figs { display: grid; grid-template-columns: 1fr; gap: 30px 32px; margin: 24px 0 10px; }
+@media (min-width: 560px) { .vn-figs { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .vn-figs { grid-template-columns: repeat(3, 1fr); } }
+.vn-figs.wide, .vn-figs.pair { grid-template-columns: 1fr; }
+@media (min-width: 760px) { .vn-figs.wide, .vn-figs.pair { grid-template-columns: repeat(2, 1fr); } }
+.vn-fig { border-top: 1px solid var(--line); padding-top: 14px; }
+.vn-fig svg { display: block; width: 100%; max-width: 250px; height: auto; margin-bottom: 10px; }
+.vn-fig h4 { font-family: var(--serif); font-size: 1.08rem; color: var(--ink); margin-bottom: 5px; }
+.vn-fig p { font-size: 0.85rem; color: var(--bodytext); line-height: 1.55; max-width: 40ch; }
+.vn-fig .vn-when {
+  display: block; font-family: var(--sans); font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.11em; color: var(--muted); margin-top: 9px;
+}
+/* labels sit on top of the sketch lines, so give them a paper-coloured halo */
+.vn-fig text {
+  font-family: var(--sans); font-size: 9px; fill: var(--muted);
+  stroke: var(--paper); stroke-width: 3px; paint-order: stroke fill;
+}
+.vn-fig text.vn-label { font-size: 12px; font-weight: 600; fill: var(--ink); }
+.vn-ink { stroke: var(--structure); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.vn-ink-soft { stroke: var(--line); fill: none; stroke-width: 1.3; stroke-linecap: round; }
+.vn-dot { fill: var(--structure); stroke: none; }
+
 /* ---- table of contents — an editorial list, not a card grid (used on the
    home page, the Writing landing, and the analytical-paragraph subpage links) ---- */
 .toc { border-top: 2px solid var(--rule); }

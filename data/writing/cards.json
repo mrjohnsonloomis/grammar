@@ -1,26 +1,6 @@
 {
   "groups": [
     {
-      "id": "free-modalities",
-      "cards": [
-        {
-          "id": "private-writing", "concept": "w-think", "term": "Private Writing",
-          "short": "Yours alone. Nobody reads it; you never have to share it.",
-          "detail": "Not “Dear diary” private — private in that you write what you want, nobody looks, and you don’t share any of it. Empty your thoughts onto the page. We’ll mostly do this at the <strong>start of class</strong> to set aside whatever’s on your mind so you can think.<br><br><div class=\"tip\"><div class=\"tip-label\">The point</div>Some thinking only happens with a pen in your hand. Private writing gives that thinking somewhere to go, with zero stakes.</div>"
-        },
-        {
-          "id": "focused-free-writing", "concept": "w-think", "term": "Focused Free Writing",
-          "short": "A prompt to respond to — free, but with a direction.",
-          "detail": "I (or a classmate) give you a prompt, and you respond. It’s <em>free</em> in that you take it wherever you want; it’s <em>focused</em> in that you start from some guidance. This is where a lot of our thinking-on-paper happens before we shape anything.<br><br><div class=\"tip\"><div class=\"tip-label\">The rule</div>Keep the pen moving. Even when you drift from the prompt, keep going — the drift is often where the good stuff is.</div>"
-        },
-        {
-          "id": "process-writing", "concept": "w-think", "term": "Process / Metacognitive Writing",
-          "short": "Writing about your own thinking — debriefing.",
-          "detail": "Thinking <em>about</em> your thinking. I might ask how that last activity went, or what part of today confused you. It feels odd at first, but noticing how you think makes you better at it.<br><br><div class=\"tip\"><div class=\"tip-label\">Why bother</div>You’ll build a written record of what you were thinking <em>when</em> you thought it. That record makes the high-stakes writing — essays — much easier later. I promise.</div>"
-        }
-      ]
-    },
-    {
       "id": "oi-method",
       "cards": [
         {
