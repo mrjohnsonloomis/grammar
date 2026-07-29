@@ -211,3 +211,66 @@ history preserve it.
 - **Wider measure.** Content column widened (`.container`/`.header`/arc-nav
   950→1180px; `.prose` 68→80ch; `.section-sub`/step text likewise) so pages
   use more of the screen and scroll less. No change to the mobile rules.
+
+## 11. Review response audit — July 2026 (JS/JSON data + sources)
+
+Triggered by an external review that could only see server-rendered prose and
+flagged the JS-rendered data as the priority audit target.
+
+### 11.1 Reference cards (all groups in data/sentences/cards.json) — AUDITED
+- Every card definition read and checked against Holt terminology. All accurate.
+- **Participle** (`participle` card + tours `verbal-types`): confirmed already
+  corrected to the full form — "Present participle ends in -ing; past
+  participle usually -d/-ed but often irregular (broken, sung, written, seen,
+  torn, gone)." The old "-ing or -ed form" shorthand survives only in this
+  AUDIT log as history, nowhere in live content.
+- **Noun clause** consistency: the `noun-clause` card lists *when* among its
+  starters and teaches the "replace with *it*" test; quiz item `cls-06`
+  ("I know when the bus arrives" → noun clause / direct object) uses the same
+  test and answer. Card and item agree.
+
+### 11.2 Passages (data/sentences/passages.json) — openings verified, tags spot-checked
+- Reconstructed each passage from its tokens and checked the wording:
+  Austen, Hemingway, Douglass — **exact** against the cited editions.
+  Dickinson (1890 "The Chariot," stanzas 1–2) — matches the first-edition text;
+  the passage attribution already flags that the manuscript's dashes/capitals
+  were smoothed by the 1890 editors (resolves the reviewer's Dickinson point on
+  the page itself).
+- Tag spot-checks (Dickinson stanza 1 word-by-word; participle craft notes
+  across all five passages) — correct in context (gerund vs. participle vs.
+  passive-verb -ing/-ed distinguished properly).
+- **OPEN — London spelling.** The London passage (and the Adjective card's
+  craft note) print British "grey" and "little-travelled." The 1908 first
+  publication and most American editions use "gray" and "little-traveled"
+  (one L). Left unchanged pending a check against the cited source (Gutenberg
+  ebook 2429); the site's network policy blocked Gutenberg/Wikisource, so this
+  could not be verified in-session. Recommend switching to "gray"/"traveled"
+  if the cited edition confirms American spelling.
+
+### 11.3 Practice items (data/sentences/items.json) — spot-checked
+- Representative sample audited (lesson-05 verbal classify/identify items;
+  lesson-06 clause classify items). Answer keys correct, distractors genuinely
+  wrong, feedback accurate. The validator separately guarantees structural
+  integrity (indices in range, classify targets unique, feedback/models
+  present) across all items. Not every one of the ~150 items was re-verified
+  by hand — this is a sample, not an exhaustive per-item re-read.
+
+### 11.4 Glossary — verified in-browser
+- Renders every `glossary:true` term; each index link points to the correct
+  lesson + `#card-<id>`; arriving at `#card-<id>` selects that term and shows
+  its definition in the pane ("opens on arrival"). Confirmed with Playwright.
+
+### 11.5 Sources / citations — FIXED
+- **Frost** added to the homepage works-cited list ("Nothing Gold Can Stay,"
+  *New Hampshire*, Henry Holt, 1923; US public domain, first published 1923),
+  noted as the Writing strand's shared text. Poem text verified exact.
+- **MLA parenthetical caveat** added to the Quotation page (W3b): once an
+  in-text citation in parentheses is added, the period moves to *after* the
+  parenthesis — so students don't over-apply the "period inside the quotes"
+  rule once they start citing.
+- **Dickinson edition** tension: already resolved on-page (see 11.2).
+
+### 11.6 Writing strand — audited to the same standard
+- Richardson's four reader questions are quoted verbatim and cited; Frost's
+  poem and paragraph quotations verified exact; writing cards' definitions
+  (argument, topic sentence, evidence & reasoning, etc.) checked.

@@ -1,5 +1,5 @@
 title: "The Writer’s Workbench"
-description: An interactive workbench for 9th-grade writers — sentences now, whole pieces of writing next.
+description: "An interactive workbench for 9th-grade writers — two co-equal strands: sentences built as construction, and writing as a daily practice."
 markdown: kramdown
 
 # Plain data/asset dirs are copied through as-is; nothing here needs plugins.
@@ -7,6 +7,7 @@ exclude:
   - AUDIT.md
   - SCHEMA.md
   - CONTRIBUTING.md
+  - CLAUDE.md
   - README.md
   - Gemfile
   - Gemfile.lock
