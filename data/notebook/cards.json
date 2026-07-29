@@ -1,0 +1,79 @@
+{
+  "groups": [
+    {
+      "id": "free-modalities",
+      "cards": [
+        {
+          "id": "private-writing", "concept": "n-think", "term": "Private Writing",
+          "short": "Yours alone. Nobody reads it; you never have to share it.",
+          "detail": "Not “Dear diary” private — private in that you write what you want, nobody looks, and you don’t share any of it. Empty your thoughts onto the page. We’ll mostly do this at the <strong>start of class</strong> to set aside whatever’s on your mind so you can think.<br><br><div class=\"tip\"><div class=\"tip-label\">The point</div>Some thinking only happens with a pen in your hand. Private writing gives that thinking somewhere to go, with zero stakes.</div>"
+        },
+        {
+          "id": "focused-free-writing", "concept": "n-think", "term": "Focused Free Writing",
+          "short": "A prompt to respond to — free, but with a direction.",
+          "detail": "I (or a classmate) give you a prompt, and you respond. It’s <em>free</em> in that you take it wherever you want; it’s <em>focused</em> in that you start from some guidance. This is where a lot of our thinking-on-paper happens before we shape anything.<br><br><div class=\"tip\"><div class=\"tip-label\">The rule</div>Keep the pen moving. Even when you drift from the prompt, keep going — the drift is often where the good stuff is.</div>"
+        },
+        {
+          "id": "process-writing", "concept": "n-think", "term": "Process / Metacognitive Writing",
+          "short": "Writing about your own thinking — debriefing.",
+          "detail": "Thinking <em>about</em> your thinking. I might ask how that last activity went, or what part of today confused you. It feels odd at first, but noticing how you think makes you better at it.<br><br><div class=\"tip\"><div class=\"tip-label\">Why bother</div>You’ll build a written record of what you were thinking <em>when</em> you thought it. That record makes the high-stakes writing — essays — much easier later. I promise.</div>"
+        }
+      ]
+    },
+    {
+      "id": "general-graphics",
+      "cards": [
+        {
+          "id": "graphic-list", "concept": "n-graphic", "term": "Lists",
+          "short": "Capturing information without structure.",
+          "detail": "The lowest-friction graphic there is: things down a page, one per line. Its whole virtue is that it <em>refuses</em> structure — you don’t have to know how ideas relate before you’re allowed to write them down. That’s exactly why the <a class=\"term\" href=\"../writing/overview-inventory.html\">Inventory</a> is a list.<br><br>Reach for it when there’s more in your head than you can hold at once, or when you’re stalling because you’re trying to organize and generate at the same time. Don’t. Generate first.<br><br><div class=\"tip\"><div class=\"tip-label\">When it gets long</div>Don’t reorganize a long list in your head — start circling items that go together on the page. Circles are the beginning of a cluster.</div>"
+        },
+        {
+          "id": "graphic-cluster", "concept": "n-graphic", "term": "Clusters",
+          "short": "Finding connections and common ground.",
+          "detail": "Loop a circle around the notes that belong together, then a bigger loop around the loops. You aren’t sorting into categories you already had — you’re finding out what categories you have.<br><br>The hard, useful part is <strong>naming</strong> a cluster. A good cluster name is usually a claim wearing a disguise, which is why this move sits so close to writing a <a class=\"term\" href=\"../writing/topic-sentences.html\">topic sentence</a>.<br><br><div class=\"mini-ex\">Three noticings about the light in a poem → circled → named “the light keeps getting cheaper.”</div><div class=\"tip\"><div class=\"tip-label\">Watch the leftovers</div>The detail that won’t join any cluster is not a failure. It’s either a new cluster with one member, or the thing that breaks your neat idea — both worth writing about.</div>"
+        },
+        {
+          "id": "graphic-grid", "concept": "n-graphic", "term": "Grids",
+          "short": "To build comparisons.",
+          "detail": "Rows and columns. Put the things you’re comparing down the side and the questions you’re asking across the top. Two poems, two drafts of your own paragraph, two characters, before and after.<br><br>A grid’s real power is that it shows you the <strong>empty boxes</strong> — the comparison you hadn’t thought to make until the page asked for it.<br><br><div class=\"tip\"><div class=\"tip-label\">The empty box</div>An empty cell isn’t a hole in your work; it’s the most interesting square on the page. Go find out what belongs there.</div>"
+        },
+        {
+          "id": "graphic-diagram", "concept": "n-graphic", "term": "Diagrams",
+          "short": "Exploring links and connections, or how something works.",
+          "detail": "Where a cluster asks <em>what goes with what</em>, a diagram asks <em>what does what to what</em>. Boxes for the parts, arrows for the relationships — and the arrow is the content, so <strong>label it</strong>. Cause and effect, sequence, cycles, a loop that feeds back on itself.<br><br>You’ve already used one: the <a class=\"term\" href=\"../sentences.html\">map of how the sentence moves stack</a> is a diagram.<br><br><div class=\"tip\"><div class=\"tip-label\">The test</div>If you can’t label an arrow, you don’t yet know what the relationship is — and now you know that, which is progress.</div>"
+        },
+        {
+          "id": "graphic-drawing", "concept": "n-graphic", "term": "Drawings &amp; Illustrations",
+          "short": "Bring life to your page, or translate from your mind’s eye.",
+          "detail": "Draw the thing you’re picturing. When you read, you build pictures whether you mean to or not; a drawing gets that picture out where you can look at it — and shows you the parts you <em>couldn’t</em> picture, which is often exactly where the text is doing something strange and worth writing about.<br><br>It also does something plainer: it makes the page yours, and a page you want to open is a notebook you’ll use.<br><br><div class=\"tip\"><div class=\"tip-label\">Not an art class</div>“I can’t draw” is not disqualifying. Stick figures, boxes, and arrows have carried entire fields of science. Nobody is grading the drawing.</div>"
+        },
+        {
+          "id": "graphic-mandala", "concept": "n-graphic", "term": "Mandalas",
+          "short": "How all the parts fit together in a unified whole.",
+          "detail": "A circle with something at the center and everything else arranged around it, near or far depending on how it relates to that center.<br><br>A list has no structure; a grid has two axes. A mandala forces one question instead: <strong>what is at the middle?</strong> Use it when you already have the parts and need to know what holds them together — a whole text, a whole unit, a whole essay you’re about to write.<br><br><div class=\"tip\"><div class=\"tip-label\">Do it twice</div>Choosing the center <em>is</em> the exercise. Draw it once with the obvious center, then again with a different one. The second one almost always teaches you more.</div>"
+        }
+      ]
+    },
+    {
+      "id": "visual-exercises",
+      "cards": [
+        {
+          "id": "ex-4wh", "concept": "n-exercise", "term": "The 4WH Tool",
+          "short": "Who, What, When, Where, How — the reporter’s questions, on your page.",
+          "detail": "A traditional journalist’s tool for making sure a story has no holes, borrowed here to explore a subject, an idea, or a question.<br><br>Space the five words out on a page — corners and center works well — and answer each one about your subject. It’s fast and deliberately unsubtle, and it reliably turns up the thing you hadn’t considered.<br><br><div class=\"tip\"><div class=\"tip-label\">Read your own page</div>The question you answer <em>last</em>, or can’t answer at all, is usually where your writing needs to go next.</div>"
+        },
+        {
+          "id": "ex-mapping", "concept": "n-exercise", "term": "Mind Mapping &amp; Concept Mapping",
+          "short": "One center branching out — or many nodes with labeled links.",
+          "detail": "<strong>A mind map</strong> starts with one idea in the middle and branches outward: main branches off the center, smaller branches off those. It’s built for <em>generating</em> — you follow a line as far as it goes, then come back to the center and start another.<br><br><strong>A concept map</strong> is looser and stricter at once. Nodes go anywhere on the page, any node can connect to any other, and <em>every line gets a label</em> saying how the two are related. It’s built for <em>understanding</em> something you already have the pieces of.<br><br><div class=\"tip\"><div class=\"tip-label\">Which one</div>Generating ideas → mind map. Working out how ideas relate → concept map. The labeled lines are the whole difference, and they’re where the thinking is.</div>"
+        },
+        {
+          "id": "ex-metaphor", "concept": "n-exercise", "term": "Creating Visual Metaphors",
+          "short": "Borrow the shape of an object to hold the shape of an idea.",
+          "detail": "<strong>The snowglobe.</strong> A small sealed world you look into from outside. Shake it and everything swirls, then settles more or less where it was. Useful for a memoir moment or the world of a text: what’s inside the glass, what’s outside it, who is holding it, and what happens when it gets shaken.<br><br><strong>The hamburger.</strong> You’ve met this one — top bun, filling, bottom bun. It’s a metaphor about layers and order, and it’s worth asking how much of it you actually believe.<br><br><div class=\"tip\"><div class=\"tip-label\">Find the leak</div>Every metaphor holds in some places and leaks in others, and the leak teaches you the most. A hamburger claims your first and last sentences are basically the same bread. Is that true of your paragraph? Say where the picture breaks.</div>"
+        }
+      ]
+    }
+  ]
+}

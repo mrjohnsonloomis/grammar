@@ -300,6 +300,33 @@ All three are in-memory only; nothing typed is stored (the "private writing"
 ethos) — export downloads are user-initiated and generated on the fly.
 `data/writing/demo.json` remains as a minimal architecture proof.
 
+## /data/notebook/* — the Notebook strand
+
+One file so far, `data/notebook/cards.json`, in the same `{ groups: [...] }`
+shape as the writing cards:
+
+```html
+<div data-component="cards" data-group="general-graphics" data-file="notebook/cards"></div>
+```
+
+- `concept` is one of `n-think` (free writing), `n-graphic` (general
+  graphics), `n-exercise` (specific exercises). Like the writing concepts,
+  these render a colored lexicon dot and **no job-chip**, and don't appear in
+  the grammar glossary. Dot colors live in components.css beside the `w-*`
+  rules.
+- `lesson` is omitted — notebook cards aren't tied to a numbered lesson.
+- Groups in use: `free-modalities` (N1), `general-graphics` (N2a),
+  `visual-exercises` (N2b).
+
+The validator additionally checks that notebook card ids don't collide with
+writing card ids, since both banks can be mounted in the same session.
+
+The Notebook strand's other content is **figures**, not data: hand-sketch
+`<svg>`s inline on the page inside `.vn-figs`/`.vn-fig` markup. Each figure is
+one-of-a-kind, so it lives with its page rather than in a bank. They use only
+`.vn-ink`, `.vn-ink-soft`, `.vn-dot`, `text`, and `text.vn-label`, and each
+`<svg>` carries `role="img"` plus an `aria-label` describing the sketch.
+
 ## Adding a lesson (checklist)
 
 1. Add content to the JSON banks (passages/cards/tours/items) — never inline

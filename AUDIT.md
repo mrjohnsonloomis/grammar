@@ -274,3 +274,72 @@ flagged the JS-rendered data as the priority audit target.
 - Richardson's four reader questions are quoted verbatim and cited; Frost's
   poem and paragraph quotations verified exact; writing cards' definitions
   (argument, topic sentence, evidence & reasoning, etc.) checked.
+
+---
+
+## 12. Three-strand restructure + the Notebook strand
+
+The site moved from two co-equal strands to **three**: the sentence, writing,
+and **the notebook**. Free writing moved under the notebook, and a new Visual
+Notes module was written from the teacher's source PDF.
+
+### 12.1 Structure changes
+- New strand landing `notebook/index.html`; third group in the nav rail and
+  the mobile menu; `index.html` now offers three strand links (S / W / N) and
+  its tagline, description, and `_config.yml` description were rewritten
+  accordingly.
+- `writing/free-writing.html` → `notebook/free-writing.html`. Code changed
+  **`Writing · W1` → `Notebook · N1`**; `nav` changed `w-free` → `n-free`.
+- **W2–W6 were deliberately NOT renumbered.** Codes are how the teacher
+  assigns work, so the W1 slot is retired rather than reused, and every
+  previously assigned code (W2, W3a, W5b…) still resolves to the same page.
+  Noted on the Writing landing and in CONTRIBUTING/CLAUDE.
+- The old URL `writing/free-writing.html` remains as a meta-refresh redirect
+  stub (`noindex`, canonical → the new page), so shared links don't 404.
+- Card group `free-modalities` moved from `data/writing/cards.json` to the new
+  `data/notebook/cards.json`; its three cards changed `concept` `w-think` →
+  `n-think`. Card text itself is unchanged.
+- Chain fixes: Writing landing `next_url` now W2; N1 `next_url` now N2;
+  `writing/feedback.html`'s "metacognitive free writing" link retargeted.
+
+### 12.2 New content — Visual Notes (N2, N2a, N2b)
+- **N2 hub** is the teacher's PDF, transcribed. The Sibbet three-bullet
+  quotation and the Horn quotation are reproduced as given in the source doc;
+  the teacher's own framing ("we could replace 'talk' with 'think' or
+  'write'", "you will have ideas that are difficult to express in text
+  alone") is kept in their voice.
+- **Citations verified this session** (both were reachable, unlike the
+  literary sources in §11.2):
+  - Sibbet, David. *Visual Meetings: How Graphics, Sticky Notes and Idea
+    Mapping Can Transform Group Productivity*. Wiley, 2010.
+  - Horn, Robert E. *Visual Language: Global Communication for the 21st
+    Century*. MacroVU Press, 1998. Quoted in Sibbet.
+- **OPEN — a missing figure.** Page 2 of the source PDF reads "He includes
+  this picture, too" and embeds an image, presumably a plate from *Visual
+  Meetings*. It is **not** reproduced on N2: it could not be extracted here,
+  and republishing a copyrighted plate on a public student site is not a
+  default worth taking without the teacher's say-so. The prose reads
+  continuously without it. Needs the teacher's decision.
+- **N2a General Graphics** and **N2b Specific Exercises** were *written*, not
+  transcribed — the PDF supplies only the bones (six graphic names with a
+  one-line gloss each; three exercise names). Everything past those glosses is
+  new prose in the site's voice and should be read as a draft the teacher may
+  want to redirect. The teacher's own glosses are preserved verbatim as each
+  card's `short` line and each figure's lead sentence.
+- **One deliberate addition, flagged.** The PDF's "4WH Tool" lists Who, What,
+  When, Where, How. N2b keeps exactly that set and adds a short note
+  explaining why *Why* is held back until the page is full, rather than
+  silently adding a sixth question or leaving students to wonder.
+- **The snowglobe and hamburger** are given as the PDF gives them, plus a
+  "find the leak" section — testing where a metaphor breaks — which follows
+  the site's standing preference for choices-with-effects over rules.
+
+### 12.3 QA
+- `/validate.html`: **ALL CHECKS PASSED**, with new checks for
+  `data/notebook/cards.json` (unique ids, no collision with writing card ids,
+  known `n-*` concepts, all three mounted groups resolve).
+- Playwright, built site: all 11 changed/new pages return 200 with zero
+  console errors; card mounts render (3 / 6 / 3 lexicon terms); header
+  eyebrows read N1, N2, N2a, N2b, W2, W6; rail highlighting and `.sub`
+  indentation correct on every notebook page; 27 unique internal links
+  crawled, **0 broken**; no horizontal overflow at 375px.

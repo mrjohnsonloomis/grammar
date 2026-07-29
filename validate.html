@@ -23,10 +23,12 @@ window.addEventListener('DOMContentLoaded', function () {
   Promise.all([
     GX.data.load('passages'), GX.data.load('cards'), GX.data.load('tours'),
     GX.data.load('items'), GX.data.load('writing/demo'),
-    GX.data.load('writing/cards'), GX.data.load('writing/tours'), GX.data.load('writing/items')
+    GX.data.load('writing/cards'), GX.data.load('writing/tours'), GX.data.load('writing/items'),
+    GX.data.load('notebook/cards')
   ]).then(function (res) {
     var passages = res[0], cards = res[1], tours = res[2], items = res[3], demo = res[4];
     var wCards = res[5], wTours = res[6], wItems = res[7];
+    var nCards = res[8];
 
     /* ---- passages ---- */
     var pids = {};
@@ -235,7 +237,7 @@ window.addEventListener('DOMContentLoaded', function () {
     ok('writing/items.json: ' + Object.keys(wItemIds).length + ' items, ids unique');
 
     /* writing-page mounts resolve */
-    ['free-modalities','oi-method','paragraph-terms','memoir-moves','feedback-protocol'].forEach(function (g) {
+    ['oi-method','paragraph-terms','memoir-moves','feedback-protocol'].forEach(function (g) {
       if (!wCards.groups.some(function (x) { return x.id === g; })) fail('writing page mounts card group "' + g + '" which does not exist');
     });
     ['tell-show-nervous','tell-show-messy','tell-show-kind','claim-fact','quote-dropped'].forEach(function (id) {
@@ -247,6 +249,25 @@ window.addEventListener('DOMContentLoaded', function () {
       if (!wItemIds[id]) fail('writing page mounts item "' + id + '" which does not exist');
     });
     ok('all writing-page mounts resolve');
+
+    /* ===== NOTEBOOK STRAND ===== */
+    var nCardIds = {};
+    nCards.groups.forEach(function (g) {
+      g.cards.forEach(function (c) {
+        if (nCardIds[c.id]) fail('DUPLICATE notebook card id: ' + c.id);
+        if (wCardIds[c.id]) fail('notebook card id "' + c.id + '" collides with a writing card id');
+        nCardIds[c.id] = true;
+        if (!(c.term && c.short && c.detail && c.concept)) fail('notebook card ' + c.id + ': missing term/short/detail/concept');
+        if (['n-think','n-graphic','n-exercise'].indexOf(c.concept) < 0) fail('notebook card ' + c.id + ': unknown concept "' + c.concept + '"');
+      });
+    });
+    ok('notebook/cards.json: ' + Object.keys(nCardIds).length + ' cards, ids unique and concepts known');
+
+    /* notebook-page mounts resolve */
+    ['free-modalities','general-graphics','visual-exercises'].forEach(function (g) {
+      if (!nCards.groups.some(function (x) { return x.id === g; })) fail('notebook page mounts card group "' + g + '" which does not exist');
+    });
+    ok('all notebook-page mounts resolve');
 
     render();
   }).catch(function (err) {
