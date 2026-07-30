@@ -24,7 +24,7 @@
     {
       "id": "claim-fact",
       "label": "fact vs. claim",
-      "a": { "label": "Just a fact", "sentence": ["The poem ", {"m": "has eight lines and one rhyme scheme"}, "."], "why": "True — and that’s the problem. Nobody could disagree, so there’s nothing to prove. A fact isn’t a topic sentence; it’s raw material you might use <em>as</em> evidence later." },
+      "a": { "label": "Just a fact", "sentence": ["The poem ", {"m": "has eight lines and one rhyme scheme"}, "."], "why": "True — and that’s the problem. Nobody could disagree, so there’s nothing to prove. Save a fact like this for later, where it can serve as <em>evidence</em> for a claim." },
       "b": { "label": "A claim", "sentence": ["The poem’s ", {"m": "tight, quick form"}, " makes its shortness ", {"m": "feel like the fleeting beauty"}, " it describes."], "why": "Debatable — a reader could push back and say the form does something else. That disagreement is exactly what gives the paragraph a job: prove it. <em>That’s</em> a topic sentence." },
       "test": "<strong>The test:</strong> could a smart classmate reasonably disagree? If no, it’s a fact — save it for evidence. If yes, you’ve got a claim worth a whole paragraph."
     },
@@ -33,7 +33,7 @@
       "label": "dropped vs. woven",
       "a": { "label": "Dropped in", "sentence": ["Frost describes the leaves. ", {"m": "“Nature’s first green is gold.”"}, " This shows beauty."], "why": "The quote is dumped between two sentences with nothing holding it — a “hit-and-run” quote. The reader has to guess why it’s there and do the connecting you skipped." },
       "b": { "label": "Woven in", "sentence": ["Frost calls the new leaves ", {"m": "“gold,”"}, " comparing them to something precious."], "why": "The quote is folded into your own sentence with a signal word (<em>calls</em>) and immediately followed by reasoning. It reads as one smooth thought — and it actually does analytical work." },
-      "test": "<strong>The move:</strong> never let a quotation stand as its own sentence. <em>Introduce</em> it (a signal phrase), then <em>explain</em> it (reasoning). Quote sandwiched, never quote stranded."
+      "test": "<strong>The test:</strong> read the sentence containing the quotation out loud. If the quoted words don't fit the grammar of your own sentence, you dropped the quote in rather than weaving it. A quotation standing alone as its own sentence always fails this test."
     }
   ],
   "kernels": [

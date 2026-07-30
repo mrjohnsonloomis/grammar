@@ -462,6 +462,7 @@ button.word-chunk:hover .chunk-w, .word-chunk.active .chunk-w { background: var(
   letter-spacing: 0.14em; color: var(--act); margin-bottom: 3px;
 }
 .mini-ex {
+  display: block; /* used as both <div> and <span>; the span form ran on into the next sentence */
   font-family: var(--serif); font-style: italic; font-size: 0.98rem;
   padding: 5px 0 5px 14px; margin: 8px 0; border-left: 2px solid var(--line);
 }

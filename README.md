@@ -1,9 +1,8 @@
 # The Writer's Workbench
 
 An interactive workbench for 9th-grade writers, built as a static site on
-GitHub Pages. Sentences are treated as things students **build** — by
-combining, expanding, imitating, and revising real sentences — not specimens
-they dissect.
+GitHub Pages. Students **build** sentences here, by combining, expanding,
+imitating, and revising real ones.
 
 **Part I · Sentences** — seven lessons from the two-word kernel to full
 sentence craft, each following the same arc: *Notice* annotated mentor

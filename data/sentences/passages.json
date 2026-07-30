@@ -125,7 +125,7 @@
      "t": "must",
      "tag": "verb",
      "subtype": "modal",
-     "craft": "A modal verb expressing necessity — not probability, not likelihood, but <em>must</em>. The comedy turns on this word. He doesn't merely tend to want a wife; society has determined that he must.",
+     "craft": "A modal verb expressing necessity rather than probability. The comedy turns on this word: he doesn't merely tend to want a wife; society has determined that he must.",
      "role": "Helping (modal) verb combining with <em>be</em>."
     },
     {
@@ -616,7 +616,7 @@
      "t": "village",
      "tag": "noun",
      "subtype": "common",
-     "craft": "Again: not a town, not a city, not a hamlet. <em>Village</em> — small, modest, human-scaled. The scale keeps shrinking: country → village → house.",
+     "craft": "<em>Village</em> — small, modest, human-scaled, and again the plainest available word. The scale keeps shrinking: country → village → house.",
      "role": "Object of the second <em>in</em>."
     },
     {
@@ -901,7 +901,7 @@
      "t": "went",
      "tag": "verb",
      "subtype": "action",
-     "craft": "The simplest possible verb of motion. Not <em>marched</em>, not <em>advanced</em>, not <em>tramped</em> — just <em>went</em>. Hemingway drains the heroism from military movement with a single plain verb.",
+     "craft": "The simplest possible verb of motion. <em>Marched</em>, <em>advanced</em>, and <em>tramped</em> were all available; Hemingway chose <em>went</em>, draining the heroism out of military movement with one plain verb.",
      "role": "Main verb of the first clause."
     },
     {
@@ -978,7 +978,7 @@
      "t": "raised",
      "tag": "verb",
      "subtype": "action",
-     "craft": "The verb of the tucked-in clause, not of the sentence. The troops act, but their only recorded product is dust — not victory, not heroism.",
+     "craft": "The verb of the tucked-in clause rather than of the sentence. The troops act, and the only product the sentence records is dust.",
      "role": "Verb of the clause <em>they raised</em>, modifying <em>dust</em>."
     },
     {
@@ -1288,7 +1288,7 @@
     {
      "t": "any",
      "tag": "adjective",
-     "craft": "Not <em>the</em> record, not <em>a</em> record — <em>any</em> authentic record. The word sweeps the whole category empty.",
+     "craft": "<em>Any</em> authentic record — a far wider word than <em>the</em> or <em>a</em> would have been. It sweeps the whole category empty.",
      "role": "Modifies <em>record</em>."
     },
     {
@@ -2751,7 +2751,7 @@
      "t": "civility",
      "tag": "noun",
      "subtype": "abstract",
-     "craft": "Death's defining characteristic in this poem — not terror, not darkness, but <em>civility</em>. A social virtue. This is the poem's central irony: death as good manners, dying as accepting a courteous invitation.",
+     "craft": "Death's defining characteristic in this poem is <em>civility</em> — a social virtue, in the place where a reader expects terror or darkness. This is the poem's central irony: death as good manners, dying as accepting a courteous invitation.",
      "role": "Object of <em>For</em>."
     },
     {
