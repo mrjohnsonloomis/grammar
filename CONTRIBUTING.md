@@ -20,8 +20,8 @@ notebook).
 
 ## The guiding philosophy (read before writing any content)
 
-This site teaches sentences as things students **build**, not specimens they
-dissect. Research (Hillocks 1986; Graham & Perin, *Writing Next*, 2007) shows
+This site teaches sentences by having students **build** them. Research
+(Hillocks 1986; Graham & Perin, *Writing Next*, 2007) shows
 that identification-and-parsing grammar instruction does not improve writing,
 while sentence combining does. So construction activities — combine, expand,
 imitate, revise — are the dominant activity type and must stay the majority of
@@ -34,6 +34,26 @@ mentor sentences) → **Name** (reference cards) → **Build** (construction
 practice) → **Apply** (revise or write something). Terminology follows the
 *Holt Handbook* (Third Course) so students meet the same terms elsewhere; MLA
 (9th ed.) governs citations.
+
+### Voice: instructional, not slogan
+
+Say what a thing **is** and what to **do**. The teacher has explicitly rejected
+the "not this, but that" antithesis as a house style — taglines, callouts, and
+footers that define the site by what it isn't ("built for writers, not
+proofreaders"; "a workbench, not a textbook"; "fragments aren't crimes —
+they're unfinished moves"). Rules of thumb:
+
+- Lead with the positive claim. If the contrast carries real information for a
+  student ("commas go *inside* the quotation marks, unlike in British usage";
+  "the claim arrives last"), keep it — once, plainly. If it only sets up a
+  slogan, cut it.
+- One negation per idea, and never three in a row for rhythm.
+- No unattributed epigraphs. A `.source-quote` block must hold words someone
+  actually wrote — a cited author, or the teacher's own course notes. Do not
+  restate the page in quotation marks as if it were a maxim.
+- Craft notes on literary passages are the exception where a contrast is the
+  content (Hemingway really did pass over *marched* for *went*), but don't
+  reuse the same construction twice in one passage.
 
 ## Repo layout
 

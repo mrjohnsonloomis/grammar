@@ -343,3 +343,91 @@ Notes module was written from the teacher's source PDF.
   eyebrows read N1, N2, N2a, N2b, W2, W6; rail highlighting and `.sub`
   indentation correct on every notebook page; 27 unique internal links
   crawled, **0 broken**; no horizontal overflow at 375px.
+
+---
+
+## 13. Copy pass — removing the "not this, but that" voice
+
+The teacher flagged a house tic: copy that defines things by what they *aren't*
+("built for writers, not proofreaders"; "a workbench, not a textbook";
+"fragments aren't crimes — they're unfinished moves"). The instruction was to
+remove those instances and keep the language instructional and clear. **No
+teaching claim changed in this pass** — only how it's worded.
+
+### 13.1 The rule applied
+Kept every contrast that carries information a student needs *once*, plainly
+(commas go inside the quotation marks in American usage; the claim arrives
+last; a phrase has no subject–verb pair and a clause does). Cut the ones whose
+only job was rhythm or self-description. A voice section codifying this was
+added to `CONTRIBUTING.md` so it doesn't come back.
+
+### 13.2 Chrome
+- **Footer** (`_layouts/default.html`, every page): "built for writers, not
+  proofreaders" → "9th-grade writing."
+- **Home**: the decorative closing line "Built for writers. Made with care."
+  was deleted along with its now-unused `.footer-note` rule; tagline
+  ("A workbench, not a textbook…") rewritten as a plain description of the
+  three strands; principles ii and iii rewritten ("Not a talent you have or
+  don't"; "Finished pieces aren't written; they're re-written"); the Sources
+  paragraph and the Sentences/Glossary TOC descriptions rewritten.
+- `README.md` and `CONTRIBUTING.md` carried the same "not specimens they
+  dissect" phrasing and were changed to match, since the philosophy doc is
+  where the phrase kept getting re-copied from.
+
+### 13.3 Taglines and heroes
+Rewritten on: `sentences.html`, `writing/index.html`, `notebook/index.html`,
+`writing/analytical-paragraph.html`, `writing/topic-sentences.html`,
+`writing/quotation.html`, `writing/narrative-memoir.html`,
+`writing/feedback.html`, `writing/writing-for-the-reader.html`,
+`notebook/general-graphics.html`, `notebook/specific-exercises.html`, plus
+lesson 02's meta `description`. Notable: N2a's "each one refuses to let you do
+something… that refusal is what makes it useful" became a statement of the
+question each graphic forces you to answer.
+
+### 13.4 Callouts, section-subs, step-rows
+Edited in lessons 01, 03, 06 and across the writing and notebook strands.
+`notebook/visual-notes.html`'s "Three things this is not" became "Three things
+to be clear about," with each heading stating the positive rule (the drawing
+*is* the thinking; drawing skill is irrelevant; sentences still do most of the
+work) — same three points, no negative definitions.
+
+### 13.5 Four invented epigraphs removed
+`.source-quote` blocks are for words someone actually wrote. Four were
+site-written aphorisms restating the page in quotation marks, with no
+attribution — two on `analytical-paragraph.html`, one on `topic-sentences.html`,
+one on `quotation.html` ("Quote sandwiched, never quote stranded"). All four
+deleted; the quotation page now closes on the three-step instruction instead.
+**Every remaining `.source-quote` is sourced** — Sibbet, Horn, Richardson (all
+cited), or the teacher's own course notes (notebook, free writing, O&I,
+memoir, feedback, writing landing). Those were left untouched.
+
+### 13.6 Data files
+- `data/writing/tours.json`: the `quote-dropped` compare's `test` line lost
+  "Quote sandwiched, never quote stranded" and now gives a read-aloud test;
+  the claim-vs-fact compare's `why` no longer says "a fact isn't a topic
+  sentence; it's raw material."
+- `data/writing/cards.json`: feedback-protocol card `short` ("never an ocean of
+  marks") and three `detail` passages reworded.
+- `data/notebook/cards.json`: cluster and grid card details reworded.
+- `data/sentences/passages.json`: **the literary craft notes were left as
+  analysis**, because there the contrast is the content — Hemingway really did
+  pass over *marched* for *went*. But the same "not X, not Y — just Z" frame
+  appeared four times inside the Hemingway passage alone, so three of those
+  were rephrased (plus one each in Austen, Douglass, Dickinson) to state the
+  choice directly. Every claim about the text is unchanged; the London "no
+  hint of sun" and "not Tom, not Jack" notes were kept as written.
+
+### 13.7 One rendering bug found and fixed
+`.mini-ex` had padding and margins but no `display: block`, so the four
+`<span class="mini-ex">` examples on `writing/quotation.html` ran inline into
+the sentence after them ("…is gold."Signal verbs:"). Added `display: block`;
+the one deliberately inline use already overrides it with `style="display:inline"`.
+
+### 13.8 QA
+- `/validate.html`: **ALL CHECKS PASSED**.
+- All nine `data/*.json` files parse.
+- Playwright over the built site, 27 pages: all HTTP 200, **zero console
+  errors** (font 403s excluded as usual), no escaped HTML in rendered text, no
+  unmounted `data-component` slots, footer correct on every page, no
+  horizontal overflow at 375px, and a grep-style assertion that none of the
+  retired phrases survives anywhere in rendered output.
