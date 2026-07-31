@@ -431,3 +431,32 @@ the one deliberately inline use already overrides it with `style="display:inline
   unmounted `data-component` slots, footer correct on every page, no
   horizontal overflow at 375px, and a grep-style assertion that none of the
   retired phrases survives anywhere in rendered output.
+
+---
+
+## 14. Credit to Bard College's Institute for Writing and Thinking
+
+At the teacher's request: the course's free-writing practice is substantially
+informed by **Bard College's Institute for Writing and Thinking** (IWT,
+Annandale-on-Hudson, NY), which supplied much of the vocabulary and many of the
+frameworks used in the Notebook strand — the three modalities (private, focused,
+process/metacognitive), the moving pen, bracketing what you'll share. That was
+previously uncredited. Added in two places:
+
+- `notebook/free-writing.html` (N1): a new **"Where this comes from"** closing
+  section, styled like the `Sources` note on `notebook/visual-notes.html` (small,
+  muted `.prose`), naming IWT and what it informed. The existing "nothing is
+  saved" line was folded into it so the page still ends on that reassurance.
+- `index.html` (Sources & About): a new prose paragraph crediting IWT for the
+  Notebook strand and linking to N1, plus a list entry in the citation list
+  (alphabetical, after Hemingway). The list's lead-in now reads "Works cited
+  **and acknowledged**:" since an institute isn't a literary text.
+
+Nothing is attributed to a named person, and no IWT text is quoted — the credit
+describes influence only.
+
+### 14.1 QA
+- `gem exec jekyll build` clean; `/validate.html`: **ALL CHECKS PASSED**.
+- Playwright over the built site: `notebook/free-writing.html`, `index.html`,
+  `validate.html` — zero console errors, no escaped HTML in rendered text, no
+  horizontal overflow.
